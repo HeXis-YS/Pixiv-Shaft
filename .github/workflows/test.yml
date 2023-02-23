@@ -1,0 +1,51 @@
+name: CI-test
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build apk
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.5.0
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Get tag name
+        id: get_tag_name
+        run: |
+          set -x
+          version_tag=${GITHUB_REF/refs\/tags\//}
+          version_tag_short=`echo $version_tag | awk 'NR==1,/v/{sub(/v/, "");print}'`
+          echo "VERSION_TAG=$version_tag" >> $GITHUB_ENV
+          echo "VERSION_TAG_SHORT=$version_tag_short" >> $GITHUB_ENV
+
+      - name: Build release apk
+        uses: eskatos/gradle-command-action@v1
+        with:
+          arguments: assembleRelease
+          distributions-cache-enabled: true
+          dependencies-cache-enabled: true
+          configuration-cache-enabled: true
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ !github.head_ref }}
+        with:
+          name: apk-release
+          path: app/build/outputs/apk/release
