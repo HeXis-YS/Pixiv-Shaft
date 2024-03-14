@@ -33,6 +33,7 @@ import ceui.lisa.utils.GlideUtil;
 import ceui.lisa.utils.Params;
 import ceui.lisa.utils.PixivOperate;
 import ceui.lisa.viewmodel.UserViewModel;
+import ceui.loxia.ObjectPool;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -44,8 +45,8 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
  */
 public class UserActivity extends BaseActivity<ActicityUserBinding> implements Display<UserDetailResponse> {
 
-    private UserViewModel mUserViewModel;
 
+    private UserViewModel mUserViewModel;
     @Override
     protected int initLayout() {
         return R.layout.acticity_user;
@@ -79,8 +80,8 @@ public class UserActivity extends BaseActivity<ActicityUserBinding> implements D
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ErrorCtrl<UserDetailResponse>() {
                     @Override
-                    public void next(UserDetailResponse user) {
-                        mUserViewModel.getUser().setValue(user);
+                    public void next(UserDetailResponse userResponse) {
+                        mUserViewModel.getUser().setValue(userResponse);
                     }
                 });
         baseBind.turnGray.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -116,7 +117,7 @@ public class UserActivity extends BaseActivity<ActicityUserBinding> implements D
         baseBind.userAddress.setText(Common.checkEmpty(currentUser.getProfile().getRegion()));
         baseBind.userAddress.setVisibility(View.VISIBLE);
         List<String> tagList = new ArrayList<>();
-        tagList.add(getString(R.string.string_147) + currentUser.getProfile().getTotal_mypixiv_users());
+        tagList.add(getString(R.string.string_235) + ": " + currentUser.getProfile().getTotal_mypixiv_users());
         tagList.add(getString(R.string.string_145) + currentUser.getProfile().getTotal_follow_users());
         tagList.add(getString(R.string.string_146));
         baseBind.tagType.setAdapter(new TagAdapter<String>(tagList) {

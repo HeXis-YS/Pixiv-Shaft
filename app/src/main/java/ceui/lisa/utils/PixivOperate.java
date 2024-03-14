@@ -64,6 +64,7 @@ import ceui.lisa.models.UserBean;
 import ceui.lisa.models.UserModel;
 import ceui.lisa.models.IllustsBean;
 import ceui.lisa.viewmodel.AppLevelViewModel;
+import ceui.loxia.ObjectPool;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
@@ -91,8 +92,9 @@ public class PixivOperate {
     }
 
     public static void postFollowUser(int userID, String followType) {
+        String pendingFollowType = Shaft.sSettings.isPrivateStar() ? Params.TYPE_PRIVATE : followType;
         Retro.getAppApi().postFollow(
-                sUserModel.getAccess_token(), userID, followType)
+                sUserModel.getAccess_token(), userID, pendingFollowType)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ErrorCtrl<NullResponse>() {
@@ -104,7 +106,8 @@ public class PixivOperate {
                         intent.putExtra(Params.IS_LIKED, true);
                         LocalBroadcastManager.getInstance(Shaft.getContext()).sendBroadcast(intent);
 
-                        if (followType.equals(Params.TYPE_PUBLIC)) {
+                        ObjectPool.INSTANCE.followUser(userID);
+                        if (pendingFollowType.equals(Params.TYPE_PUBLIC)) {
                             Shaft.appViewModel.updateFollowUserStatus(userID, AppLevelViewModel.FollowUserStatus.FOLLOWED_PUBLIC);
                             Common.showToast(getString(R.string.like_success_public));
                         } else {
@@ -128,16 +131,16 @@ public class PixivOperate {
                         intent.putExtra(Params.IS_LIKED, false);
                         LocalBroadcastManager.getInstance(Shaft.getContext()).sendBroadcast(intent);
                         Shaft.appViewModel.updateFollowUserStatus(userID, AppLevelViewModel.FollowUserStatus.NOT_FOLLOW);
-
+                        ObjectPool.INSTANCE.unFollowUser(userID);
                         Common.showToast(getString(R.string.cancel_like));
                     }
                 });
     }
 
     public static void postLikeDefaultStarType(IllustsBean illustsBean) {
-        if(Shaft.sSettings.isPrivateStar()){
+        if (Shaft.sSettings.isPrivateStar()) {
             postLike(illustsBean, Params.TYPE_PRIVATE, false, 0);
-        }else{
+        } else{
             postLike(illustsBean, Params.TYPE_PUBLIC, false, 0);
         }
     }
@@ -234,7 +237,8 @@ public class PixivOperate {
                     });
         } else { //没有收藏
             novelBean.setIs_bookmarked(true);
-            Retro.getAppApi().postLikeNovel(userModel.getAccess_token(), novelBean.getId(), starType)
+            String pendingType = Shaft.sSettings.isPrivateStar() ? Params.TYPE_PRIVATE : starType;
+            Retro.getAppApi().postLikeNovel(userModel.getAccess_token(), novelBean.getId(), pendingType)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new ErrorCtrl<NullResponse>() {
@@ -248,7 +252,7 @@ public class PixivOperate {
                             if(view instanceof Button){
                                 ((Button) view).setText(getString(R.string.string_179));
                             }
-                            if (Params.TYPE_PUBLIC.equals(starType)) {
+                            if (Params.TYPE_PUBLIC.equals(pendingType)) {
                                 Common.showToast(getString(R.string.like_novel_success_public));
                             } else {
                                 Common.showToast(getString(R.string.like_novel_success_private));
@@ -258,7 +262,7 @@ public class PixivOperate {
         }
     }
 
-    public static void getIllustByID(UserModel userModel, int illustID, Context context) {
+    public static void getIllustByID(UserModel userModel, long illustID, Context context) {
         QMUITipDialog tipDialog = new QMUITipDialog.Builder(context)
                 .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                 .setTipWord(getString(R.string.string_429))
@@ -274,6 +278,8 @@ public class PixivOperate {
                         if (illust == null) {
                             return;
                         }
+
+                        ObjectPool.INSTANCE.updateIllust(illust);
 
                         if (illust.getId() == 0 || !illust.isVisible()) {
                             Common.showToast(R.string.string_206);
@@ -307,7 +313,7 @@ public class PixivOperate {
                 });
     }
 
-    public static void getIllustByID(UserModel userModel, int illustID, Context context,
+    public static void getIllustByID(UserModel userModel, long illustID, Context context,
                                      ceui.lisa.interfaces.Callback<Void> success,ceui.lisa.interfaces.Callback<Void> fail) {
         Retro.getAppApi().getIllustByID(userModel.getAccess_token(), illustID)
                 .subscribeOn(Schedulers.newThread())
@@ -349,7 +355,7 @@ public class PixivOperate {
                 });
     }
 
-    public static void getNovelByID(UserModel userModel, int novel, Context context,
+    public static void getNovelByID(UserModel userModel, long novel, Context context,
                                      ceui.lisa.interfaces.Callback<Void> callback) {
         Retro.getAppApi().getNovelByID(userModel.getAccess_token(), novel)
                 .subscribeOn(Schedulers.newThread())
@@ -425,6 +431,26 @@ public class PixivOperate {
     public static void unMuteUser(UserBean userBean) {
         MuteEntity muteEntity = new MuteEntity();
         muteEntity.setType(Params.MUTE_USER);
+        muteEntity.setId(userBean.getId());
+        muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
+        muteEntity.setSearchTime(System.currentTimeMillis());
+        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().unMuteTag(muteEntity);
+        Common.showToast(Shaft.getContext().getString(R.string.string_383));
+    }
+
+    public static void blockUser(UserBean userBean) {
+        MuteEntity muteEntity = new MuteEntity();
+        muteEntity.setType(Params.BLOCK_USER);
+        muteEntity.setId(userBean.getId());
+        muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
+        muteEntity.setSearchTime(System.currentTimeMillis());
+        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        Common.showToast(Shaft.getContext().getString(R.string.string_382));
+    }
+
+    public static void unBlockUser(UserBean userBean) {
+        MuteEntity muteEntity = new MuteEntity();
+        muteEntity.setType(Params.BLOCK_USER);
         muteEntity.setId(userBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());

@@ -50,6 +50,7 @@ import ceui.lisa.utils.Params;
 import ceui.lisa.utils.PixivSearchParamUtil;
 import ceui.lisa.utils.Settings;
 import ceui.lisa.utils.UserFolderNameUtil;
+import ceui.loxia.Client;
 
 import static android.app.Activity.RESULT_OK;
 import static android.provider.DocumentsContract.EXTRA_INITIAL_URI;
@@ -170,6 +171,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                     Local.setSettings(Shaft.sSettings);
                     if (changed) {
                         Retro.refreshAppApi();
+                        Client.INSTANCE.reset();
                     }
                 }
             });
@@ -289,6 +291,22 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     baseBind.deleteStarIllust.performClick();
+                }
+            });
+
+            baseBind.deleteAiIllust.setChecked(Shaft.sSettings.isDeleteAIIllust());
+            baseBind.deleteAiIllust.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Shaft.sSettings.setDeleteAIIllust(isChecked);
+                    Common.showToast(getString(R.string.string_428), 2);
+                    Local.setSettings(Shaft.sSettings);
+                }
+            });
+            baseBind.deleteAiIllustRela.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    baseBind.deleteAiIllust.performClick();
                 }
             });
 
@@ -707,21 +725,26 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             });
 
             //下载限制类型
-            baseBind.downloadLimitType.setText(DownloadLimitTypeUtil.getCurrentStatusName());
+            final String[] DOWNLOAD_START_TYPE_NAMES = new String[]{
+                    getString(DownloadLimitTypeUtil.DOWNLOAD_START_TYPE_IDS[0]),
+                    getString(DownloadLimitTypeUtil.DOWNLOAD_START_TYPE_IDS[1]),
+                    getString(DownloadLimitTypeUtil.DOWNLOAD_START_TYPE_IDS[2])
+            };
+            baseBind.downloadLimitType.setText(DOWNLOAD_START_TYPE_NAMES[DownloadLimitTypeUtil.getCurrentStatusIndex()]);
             baseBind.downloadLimitType.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     new QMUIDialog.CheckableDialogBuilder(mActivity)
                             .setCheckedIndex(Shaft.sSettings.getDownloadLimitType())
                             .setSkinManager(QMUISkinManager.defaultInstance(mContext))
-                            .addItems(DownloadLimitTypeUtil.DOWNLOAD_START_TYPE_NAMES, new DialogInterface.OnClickListener() {
+                            .addItems(DOWNLOAD_START_TYPE_NAMES, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     if (which == Shaft.sSettings.getDownloadLimitType()) {
                                         Common.showLog("什么也不做");
                                     } else {
                                         Shaft.sSettings.setDownloadLimitType(which);
-                                        baseBind.downloadLimitType.setText(DownloadLimitTypeUtil.getCurrentStatusName());
+                                        baseBind.downloadLimitType.setText(DOWNLOAD_START_TYPE_NAMES[DownloadLimitTypeUtil.getCurrentStatusIndex()]);
                                         Common.showToast(getString(R.string.string_428));
                                         Local.setSettings(Shaft.sSettings);
                                     }
@@ -955,7 +978,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     FileUtils.deleteAllInDir(LegacyFile.imageCacheFolder(mContext));
-                    Common.showToast("图片缓存清除成功！");
+                    Common.showToast(getString(R.string.success_clearImageCache));
                     baseBind.imageCacheSize.setText(FileUtils.getSize(LegacyFile.imageCacheFolder(mContext)));
                 }
             });
@@ -965,7 +988,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     FileUtils.deleteAllInDir(LegacyFile.gifCacheFolder(mContext));
-                    Common.showToast("GIF缓存清除成功！", 2);
+                    Common.showToast(getString(R.string.success_clearGifCache), 2);
                     baseBind.gifCacheSize.setText(FileUtils.getSize(LegacyFile.gifCacheFolder(mContext)));
                 }
             });
@@ -994,7 +1017,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                                     IllustDownload.downloadBackupFile((BaseActivity<?>) mActivity, "Shaft-Backup.json", backupString, new Callback<Uri>() {
                                         @Override
                                         public void doSomething(Uri t) {
-                                            Common.showToast("备份成功 " + Settings.FILE_PATH_BACKUP);
+                                            Common.showToast(getString(R.string.backup_success) + Settings.FILE_PATH_BACKUP);
                                         }
                                     });
                                     dialog.dismiss();
@@ -1058,7 +1081,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
 
     private void setThemeName() {
         final int index = Shaft.sSettings.getThemeIndex();
-        baseBind.colorSelect.setText(FragmentColors.COLOR_NAMES[index]);
+        baseBind.colorSelect.setText(getString(FragmentColors.COLOR_NAME_CODES[index]));
     }
 
     private void updateIllustPathUI(){
@@ -1081,7 +1104,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 Uri uri = data.getData();
                 String fileString = new String(UriUtils.uri2Bytes(uri));
                 boolean restoreResult = BackupUtils.restoreBackups(mContext, fileString);
-                Common.showToast(restoreResult ? "还原成功" : "还原失败");
+                Common.showToast(restoreResult ? getString(R.string.restore_success) : getString(R.string.restore_failed));
             } catch (Exception e) {
                 e.printStackTrace();
             }

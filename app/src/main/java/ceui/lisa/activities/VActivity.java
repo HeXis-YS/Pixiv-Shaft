@@ -29,7 +29,7 @@ import ceui.lisa.models.IllustsBean;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Params;
 import ceui.lisa.utils.PixivOperate;
-import ceui.loxia.ImageFragment;
+import ceui.loxia.ObjectPool;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -60,12 +60,16 @@ public class VActivity extends BaseActivity<ActivityViewPagerBinding> {
                 public Fragment getItem(int position) {
                     IllustsBean illustsBean = pageData.getList().get(position);
                     if (illustsBean.getId() == 0 || !illustsBean.isVisible()) {
-                        return ImageFragment.Companion.newInstance(illustsBean.getImage_urls().getMaxImage());
+                        return FragmentImageDetail.newInstance(illustsBean.getImage_urls().getMaxImage());
                     } else if (illustsBean.isGif()) {
                         return FragmentSingleUgora.newInstance(illustsBean);
                     } else {
                         if (Shaft.sSettings.isUseFragmentIllust()) {
-                            return FragmentIllust.newInstance(illustsBean);
+                            IllustsBean exist = ObjectPool.INSTANCE.getIllust(illustsBean.getId()).getValue();
+                            if (exist == null) {
+                                ObjectPool.INSTANCE.updateIllust(illustsBean);
+                            }
+                            return FragmentIllust.newInstance(illustsBean.getId());
                         } else {
                             return FragmentSingleIllust.newInstance(illustsBean);
                         }

@@ -13,6 +13,7 @@ import com.scwang.smart.refresh.header.FalsifyFooter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ceui.lisa.R;
 import ceui.lisa.activities.Shaft;
@@ -42,6 +43,7 @@ import ceui.lisa.utils.Params;
 import ceui.lisa.view.SpacesItemWithHeadDecoration;
 import ceui.lisa.viewmodel.BaseModel;
 import ceui.lisa.viewmodel.RecmdModel;
+import ceui.loxia.ObjectPool;
 
 public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding,
         RecmdIllust, IllustsBean> {
@@ -150,12 +152,12 @@ public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding
 
     @Override
     public String getToolbarTitle() {
-        return getString(R.string.string_239) + dataType;
+        return getString(R.string.recommend) + dataType;
     }
 
     @Override
     public boolean showToolbar() {
-        return getString(R.string.string_240).equals(dataType);
+        return getString(R.string.type_manga).equals(dataType);
     }
 
     @Override
@@ -178,6 +180,12 @@ public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding
                 return null;
             }
         }, new TryCatchObserverImpl<>());
+        mResponse.getRanking_illusts().forEach(new Consumer<IllustsBean>() {
+            @Override
+            public void accept(IllustsBean illustsBean) {
+                ObjectPool.INSTANCE.updateIllust(illustsBean);
+            }
+        });
         ((RecmdModel) mModel).getRankList().addAll(mResponse.getRanking_illusts());
         ((IAdapterWithHeadView) mAdapter).setHeadData(((RecmdModel) mModel).getRankList());
         mModel.tidyAppViewModel(((RecmdModel) mModel).getRankList());
@@ -214,6 +222,12 @@ public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding
             @Override
             public void success(List<IllustsBean> illustsBeans) {
                 allItems.addAll(illustsBeans);
+                illustsBeans.forEach(new Consumer<IllustsBean>() {
+                    @Override
+                    public void accept(IllustsBean illustsBean) {
+                        ObjectPool.INSTANCE.updateIllust(illustsBean);
+                    }
+                });
                 ((RecmdModel) mModel).getRankList().addAll(illustsBeans);
                 mModel.tidyAppViewModel(illustsBeans);
                 ((IAdapterWithHeadView) mAdapter).setHeadData(((RecmdModel) mModel).getRankList());

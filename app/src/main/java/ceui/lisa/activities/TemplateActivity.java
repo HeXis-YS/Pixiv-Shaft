@@ -77,7 +77,8 @@ import ceui.lisa.models.UserPreviewsBean;
 import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Params;
 import ceui.lisa.utils.ReverseResult;
-import ceui.loxia.ImageFragment;
+import ceui.loxia.flag.FlagDescFragment;
+import ceui.loxia.flag.FlagReasonFragment;
 
 public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> implements ColorPickerDialogListener {
 
@@ -199,7 +200,7 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                 case "小说详情":
                     return FragmentNovelHolder.newInstance((NovelBean) intent.getSerializableExtra(Params.CONTENT));
                 case "图片详情":
-                    return ImageFragment.Companion.newInstance(intent.getStringExtra(Params.URL));
+                    return FragmentImageDetail.newInstance(intent.getStringExtra(Params.URL));
                 case "绑定邮箱":
                     return new FragmentEditAccount();
                 case "编辑个人资料":
@@ -238,6 +239,17 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentColors();
                 case "测试测试":
                     return new FragmentSAF();
+                case "举报插画":
+                    return FlagReasonFragment.Companion.newInstance(
+                        intent.getIntExtra(FlagDescFragment.FlagObjectIdKey, 0),
+                        intent.getIntExtra(FlagDescFragment.FlagObjectTypeKey, 0)
+                    );
+                case "填写举报详细信息":
+                    return FlagDescFragment.Companion.newInstance(
+                        intent.getIntExtra(FlagDescFragment.FlagReasonIdKey, 0),
+                        intent.getIntExtra(FlagDescFragment.FlagObjectIdKey, 0),
+                        intent.getIntExtra(FlagDescFragment.FlagObjectTypeKey, 0)
+                    );
                 case "相关用户":
                     return FragmentRelatedUser.newInstance(intent.getIntExtra(Params.USER_ID, 0));
                 case "Markdown":

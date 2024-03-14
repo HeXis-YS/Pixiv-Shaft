@@ -11,6 +11,7 @@ import ceui.lisa.databinding.FragmentHolderBinding
 import ceui.lisa.utils.MyOnTabSelectedListener
 import ceui.lisa.utils.Params
 import ceui.lisa.viewmodel.UserViewModel
+import ceui.loxia.observeEvent
 
 class FragmentHolder : BaseFragment<FragmentHolderBinding>() {
 
@@ -39,14 +40,14 @@ class FragmentHolder : BaseFragment<FragmentHolderBinding>() {
 
         when {
             data.userId == Shaft.sUserModel.user.id -> {
-                titles = arrayOf("收藏", "其他")
+                titles = arrayOf(getString(R.string.userTab_collection), getString(R.string.userTab_other))
                 items = arrayOf<Fragment>(
                         FragmentLikeIllust.newInstance(data.userId, Params.TYPE_PUBLIC),
                         FragmentUserRight()
                 )
             }
             data.profile.total_manga > 0 -> {
-                titles = arrayOf("插画", "漫画", "其他")
+                titles = arrayOf(getString(R.string.type_illust), getString(R.string.type_manga), getString(R.string.userTab_other))
                 items = arrayOf<Fragment>(
                         FragmentUserIllust.newInstance(data.userId, false),
                         FragmentUserManga.newInstance(data.userId, false),
@@ -54,14 +55,22 @@ class FragmentHolder : BaseFragment<FragmentHolderBinding>() {
                 )
             }
             else -> {
-                titles = arrayOf("插画", "其他")
+                titles = arrayOf(getString(R.string.type_illust), getString(R.string.userTab_other))
                 items = arrayOf<Fragment>(
                         FragmentUserIllust.newInstance(data.userId, false),
                         FragmentUserRight()
                 )
             }
         }
-
+        mUserViewModel.refreshEvent.observeEvent(viewLifecycleOwner) {
+            if (it > 0) {
+                items.forEach { frag ->
+                    if (frag is NetListFragment<*, *, *>) {
+                        frag.refresh()
+                    }
+                }
+            }
+        }
         @Suppress("DEPRECATION")
         baseBind.viewPager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
 

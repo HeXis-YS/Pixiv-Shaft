@@ -139,13 +139,17 @@
     </style>
 
 
+    <style name="setting_text_left_and_center" parent="setting_text_left">
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
     <style name="setting_text_left">
         <item name="android:textColor">@color/black_to_grey</item>
         <item name="android:layout_marginStart">@dimen/sixteen_dp</item>
         <item name="android:layout_marginTop">@dimen/twelve_dp</item>
         <item name="android:layout_marginBottom">@dimen/twelve_dp</item>
         <item name="android:layout_marginEnd">@dimen/eighty_dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -195,6 +199,7 @@
     <style name="ripple_rela">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">70dp</item>
         <item name="android:clickable">true</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
@@ -296,6 +301,30 @@
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/round_corner_shining_btn_red</item>
         <item name="android:stateListAnimator">@animator/button_press_alpha</item>
+    </style>
+
+    <style name="textMontserratRegular">
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="textMontserratBold">
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="textBlack">
+        <item name="fontFamily">@font/montserrat_extra_bold</item>
+    </style>
+
+    <style name="textMontserratMedium">
+        <item name="fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="textMontserratSemiBold">
+        <item name="fontFamily">@font/montserrat_semi_bold</item>
+    </style>
+
+    <style name="textMontserratExtraBold">
+        <item name="fontFamily">@font/montserrat_extra_bold</item>
     </style>
 </resources>
 

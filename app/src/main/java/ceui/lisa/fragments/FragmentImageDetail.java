@@ -15,6 +15,8 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 
 import java.io.File;
 
@@ -30,16 +32,12 @@ import ceui.lisa.utils.Params;
 import me.jessyan.progressmanager.ProgressListener;
 import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.progressmanager.body.ProgressInfo;
-import xyz.zpayh.hdimage.HDImageView;
-import xyz.zpayh.hdimage.OnBitmapLoadListener;
 
 public class FragmentImageDetail extends BaseFragment<FragmentImageDetailBinding> {
 
     private IllustsBean mIllustsBean;
     private int index;
     private String url;
-    private int imageWidth = 0;
-    private int imageHeight = 0;
 
     public static FragmentImageDetail newInstance(IllustsBean illustsBean, int index) {
         Bundle args = new Bundle();
@@ -72,31 +70,8 @@ public class FragmentImageDetail extends BaseFragment<FragmentImageDetailBinding
 
     @Override
     protected void initView() {
-        baseBind.realIllustImage.setOnBitmapLoadListener(new OnBitmapLoadListener() {
-            @Override
-            public void onBitmapLoadReady() {
-
-            }
-
-            @Override
-            public void onBitmapLoaded(int width, int height) {
-                imageWidth = width;
-                imageHeight = height;
-            }
-
-            @Override
-            public void onBitmapLoadError(Exception e) {
-
-            }
-        });
-
-        baseBind.realIllustImage.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                adjustAutoScale();
-            }
-        });
-
+        baseBind.emptyActionButton.setOnClickListener(v -> loadImage());
+        baseBind.bigImage.setDoubleTapZoomDuration(250);
         //插画二级详情保持屏幕常亮
         if (Shaft.sSettings.isIllustDetailKeepScreenOn()) {
             baseBind.getRoot().setKeepScreenOn(true);
@@ -109,20 +84,27 @@ public class FragmentImageDetail extends BaseFragment<FragmentImageDetailBinding
     }
 
     private void loadImage() {
+        baseBind.emptyFrame.setVisibility(View.GONE);
+        baseBind.progressLayout.getRoot().setVisibility(View.VISIBLE);
         String imageUrl;
         if (mIllustsBean == null && !TextUtils.isEmpty(url)) {
+            setUpMediumResolutionDoubleTap();
             imageUrl = url;
         } else {
             final String originUrl = IllustDownload.getUrl(mIllustsBean, index);
             if (Shaft.getMMKV().decodeBool(originUrl)) {
+                setUpHighResolutionDoubleTap();
                 imageUrl = originUrl;
             } else {
                 if (!TextUtils.isEmpty(url)) {
+                    setUpMediumResolutionDoubleTap();
                     imageUrl = url;
                 } else {
                     if (Shaft.sSettings.isShowOriginalImage()) {
+                        setUpHighResolutionDoubleTap();
                         imageUrl = IllustDownload.getUrl(mIllustsBean, index, Params.IMAGE_RESOLUTION_ORIGINAL);
                     } else {
+                        setUpMediumResolutionDoubleTap();
                         imageUrl = IllustDownload.getUrl(mIllustsBean, index, Params.IMAGE_RESOLUTION_LARGE);
                     }
                 }
@@ -145,25 +127,30 @@ public class FragmentImageDetail extends BaseFragment<FragmentImageDetailBinding
                 .listener(new RequestListener<File>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<File> target, boolean isFirstResource) {
-                        baseBind.progressLayout.donutProgress.setVisibility(View.INVISIBLE);
+                        baseBind.progressLayout.getRoot().setVisibility(View.GONE);
+                        baseBind.emptyFrame.setVisibility(View.VISIBLE);
+                        if (e != null) {
+                            baseBind.emptyTitle.setText(e.getMessage());
+                        }
                         return false;
                     }
 
                     @Override
                     public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
-                        baseBind.progressLayout.donutProgress.setVisibility(View.INVISIBLE);
+                        baseBind.progressLayout.getRoot().setVisibility(View.GONE);
+                        baseBind.emptyFrame.setVisibility(View.GONE);
                         Common.showLog("onResourceReady " + resource.getPath());
                         return false;
                     }
                 })
-                .into(new CustomViewTarget<HDImageView, File>(baseBind.realIllustImage) {
+                .into(new CustomViewTarget<SubsamplingScaleImageView, File>(baseBind.bigImage) {
                     @Override
                     public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     }
 
                     @Override
                     public void onResourceReady(@NonNull File resource, @Nullable Transition<? super File> transition) {
-                        view.setImageURI(Uri.fromFile(resource));
+                        baseBind.bigImage.setImage(ImageSource.uri(Uri.fromFile(resource)));
                     }
 
                     @Override
@@ -172,34 +159,20 @@ public class FragmentImageDetail extends BaseFragment<FragmentImageDetailBinding
                 });
     }
 
+    private void setUpHighResolutionDoubleTap() {
+        baseBind.bigImage.setMaxScale(3.8F);
+        baseBind.bigImage.setDoubleTapZoomScale(1.8F);
+    }
+
+    private void setUpMediumResolutionDoubleTap() {
+        baseBind.bigImage.setMaxScale(7F);
+        baseBind.bigImage.setDoubleTapZoomScale(4F);
+    }
+
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("mIllustsBean", mIllustsBean);
         outState.putInt("index", index);
-    }
-
-    public void adjustAutoScale() {
-        if (imageWidth <= 0 || imageHeight <= 0) {
-            return;
-        }
-
-        int viewWidth = baseBind.realIllustImage.getWidth();
-        int viewHeight = baseBind.realIllustImage.getHeight();
-
-        float scale_w = (float) imageWidth / viewWidth;
-        float scale_h = (float) imageHeight / viewHeight;
-
-        float scale_init_inner = Math.min(viewWidth / (float) imageWidth, viewHeight / (float) imageHeight); // 内部处理后的初始Scale，minScale()
-        float scale_init_side = Math.max(scale_w, scale_h); // 初始scale 此时吸附scale较大的一边
-        float scale_max = scale_init_inner * scale_init_side; // 最大scale，显示原图级别
-        float scale_other_side = scale_max / Math.min(scale_w, scale_h); // 目标scale，吸附另一边
-
-        if (scale_w > 1.0f && scale_h > 1.0f) {
-            baseBind.realIllustImage.setMaxScale(scale_max);
-        } else {
-            baseBind.realIllustImage.setMaxScale(scale_other_side);
-        }
-        baseBind.realIllustImage.setDoubleTapZoomScale(scale_other_side);
     }
 }
