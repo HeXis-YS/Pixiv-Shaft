@@ -353,10 +353,10 @@
   <string name="string_195">화가 ID: %d</string>  
   <string name="string_196">주목 하 는 사람의 소설</string>  
   <string name="string_197">관심 가 의 최신 소설</string>  
-  <string name="string_198">이 를 위해 소프트웨어 평 점</string>  
+  <!-- <string name="string_198">이 를 위해 소프트웨어 평 점</string>   -->
   <string name="string_199">판본.</string>  
-  <string name="string_200">웨 이 보 에서 저 를 주목 해 주세요.</string>  
-  <string name="string_201">Telegram 그룹</string>  
+  <!-- <string name="string_200">웨 이 보 에서 저 를 주목 해 주세요.</string>   -->
+  <!-- <string name="string_201">Telegram 그룹</string>   -->
   <string name="string_202">되 돌 림</string>  
   <string name="string_203">다운로드 관리</string>  
   <string name="string_204">최신 작품</string>  
@@ -379,9 +379,9 @@
   <string name="string_222">개 삽화</string>  
   <string name="string_223">서류 한 통</string>  
   <string name="string_224">데이터 가 더 없어 요.</string>  
-  <string name="string_225">QQ 그룹</string>  
-  <string name="string_226">아직 그룹 을 만 들 지 않 았 습 니 다. 누가 만 들 었 는 지 댓 글 창 에 올 려 주세요.</string>  
-  <string name="string_227">손 Q 가 설치 되 어 있 지 않 거나 설 치 된 버 전 은 지원 되 지 않 습 니 다.</string>  
+  <!-- <string name="string_225">QQ 그룹</string>   -->
+  <!-- <string name="string_226">아직 그룹 을 만 들 지 않 았 습 니 다. 누가 만 들 었 는 지 댓 글 창 에 올 려 주세요.</string>   -->
+  <!-- <string name="string_227">손 Q 가 설치 되 어 있 지 않 거나 설 치 된 버 전 은 지원 되 지 않 습 니 다.</string>   -->
   <string name="string_228">TXT 내 보 내기</string>  
   <string name="string_229">계열.</string>  
   <string name="string_230">만화 시리즈 작품</string>  
@@ -515,7 +515,7 @@
   <string name="string_364">SAF 모드</string>  
   <string name="string_365">파일 을 만 드 는 데 실 패 했 습 니 다. 권한 을 수 여 받 은 다운로드 디 렉 터 리 가 존재 하지 않 습 니 다.</string>  
   <string name="string_366">다시 권한 을 부여 한다</string>  
-  <string name="string_367">Firebase 정보 수집 사용 하기</string>  
+  <!-- <string name="string_367">Firebase 정보 수집 사용 하기</string>   -->
   <string name="string_369">북마크가 삭제되었습니다</string>  
   <string name="string_368">%d 페이지에 추가 된 북마크</string>  
   <string name="string_370">개성 화</string>  

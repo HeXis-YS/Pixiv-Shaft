@@ -353,10 +353,10 @@
   <string name="string_195">ID рисователя: %d</string>  
   <string name="string_196">Романы подмандатных лиц</string>  
   <string name="string_197">Последние романы подмандатных лиц</string>  
-  <string name="string_198">Это софтвер</string>  
+  <!-- <string name="string_198">Это софтвер</string>   -->
   <string name="string_199">версия</string>  
-  <string name="string_200">внимание в микроблогах</string>  
-  <string name="string_201">Группа Telegram</string>  
+  <!-- <string name="string_200">внимание в микроблогах</string>   -->
+  <!-- <string name="string_201">Группа Telegram</string>   -->
   <string name="string_202">обратная связь</string>  
   <string name="string_203">управление загрузкой</string>  
   <string name="string_204">новое произведение</string>  
@@ -379,9 +379,9 @@
   <string name="string_222">иллюстрация, всего</string>  
   <string name="string_223">файл</string>  
   <string name="string_224">Нет больше данных</string>  
-  <string name="string_225">Группа QQName</string>  
-  <string name="string_226">еще не создана группа, которая создала меня в комментарии</string>  
-  <string name="string_227">не поддерживается встроенная версия Q или не поддерживается</string>  
+  <!-- <string name="string_225">Группа QQName</string>   -->
+  <!-- <string name="string_226">еще не создана группа, которая создала меня в комментарии</string>   -->
+  <!-- <string name="string_227">не поддерживается встроенная версия Q или не поддерживается</string>   -->
   <string name="string_228">экспорт TXT</string>  
   <string name="string_229">серия</string>  
   <string name="string_230">серия комиксов</string>  
@@ -515,7 +515,7 @@
   <string name="string_364">SAF - режим</string>  
   <string name="string_365">Ошибка создания файла, папка с разрешением на загрузку не существует</string>  
   <string name="string_366">повторное Делегирование полномочий</string>  
-  <string name="string_367">Включить коллекцию информации Firebase</string>  
+  <!-- <string name="string_367">Включить коллекцию информации Firebase</string>   -->
   <string name="string_368">Закладка добавлена ​​на страницу %d</string>  
   <string name="string_369">Закладка удалена</string>  
   <string name="string_370">индивидуализация</string>  

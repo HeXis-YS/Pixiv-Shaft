@@ -353,10 +353,10 @@
   <string name="string_195">ユーザーID: %d</string>  
   <string name="string_196">フォロー中ユーザーの小説</string>  
   <string name="string_197">フォロー中ユーザーの最新小説</string>  
-  <string name="string_198">レビューを投稿</string>  
+  <!-- <string name="string_198">レビューを投稿</string>   -->
   <string name="string_199">バージョン</string>  
-  <string name="string_200">Weiboでフォロー</string>  
-  <string name="string_201">Telegramグループ</string>  
+  <!-- <string name="string_200">Weiboでフォロー</string>   -->
+  <!-- <string name="string_201">Telegramグループ</string>   -->
   <string name="string_202">フィードバック</string>  
   <string name="string_203">ダウンロードを管理</string>
   <string name="string_204">最新</string>  
@@ -379,9 +379,9 @@
   <string name="string_222">枚のイラスト、</string>
   <string name="string_223">件のファイル</string>
   <string name="string_224">全てのイラストを表示しています</string>
-  <string name="string_225">QQグループ</string>  
-  <string name="string_226">まだグループがありません。グループを作成した場合は、管理者に連絡してください。</string>  
-  <string name="string_227">QQがインストールされていないか、サポートされていないバージョンがインストールされています。</string>  
+  <!-- <string name="string_225">QQグループ</string>   -->
+  <!-- <string name="string_226">まだグループがありません。グループを作成した場合は、管理者に連絡してください。</string>   -->
+  <!-- <string name="string_227">QQがインストールされていないか、サポートされていないバージョンがインストールされています。</string>   -->
   <string name="string_228">ダウンロード</string>  
   <string name="string_229">シリーズ</string>  
   <string name="string_230">漫画シリーズ</string>  
@@ -515,7 +515,7 @@
   <string name="string_364">SAFモード</string>  
   <string name="string_365">ファイルの作成に失敗しました。許可されたダウンロードフォルダが存在しませんでした。</string>  
   <string name="string_366">再認証</string>  
-  <string name="string_367">統計情報をFirebaseに送信することを許可する</string>  
+  <!-- <string name="string_367">統計情報をFirebaseに送信することを許可する</string>   -->
   <string name="string_368">現在のページをブックマークをしました(p.%d)</string>
   <string name="string_369">ブックマークが解除されました</string>
   <string name="string_370">パーソナライズ</string>

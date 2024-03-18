@@ -138,66 +138,6 @@
 
                         </RelativeLayout>
 
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/rate_this_app"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_198" />
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_weibo"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_200" />
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_telegram"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_201">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_qq"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_225">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
                         <View style="@style/full_divider" />
 
                     </LinearLayout>

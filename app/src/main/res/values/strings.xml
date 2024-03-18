@@ -377,10 +377,10 @@
     <string name="string_195">画师ID：%d</string>
     <string name="string_196">关注者的小说</string>
     <string name="string_197">关注者的最新小说</string>
-    <string name="string_198">为此软件评分</string>
+    <!-- <string name="string_198">为此软件评分</string> -->
     <string name="string_199">版本</string>
-    <string name="string_200">在微博关注我</string>
-    <string name="string_201">Telegram 群组</string>
+    <!-- <string name="string_200">在微博关注我</string> -->
+    <!-- <string name="string_201">Telegram 群组</string> -->
     <string name="string_202">反馈</string>
     <string name="string_203">下载管理</string>
     <string name="string_204">最新作品</string>
@@ -403,9 +403,9 @@
     <string name="string_222">个插画, 共</string>
     <string name="string_223">个文件</string>
     <string name="string_224">没有更多数据啦</string>
-    <string name="string_225">QQ 群组</string>
-    <string name="string_226">还没创建群呢，谁创了在评论区发我</string>
-    <string name="string_227">未安装手Q或安装的版本不支持</string>
+    <!-- <string name="string_225">QQ 群组</string> -->
+    <!-- <string name="string_226">还没创建群呢，谁创了在评论区发我</string> -->
+    <!-- <string name="string_227">未安装手Q或安装的版本不支持</string> -->
     <string name="string_228">导出TXT</string>
     <string name="string_229">系列</string>
     <string name="string_230">漫画系列作品</string>
@@ -539,7 +539,7 @@
     <string name="string_364">SAF模式</string>
     <string name="string_365">创建文件失败，已授权的下载目录不存在</string>
     <string name="string_366">重新授权</string>
-    <string name="string_367">启用 Firebase 信息搜集</string>
+    <!-- <string name="string_367">启用 Firebase 信息搜集</string> -->
     <string name="string_368">第%d页已加入书签</string>
     <string name="string_369">已删除书签</string>
     <string name="string_370">个性化</string>

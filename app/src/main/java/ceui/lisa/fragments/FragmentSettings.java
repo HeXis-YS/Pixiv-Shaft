@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LanguageUtils;
 import com.blankj.utilcode.util.UriUtils;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.qmuiteam.qmui.skin.QMUISkinManager;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
@@ -956,17 +955,6 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     baseBind.illustDetailKeepScreenOn.performClick();
-                }
-            });
-
-            baseBind.isFirebaseEnable.setChecked(Shaft.sSettings.isFirebaseEnable());
-            baseBind.isFirebaseEnable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Shaft.sSettings.setFirebaseEnable(isChecked);
-                    Local.setSettings(Shaft.sSettings);
-                    Common.showToast(getString(R.string.string_428), 2);
-                    FirebaseAnalytics.getInstance(mContext).setAnalyticsCollectionEnabled(isChecked);
                 }
             });
         }

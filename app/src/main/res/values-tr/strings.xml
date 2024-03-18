@@ -353,10 +353,10 @@
   <string name="string_195">Sanatçı ID\'si: %d</string>  
   <string name="string_196">Novel of Followers</string>  
   <string name="string_197">Followers latest novel</string>  
-  <string name="string_198">Bu uygulamaya puan verin</string>  
+  <!-- <string name="string_198">Bu uygulamaya puan verin</string>   -->
   <string name="string_199">sürüm</string>  
-  <string name="string_200">Weibo\'da beni takip edin</string>  
-  <string name="string_201">Telegram Grupları</string>  
+  <!-- <string name="string_200">Weibo\'da beni takip edin</string>   -->
+  <!-- <string name="string_201">Telegram Grupları</string>   -->
   <string name="string_202">Geri bildirim</string>  
   <string name="string_203">İndirme Yöneticisi</string>  
   <string name="string_204">en son çalışmalar</string>  
@@ -379,9 +379,9 @@
   <string name="string_222"> Artworks of </string>  
   <string name="string_223">Documents</string>  
   <string name="string_224">Daha fazla veri yok</string>  
-  <string name="string_225">QQ grubu</string>  
-  <string name="string_226">There are no groups yet, ping me if you have created one</string>  
-  <string name="string_227">QQ is not installed or installed version is not supported</string>  
+  <!-- <string name="string_225">QQ grubu</string>   -->
+  <!-- <string name="string_226">There are no groups yet, ping me if you have created one</string>   -->
+  <!-- <string name="string_227">QQ is not installed or installed version is not supported</string>   -->
   <string name="string_228">TXT olarak dışa aktar</string>  
   <string name="string_229">seri</string>  
   <string name="string_230">Çizgi Roman Serisi</string>  
@@ -515,7 +515,7 @@
   <string name="string_364">SAF modu</string>  
   <string name="string_365">Dosya oluşturulamadı. Yetkilendirilmiş indirme dizini mevcut değil</string>  
   <string name="string_366">Tekrar Yetkilendirme</string>  
-  <string name="string_367">Firebase bilgi toplamasını etkinleştir</string>  
+  <!-- <string name="string_367">Firebase bilgi toplamasını etkinleştir</string>   -->
   <string name="string_369">Yer işareti silindi</string>  
   <string name="string_368">%d sayfasına yer işareti eklendi</string>  
   <string name="string_370">Kişiselleştirme</string>  
