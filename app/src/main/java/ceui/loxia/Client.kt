@@ -68,7 +68,7 @@ class ClientManager {
             .connectTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .writeTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .readTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
-            .protocols(listOf(Protocol.HTTP_1_1))
+            .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
 
         if (Shaft.sSettings.isAutoFuckChina) {
             httpBuilder.sslSocketFactory(RubySSLSocketFactory(), pixivOkHttpClient())
@@ -91,7 +91,7 @@ class ClientManager {
             .connectTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .writeTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .readTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
-            .protocols(listOf(Protocol.HTTP_1_1))
+            .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
 
         httpBuilder.addInterceptor(HeaderInterceptor(false))
 
