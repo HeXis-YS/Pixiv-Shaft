@@ -93,6 +93,7 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_centerVertical="true"
                                 android:text="@string/string_199" />
 
                             <TextView
@@ -131,6 +132,7 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_centerVertical="true"
                                 android:text="FAQ"
                                 tools:ignore="HardcodedText" />
 
@@ -161,6 +163,9 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
                                 android:text="@string/pixiv_problem">
 
                             </TextView>
@@ -177,6 +182,7 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_centerVertical="true"
                                 android:text="@string/pixiv_use_detail">
 
                             </TextView>
@@ -193,6 +199,7 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_centerVertical="true"
                                 android:text="@string/privacy">
 
                             </TextView>
@@ -224,6 +231,7 @@
 
                             <TextView
                                 style="@style/setting_text_left"
+                                android:layout_centerVertical="true"
                                 android:text="@string/string_28">
 
                             </TextView>
@@ -240,41 +248,46 @@
 
 
                             <ImageView
-                                android:layout_width="36dp"
-                                android:src="@mipmap/github"
                                 android:id="@+id/github_image"
-                                android:layout_marginTop="@dimen/eight_dp"
-                                android:layout_marginStart="@dimen/sixteen_dp"
-                                android:layout_marginBottom="@dimen/eight_dp"
+                                android:layout_width="36dp"
                                 android:layout_height="36dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/sixteen_dp"
+                                android:layout_marginTop="@dimen/eight_dp"
+                                android:layout_marginBottom="@dimen/eight_dp"
+                                android:src="@mipmap/github"
                                 app:tint="@color/black_to_grey">
 
                             </ImageView>
 
                             <TextView
                                 android:id="@+id/github_text"
-                                android:text="@string/string_31"
-                                android:textSize="14sp"
-                                android:layout_marginTop="@dimen/eight_dp"
-                                android:layout_toEndOf="@+id/github_image"
-                                android:layout_marginStart="@dimen/twelve_dp"
-                                android:textColor="@color/rank_text_color"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="false"
+                                android:layout_marginStart="@dimen/twelve_dp"
+                                android:layout_marginTop="@dimen/eight_dp"
+                                android:layout_marginBottom="@dimen/six_dp"
+                                android:layout_toEndOf="@+id/github_image"
+                                android:text="@string/string_31"
+                                android:textColor="@color/rank_text_color"
+                                android:textSize="16sp">
 
 
                             </TextView>
 
                             <TextView
-                                android:text="@string/string_32"
-                                android:textSize="12sp"
-                                android:layout_marginTop="2dp"
-                                android:layout_below="@+id/github_text"
-                                android:layout_marginStart="@dimen/twelve_dp"
-                                android:layout_toEndOf="@+id/github_image"
-                                android:textColor="#777777"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/github_text"
+                                android:layout_centerVertical="false"
+                                android:layout_marginStart="@dimen/twelve_dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginBottom="@dimen/twelve_dp"
+                                android:layout_toEndOf="@+id/github_image"
+                                android:text="@string/string_32"
+                                android:textColor="#777777"
+                                android:textSize="13sp">
 
 
                             </TextView>
