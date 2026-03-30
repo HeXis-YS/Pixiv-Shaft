@@ -37,15 +37,6 @@ class FragmentAboutApp : SwipeFragment<FragmentAboutBinding>() {
                 startActivity(intent)
             }
 
-            baseBind.rateThisApp.setOnClickListener {
-                val uri = Uri.parse("market://details?id=" + mContext.packageName)
-                val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
-                try {
-                    startActivity(myAppLinkToMarket)
-                } catch (e: ActivityNotFoundException) {
-                    Common.showToast("unable to find market app")
-                }
-            }
             baseBind.goWeibo.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.addCategory(Intent.CATEGORY_DEFAULT)
