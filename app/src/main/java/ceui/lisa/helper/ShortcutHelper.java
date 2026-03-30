@@ -33,9 +33,8 @@ public class ShortcutHelper {
             return;
         }
 
-        Intent intent = new Intent(context, TemplateActivity.class);
+        Intent intent = TemplateActivity.newSearchIntent(context);
         intent.setAction(Intent.ACTION_VIEW);
-        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_SEARCH);
         IconCompat iconCompat;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {

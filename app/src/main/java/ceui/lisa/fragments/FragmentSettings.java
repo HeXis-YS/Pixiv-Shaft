@@ -79,9 +79,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             baseBind.userManage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "账号管理");
-                    startActivity(intent);
+                    TemplateActivity.startLocalUsers(mContext);
                 }
             });
 

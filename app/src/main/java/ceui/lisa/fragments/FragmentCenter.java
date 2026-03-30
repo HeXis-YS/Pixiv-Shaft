@@ -49,9 +49,7 @@ public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_search) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_SEARCH);
-                    startActivity(intent);
+                    TemplateActivity.startSearch(mContext);
                     return true;
                 }
                 return false;

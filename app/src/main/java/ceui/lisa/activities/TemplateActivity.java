@@ -97,7 +97,7 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final String FRAGMENT_THEME = "主题颜色";
     private static final String FRAGMENT_FLAG_ILLUST = "举报插画";
     private static final String FRAGMENT_FLAG_DETAIL = "填写举报详细信息";
-    private static final String FRAGMENT_LOCAL_USERS = "账号管理";
+    public static final String FRAGMENT_LOCAL_USERS = "账号管理";
     private static final String FRAGMENT_FOLLOWING = "正在关注";
     private static final String FRAGMENT_NICE_FRIEND = "好P友";
     private static final String FRAGMENT_USER_INFO = "详细信息";
@@ -177,6 +177,22 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static void startFeature(Context context) {
         context.startActivity(newFeatureIntent(context));
+    }
+
+    public static Intent newSearchIntent(Context context) {
+        return createIntent(context, FRAGMENT_SEARCH);
+    }
+
+    public static void startSearch(Context context) {
+        context.startActivity(newSearchIntent(context));
+    }
+
+    public static Intent newLocalUsersIntent(Context context) {
+        return createIntent(context, FRAGMENT_LOCAL_USERS);
+    }
+
+    public static void startLocalUsers(Context context) {
+        context.startActivity(newLocalUsersIntent(context));
     }
 
     private static Intent createIntent(Context context, String fragment) {
