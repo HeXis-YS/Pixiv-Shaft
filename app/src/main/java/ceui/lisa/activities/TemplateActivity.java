@@ -1,5 +1,6 @@
 package ceui.lisa.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -129,6 +130,28 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final int COLLECTION_WATCHLIST = 3;
     protected Fragment childFragment;
     private String dataType;
+
+    public static Intent newSettingsIntent(Context context) {
+        return createIntent(context, FRAGMENT_SETTINGS);
+    }
+
+    public static void startSettings(Context context) {
+        context.startActivity(newSettingsIntent(context));
+    }
+
+    public static Intent newDownloadManagerIntent(Context context) {
+        return createIntent(context, FRAGMENT_DOWNLOAD);
+    }
+
+    public static void startDownloadManager(Context context) {
+        context.startActivity(newDownloadManagerIntent(context));
+    }
+
+    private static Intent createIntent(Context context, String fragment) {
+        Intent intent = new Intent(context, TemplateActivity.class);
+        intent.putExtra(EXTRA_FRAGMENT, fragment);
+        return intent;
+    }
 
     @Override
     protected void initBundle(Bundle bundle) {

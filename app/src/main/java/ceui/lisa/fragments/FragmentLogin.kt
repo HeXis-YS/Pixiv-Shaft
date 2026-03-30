@@ -66,9 +66,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         baseBind.toolbar.inflateMenu(R.menu.login_menu)
         baseBind.toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_settings) {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_SETTINGS)
-                startActivity(intent)
+                startActivity(TemplateActivity.newSettingsIntent(mContext))
                 return@OnMenuItemClickListener true
             } else if (item.itemId == R.id.action_import) {
                 val userJson = ClipBoardUtils.getClipboardContent(mContext)

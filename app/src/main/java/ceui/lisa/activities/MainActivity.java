@@ -316,11 +316,13 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private Intent createDrawerIntent(int itemId) {
         if (itemId == nav_gallery) {
-            return createTemplateIntent(TemplateActivity.FRAGMENT_DOWNLOAD, false);
+            Intent intent = TemplateActivity.newDownloadManagerIntent(this);
+            intent.putExtra(EXTRA_HIDE_STATUS_BAR, false);
+            return intent;
         } else if (itemId == nav_slideshow) {
             return createTemplateIntent("浏览记录");
         } else if (itemId == R.id.nav_manage) {
-            return createTemplateIntent(TemplateActivity.FRAGMENT_SETTINGS);
+            return TemplateActivity.newSettingsIntent(this);
         } else if (itemId == R.id.nav_share) {
             return createTemplateIntent("关于软件");
         } else if (itemId == R.id.main_page) {
@@ -518,7 +520,9 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void openDownloadManager() {
-        startActivity(createTemplateIntent(TemplateActivity.FRAGMENT_DOWNLOAD, true));
+        Intent intent = TemplateActivity.newDownloadManagerIntent(this);
+        intent.putExtra(EXTRA_HIDE_STATUS_BAR, true);
+        startActivity(intent);
     }
 
     private void promptDoubleTapExit() {
