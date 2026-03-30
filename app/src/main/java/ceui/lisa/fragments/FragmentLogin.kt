@@ -76,15 +76,13 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
                     Common.showToast("导入成功", 2)
                     val exportUser = Shaft.sGson.fromJson(userJson, UserModel::class.java)
                     Local.saveUser(exportUser)
-                    Dev.refreshUser = true
                     Shaft.sUserModel = exportUser
                     val userEntity = UserEntity()
                     userEntity.loginTime = System.currentTimeMillis()
                     userEntity.userID = exportUser.user.id
                     userEntity.userGson = Shaft.sGson.toJson(Local.getUser())
                     AppDatabase.getAppDatabase(mContext).downloadDao().insertUser(userEntity)
-                    val intent = Intent(mContext, MainActivity::class.java)
-                    MainActivity.newInstance(intent, mContext)
+                    startActivity(MainActivity.newIntent(mContext, true))
                     mActivity.finish()
                 } else {
                     Common.showToast("剪贴板无用户信息", 3)

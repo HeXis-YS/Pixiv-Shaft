@@ -25,7 +25,6 @@ import ceui.lisa.databinding.RecyLocalUserBinding;
 import ceui.lisa.http.NullCtrl;
 import ceui.lisa.models.UserModel;
 import ceui.lisa.utils.Common;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.GlideUtil;
 import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Params;
@@ -116,9 +115,8 @@ public class FragmentLocalUsers extends BaseFragment<FragmentLocalUserBinding> {
             @Override
             public void onClick(View v) {
                 Local.saveUser(userModel);
-                Dev.refreshUser = true;
                 Shaft.sUserModel = userModel;
-                Common.restart();
+                Common.restart(true);
                 mActivity.finish();
             }
         });

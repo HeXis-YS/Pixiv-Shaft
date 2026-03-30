@@ -5,7 +5,4 @@ object Dev {
     //是否是开发状态
     @JvmField
     var isDev = true
-
-    @JvmField
-    var refreshUser = false
 }

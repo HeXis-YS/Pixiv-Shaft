@@ -2,6 +2,7 @@ package ceui.lisa.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private static final int REQUEST_WRITE_STORAGE = 1001;
     private static final String EXTRA_HIDE_STATUS_BAR = "hideStatusBar";
+    private static final String EXTRA_REFRESH_DRAWER_HEADER = "refreshDrawerHeader";
     private static final int PAGE_LEFT = 0;
     private static final int PAGE_CENTER = 1;
     private static final int PAGE_RIGHT = 2;
@@ -144,6 +146,12 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             }
         });
         DrawerLayoutHelper.setCustomLeftEdgeSize(getDrawer(), 1.0f);
+    }
+
+    public static Intent newIntent(Context context, boolean refreshDrawerHeader) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(EXTRA_REFRESH_DRAWER_HEADER, refreshDrawerHeader);
+        return intent;
     }
 
     private void initFragment() {
@@ -533,10 +541,14 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     @Override
     protected void onResume() {
         super.onResume();
-        if (Dev.refreshUser) {
+        if (shouldRefreshDrawerHeader()) {
             initDrawerHeader();
-            Dev.refreshUser = false;
+            getIntent().removeExtra(EXTRA_REFRESH_DRAWER_HEADER);
         }
+    }
+
+    private boolean shouldRefreshDrawerHeader() {
+        return getIntent().getBooleanExtra(EXTRA_REFRESH_DRAWER_HEADER, false);
     }
 
     @Override

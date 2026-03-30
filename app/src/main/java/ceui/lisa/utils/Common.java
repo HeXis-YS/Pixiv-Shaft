@@ -309,9 +309,12 @@ public class Common {
     }
 
     public static void restart() {
-        Intent intent = new Intent();
-        String realActivityClassName = MainActivity.class.getName();
-        intent.setComponent(new ComponentName(Utils.getApp(), realActivityClassName));
+        restart(false);
+    }
+
+    public static void restart(boolean refreshDrawerHeader) {
+        Intent intent = MainActivity.newIntent(Utils.getApp(), refreshDrawerHeader);
+        intent.setComponent(new ComponentName(Utils.getApp(), MainActivity.class.getName()));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Utils.getApp().startActivity(intent);
     }
