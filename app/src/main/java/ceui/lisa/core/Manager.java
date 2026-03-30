@@ -26,7 +26,6 @@ import ceui.lisa.helper.SAFactory;
 import ceui.lisa.interfaces.Callback;
 import ceui.lisa.model.Holder;
 import ceui.lisa.utils.Common;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.DownloadLimitTypeUtil;
 import ceui.lisa.utils.Params;
 import ceui.lisa.utils.PixivOperate;
