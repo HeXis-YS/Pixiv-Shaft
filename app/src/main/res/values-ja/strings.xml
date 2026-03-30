@@ -399,7 +399,6 @@
   <string name="string_364">SAFモード</string>  
   <string name="string_365">ファイルの作成に失敗しました。許可されたダウンロードフォルダが存在しませんでした。</string>  
   <string name="string_366">再認証</string>  
-  <string name="string_367">統計情報をFirebaseに送信することを許可する</string>  
   <string name="string_368">現在のページをブックマークをしました(p.%d)</string>
   <string name="string_369">ブックマークが解除されました</string>
   <string name="string_370">パーソナライズ</string>
