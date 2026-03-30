@@ -1,9 +1,9 @@
-package ceui.lisa.page;
+package ceui.lisa.page
 
 /**
  * 翻页状态
  */
-public enum TurnPageType {
+enum class TurnPageType {
 
     /**
      * 上一页
