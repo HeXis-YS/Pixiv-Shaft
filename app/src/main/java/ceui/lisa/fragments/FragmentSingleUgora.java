@@ -374,7 +374,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关作品");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_RELATED_ILLUST);
                 intent.putExtra(Params.ILLUST_ID, illust.getId());
                 intent.putExtra(Params.ILLUST_TITLE, illust.getTitle());
                 startActivity(intent);
@@ -395,7 +395,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, TemplateActivity.class);
                 intent.putExtra(Params.CONTENT, illust);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "喜欢这个作品的用户");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LIKE_USER_LIST);
                 startActivity(intent);
             }
         });

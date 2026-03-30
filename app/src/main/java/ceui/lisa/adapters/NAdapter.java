@@ -162,7 +162,7 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
                 } else if (viewType == 2) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(Params.URL, GlideUtil.getUrl(allItems.get(position).getImage_urls().getMaxImage()).toStringUrl());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "图片详情");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_IMAGE_DETAIL);
                     mContext.startActivity(intent);
                 } else if (viewType == 3) {
                     Intent intent = new Intent(mContext, UActivity.class);

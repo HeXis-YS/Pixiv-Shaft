@@ -114,7 +114,7 @@ public class FragmentCollection extends BaseFragment<ViewpagerWithTablayoutBindi
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(TemplateActivity.EXTRA_KEYWORD,
                             Params.TYPE_PUBLIC);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签筛选");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_FILTER);
                     intent.putExtra(Params.DATA_TYPE, type);
                     startActivity(intent);
                     return true;
@@ -122,7 +122,7 @@ public class FragmentCollection extends BaseFragment<ViewpagerWithTablayoutBindi
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(TemplateActivity.EXTRA_KEYWORD,
                             Params.TYPE_PRIVATE);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签筛选");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_FILTER);
                     intent.putExtra(Params.DATA_TYPE, type);
                     startActivity(intent);
                     return true;

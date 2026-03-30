@@ -174,7 +174,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
             val clickableSpan: ClickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
                     val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "漫画系列详情")
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_MANGA_SERIES_DETAIL)
                     intent.putExtra(Params.MANGA_SERIES_ID, illust.series.id)
                     startActivity(intent)
                 }
@@ -408,7 +408,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         })
         baseBind.related.setOnClick {
             val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关作品")
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_RELATED_ILLUST)
             intent.putExtra(Params.ILLUST_ID, illust.id)
             intent.putExtra(Params.ILLUST_TITLE, illust.title)
             startActivity(intent)
@@ -423,7 +423,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         baseBind.illustLike.setOnClick {
             val intent = Intent(mContext, TemplateActivity::class.java)
             intent.putExtra(Params.CONTENT, illust)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "喜欢这个作品的用户")
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LIKE_USER_LIST)
             startActivity(intent)
         }
         if (!TextUtils.isEmpty(illust.caption)) {

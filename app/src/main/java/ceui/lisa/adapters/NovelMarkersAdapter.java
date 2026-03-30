@@ -81,7 +81,7 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
         bindView.baseBind.cover.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, TemplateActivity.class);
             intent.putExtra(Params.URL, GlideUtil.getUrl(target.getNovel().getImage_urls().getMaxImage()).toStringUrl());
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "图片详情");
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_IMAGE_DETAIL);
             mContext.startActivity(intent);
         });
 
