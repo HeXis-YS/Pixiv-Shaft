@@ -131,12 +131,6 @@ public class Settings {
     //单P作品的文件名是否带P0
     private boolean hasP0 = false;
 
-    //作品详情使用新页面
-    private boolean useFragmentIllust = true;
-
-    //个人中心使用新页面
-    private boolean useNewUserPage = true;
-
     private String illustPath = "";
 
     private String novelPath = "";
@@ -358,14 +352,6 @@ public class Settings {
         this.mainViewR18 = mainViewR18;
     }
 
-    public boolean isUseFragmentIllust() {
-        return useFragmentIllust;
-    }
-
-    public void setUseFragmentIllust(boolean useFragmentIllust) {
-        this.useFragmentIllust = useFragmentIllust;
-    }
-
     public boolean isViewHistoryAnimate() {
         return viewHistoryAnimate;
     }
@@ -500,14 +486,6 @@ public class Settings {
 
     public void setBottomBarOrder(int bottomBarOrder) {
         this.bottomBarOrder = bottomBarOrder;
-    }
-
-    public boolean isUseNewUserPage() {
-        return useNewUserPage;
-    }
-
-    public void setUseNewUserPage(boolean useNewUserPage) {
-        this.useNewUserPage = useNewUserPage;
     }
 
     public boolean isHideStarButtonAtMyCollection() {

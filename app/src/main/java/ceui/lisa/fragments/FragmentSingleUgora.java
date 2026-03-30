@@ -41,7 +41,7 @@ import ceui.lisa.R;
 import ceui.lisa.activities.SearchActivity;
 import ceui.lisa.activities.Shaft;
 import ceui.lisa.activities.TemplateActivity;
-import ceui.lisa.activities.UserActivity;
+import ceui.lisa.activities.UActivity;
 import ceui.lisa.cache.Cache;
 import ceui.lisa.core.DownloadItem;
 import ceui.lisa.core.Manager;
@@ -431,7 +431,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
         baseBind.userHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, UserActivity.class);
+                Intent intent = new Intent(mContext, UActivity.class);
                 intent.putExtra(Params.USER_ID, illust.getUser().getId());
                 startActivity(intent);
             }
@@ -439,7 +439,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
         baseBind.userName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, UserActivity.class);
+                Intent intent = new Intent(mContext, UActivity.class);
                 intent.putExtra(Params.USER_ID, illust.getUser().getId());
                 startActivity(intent);
             }

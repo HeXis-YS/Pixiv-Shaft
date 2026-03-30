@@ -166,7 +166,6 @@
             android:name="ceui.lisa.core.GlideConfiguration"
             android:value="GlideModule" />
 
-        <activity android:name=".activities.UserActivity" />
         <activity
             android:name=".activities.SearchActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />

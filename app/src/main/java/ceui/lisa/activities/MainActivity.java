@@ -288,7 +288,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             intent = new Intent(mContext, TemplateActivity.class);
             intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "关于软件");
         } else if (id == R.id.main_page) {
-            intent = new Intent(mContext, UserActivity.class);
+            intent = new Intent(mContext, UActivity.class);
             intent.putExtra(Params.USER_ID, sUserModel.getUser().getId());
         } else if (id == R.id.nav_reverse) {
             selectPhoto();

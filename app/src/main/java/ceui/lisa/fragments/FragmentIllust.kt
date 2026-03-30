@@ -137,12 +137,12 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
             }
         }
         baseBind.relaIllustBrief.setOnClick {
-            val intent = Intent(mContext, UserActivity::class.java)
+            val intent = Intent(mContext, UActivity::class.java)
             intent.putExtra(Params.USER_ID, user.id)
             startActivity(intent)
         }
         baseBind.userName.setOnClick {
-            val intent = Intent(mContext, UserActivity::class.java)
+            val intent = Intent(mContext, UActivity::class.java)
             intent.putExtra(Params.USER_ID, user.id)
             startActivity(intent)
         }

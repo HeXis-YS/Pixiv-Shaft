@@ -130,8 +130,6 @@
   <string name="language">язык</string>  
   <string name="theme_mode">тематический режим</string>  
   <string name="custom_file_name">Пользовательское имя файла для загрузки</string>  
-  <string name="illust_detail">новый интерфейс</string>  
-  <string name="user_detail">персональный Центр использует новый интерфейс</string>  
   <string name="file_name_type">Формат имени файла</string>  
   <string name="download_path">путь к загрузке</string>  
   <string name="illust_download_path">путь к загрузке изображений</string>  

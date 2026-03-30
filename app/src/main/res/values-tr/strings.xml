@@ -130,8 +130,6 @@
   <string name="language">Dil</string>  
   <string name="theme_mode">Tema</string>  
   <string name="custom_file_name">Özel dosya adı</string>  
-  <string name="illust_detail">Resim ayrıntıları yeni UI kullansın</string>  
-  <string name="user_detail">Kişisel merkez yeni UI kullansın</string>  
   <string name="file_name_type">Dosya adlandırma biçimi</string>  
   <string name="download_path">İndirme dizini</string>  
   <string name="illust_download_path">Resim indirme dizini</string>  

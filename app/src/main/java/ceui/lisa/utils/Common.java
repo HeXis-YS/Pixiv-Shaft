@@ -55,7 +55,7 @@ import ceui.lisa.R;
 import ceui.lisa.activities.MainActivity;
 import ceui.lisa.activities.Shaft;
 import ceui.lisa.activities.TemplateActivity;
-import ceui.lisa.activities.UserActivity;
+import ceui.lisa.activities.UActivity;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.UserEntity;
 import ceui.lisa.download.FileCreator;
@@ -282,7 +282,7 @@ public class Common {
     }
 
     public static void showUser(Context context, UserContainer userContainer) {
-        Intent intent = new Intent(context, UserActivity.class);
+        Intent intent = new Intent(context, UActivity.class);
         intent.putExtra(Params.USER_ID, userContainer.getUserId());
         context.startActivity(intent);
     }

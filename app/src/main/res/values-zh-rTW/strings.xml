@@ -151,8 +151,6 @@
   <string name="show_like_button">清單頁展示收藏按鈕</string>  
   <string name="theme_mode">主題模式</string>  
   <string name="custom_file_name">自訂下載檔名</string>  
-  <string name="illust_detail">作品詳情使用新介面</string>  
-  <string name="user_detail">個人中心使用新介面</string>  
   <string name="file_name_type">檔案命名格式</string>  
   <string name="novel_txt_download_path">小說TXT保存路徑</string>  
   <string name="email_address">信箱地址</string>  
