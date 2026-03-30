@@ -61,6 +61,11 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_WRITE_STORAGE = 1001;
+    private static final String EXTRA_HIDE_STATUS_BAR = "hideStatusBar";
+    private static final int PAGE_LEFT = 0;
+    private static final int PAGE_CENTER = 1;
+    private static final int PAGE_RIGHT = 2;
+    private static final int PAGE_R18 = 3;
 
     private ImageView userHead;
     private TextView username;
@@ -106,50 +111,13 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         baseBind.navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_1) {
-                    baseBind.viewPager.setCurrentItem(0);
-                    return true;
-                } else if (item.getItemId() == R.id.action_2) {
-                    baseBind.viewPager.setCurrentItem(1);
-                    return true;
-                } else if (item.getItemId() == R.id.action_3) {
-                    baseBind.viewPager.setCurrentItem(2);
-                    return true;
-                } else if (item.getItemId() == R.id.action_4) {
-                    baseBind.viewPager.setCurrentItem(3);
-                    return true;
-                }
-                return false;
+                return navigateToPage(item.getItemId());
             }
         });
         baseBind.navigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.action_1) {
-                    for (Fragment baseFragment : baseFragments) {
-                        if (baseFragment instanceof FragmentLeft) {
-                            ((FragmentLeft) baseFragment).forceRefresh();
-                        }
-                    }
-                } else if (item.getItemId() == R.id.action_2) {
-                    for (Fragment baseFragment : baseFragments) {
-                        if (baseFragment instanceof FragmentCenter) {
-                            ((FragmentCenter) baseFragment).forceRefresh();
-                        }
-                    }
-                } else if (item.getItemId() == R.id.action_3) {
-                    for (Fragment baseFragment : baseFragments) {
-                        if (baseFragment instanceof FragmentRight) {
-                            ((FragmentRight) baseFragment).forceRefresh();
-                        }
-                    }
-                } else if (item.getItemId() == R.id.action_4) {
-                    for (Fragment baseFragment : baseFragments) {
-                        if (baseFragment instanceof FragmentViewPager) {
-                            ((FragmentViewPager) baseFragment).forceRefresh();
-                        }
-                    }
-                }
+                forceRefreshCurrentPage(item.getItemId());
             }
         });
         baseBind.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -160,15 +128,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 0) {
-                    baseBind.navigationView.setSelectedItemId(R.id.action_1);
-                } else if (position == 1) {
-                    baseBind.navigationView.setSelectedItemId(R.id.action_2);
-                } else if (position == 2) {
-                    baseBind.navigationView.setSelectedItemId(R.id.action_3);
-                } else if (position == 3) {
-                    baseBind.navigationView.setSelectedItemId(R.id.action_4);
-                }
+                syncBottomNavigation(position);
             }
 
             @Override
@@ -273,65 +233,118 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Intent intent = null;
-        if (id == nav_gallery) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "下载管理");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == nav_slideshow) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "浏览记录");
-        } else if (id == R.id.nav_manage) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "设置");
-        } else if (id == R.id.nav_share) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "关于软件");
-        } else if (id == R.id.main_page) {
-            intent = new Intent(mContext, UActivity.class);
-            intent.putExtra(Params.USER_ID, sUserModel.getUser().getId());
-        } else if (id == R.id.nav_reverse) {
+        if (id == R.id.nav_reverse) {
             selectPhoto();
-        } else if (id == R.id.nav_new_work) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "最新作品");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == R.id.muted_list) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "标签屏蔽记录");
-        } else if (id == R.id.nav_feature) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "精华列");
-        } else if (id == R.id.nav_fans) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "粉丝");
-        } else if (id == R.id.illust_star) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "我的插画收藏");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == R.id.novel_star) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "我的小说收藏");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == R.id.watchlist) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "追更列表");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == R.id.novel_markers) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说书签");
-            intent.putExtra("hideStatusBar", false);
-        } else if (id == R.id.follow_user) {
-            intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "我的关注");
-            intent.putExtra("hideStatusBar", false);
+            baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+            return true;
         }
+
+        Intent intent = createDrawerIntent(id);
         if (intent != null) {
             startActivity(intent);
+        } else if (id == R.id.nav_new_work) {
+            startActivity(createTemplateIntent("最新作品", false));
         }
 
         baseBind.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private boolean navigateToPage(int itemId) {
+        int pageIndex = getPageIndex(itemId);
+        if (pageIndex == -1) {
+            return false;
+        }
+        baseBind.viewPager.setCurrentItem(pageIndex);
+        return true;
+    }
+
+    private int getPageIndex(int itemId) {
+        if (itemId == R.id.action_1) {
+            return PAGE_LEFT;
+        } else if (itemId == R.id.action_2) {
+            return PAGE_CENTER;
+        } else if (itemId == R.id.action_3) {
+            return PAGE_RIGHT;
+        } else if (itemId == R.id.action_4) {
+            return PAGE_R18;
+        }
+        return -1;
+    }
+
+    private void forceRefreshCurrentPage(int itemId) {
+        for (Fragment baseFragment : baseFragments) {
+            if (itemId == R.id.action_1 && baseFragment instanceof FragmentLeft) {
+                ((FragmentLeft) baseFragment).forceRefresh();
+            } else if (itemId == R.id.action_2 && baseFragment instanceof FragmentCenter) {
+                ((FragmentCenter) baseFragment).forceRefresh();
+            } else if (itemId == R.id.action_3 && baseFragment instanceof FragmentRight) {
+                ((FragmentRight) baseFragment).forceRefresh();
+            } else if (itemId == R.id.action_4 && baseFragment instanceof FragmentViewPager) {
+                ((FragmentViewPager) baseFragment).forceRefresh();
+            }
+        }
+    }
+
+    private void syncBottomNavigation(int position) {
+        if (position == PAGE_LEFT) {
+            baseBind.navigationView.setSelectedItemId(R.id.action_1);
+        } else if (position == PAGE_CENTER) {
+            baseBind.navigationView.setSelectedItemId(R.id.action_2);
+        } else if (position == PAGE_RIGHT) {
+            baseBind.navigationView.setSelectedItemId(R.id.action_3);
+        } else if (position == PAGE_R18) {
+            baseBind.navigationView.setSelectedItemId(R.id.action_4);
+        }
+    }
+
+    private Intent createDrawerIntent(int itemId) {
+        if (itemId == nav_gallery) {
+            return createTemplateIntent("下载管理", false);
+        } else if (itemId == nav_slideshow) {
+            return createTemplateIntent("浏览记录");
+        } else if (itemId == R.id.nav_manage) {
+            return createTemplateIntent("设置");
+        } else if (itemId == R.id.nav_share) {
+            return createTemplateIntent("关于软件");
+        } else if (itemId == R.id.main_page) {
+            return createUserPageIntent();
+        } else if (itemId == R.id.muted_list) {
+            return createTemplateIntent("标签屏蔽记录");
+        } else if (itemId == R.id.nav_feature) {
+            return createTemplateIntent("精华列");
+        } else if (itemId == R.id.nav_fans) {
+            return createTemplateIntent("粉丝");
+        } else if (itemId == R.id.illust_star) {
+            return createTemplateIntent("我的插画收藏", false);
+        } else if (itemId == R.id.novel_star) {
+            return createTemplateIntent("我的小说收藏", false);
+        } else if (itemId == R.id.watchlist) {
+            return createTemplateIntent("追更列表", false);
+        } else if (itemId == R.id.novel_markers) {
+            return createTemplateIntent("小说书签", false);
+        } else if (itemId == R.id.follow_user) {
+            return createTemplateIntent("我的关注", false);
+        }
+        return null;
+    }
+
+    private Intent createTemplateIntent(String fragmentName) {
+        Intent intent = new Intent(mContext, TemplateActivity.class);
+        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, fragmentName);
+        return intent;
+    }
+
+    private Intent createTemplateIntent(String fragmentName, boolean hideStatusBar) {
+        Intent intent = createTemplateIntent(fragmentName);
+        intent.putExtra(EXTRA_HIDE_STATUS_BAR, hideStatusBar);
+        return intent;
+    }
+
+    private Intent createUserPageIntent() {
+        Intent intent = new Intent(mContext, UActivity.class);
+        intent.putExtra(Params.USER_ID, sUserModel.getUser().getId());
+        return intent;
     }
 
     @Override
@@ -347,20 +360,32 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 .addItems(ALL_SELECT_WAY, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which == 0) {
-                            Intent intentToPickPic = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                            startActivityForResult(intentToPickPic, Params.REQUEST_CODE_CHOOSE);
-                        } else {
-                            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                            intent.addCategory(Intent.CATEGORY_OPENABLE);//必须
-                            intent.setType("image/*");//必须
-                            startActivityForResult(intent, Params.REQUEST_CODE_CHOOSE);
-                        }
+                        openPhotoSource(which);
                         dialog.dismiss();
                     }
                 })
                 .show();
+    }
+
+    private void openPhotoSource(int sourceIndex) {
+        if (sourceIndex == 0) {
+            startActivityForResult(createGalleryPickIntent(), Params.REQUEST_CODE_CHOOSE);
+        } else {
+            startActivityForResult(createDocumentPickIntent(), Params.REQUEST_CODE_CHOOSE);
+        }
+    }
+
+    private Intent createGalleryPickIntent() {
+        Intent intentToPickPic = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        return intentToPickPic;
+    }
+
+    private Intent createDocumentPickIntent() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        return intent;
     }
 
     private void initDrawerHeader() {
@@ -378,20 +403,38 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Params.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            try {
-                Uri imageUri = data.getData();
-                File innerImageFile = Common.copyUriToImageCacheFolder(imageUri);
-                Uri innerImageFileUri = Uri.fromFile(innerImageFile);
-                if (!ReverseImage.isFileSizeOkToSearch(imageUri, ReverseImage.DEFAULT_ENGINE)) {
-                    Common.showToast(getString(R.string.string_410));
-                    return;
-                }
-                ReverseImage.reverse(innerImageFileUri,
-                        ReverseImage.DEFAULT_ENGINE, new ReverseWebviewCallback(this, innerImageFileUri));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            handleChosenPhoto(data);
         }
+    }
+
+    private void handleChosenPhoto(Intent data) {
+        try {
+            Uri imageUri = data.getData();
+            if (imageUri == null) {
+                return;
+            }
+            if (!isPhotoSearchable(imageUri)) {
+                Common.showToast(getString(R.string.string_410));
+                return;
+            }
+            Uri innerImageFileUri = copyPhotoToCache(imageUri);
+            startReverseSearch(innerImageFileUri);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isPhotoSearchable(Uri imageUri) {
+        return ReverseImage.isFileSizeOkToSearch(imageUri, ReverseImage.DEFAULT_ENGINE);
+    }
+
+    private Uri copyPhotoToCache(Uri imageUri) throws Exception {
+        File innerImageFile = Common.copyUriToImageCacheFolder(imageUri);
+        return Uri.fromFile(innerImageFile);
+    }
+
+    private void startReverseSearch(Uri imageUri) {
+        ReverseImage.reverse(imageUri, ReverseImage.DEFAULT_ENGINE, new ReverseWebviewCallback(this, imageUri));
     }
 
     @Override
