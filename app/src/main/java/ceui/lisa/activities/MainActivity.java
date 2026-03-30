@@ -190,7 +190,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             }
         } else {
             Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "登录注册");
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
             startActivity(intent);
             finish();
         }
@@ -316,11 +316,11 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private Intent createDrawerIntent(int itemId) {
         if (itemId == nav_gallery) {
-            return createTemplateIntent("下载管理", false);
+            return createTemplateIntent(TemplateActivity.FRAGMENT_DOWNLOAD, false);
         } else if (itemId == nav_slideshow) {
             return createTemplateIntent("浏览记录");
         } else if (itemId == R.id.nav_manage) {
-            return createTemplateIntent("设置");
+            return createTemplateIntent(TemplateActivity.FRAGMENT_SETTINGS);
         } else if (itemId == R.id.nav_share) {
             return createTemplateIntent("关于软件");
         } else if (itemId == R.id.main_page) {
@@ -518,7 +518,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void openDownloadManager() {
-        startActivity(createTemplateIntent("下载管理", true));
+        startActivity(createTemplateIntent(TemplateActivity.FRAGMENT_DOWNLOAD, true));
     }
 
     private void promptDoubleTapExit() {

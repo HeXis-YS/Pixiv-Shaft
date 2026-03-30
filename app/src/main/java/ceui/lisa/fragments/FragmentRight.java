@@ -84,7 +84,7 @@ public class FragmentRight extends NetListFragment<FragmentNewRightBinding, List
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_search) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "搜索");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_SEARCH);
                     startActivity(intent);
                     return true;
                 }

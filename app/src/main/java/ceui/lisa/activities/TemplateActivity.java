@@ -74,11 +74,11 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static final String EXTRA_FRAGMENT = "dataType";
     public static final String EXTRA_KEYWORD = "keyword";
-    private static final String FRAGMENT_LOGIN = "登录注册";
+    public static final String FRAGMENT_LOGIN = "登录注册";
     private static final String FRAGMENT_RELATED_ILLUST = "相关作品";
     private static final String FRAGMENT_HISTORY = "浏览记录";
-    private static final String FRAGMENT_WEB = "网页链接";
-    private static final String FRAGMENT_SETTINGS = "设置";
+    public static final String FRAGMENT_WEB = "网页链接";
+    public static final String FRAGMENT_SETTINGS = "设置";
     private static final String FRAGMENT_RECMD_USER = "推荐用户";
     private static final String FRAGMENT_PV = "特辑";
     private static final String FRAGMENT_REVERSE_SEARCH = "以图搜图";
@@ -87,9 +87,9 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final String FRAGMENT_TAG_STAR = "按标签收藏";
     private static final String FRAGMENT_ABOUT = "关于软件";
     private static final String FRAGMENT_MULTI_DOWNLOAD = "批量下载";
-    private static final String FRAGMENT_SEARCH = "搜索";
+    public static final String FRAGMENT_SEARCH = "搜索";
     private static final String FRAGMENT_LATEST = "最新作品";
-    private static final String FRAGMENT_DOWNLOAD = "下载管理";
+    public static final String FRAGMENT_DOWNLOAD = "下载管理";
     private static final String FRAGMENT_BIND_EMAIL = "绑定邮箱";
     private static final String FRAGMENT_MUTED_TAGS = "标签屏蔽记录";
     private static final String FRAGMENT_FILENAME = "修改命名方式";

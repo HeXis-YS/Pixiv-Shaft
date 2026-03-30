@@ -67,7 +67,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         baseBind.toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item ->
             if (item.itemId == R.id.action_settings) {
                 val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "设置")
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_SETTINGS)
                 startActivity(intent)
                 return@OnMenuItemClickListener true
             } else if (item.itemId == R.id.action_import) {
@@ -122,7 +122,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
                 openProxyHint {
                     val url = LOGIN_HEAD + HostManager.get().pkce.challenge + LOGIN_END
                     val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接")
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                     intent.putExtra(Params.URL, url)
                     intent.putExtra(Params.TITLE, getString(R.string.now_login))
                     intent.putExtra(Params.PREFER_PRESERVE, true)
@@ -135,7 +135,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
                 openProxyHint {
                     val url = SIGN_HEAD + HostManager.get().pkce.challenge + SIGN_END
                     val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接")
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                     intent.putExtra(Params.URL, url)
                     intent.putExtra(Params.TITLE, getString(R.string.now_sign))
                     intent.putExtra(Params.PREFER_PRESERVE, true)
@@ -152,14 +152,14 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         baseBind.firstText.text = SpannableString(terms).apply {
             this.setLinkSpan(matchTOS, hideUnderLine = false) {
                 val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接")
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                 intent.putExtra(Params.URL, "https://www.pixiv.net/terms/?page=term&appname=pixiv_ios")
                 intent.putExtra(Params.TITLE, getString(R.string.pixiv_use_detail))
                 startActivity(intent)
             }
             this.setLinkSpan(matchPP, hideUnderLine = false) {
                 val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接")
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                 intent.putExtra(Params.URL,"https://www.pixiv.net/terms/?page=privacy&appname=pixiv_ios")
                 intent.putExtra(Params.TITLE, getString(R.string.privacy))
                 startActivity(intent)

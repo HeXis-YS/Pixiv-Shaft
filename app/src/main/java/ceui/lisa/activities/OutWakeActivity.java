@@ -137,7 +137,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 Intent i = new Intent(mContext, TemplateActivity.class);
                                 i.putExtra(Params.URL, uriString);
                                 i.putExtra(Params.TITLE, HOST_ME);
-                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                                 startActivity(i);
                                 finish();
                                 return;
@@ -145,7 +145,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 Intent i = new Intent(mContext, TemplateActivity.class);
                                 i.putExtra(Params.URL, uriString);
                                 i.putExtra(Params.TITLE, getString(R.string.pixiv_special));
-                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                                 i.putExtra(Params.PREFER_PRESERVE, true);
                                 startActivity(i);
                                 finish();
@@ -238,7 +238,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                                         @Override
                                                         public void onClick(QMUIDialog dialog, int index) {
                                                             Intent intent = new Intent(mContext, TemplateActivity.class);
-                                                            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                                                            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                                                             intent.putExtra(Params.URL, Params.URL_R18_SETTING);
                                                             startActivity(intent);
                                                         }
@@ -285,7 +285,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
             mActivity.finish();
         } else {
             Intent i = new Intent(mContext, TemplateActivity.class);
-            i.putExtra(TemplateActivity.EXTRA_FRAGMENT, "登录注册");
+            i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
             startActivity(i);
             finish();
         }

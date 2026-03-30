@@ -98,7 +98,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                     intent.putExtra(Params.URL, Params.URL_R18_SETTING);
                     startActivity(intent);
                 }
@@ -108,7 +108,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                     intent.putExtra(Params.URL, Params.URL_PREMIUM_SETTING);
                     startActivity(intent);
                 }
@@ -163,7 +163,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "网页链接");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
                     intent.putExtra(Params.URL, "https://github.com/Notsfsssf/Pix-EzViewer");
                     intent.putExtra(Params.TITLE, "PxEz项目主页");
                     startActivity(intent);
