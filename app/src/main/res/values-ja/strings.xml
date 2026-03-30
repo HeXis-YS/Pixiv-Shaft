@@ -504,7 +504,6 @@
   <string name="unfollow">フォロー解除</string>
   <string name="created_by_ai">AI生成</string>
   <string name="has_been_downloaded">既にダウンロード済みです</string>
-  <string name="delete_ai_illust">AI生成の作品を非表示</string>
   <string name="trying_login">ログイン中...</string>
   <string name="userTab_other">プロフィール</string>
   <string name="userTab_collection">お気に入り</string>

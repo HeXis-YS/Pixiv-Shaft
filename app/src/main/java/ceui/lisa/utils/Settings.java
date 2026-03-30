@@ -81,9 +81,6 @@ public class Settings {
     //屏蔽，不显示已收藏的作品，默认不屏蔽
     private boolean deleteStarIllust = false;
 
-    //屏蔽，不显示AI创作的作品，默认不屏蔽
-    private boolean deleteAIIllust = false;
-
     //是否自动添加DNS，true开启直连  false自行代理
     private boolean autoFuckChina = false;
 
@@ -275,15 +272,6 @@ public class Settings {
     public void setDeleteStarIllust(boolean pDeleteStarIllust) {
         deleteStarIllust = pDeleteStarIllust;
     }
-
-    public boolean isDeleteAIIllust() {
-        return deleteAIIllust;
-    }
-
-    public void setDeleteAIIllust(boolean b) {
-        deleteAIIllust = b;
-    }
-
 
     private String themeType = "";
 

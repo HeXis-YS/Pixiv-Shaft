@@ -258,22 +258,6 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 }
             });
 
-            baseBind.deleteAiIllust.setChecked(Shaft.sSettings.isDeleteAIIllust());
-            baseBind.deleteAiIllust.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Shaft.sSettings.setDeleteAIIllust(isChecked);
-                    Common.showToast(getString(R.string.string_428), 2);
-                    Local.setSettings(Shaft.sSettings);
-                }
-            });
-            baseBind.deleteAiIllustRela.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    baseBind.deleteAiIllust.performClick();
-                }
-            });
-
             baseBind.toastDownloadResult.setChecked(Shaft.sSettings.isToastDownloadResult());
             baseBind.toastDownloadResult.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override

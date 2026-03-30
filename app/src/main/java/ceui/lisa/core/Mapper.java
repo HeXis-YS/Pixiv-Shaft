@@ -21,18 +21,13 @@ public class Mapper<T extends ListShow<?>> implements Function<T, T> {
     @Override
     public T apply(T t) {
         List<Object> dash = new ArrayList<>();
-        boolean shouldHidAiIllusts = Shaft.sSettings.isDeleteAIIllust();
         for (Object o : t.getList()) {
             if (o instanceof IllustsBean) {
                 boolean isTagBanned = IllustNovelFilter.judgeTag((IllustsBean) o);
                 boolean isIdBanned = IllustNovelFilter.judgeID((IllustsBean) o);
                 boolean isUserBanned = IllustNovelFilter.judgeUserID((IllustsBean) o);
                 boolean isR18FilterBanned = IllustNovelFilter.judgeR18Filter((IllustsBean) o);
-                boolean isCreatedByAI = ((IllustsBean) o).isCreatedByAI();
                 if (isTagBanned || isIdBanned || isUserBanned || isR18FilterBanned) {
-                    dash.add(o);
-                }
-                if (shouldHidAiIllusts && isCreatedByAI) {
                     dash.add(o);
                 }
                 ObjectPool.INSTANCE.updateIllust((IllustsBean) o);
