@@ -81,35 +81,53 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
 //        }
 //        baseBind.banUserRela.setOnClickListener { baseBind.banUser.performClick() }
         baseBind.tagLayout.setOnTagClickListener { _, position, _ ->
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(Params.USER_ID, data.user.userId)
             when {
                 content[position].contains(getString(R.string.string_246)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "插画作品")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_233)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "漫画作品")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_230)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "漫画系列作品")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_237)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说作品")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_257)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列作品")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_164)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "插画/漫画收藏")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_192)) -> {
+                    val intent = Intent(mContext, TemplateActivity::class.java)
+                    intent.putExtra(Params.USER_ID, data.user.userId)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说收藏")
+                    startActivity(intent)
                 }
                 content[position].contains(getString(R.string.string_436)) -> {
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关用户")
+                    TemplateActivity.startRelatedUser(mContext, data.user.userId)
                 }
             }
-            startActivity(intent)
             true
         }
         if (!TextUtils.isEmpty(data.user.comment)) {
@@ -120,10 +138,7 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
         }
 
         baseBind.showDetail.setOnClickListener {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "详细信息")
-            intent.putExtra(Params.CONTENT, data)
-            startActivity(intent)
+            TemplateActivity.startUserInfo(mContext, data)
         }
         if (!TextUtils.isEmpty(data.profile.webpage)) {
             baseBind.realHome.text = data.profile.webpage

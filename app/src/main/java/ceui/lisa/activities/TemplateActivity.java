@@ -64,6 +64,7 @@ import ceui.lisa.fragments.FragmentWhoFollowThisUser;
 import ceui.lisa.helper.BackHandlerHelper;
 import ceui.lisa.models.IllustsBean;
 import ceui.lisa.models.NovelBean;
+import ceui.lisa.models.UserDetailResponse;
 import ceui.lisa.models.UserPreviewsBean;
 import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Params;
@@ -193,6 +194,26 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static void startLocalUsers(Context context) {
         context.startActivity(newLocalUsersIntent(context));
+    }
+
+    public static Intent newRelatedUserIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_RELATED_USER);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startRelatedUser(Context context, int userId) {
+        context.startActivity(newRelatedUserIntent(context, userId));
+    }
+
+    public static Intent newUserInfoIntent(Context context, UserDetailResponse userDetailResponse) {
+        Intent intent = createIntent(context, FRAGMENT_USER_INFO);
+        intent.putExtra(Params.CONTENT, userDetailResponse);
+        return intent;
+    }
+
+    public static void startUserInfo(Context context, UserDetailResponse userDetailResponse) {
+        context.startActivity(newUserInfoIntent(context, userDetailResponse));
     }
 
     private static Intent createIntent(Context context, String fragment) {
