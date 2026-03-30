@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 initFragment();
 //                startActivity(new Intent(this, ListActivity.class));
             } else {
-                requestStoragePermission();
+                ensureStoragePermission();
             }
         } else {
             Intent intent = new Intent(mContext, TemplateActivity.class);
@@ -196,12 +196,20 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         }
     }
 
-    private void requestStoragePermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+    private void ensureStoragePermission() {
+        if (hasStoragePermission()) {
             initFragment();
             return;
         }
+        requestStoragePermission();
+    }
+
+    private boolean hasStoragePermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == android.content.pm.PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestStoragePermission() {
         ActivityCompat.requestPermissions(
                 this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -212,15 +220,23 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode != REQUEST_WRITE_STORAGE) {
+        if (requestCode == REQUEST_WRITE_STORAGE) {
+            handleStoragePermissionResult(grantResults);
+        }
+    }
+
+    private void handleStoragePermissionResult(@NonNull int[] grantResults) {
+        if (isPermissionGranted(grantResults)) {
+            initFragment();
             return;
         }
-        if (grantResults.length > 0 && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
-            initFragment();
-        } else {
-            Common.showToast(getString(R.string.access_denied));
-            finish();
-        }
+        Common.showToast(getString(R.string.access_denied));
+        finish();
+    }
+
+    private boolean isPermissionGranted(@NonNull int[] grantResults) {
+        return grantResults.length > 0
+                && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED;
     }
 
     public DrawerLayout getDrawer() {
@@ -439,47 +455,75 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (baseBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+        if (handleOpenDrawerOnBack()) {
             return true;
-        } else {
-            if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-                exit();
-                return true;
-            }
+        }
+        if (shouldInterceptBack(keyCode, event)) {
+            exit();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean handleOpenDrawerOnBack() {
+        if (!baseBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             return false;
         }
+        baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private boolean shouldInterceptBack(int keyCode, KeyEvent event) {
+        return keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0;
     }
 
     public void exit() {
-        if ((System.currentTimeMillis() - mExitTime) > 2000) {
-            if (Manager.get().getContent().size() != 0) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                builder.setTitle(getString(R.string.shaft_hint));
-                builder.setMessage(mContext.getString(R.string.you_have_download_plan));
-                builder.setPositiveButton(mContext.getString(R.string.sure), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Manager.get().stopAll();
-                        finish();
-                    }
-                });
-                builder.setNegativeButton(mContext.getString(R.string.cancel), null);
-                builder.setNeutralButton(getString(R.string.see_download_task), (dialog, which) -> {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "下载管理");
-                    intent.putExtra("hideStatusBar", true);
-                    startActivity(intent);
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            } else {
-                Common.showToast(getString(R.string.double_click_finish));
-                mExitTime = System.currentTimeMillis();
-            }
-        } else {
+        if (shouldExitImmediately()) {
             finish();
+            return;
         }
+        if (hasPendingDownloadTasks()) {
+            showPendingDownloadExitDialog();
+            return;
+        }
+        promptDoubleTapExit();
+    }
+
+    private boolean shouldExitImmediately() {
+        return (System.currentTimeMillis() - mExitTime) <= 2000;
+    }
+
+    private boolean hasPendingDownloadTasks() {
+        return Manager.get().getContent().size() != 0;
+    }
+
+    private void showPendingDownloadExitDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(getString(R.string.shaft_hint));
+        builder.setMessage(mContext.getString(R.string.you_have_download_plan));
+        builder.setPositiveButton(mContext.getString(R.string.sure), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                stopAllTasksAndExit();
+            }
+        });
+        builder.setNegativeButton(mContext.getString(R.string.cancel), null);
+        builder.setNeutralButton(getString(R.string.see_download_task), (dialog, which) -> openDownloadManager());
+        builder.create().show();
+    }
+
+    private void stopAllTasksAndExit() {
+        Manager.get().stopAll();
+        finish();
+    }
+
+    private void openDownloadManager() {
+        startActivity(createTemplateIntent("下载管理", true));
+    }
+
+    private void promptDoubleTapExit() {
+        Common.showToast(getString(R.string.double_click_finish));
+        mExitTime = System.currentTimeMillis();
     }
 
     @Override
