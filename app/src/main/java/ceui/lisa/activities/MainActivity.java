@@ -320,17 +320,17 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             intent.putExtra(EXTRA_HIDE_STATUS_BAR, false);
             return intent;
         } else if (itemId == nav_slideshow) {
-            return createTemplateIntent("浏览记录");
+            return TemplateActivity.newHistoryIntent(this);
         } else if (itemId == R.id.nav_manage) {
             return TemplateActivity.newSettingsIntent(this);
         } else if (itemId == R.id.nav_share) {
-            return createTemplateIntent("关于软件");
+            return TemplateActivity.newAboutIntent(this);
         } else if (itemId == R.id.main_page) {
             return createUserPageIntent();
         } else if (itemId == R.id.muted_list) {
-            return createTemplateIntent("标签屏蔽记录");
+            return TemplateActivity.newMutedTagsIntent(this);
         } else if (itemId == R.id.nav_feature) {
-            return createTemplateIntent("精华列");
+            return TemplateActivity.newFeatureIntent(this);
         } else if (itemId == R.id.nav_fans) {
             return createTemplateIntent("粉丝");
         } else if (itemId == R.id.illust_star) {

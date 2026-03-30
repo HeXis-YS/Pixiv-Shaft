@@ -117,9 +117,7 @@ public class MuteDialog extends BaseDialog<DialogMuteTagBinding> {
         baseBind.other.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "标签屏蔽记录");
-                mContext.startActivity(intent);
+                TemplateActivity.startMutedTags(mContext);
                 dismiss();
             }
         });

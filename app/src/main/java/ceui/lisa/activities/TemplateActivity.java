@@ -147,6 +147,38 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newDownloadManagerIntent(context));
     }
 
+    public static Intent newHistoryIntent(Context context) {
+        return createIntent(context, FRAGMENT_HISTORY);
+    }
+
+    public static void startHistory(Context context) {
+        context.startActivity(newHistoryIntent(context));
+    }
+
+    public static Intent newAboutIntent(Context context) {
+        return createIntent(context, FRAGMENT_ABOUT);
+    }
+
+    public static void startAbout(Context context) {
+        context.startActivity(newAboutIntent(context));
+    }
+
+    public static Intent newMutedTagsIntent(Context context) {
+        return createIntent(context, FRAGMENT_MUTED_TAGS);
+    }
+
+    public static void startMutedTags(Context context) {
+        context.startActivity(newMutedTagsIntent(context));
+    }
+
+    public static Intent newFeatureIntent(Context context) {
+        return createIntent(context, FRAGMENT_FEATURE);
+    }
+
+    public static void startFeature(Context context) {
+        context.startActivity(newFeatureIntent(context));
+    }
+
     private static Intent createIntent(Context context, String fragment) {
         Intent intent = new Intent(context, TemplateActivity.class);
         intent.putExtra(EXTRA_FRAGMENT, fragment);
