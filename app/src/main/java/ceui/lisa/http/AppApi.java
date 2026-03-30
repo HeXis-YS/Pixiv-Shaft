@@ -456,12 +456,6 @@ public interface AppApi {
     @GET("v1/user/novel-series")
     Observable<ListNovelSeries> getUserNovelSeries(@Header("Authorization") String token,
                                                    @Query("user_id") int user_id);
-    @GET("v2/illust/mypixiv")
-    Observable<ListIllust> getNiceFriendIllust(@Header("Authorization") String token);
-
-    @GET("v1/novel/mypixiv")
-    Observable<ListNovel> getNiceFriendNovel(@Header("Authorization") String token);
-
     @GET
     Observable<ListNovelSeries> getNextUserNovelSeries(@Header("Authorization") String token,
                                                        @Url String next_url);
