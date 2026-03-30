@@ -50,7 +50,6 @@
   <string name="privacy">프라이버시 정책</string>  
   <string name="about_app">관 하 다.</string>  
   <string name="pixiv_special">PixiVision 특집</string>  
-  <string name="pixiv_problem">흔 한 문제</string>  
   <string name="project_license">허가증</string>  
   <string name="select_inner_storage">이 컴퓨터 내 장 된 저장 소 를 선택 하 십시오.</string>  
   <string name="walkthrough">화랑</string>  
@@ -195,9 +194,6 @@
   <string name="string_22">다운로드 링크 내 보 내기</string>
   <string name="string_24">버 전 이름:</string>
   <string name="string_25">버 전 모델:</string>  
-  <string name="string_26">소프트웨어.</string>  
-  <string name="string_27">항목.</string>  
-  <string name="string_28">설명 하 다.</string>  
   <string name="string_29">기부 작가</string>  
   <string name="string_30">기부자 리스트</string>  
   <string name="string_31">Github</string>
@@ -356,9 +352,6 @@
   <string name="string_196">주목 하 는 사람의 소설</string>  
   <string name="string_197">관심 가 의 최신 소설</string>  
   <string name="string_199">판본.</string>  
-  <string name="string_200">웨 이 보 에서 저 를 주목 해 주세요.</string>  
-  <string name="string_201">Telegram 그룹</string>  
-  <string name="string_202">되 돌 림</string>  
   <string name="string_203">다운로드 관리</string>  
   <string name="string_204">최신 작품</string>  
   <string name="string_205">이미 차단 한 작품</string>  
@@ -380,7 +373,6 @@
   <string name="string_222">개 삽화</string>  
   <string name="string_223">서류 한 통</string>  
   <string name="string_224">데이터 가 더 없어 요.</string>  
-  <string name="string_225">QQ 그룹</string>  
   <string name="string_226">아직 그룹 을 만 들 지 않 았 습 니 다. 누가 만 들 었 는 지 댓 글 창 에 올 려 주세요.</string>  
   <string name="string_227">손 Q 가 설치 되 어 있 지 않 거나 설 치 된 버 전 은 지원 되 지 않 습 니 다.</string>  
   <string name="string_228">TXT 내 보 내기</string>  

@@ -113,10 +113,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        style="@style/setting_text_head"
-                        android:text="@string/string_202"/>
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:background="@color/white_and_black"
@@ -138,122 +134,9 @@
 
                         </RelativeLayout>
 
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_weibo"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_200" />
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_telegram"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_201">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/go_qq"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_225">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
                         <View style="@style/full_divider" />
 
                     </LinearLayout>
-
-                    <TextView
-                        style="@style/setting_text_head"
-                        android:text="@string/string_26"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:background="@color/white_and_black"
-                        android:layout_height="wrap_content">
-
-                        <View style="@style/full_divider" />
-
-
-                        <RelativeLayout
-                            android:id="@+id/pixiv_problem"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/pixiv_problem">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/pixiv_use_detail"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/pixiv_use_detail">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/pixiv_privacy"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/privacy">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/full_divider" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        style="@style/setting_text_head"
-                        android:text="@string/string_27" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -261,24 +144,6 @@
                         android:orientation="vertical"
                         android:background="@color/white_and_black"
                         android:layout_height="wrap_content">
-
-                        <View style="@style/full_divider" />
-
-                        <RelativeLayout
-                            android:id="@+id/dont_catch_me"
-                            style="@style/ripple_rela">
-
-                            <TextView
-                                style="@style/setting_text_left"
-                                android:text="@string/string_28">
-
-                            </TextView>
-
-                            <TextView style="@style/setting_right_arrow" />
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
 
                         <RelativeLayout
                             android:id="@+id/project_website"

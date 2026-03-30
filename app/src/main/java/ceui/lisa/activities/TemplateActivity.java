@@ -37,7 +37,6 @@ import ceui.lisa.fragments.FragmentLocalUsers;
 import ceui.lisa.fragments.FragmentLogin;
 import ceui.lisa.fragments.FragmentMangaSeries;
 import ceui.lisa.fragments.FragmentMangaSeriesDetail;
-import ceui.lisa.fragments.FragmentMarkdown;
 import ceui.lisa.fragments.FragmentMultiDownload;
 import ceui.lisa.fragments.FragmentNew;
 import ceui.lisa.fragments.FragmentNewNovel;
@@ -231,9 +230,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     );
                 case "相关用户":
                     return FragmentRelatedUser.newInstance(intent.getIntExtra(Params.USER_ID, 0));
-                case "Markdown":
-                    String url = intent.getStringExtra(Params.URL);
-                    return FragmentMarkdown.newInstance(url);
                 default:
                     return new Fragment();
             }

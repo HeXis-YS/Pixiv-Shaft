@@ -48,7 +48,6 @@
   <string name="privacy">隱私政策</string>  
   <string name="about_app">關於</string>  
   <string name="pixiv_special">PixiVision特輯</string>  
-  <string name="pixiv_problem">常見問題</string>  
   <string name="project_license">執照</string>  
   <string name="select_inner_storage">請選擇本機內建存儲</string>  
   <string name="walkthrough">畫廊</string>  
@@ -197,9 +196,6 @@
   <string name="string_22">匯出下載連結</string>
   <string name="string_24">版本名稱：</string>
   <string name="string_25">版本型號：</string>  
-  <string name="string_26">軟體</string>  
-  <string name="string_27">項目</string>  
-  <string name="string_28">申明</string>  
   <string name="string_29">捐助作者</string>  
   <string name="string_30">捐贈者清單</string>  
   <string name="string_31">Github</string>
@@ -358,9 +354,6 @@
   <string name="string_196">關注者的小說</string>  
   <string name="string_197">關注者的最新小說</string>  
   <string name="string_199">版本</string>  
-  <string name="string_200">在微博關注我</string>  
-  <string name="string_201">Telegram 群組</string>
-  <string name="string_202">迴響</string>  
   <string name="string_203">下載管理</string>  
   <string name="string_204">最新作品</string>  
   <string name="string_205">已遮罩的作品</string>  
@@ -382,7 +375,6 @@
   <string name="string_222">個插畫，共</string>  
   <string name="string_223">個檔案</string>  
   <string name="string_224">沒有更多數據啦</string>  
-  <string name="string_225">QQ 群組</string>
   <string name="string_226">還沒創建群呢，誰創了在評論區發我</string>  
   <string name="string_227">未安裝手Q或安裝的版本不支持</string>  
   <string name="string_228">匯出TXT</string>  

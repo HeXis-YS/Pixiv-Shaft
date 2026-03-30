@@ -39,7 +39,6 @@
   <string name="privacy">Политика конфиденциальности</string>  
   <string name="about_app">О нас</string>  
   <string name="pixiv_special">Экстровыпуск PixiVision</string>  
-  <string name="pixiv_problem">ЧаВо</string>  
   <string name="project_license">Лицензия</string>  
   <string name="select_inner_storage">Пожалуйста, выберите это встроенное хранилище</string>  
   <string name="walkthrough">Галерея</string>  
@@ -192,9 +191,6 @@
   <string name="string_22">Экспорт ссылок для загрузки</string>
   <string name="string_24">имя версии:</string>
   <string name="string_25">тип версии:</string>  
-  <string name="string_26">программное обеспечение</string>  
-  <string name="string_27">Проект</string>  
-  <string name="string_28">заявлять</string>  
   <string name="string_29">Автор - донор</string>  
   <string name="string_30">Список доноров</string>  
   <string name="string_31">Github</string>  
@@ -353,9 +349,6 @@
   <string name="string_196">Романы подмандатных лиц</string>  
   <string name="string_197">Последние романы подмандатных лиц</string>  
   <string name="string_199">версия</string>  
-  <string name="string_200">внимание в микроблогах</string>  
-  <string name="string_201">Группа Telegram</string>  
-  <string name="string_202">обратная связь</string>  
   <string name="string_203">управление загрузкой</string>  
   <string name="string_204">новое произведение</string>  
   <string name="string_205">экранированные работы</string>  
@@ -377,7 +370,6 @@
   <string name="string_222">иллюстрация, всего</string>  
   <string name="string_223">файл</string>  
   <string name="string_224">Нет больше данных</string>  
-  <string name="string_225">Группа QQName</string>  
   <string name="string_226">еще не создана группа, которая создала меня в комментарии</string>  
   <string name="string_227">не поддерживается встроенная версия Q или не поддерживается</string>  
   <string name="string_228">экспорт TXT</string>  

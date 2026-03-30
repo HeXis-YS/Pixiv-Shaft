@@ -50,7 +50,6 @@
   <string name="privacy">プライバシーポリシー</string>  
   <string name="about_app">このアプリについて</string>  
   <string name="pixiv_special">PixiVision特別版</string>  
-  <string name="pixiv_problem">よくある質問</string>  
   <string name="project_license">ライセンス</string>  
   <string name="select_inner_storage">内蔵のストレージを選択してください</string>  
   <string name="walkthrough">画廊</string>  
@@ -195,9 +194,6 @@
   <string name="string_22">ダウンロードリンクをエクスポート</string>
   <string name="string_24">バージョン名:</string>
   <string name="string_25">バージョンのタイプ:</string>  
-  <string name="string_26">ソフトウェア</string>  
-  <string name="string_27">プロジェクト</string>
-  <string name="string_28">説明</string>  
   <string name="string_29">作者に寄付する</string>  
   <string name="string_30">貢献者一覧</string>  
   <string name="string_31">Github</string>
@@ -356,9 +352,6 @@
   <string name="string_196">フォロー中ユーザーの小説</string>  
   <string name="string_197">フォロー中ユーザーの最新小説</string>  
   <string name="string_199">バージョン</string>  
-  <string name="string_200">Weiboでフォロー</string>  
-  <string name="string_201">Telegramグループ</string>  
-  <string name="string_202">フィードバック</string>  
   <string name="string_203">ダウンロードを管理</string>
   <string name="string_204">最新</string>  
   <string name="string_205">ブロックした作品</string>  
@@ -380,7 +373,6 @@
   <string name="string_222">枚のイラスト、</string>
   <string name="string_223">件のファイル</string>
   <string name="string_224">全てのイラストを表示しています</string>
-  <string name="string_225">QQグループ</string>  
   <string name="string_226">まだグループがありません。グループを作成した場合は、管理者に連絡してください。</string>  
   <string name="string_227">QQがインストールされていないか、サポートされていないバージョンがインストールされています。</string>  
   <string name="string_228">ダウンロード</string>  

@@ -50,7 +50,6 @@
   <string name="privacy">Gizlilik Politikası</string>  
   <string name="about_app">Bu uygulama hakkında</string>  
   <string name="pixiv_special">PixiVision özel sürümü</string>  
-  <string name="pixiv_problem">SSS</string>  
   <string name="project_license">Lisans</string>  
   <string name="select_inner_storage">Lütfen dahili depolama seçin</string>  
   <string name="walkthrough">Galeri</string>  
@@ -192,9 +191,6 @@
   <string name="string_22">İndirme Bağlantısını Dışa Çıkar</string>
   <string name="string_24">Sürüm Adı:</string>
   <string name="string_25">Sürüm Türü:</string>  
-  <string name="string_26">yazılım</string>  
-  <string name="string_27">proje</string>  
-  <string name="string_28">Declare</string>  
   <string name="string_29">Geliştiricilere Bağış Yapın</string>  
   <string name="string_30">Bağış Listesi</string>  
   <string name="string_31">Github</string>  
@@ -353,9 +349,6 @@
   <string name="string_196">Novel of Followers</string>  
   <string name="string_197">Followers latest novel</string>  
   <string name="string_199">sürüm</string>  
-  <string name="string_200">Weibo\'da beni takip edin</string>  
-  <string name="string_201">Telegram Grupları</string>  
-  <string name="string_202">Geri bildirim</string>  
   <string name="string_203">İndirme Yöneticisi</string>  
   <string name="string_204">en son çalışmalar</string>  
   <string name="string_205">Muted works</string>  
@@ -377,7 +370,6 @@
   <string name="string_222"> Artworks of </string>  
   <string name="string_223">Documents</string>  
   <string name="string_224">Daha fazla veri yok</string>  
-  <string name="string_225">QQ grubu</string>  
   <string name="string_226">There are no groups yet, ping me if you have created one</string>  
   <string name="string_227">QQ is not installed or installed version is not supported</string>  
   <string name="string_228">TXT olarak dışa aktar</string>  

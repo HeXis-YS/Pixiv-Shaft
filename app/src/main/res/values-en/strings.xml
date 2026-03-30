@@ -50,7 +50,6 @@
   <string name="privacy">Privacy Policy</string>  
   <string name="about_app">About this app</string>  
   <string name="pixiv_special">PixiVision special edition</string>  
-  <string name="pixiv_problem">FAQ</string>  
   <string name="project_license">License</string>  
   <string name="select_inner_storage">Please select internal storage</string>  
   <string name="walkthrough">Gallery</string>  
@@ -195,9 +194,6 @@
   <string name="string_22">Export Download Link</string>
   <string name="string_24">Version Name:</string>
   <string name="string_25">Version Type:</string>  
-  <string name="string_26">software</string>  
-  <string name="string_27">project</string>  
-  <string name="string_28">Declare</string>  
   <string name="string_29">Donate to Authors</string>  
   <string name="string_30">Donor List</string>  
   <string name="string_31">Github</string>  
@@ -356,9 +352,6 @@
   <string name="string_196">Novel of Followers</string>  
   <string name="string_197">Followers latest novel</string>  
   <string name="string_199">version</string>  
-  <string name="string_200">Follow me on Weibo</string>  
-  <string name="string_201">Telegram Groups</string>  
-  <string name="string_202">Feedback</string>  
   <string name="string_203">Download Manager</string>  
   <string name="string_204">latest artworks</string>  
   <string name="string_205">Muted works</string>  
@@ -380,7 +373,6 @@
   <string name="string_222"> Artworks of </string>  
   <string name="string_223">Documents</string>  
   <string name="string_224">There are no more data</string>  
-  <string name="string_225">QQ group</string>  
   <string name="string_226">There are no groups yet, ping me if you have created one</string>  
   <string name="string_227">QQ is not installed or installed version is not supported</string>  
   <string name="string_228">Export as TXT</string>  
