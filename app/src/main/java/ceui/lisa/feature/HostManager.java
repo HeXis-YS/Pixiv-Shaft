@@ -111,18 +111,11 @@ public class HostManager {
     }
 
     public String replaceUrl(String before) {
-        boolean showDetail = Dev.show_url_detail;
-        if(showDetail) Common.showLog("HostManager before " + before);
         if (Shaft.sSettings.isUsePixivCat() && !TextUtils.isEmpty(before) && before.contains(HOST_OLD)) {
-            String finalUrl = before.replace(HOST_OLD, HOST_NEW);
-            if(showDetail) Common.showLog("HostManager after0 " + finalUrl);
-            return finalUrl;
+            return before.replace(HOST_OLD, HOST_NEW);
         } else if (Shaft.sSettings.isAutoFuckChina() && before.contains(HOST_OLD)) { //此处修改为只替换i.pximg.net地址，s.pximg.net不替换
-            String result = resizeUrl(before);
-            if(showDetail) Common.showLog("HostManager after1 " + result);
-            return result;
+            return resizeUrl(before);
         } else {
-            if(showDetail) Common.showLog("HostManager after1 " + before);
             return before;
         }
     }

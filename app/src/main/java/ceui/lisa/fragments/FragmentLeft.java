@@ -16,7 +16,6 @@ import ceui.lisa.activities.Shaft;
 import ceui.lisa.activities.TemplateActivity;
 import ceui.lisa.databinding.FragmentLeftBinding;
 import ceui.lisa.utils.MyOnTabSelectedListener;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.Params;
 
 public class FragmentLeft extends BaseLazyFragment<FragmentLeftBinding> {
@@ -30,11 +29,9 @@ public class FragmentLeft extends BaseLazyFragment<FragmentLeftBinding> {
 
     @Override
     public void initView() {
-        if (Dev.hideMainActivityStatus) {
-            ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
-            headParams.height = Shaft.statusHeight;
-            baseBind.head.setLayoutParams(headParams);
-        }
+        ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
+        headParams.height = Shaft.statusHeight;
+        baseBind.head.setLayoutParams(headParams);
 
         baseBind.toolbar.setNavigationOnClickListener(v -> {
             if (mActivity instanceof MainActivity) {

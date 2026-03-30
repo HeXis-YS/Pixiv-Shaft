@@ -17,7 +17,6 @@ import ceui.lisa.activities.MainActivity;
 import ceui.lisa.activities.Shaft;
 import ceui.lisa.activities.TemplateActivity;
 import ceui.lisa.databinding.FragmentNewCenterBinding;
-import ceui.lisa.utils.Dev;
 
 public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
 
@@ -30,11 +29,9 @@ public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
 
     @Override
     protected void initView() {
-        if (Dev.hideMainActivityStatus) {
-            ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
-            headParams.height = Shaft.statusHeight;
-            baseBind.head.setLayoutParams(headParams);
-        }
+        ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
+        headParams.height = Shaft.statusHeight;
+        baseBind.head.setLayoutParams(headParams);
 
         baseBind.toolbar.inflateMenu(R.menu.fragment_left);
         baseBind.toolbar.setNavigationOnClickListener(new View.OnClickListener() {

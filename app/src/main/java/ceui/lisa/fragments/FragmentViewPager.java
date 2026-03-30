@@ -13,7 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 import ceui.lisa.R;
 import ceui.lisa.activities.Shaft;
 import ceui.lisa.databinding.ViewpagerWithTablayoutBinding;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.MyOnTabSelectedListener;
 import ceui.lisa.utils.Params;
 
@@ -101,9 +100,7 @@ public class FragmentViewPager extends BaseFragment<ViewpagerWithTablayoutBindin
 
         } else if (TextUtils.equals(title, Params.VIEW_PAGER_R18)) {
 
-            if (Dev.hideMainActivityStatus) {
-                baseBind.appBar.setPadding(0, Shaft.statusHeight, 0, 0);
-            }
+            baseBind.appBar.setPadding(0, Shaft.statusHeight, 0, 0);
 
             baseBind.toolbar.setVisibility(View.GONE);
             String[] CHINESE_TITLES = new String[]{

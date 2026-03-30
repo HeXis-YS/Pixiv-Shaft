@@ -35,7 +35,6 @@ import ceui.lisa.model.ListIllust;
 import ceui.lisa.models.IllustsBean;
 import ceui.lisa.repo.RightRepo;
 import ceui.lisa.utils.Common;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.Params;
 import ceui.lisa.view.OnCheckChangeListener;
 import ceui.lisa.viewmodel.BaseModel;
@@ -64,11 +63,9 @@ public class FragmentRight extends NetListFragment<FragmentNewRightBinding, List
     public void initView() {
         super.initView();
 
-        if (Dev.hideMainActivityStatus) {
-            ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
-            headParams.height = Shaft.statusHeight;
-            baseBind.head.setLayoutParams(headParams);
-        }
+        ViewGroup.LayoutParams headParams = baseBind.head.getLayoutParams();
+        headParams.height = Shaft.statusHeight;
+        baseBind.head.setLayoutParams(headParams);
 
         baseBind.toolbar.inflateMenu(R.menu.fragment_left);
         baseBind.toolbar.setNavigationOnClickListener(new View.OnClickListener() {

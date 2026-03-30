@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     public boolean hideStatusBar() {
-        return Dev.hideMainActivityStatus;
+        return true;
     }
 
     @Override
