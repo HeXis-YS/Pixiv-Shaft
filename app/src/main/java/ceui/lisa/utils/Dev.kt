@@ -21,8 +21,5 @@ object Dev {
     const val USER_PWD = "Mercis09bv"
 
     @JvmField
-    var use_weiss = false
-
-    @JvmField
     var show_url_detail = false
 }

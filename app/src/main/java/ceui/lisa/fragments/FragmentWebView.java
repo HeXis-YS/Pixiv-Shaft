@@ -53,7 +53,6 @@ import androidx.appcompat.widget.Toolbar;
 import ceui.lisa.R;
 import ceui.lisa.activities.OutWakeActivity;
 import ceui.lisa.databinding.FragmentWebviewBinding;
-import ceui.lisa.feature.WeissUtil;
 import ceui.lisa.http.HttpDns;
 import ceui.lisa.utils.ClipBoardUtils;
 import ceui.lisa.utils.Common;
@@ -178,13 +177,7 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
                 .setWebViewClient(new WebViewClient() {
                     @Override
                     public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                        if (Dev.use_weiss) {
-                            if (handler != null) {
-                                handler.proceed();
-                            }
-                        } else {
-                            super.onReceivedSslError(view, handler, error);
-                        }
+                        super.onReceivedSslError(view, handler, error);
                         Common.showLog(className + "onReceivedSslError " + error.toString());
                     }
 
@@ -308,7 +301,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
     @Override
     public void onDestroy() {
         mAgentWeb.getWebLifeCycle().onDestroy();
-        WeissUtil.end();
         super.onDestroy();
     }
 
