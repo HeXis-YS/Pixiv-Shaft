@@ -41,7 +41,6 @@
   <string name="pixiv_special">Экстровыпуск PixiVision</string>  
   <string name="project_license">Лицензия</string>  
   <string name="select_inner_storage">Пожалуйста, выберите это встроенное хранилище</string>  
-  <string name="walkthrough">Галерея</string>  
   <string name="search">Поиск</string>  
   <string name="navigation_drawer_open">открыть навигационный ящик</string>  
   <string name="navigation_drawer_close">закрыть навигационный ящик</string>  
@@ -62,7 +61,6 @@
   <string name="has_been_added">один элемент добавлен в очередь загрузки</string>  
   <string name="type_illust">иллюстрировать</string>  
   <string name="type_manga">комикс</string>  
-  <string name="type_walk_through">галерея</string>  
   <string name="type_novel">роман</string>  
   <string name="type_live">прямой трансляция</string>  
   <string name="public_like_illust">публичная коллекция</string>  
@@ -375,7 +373,6 @@
   <string name="string_231">Незавершённые статьи</string>  
   <string name="string_232">озабоченность</string>  
   <string name="string_233">Комиксы</string>  
-  <string name="string_234">галерея</string>  
   <string name="string_235">хороший друг</string>  
   <string name="string_236">Поиск пользователей</string>  
   <string name="string_237">художественное произведение</string>  

@@ -85,18 +85,6 @@ public interface AppApi {
     @GET("v1/trending-tags/{type}?filter=for_android&include_translated_tag_results=true")
     Observable<ListTrendingtag> getHotTags(@Header("Authorization") String token,
                                            @Path("type") String type);
-
-
-    /**
-     * 原版app登录时候的背景墙
-     *
-     * @param token
-     * @return
-     */
-    @GET("v1/walkthrough/illusts?filter=for_android")
-    Observable<ListIllust> getLoginBg(@Header("Authorization") String token);
-
-
     /**
      * /v1/search/illust?
      * filter=for_android&
@@ -473,7 +461,6 @@ public interface AppApi {
 
     @GET("v1/novel/mypixiv")
     Observable<ListNovel> getNiceFriendNovel(@Header("Authorization") String token);
-
 
     @GET
     Observable<ListNovelSeries> getNextUserNovelSeries(@Header("Authorization") String token,

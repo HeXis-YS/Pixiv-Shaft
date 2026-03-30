@@ -52,7 +52,6 @@
   <string name="pixiv_special">PixiVision özel sürümü</string>  
   <string name="project_license">Lisans</string>  
   <string name="select_inner_storage">Lütfen dahili depolama seçin</string>  
-  <string name="walkthrough">Galeri</string>  
   <string name="latest_work">En son</string>  
   <string name="search">Ara</string>  
   <string name="develop">Geliştirici Önizlemesi</string>  
@@ -62,7 +61,6 @@
   <string name="has_been_added">Item(s) have been added to the download queue</string>  
   <string name="type_illust">Resim</string>  
   <string name="type_manga">Manga</string>  
-  <string name="type_walk_through">galeri</string>  
   <string name="type_novel">Novel</string>  
   <string name="type_live">Canlı</string>  
   <string name="public_like_illust">Herkese Açık Yer İşaretleri</string>  
@@ -375,7 +373,6 @@
   <string name="string_231">İlgili çalışmalar</string>  
   <string name="string_232">Takip</string>  
   <string name="string_233">Çizgi Romanlar</string>  
-  <string name="string_234">galeri</string>  
   <string name="string_235">P Good Friends</string>  
   <string name="string_236">Kullanıcı ara</string>  
   <string name="string_237">Novel\'ler</string>  

@@ -52,7 +52,6 @@
   <string name="pixiv_special">PixiVision特別版</string>  
   <string name="project_license">ライセンス</string>  
   <string name="select_inner_storage">内蔵のストレージを選択してください</string>  
-  <string name="walkthrough">画廊</string>  
   <string name="latest_work">最新</string>  
   <string name="search">検索</string>  
   <string name="develop">開発者のプレビュー</string>  
@@ -62,7 +61,6 @@
   <string name="has_been_added">個がダウンロードキューに追加されました</string>  
   <string name="type_illust">イラスト</string>  
   <string name="type_manga">漫画</string>  
-  <string name="type_walk_through">ギャラリー</string>  
   <string name="type_novel">小説</string>
   <string name="type_live">ライブ</string>
   <string name="public_like_illust">公開</string>
@@ -378,7 +376,6 @@
   <string name="string_231">関連作品</string>  
   <string name="string_232">フォロー中</string>  
   <string name="string_233">漫画作品</string>  
-  <string name="string_234">ギャラリー</string>  
   <string name="string_235">マイピク</string>
   <string name="string_236">検索ユーザ</string>  
   <string name="string_237">小説作品</string>  

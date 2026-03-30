@@ -60,7 +60,6 @@ public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
 
         baseBind.manga.setClipToOutline(true);
         baseBind.novel.setClipToOutline(true);
-        baseBind.walkThrough.setClipToOutline(true);
         baseBind.followNovels.setClipToOutline(true);
 
         baseBind.manga.setOnClickListener(new View.OnClickListener() {
@@ -81,14 +80,6 @@ public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
             }
         });
 
-        baseBind.walkThrough.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "画廊");
-                startActivity(intent);
-            }
-        });
         baseBind.followNovels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

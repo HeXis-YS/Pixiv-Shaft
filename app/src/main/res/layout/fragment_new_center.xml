@@ -158,43 +158,6 @@
                                 android:layout_height="0dp"
                                 android:layout_rowWeight="1"
                                 android:layout_columnWeight="1"
-                                android:layout_marginStart="@dimen/twelve_dp"
-                                android:id="@+id/walk_through"
-                                android:stateListAnimator="@animator/button_press_scale"
-                                android:layout_marginTop="@dimen/six_dp"
-                                android:layout_marginEnd="@dimen/six_dp"
-                                android:layout_marginBottom="@dimen/twelve_dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:scaleType="centerCrop"
-                                    android:src="@drawable/center_1"
-                                    android:background="@drawable/shape_round_outline"
-                                    android:outlineProvider="background" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_margin="10dp"
-                                    android:shadowColor="#FF000000"
-                                    android:shadowDx="2"
-                                    android:shadowDy="2"
-                                    android:shadowRadius="2"
-                                    android:text="@string/type_walk_through"
-                                    android:textColor="@color/always_white"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-
-                            </com.qmuiteam.qmui.widget.roundwidget.QMUIRoundRelativeLayout>
-
-                            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundRelativeLayout
-                                app:qmui_radius="10dp"
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_rowWeight="1"
-                                android:layout_columnWeight="1"
                                 android:id="@+id/follow_novels"
                                 android:stateListAnimator="@animator/button_press_scale"
                                 android:layout_marginStart="@dimen/six_dp"
@@ -238,4 +201,3 @@
     </LinearLayout>
 
 </layout>
-

@@ -52,7 +52,6 @@
   <string name="pixiv_special">PixiVision special edition</string>  
   <string name="project_license">License</string>  
   <string name="select_inner_storage">Please select internal storage</string>  
-  <string name="walkthrough">Gallery</string>  
   <string name="latest_work">Latest</string>  
   <string name="search">Search for</string>  
   <string name="develop">Developer Preview</string>  
@@ -62,7 +61,6 @@
   <string name="has_been_added">Item(s) have been added to the download queue</string>  
   <string name="type_illust">Illustration</string>  
   <string name="type_manga">Manga</string>  
-  <string name="type_walk_through">gallery</string>  
   <string name="type_novel">Novel</string>  
   <string name="type_live">Live</string>  
   <string name="public_like_illust">Public Bookmarkes</string>  
@@ -378,7 +376,6 @@
   <string name="string_231">Related works</string>  
   <string name="string_232">Follow</string>  
   <string name="string_233">Comics</string>  
-  <string name="string_234">gallery</string>  
   <string name="string_235">P Good Friends</string>  
   <string name="string_236">Search user</string>  
   <string name="string_237">Novels</string>  

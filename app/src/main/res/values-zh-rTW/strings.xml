@@ -50,7 +50,6 @@
   <string name="pixiv_special">PixiVision特輯</string>  
   <string name="project_license">執照</string>  
   <string name="select_inner_storage">請選擇本機內建存儲</string>  
-  <string name="walkthrough">畫廊</string>  
   <string name="latest_work">最新</string>  
   <string name="search">搜尋</string>  
   <string name="hello_blank_fragment">你好空白片段</string>  
@@ -138,7 +137,6 @@
   <string name="action_import">從剪切板導入</string>  
   <string name="action_qcode">掃描二維碼</string>  
   <string name="develop">開發者預覽</string>  
-  <string name="type_walk_through">畫廊</string>  
   <string name="type_live">直播</string>  
   <string name="muted_history">遮罩記錄</string>  
   <string name="like_novel_success_public">收藏成功~（公開的）</string>  
@@ -380,7 +378,6 @@
   <string name="string_231">的相關作品</string>  
   <string name="string_232">關注</string>  
   <string name="string_233">漫畫作品</string>  
-  <string name="string_234">畫廊</string>  
   <string name="string_235">好P友</string>  
   <string name="string_236">蒐索用戶</string>  
   <string name="string_237">小說作品</string>  
@@ -404,7 +401,7 @@
   <string name="string_258">你還沒有做任何改變</string>  
   <string name="string_263">其他問題：</string>  
   <string name="string_264">粉絲</string>  
-  <string name="string_274">好P友的插畫/漫畫作品</string>  
+  <string name="string_274">好P友的插畫/漫畫作品</string>
   <string name="string_275">好P友的小說作品</string>
   <string name="string_277">匯出TXT（資料夾中可查看）</string>
   <string name="string_278">匯出TXT並分享</string>  

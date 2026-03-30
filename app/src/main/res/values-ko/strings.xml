@@ -52,7 +52,6 @@
   <string name="pixiv_special">PixiVision 특집</string>  
   <string name="project_license">허가증</string>  
   <string name="select_inner_storage">이 컴퓨터 내 장 된 저장 소 를 선택 하 십시오.</string>  
-  <string name="walkthrough">화랑</string>  
   <string name="latest_work">최신</string>  
   <string name="search">수색 하 다.</string>  
   <string name="develop">개발 자 미리보기</string>  
@@ -62,7 +61,6 @@
   <string name="has_been_added">개 항목 이 다운로드 큐 에 가입 하 였 습 니 다</string>  
   <string name="type_illust">삽화</string>  
   <string name="type_manga">만화</string>  
-  <string name="type_walk_through">화랑</string>  
   <string name="type_novel">소설.</string>  
   <string name="type_live">생방송 하 다.</string>  
   <string name="public_like_illust">공개 소장</string>  
@@ -378,7 +376,6 @@
   <string name="string_231">관련 작품</string>  
   <string name="string_232">주목 하 다.</string>  
   <string name="string_233">만화 작품</string>  
-  <string name="string_234">화랑</string>  
   <string name="string_235">좋 은 P 친구</string>  
   <string name="string_236">검색 사용자</string>  
   <string name="string_237">소설 작품</string>  
