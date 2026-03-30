@@ -53,7 +53,7 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
                 val illustsBean = serializable as IllustsBean?
                 val illustIntent = Intent(context, VActivity::class.java)
                 illustIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                val illustList = listOf(illustsBean)
+                val illustList = listOfNotNull(illustsBean)
                 AppLevelViewModelHelper.updateFollowUserStatus(
                     illustsBean!!.user,
                     AppLevelViewModel.UpdateMethod.IF_ABSENT
@@ -61,7 +61,7 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
                 val pageData = PageData(illustList)
                 Container.get().addPageToMap(pageData)
                 illustIntent.putExtra(Params.POSITION, 0)
-                illustIntent.putExtra(Params.PAGE_UUID, pageData.uuid)
+                illustIntent.putExtra(Params.PAGE_UUID, pageData.getUUID())
                 context.startActivity(illustIntent)
             } else if (WIDGET_CLICK_TYPE_BTN == intent.getStringExtra(WIDGET_CLICK_TYPE)) {
 //                int appWidgetID = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
@@ -283,4 +283,3 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
         private const val SERVICE_NOTIFICATION_CHANNEL_NAME = "App Widget Service"
     }
 }
-
