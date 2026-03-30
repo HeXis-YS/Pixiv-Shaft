@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LanguageUtils;
@@ -22,8 +24,6 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import com.scwang.smart.refresh.header.FalsifyFooter;
 import com.scwang.smart.refresh.header.FalsifyHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
-
-import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -61,6 +61,8 @@ import static ceui.lisa.utils.Settings.ALL_LANGUAGE;
 
 
 public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
+
+    private static final int REQUEST_WRITE_STORAGE = 1002;
 
     @Override
     public void initLayout() {
@@ -1038,16 +1040,27 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
         baseBind.refreshLayout.setRefreshFooter(new FalsifyFooter(mContext));
 
         if (!Common.isAndroidQ()) {
-            new RxPermissions(this)
-                    .requestEachCombined(
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    )
-                    .subscribe(permission -> {
-                        if (!permission.granted) {
-                            Common.showToast(getString(R.string.access_denied));
-                            finish();
-                        }
-                    });
+            requestStoragePermission();
+        }
+    }
+
+    private void requestStoragePermission() {
+        if (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_STORAGE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode != REQUEST_WRITE_STORAGE) {
+            return;
+        }
+        if (grantResults.length == 0 || grantResults[0] != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            Common.showToast(getString(R.string.access_denied));
+            finish();
         }
     }
 

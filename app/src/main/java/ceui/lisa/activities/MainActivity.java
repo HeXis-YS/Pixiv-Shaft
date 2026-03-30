@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -28,7 +30,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
-import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import java.io.File;
 
@@ -58,6 +59,8 @@ import static ceui.lisa.activities.Shaft.sUserModel;
  */
 public class MainActivity extends BaseActivity<ActivityCoverBinding>
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int REQUEST_WRITE_STORAGE = 1001;
 
     private ImageView userHead;
     private TextView username;
@@ -223,23 +226,39 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 initFragment();
 //                startActivity(new Intent(this, ListActivity.class));
             } else {
-                new RxPermissions(mActivity)
-                        .requestEachCombined(
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE
-                        )
-                        .subscribe(permission -> {
-                            if (permission.granted) {
-                                initFragment();
-                            } else {
-                                Common.showToast(mActivity.getString(R.string.access_denied));
-                                finish();
-                            }
-                        });
+                requestStoragePermission();
             }
         } else {
             Intent intent = new Intent(mContext, TemplateActivity.class);
             intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "登录注册");
             startActivity(intent);
+            finish();
+        }
+    }
+
+    private void requestStoragePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            initFragment();
+            return;
+        }
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                REQUEST_WRITE_STORAGE
+        );
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode != REQUEST_WRITE_STORAGE) {
+            return;
+        }
+        if (grantResults.length > 0 && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            initFragment();
+        } else {
+            Common.showToast(getString(R.string.access_denied));
             finish();
         }
     }

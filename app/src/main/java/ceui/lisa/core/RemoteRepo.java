@@ -47,7 +47,9 @@ public abstract class RemoteRepo<Response extends ListShow<?>> extends BaseRepo 
     /**
      * Early development,it only returns JSON Array now
      * */
-    public abstract Observable<? extends Response> initLofterApi();
+    public Observable<? extends Response> initLofterApi() {
+        return null;
+    }
 
     public abstract Observable<? extends Response> initNextApi();
 
