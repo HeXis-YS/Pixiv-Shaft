@@ -38,7 +38,6 @@ import ceui.lisa.notification.CallBackReceiver;
 import ceui.lisa.repo.RecmdIllustRepo;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.DensityUtil;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.Params;
 import ceui.lisa.view.SpacesItemWithHeadDecoration;
 import ceui.lisa.viewmodel.BaseModel;
@@ -72,17 +71,7 @@ public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding
 
     @Override
     public RemoteRepo<ListIllust> repository() {
-        if (Dev.isDev) {
-            localData = AppDatabase.getAppDatabase(mContext).recmdDao().getAll();
-            return new RecmdIllustRepo(dataType) {
-                @Override
-                public boolean localData() {
-                    return !Common.isEmpty(localData);
-                }
-            };
-        } else {
-            return new RecmdIllustRepo(dataType);
-        }
+        return new RecmdIllustRepo(dataType);
     }
 
     @Override

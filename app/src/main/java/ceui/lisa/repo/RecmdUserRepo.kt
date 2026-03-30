@@ -3,7 +3,6 @@ package ceui.lisa.repo
 import ceui.lisa.core.RemoteRepo
 import ceui.lisa.http.Retro
 import ceui.lisa.model.ListUser
-import ceui.lisa.utils.Dev
 import io.reactivex.Observable
 
 class RecmdUserRepo(private val isHorizontal: Boolean) : RemoteRepo<ListUser>() {
@@ -21,7 +20,7 @@ class RecmdUserRepo(private val isHorizontal: Boolean) : RemoteRepo<ListUser>() 
 
     override fun localData(): Boolean {
         if (isHorizontal) {
-            return Dev.isDev
+            return false
         }
         return super.localData()
     }

@@ -22,7 +22,6 @@ public class Params {
     public static final String MANGA         = "is manga";
     public static final String SHOW_DIALOG   = "show dialog";
     public static final String USER_MODEL    = "user model";
-    public static final String USE_DEBUG     = "use debug mode";
     public static final String FILE_PATH     = "file path";
     public static final String STAR_TYPE     = "star type";
     public static final String FLAG          = "flag";

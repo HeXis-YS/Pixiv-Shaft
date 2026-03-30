@@ -3,7 +3,6 @@ package ceui.lisa.repo
 import ceui.lisa.core.RemoteRepo
 import ceui.lisa.http.Retro
 import ceui.lisa.model.ListArticle
-import ceui.lisa.utils.Dev
 import io.reactivex.Observable
 
 open class PivisionRepo(
@@ -23,6 +22,6 @@ open class PivisionRepo(
     }
 
     override fun localData(): Boolean {
-        return Dev.isDev
+        return false
     }
 }

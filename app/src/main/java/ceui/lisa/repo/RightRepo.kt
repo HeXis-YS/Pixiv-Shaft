@@ -6,7 +6,6 @@ import ceui.lisa.core.FilterMapper
 import ceui.lisa.core.RemoteRepo
 import ceui.lisa.http.Retro
 import ceui.lisa.model.ListIllust
-import ceui.lisa.utils.Dev
 import ceui.lisa.view.MyDeliveryHeader
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.layout.api.RefreshFooter
@@ -38,6 +37,6 @@ class RightRepo(var restrict: String?) : RemoteRepo<ListIllust>() {
     }
 
     override fun localData(): Boolean {
-        return Dev.isDev
+        return false
     }
 }

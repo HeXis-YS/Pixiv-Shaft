@@ -9,7 +9,6 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -33,7 +32,6 @@ import ceui.lisa.utils.*
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog.MessageDialogBuilder
 import com.qmuiteam.qmui.skin.QMUISkinManager
-import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
 import com.facebook.rebound.SpringConfig
 import com.facebook.rebound.SimpleSpringListener
 import kotlinx.coroutines.launch
@@ -49,13 +47,6 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
     private val viewModel: LandingViewModel by viewModels()
     private val springSystem = SpringSystem.create()
     private var rotate: Spring? = null
-    private var mHitCountDown //
-            = 0
-    private var mHitToast: Toast? = null
-    override fun onResume() {
-        super.onResume()
-        mHitCountDown = TAPS_TO_BE_A_DEVELOPER
-    }
 
     public override fun initLayout() {
         mLayoutID = R.layout.activity_login
@@ -91,28 +82,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
             }
             false
         })
-        setTitle()
-        baseBind.title.setOnClickListener {
-            if (mHitCountDown > 0) {
-                mHitCountDown--
-                if (mHitCountDown == 0) {
-                    showDialog()
-                } else if (mHitCountDown > 0 && mHitCountDown < TAPS_TO_BE_A_DEVELOPER - 2) {
-                    if (mHitToast != null) {
-                        mHitToast?.cancel()
-                    }
-                    mHitToast = Toast.makeText(
-                        mActivity, String.format(
-                            Locale.getDefault(),
-                            "点击%d次切换版本", mHitCountDown
-                        ), Toast.LENGTH_SHORT
-                    )
-                    mHitToast?.show()
-                }
-            } else {
-                showDialog()
-            }
-        }
+        baseBind.title.text = "Shaft"
         baseBind.login.setOnClickListener {
             checkAndNext {
                 openProxyHint {
@@ -187,32 +157,6 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         qmuiDialog.show()
     }
 
-    private fun setTitle() {
-        if (Shaft.getMMKV().decodeBool(Params.USE_DEBUG, false)) {
-            baseBind.title.text = "Shaft(测试版)"
-        } else {
-            baseBind.title.text = "Shaft"
-        }
-    }
-
-    private fun showDialog() {
-        val builder = AlertDialog.Builder(mContext)
-        val titles = arrayOf("使用正式版", "使用测试版")
-        builder.setItems(titles) { dialog, which ->
-            if (which == 0) {
-                Shaft.getMMKV().encode(Params.USE_DEBUG, false)
-                Dev.isDev = false
-            } else if (which == 1) {
-                Shaft.getMMKV().encode(Params.USE_DEBUG, true)
-                Dev.isDev = true
-            }
-            mHitCountDown = TAPS_TO_BE_A_DEVELOPER
-            setTitle()
-        }
-        val alertDialog = builder.create()
-        alertDialog.show()
-    }
-
     override fun initData() {
         if (Shaft.getMMKV().decodeBool(Params.SHOW_DIALOG, true)) {
             Common.createDialog(mContext)
@@ -276,7 +220,6 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         private const val SIGN_HEAD =
             "https://app-api.pixiv.net/web/v1/provisional-accounts/create?code_challenge="
         private const val SIGN_END = "&code_challenge_method=S256&client=pixiv-android"
-        private const val TAPS_TO_BE_A_DEVELOPER = 7
     }
 }
 

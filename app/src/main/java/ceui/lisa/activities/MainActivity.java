@@ -44,7 +44,6 @@ import ceui.lisa.fragments.FragmentViewPager;
 import ceui.lisa.helper.DrawerLayoutHelper;
 import ceui.lisa.helper.NavigationLocationHelper;
 import ceui.lisa.utils.Common;
-import ceui.lisa.utils.Dev;
 import ceui.lisa.utils.GlideUtil;
 import ceui.lisa.utils.Params;
 import ceui.lisa.utils.ReverseImage;
@@ -87,7 +86,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     protected void initView() {
-        Dev.isDev = Shaft.getMMKV().decodeBool(Params.USE_DEBUG, false);
         baseBind.drawerLayout.setScrimColor(Color.TRANSPARENT);
         baseBind.navView.setNavigationItemSelectedListener(this);
         userHead = baseBind.navView.getHeaderView(0).findViewById(R.id.user_head);
