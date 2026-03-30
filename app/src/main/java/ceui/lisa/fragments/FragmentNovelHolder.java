@@ -159,7 +159,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
                 intent.putExtra(Params.ILLUST_ID, mNovelBean.getId());
                 intent.putExtra(Params.DATA_TYPE, Params.TYPE_NOVEL);
                 intent.putExtra(Params.TAG_NAMES, mNovelBean.getTagNames());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签收藏");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
                 mContext.startActivity(intent);
                 return true;
             }
@@ -185,7 +185,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(Params.ID, mNovelBean.getSeries().getId());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列详情");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
                     startActivity(intent);
                 }
             });
@@ -230,7 +230,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
                 Intent intent = new Intent(mContext, TemplateActivity.class);
                 intent.putExtra(Params.NOVEL_ID, mNovelBean.getId());
                 intent.putExtra(Params.ILLUST_TITLE, mNovelBean.getTitle());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关评论");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT);
                 startActivity(intent);
             }
         });

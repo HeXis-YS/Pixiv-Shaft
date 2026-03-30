@@ -103,7 +103,7 @@ public class HistoryAdapter extends BaseAdapter<IllustHistoryEntity, RecyViewHis
                 bindView.itemView.setOnClickListener(v -> {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(Params.CONTENT, current);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说详情");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
                     intent.putExtra("hideStatusBar", true);
                     mContext.startActivity(intent);
                 });

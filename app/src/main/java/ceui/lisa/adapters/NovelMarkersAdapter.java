@@ -45,7 +45,7 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
             bindView.baseBind.series.setOnClickListener(v -> {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(Params.ID, target.getNovel().getSeries().getId());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列详情");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
                     mContext.startActivity(intent);
             });
         } else {
@@ -100,7 +100,7 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
         bindView.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, TemplateActivity.class);
             intent.putExtra(Params.CONTENT, target.getNovel());
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说详情");
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
             intent.putExtra("hideStatusBar", true);
             mContext.startActivity(intent);
         });

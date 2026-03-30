@@ -312,7 +312,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                 intent.putExtra(Params.DATA_TYPE, Params.TYPE_ILLUST)
                 intent.putExtra(Params.TAG_NAMES, illust.tagNames)
                 intent.putExtra(Params.LAST_CLASS, javaClass.simpleName)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签收藏")
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR)
                 startActivity(intent)
                 return true
             }
@@ -415,7 +415,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         }
         baseBind.comment.setOnClick {
             val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关评论")
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT)
             intent.putExtra(Params.ILLUST_ID, illust.id)
             intent.putExtra(Params.ILLUST_TITLE, illust.title)
             startActivity(intent)

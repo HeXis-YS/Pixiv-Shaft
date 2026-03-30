@@ -46,7 +46,7 @@ class WatchlistNovelAdapter(
             bindView.itemView.setOnClickListener {
                 val intent = Intent(mContext, TemplateActivity::class.java)
                 intent.putExtra(Params.ID, target.id)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列详情")
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL)
                 mContext.startActivity(intent)
             }
             bindView.baseBind.readLatest.setOnClickListener {

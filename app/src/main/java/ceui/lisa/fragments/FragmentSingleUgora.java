@@ -384,7 +384,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关评论");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT);
                 intent.putExtra(Params.ILLUST_ID, illust.getId());
                 intent.putExtra(Params.ILLUST_TITLE, illust.getTitle());
                 startActivity(intent);
@@ -423,7 +423,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
                 intent.putExtra(Params.DATA_TYPE, Params.TYPE_ILLUST);
                 intent.putExtra(Params.TAG_NAMES, illust.getTagNames());
                 intent.putExtra(Params.LAST_CLASS, getClass().getSimpleName());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签收藏");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
                 startActivity(intent);
                 return true;
             }

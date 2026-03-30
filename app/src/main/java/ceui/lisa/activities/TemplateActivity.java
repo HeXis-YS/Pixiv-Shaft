@@ -82,9 +82,9 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final String FRAGMENT_RECMD_USER = "推荐用户";
     private static final String FRAGMENT_PV = "特辑";
     private static final String FRAGMENT_REVERSE_SEARCH = "以图搜图";
-    private static final String FRAGMENT_COMMENT = "相关评论";
+    public static final String FRAGMENT_COMMENT = "相关评论";
     private static final String FRAGMENT_TAG_FILTER = "按标签筛选";
-    private static final String FRAGMENT_TAG_STAR = "按标签收藏";
+    public static final String FRAGMENT_TAG_STAR = "按标签收藏";
     private static final String FRAGMENT_ABOUT = "关于软件";
     private static final String FRAGMENT_MULTI_DOWNLOAD = "批量下载";
     public static final String FRAGMENT_SEARCH = "搜索";
@@ -116,9 +116,9 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final String FRAGMENT_RECMD_MANGA = "推荐漫画";
     private static final String FRAGMENT_RECMD_NOVEL = "推荐小说";
     private static final String FRAGMENT_NEW_NOVELS = "关注者的小说";
-    private static final String FRAGMENT_NOVEL_DETAIL = "小说详情";
+    public static final String FRAGMENT_NOVEL_DETAIL = "小说详情";
     private static final String FRAGMENT_IMAGE_DETAIL = "图片详情";
-    private static final String FRAGMENT_NOVEL_SERIES_DETAIL = "小说系列详情";
+    public static final String FRAGMENT_NOVEL_SERIES_DETAIL = "小说系列详情";
     private static final String FRAGMENT_MANGA_SERIES = "漫画系列作品";
     private static final String FRAGMENT_MANGA_SERIES_DETAIL = "漫画系列详情";
     private static final String FRAGMENT_NOVEL_SERIES = "小说系列作品";

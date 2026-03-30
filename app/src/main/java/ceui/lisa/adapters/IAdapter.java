@@ -108,7 +108,7 @@ public class IAdapter extends BaseAdapter<IllustsBean, RecyIllustStaggerBinding>
                 intent.putExtra(Params.ILLUST_ID, target.getId());
                 intent.putExtra(Params.DATA_TYPE, Params.TYPE_ILLUST);
                 intent.putExtra(Params.TAG_NAMES, target.getTagNames());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签收藏");
+                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
                 mContext.startActivity(intent);
                 return true;
             }
@@ -257,7 +257,7 @@ public class IAdapter extends BaseAdapter<IllustsBean, RecyIllustStaggerBinding>
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(mContext, TemplateActivity.class);
-                        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "相关评论");
+                        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT);
                         intent.putExtra(Params.ILLUST_ID, illust.getId());
                         intent.putExtra(Params.ILLUST_TITLE, illust.getTitle());
                         mContext.startActivity(intent);

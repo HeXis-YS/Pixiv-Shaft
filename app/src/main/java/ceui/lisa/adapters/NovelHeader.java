@@ -33,7 +33,7 @@ public class NovelHeader extends ViewHolder<RecyRecmdHeaderBinding> {
         adapter.setOnItemClickListener((v, position, viewType) -> {
             Intent intent = new Intent(context, TemplateActivity.class);
             intent.putExtra(Params.CONTENT, illustsBeans.get(position));
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说详情");
+            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
             intent.putExtra("hideStatusBar", true);
             context.startActivity(intent);
         });

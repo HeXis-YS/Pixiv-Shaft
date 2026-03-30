@@ -62,7 +62,7 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
                     public void onClick(View view) {
                         Intent intent = new Intent(mContext, TemplateActivity.class);
                         intent.putExtra(Params.ID, allItems.get(position).getSeries().getId());
-                        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列详情");
+                        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
                         mContext.startActivity(intent);
                     }
                 });
@@ -137,7 +137,7 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
                     intent.putExtra(Params.ILLUST_ID, target.getId());
                     intent.putExtra(Params.DATA_TYPE, Params.TYPE_NOVEL);
                     intent.putExtra(Params.TAG_NAMES, target.getTagNames());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "按标签收藏");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
                     mContext.startActivity(intent);
                     return true;
                 }
@@ -153,7 +153,7 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
                 if (viewType == 0) {
                     Intent intent = new Intent(mContext, TemplateActivity.class);
                     intent.putExtra(Params.CONTENT, allItems.get(position));
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说详情");
+                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
                     intent.putExtra("hideStatusBar", true);
                     mContext.startActivity(intent);
                 } else if (viewType == 1) {
