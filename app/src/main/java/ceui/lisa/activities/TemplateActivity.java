@@ -24,7 +24,6 @@ import ceui.lisa.fragments.FragmentColors;
 import ceui.lisa.fragments.FragmentComment;
 import ceui.lisa.fragments.FragmentDownload;
 import ceui.lisa.fragments.FragmentEditAccount;
-import ceui.lisa.fragments.FragmentEditFile;
 import ceui.lisa.fragments.FragmentFeature;
 import ceui.lisa.fragments.FragmentFileName;
 import ceui.lisa.fragments.FragmentFollowUser;
@@ -189,8 +188,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return FragmentImageDetail.newInstance(intent.getStringExtra(Params.URL));
                 case "绑定邮箱":
                     return new FragmentEditAccount();
-                case "编辑个人资料":
-                    return new FragmentEditFile();
                 case "标签屏蔽记录":
                     return FragmentViewPager.newInstance(Params.VIEW_PAGER_MUTED);
                 case "修改命名方式":

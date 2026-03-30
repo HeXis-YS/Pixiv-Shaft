@@ -91,23 +91,6 @@
                         <View style="@style/half_divider" />
 
                         <RelativeLayout
-                            android:id="@+id/edit_file"
-                            style="@style/ripple_rela">
-
-
-                            <TextView
-                                style="@style/setting_text_left_and_center"
-                                android:text="@string/string_92" />
-
-
-                            <TextView style="@style/setting_right_arrow" />
-
-
-                        </RelativeLayout>
-
-                        <View style="@style/half_divider" />
-
-                        <RelativeLayout
                             android:id="@+id/r18_space"
                             style="@style/ripple_rela">
 

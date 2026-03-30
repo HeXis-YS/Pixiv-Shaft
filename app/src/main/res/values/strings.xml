@@ -278,7 +278,6 @@
     <string name="string_89">私人收藏</string>
     <string name="string_90">添加收藏</string>
     <string name="string_91">编辑账号信息与邮箱绑定</string>
-    <string name="string_92">个人资料设置</string>
     <string name="string_93">图片详情样式</string>
     <string name="string_94">点击前往设置</string>
     <string name="string_95">主题</string>
@@ -430,20 +429,8 @@
     <string name="string_256">暂不支持查看小说系列</string>
     <string name="string_257">小说系列</string>
     <string name="string_258">你还没有做任何改变</string>
-    <string name="string_259">照片不能大于5M，本张照片大小：</string>
-    <string name="string_260">你还没有登录</string>
-    <string name="string_261">修改成功！</string>
-    <string name="string_262">图片选择失败</string>
     <string name="string_263">其他问题：</string>
     <string name="string_264">粉丝</string>
-    <string name="string_265">地址：</string>
-    <string name="string_266">性别：</string>
-    <string name="string_268">工作：</string>
-    <string name="string_269">国家：</string>
-    <string name="string_270">昵称：</string>
-    <string name="string_271">主页：</string>
-    <string name="string_272">Twitter ID：</string>
-    <string name="string_273">自我介绍：</string>
     <string name="string_274">好P友的插画/漫画作品</string>
     <string name="string_275">好P友的小说作品</string>
     <string name="string_276" translatable="false">/storage/emulated/0/Shaft/SingleNovels</string>
