@@ -22,7 +22,6 @@ import ceui.lisa.fragments.FragmentBookedTag;
 import ceui.lisa.fragments.FragmentCollection;
 import ceui.lisa.fragments.FragmentColors;
 import ceui.lisa.fragments.FragmentComment;
-import ceui.lisa.fragments.FragmentDoing;
 import ceui.lisa.fragments.FragmentDownload;
 import ceui.lisa.fragments.FragmentEditAccount;
 import ceui.lisa.fragments.FragmentEditFile;
@@ -49,7 +48,6 @@ import ceui.lisa.fragments.FragmentNovelHolder;
 import ceui.lisa.fragments.FragmentNovelMarkers;
 import ceui.lisa.fragments.FragmentNovelSeries;
 import ceui.lisa.fragments.FragmentNovelSeriesDetail;
-import ceui.lisa.fragments.FragmentPopularNovel;
 import ceui.lisa.fragments.FragmentPv;
 import ceui.lisa.fragments.FragmentRecmdIllust;
 import ceui.lisa.fragments.FragmentRecmdUser;
@@ -186,8 +184,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentDownload();
                 case "推荐漫画":
                     return FragmentRecmdIllust.newInstance("漫画");
-                case "热度小说":
-                    return FragmentPopularNovel.newInstance(intent.getStringExtra(Params.KEY_WORD));
                 case "推荐小说":
                     return new FragmentNewNovel();
                 case "小说收藏":
@@ -221,8 +217,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentFeature();
                 case "我的作业环境":
                     return new FragmentWorkSpace();
-                case "任务中心":
-                    return new FragmentDoing();
                 case "我的插画收藏":
                     return FragmentCollection.newInstance(0);
                 case "我的小说收藏":
