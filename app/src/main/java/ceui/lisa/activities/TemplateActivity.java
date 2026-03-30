@@ -54,7 +54,6 @@ import ceui.lisa.fragments.FragmentRelatedIllust;
 import ceui.lisa.fragments.FragmentRelatedUser;
 import ceui.lisa.fragments.FragmentSB;
 import ceui.lisa.fragments.FragmentSearch;
-import ceui.lisa.fragments.FragmentSearchUser;
 import ceui.lisa.fragments.FragmentSettings;
 import ceui.lisa.fragments.FragmentUserIllust;
 import ceui.lisa.fragments.FragmentUserInfo;
@@ -118,10 +117,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentRecmdUser(userPreviewsBeans, nextUrl);
                 case "特辑":
                     return new FragmentPv();
-                case "搜索用户": {
-                    String keyword = intent.getStringExtra(EXTRA_KEYWORD);
-                    return FragmentSearchUser.newInstance(keyword);
-                }
                 case "以图搜图":
                     ReverseResult result = intent.getParcelableExtra(Params.REVERSE_SEARCH_RESULT);
                     Uri imageUri = intent.getParcelableExtra(Params.REVERSE_SEARCH_IMAGE_URI);
