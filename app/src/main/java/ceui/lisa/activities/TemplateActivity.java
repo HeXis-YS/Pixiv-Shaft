@@ -55,12 +55,10 @@ import ceui.lisa.fragments.FragmentRecmdIllust;
 import ceui.lisa.fragments.FragmentRecmdUser;
 import ceui.lisa.fragments.FragmentRelatedIllust;
 import ceui.lisa.fragments.FragmentRelatedUser;
-import ceui.lisa.fragments.FragmentSAF;
 import ceui.lisa.fragments.FragmentSB;
 import ceui.lisa.fragments.FragmentSearch;
 import ceui.lisa.fragments.FragmentSearchUser;
 import ceui.lisa.fragments.FragmentSettings;
-import ceui.lisa.fragments.FragmentStorage;
 import ceui.lisa.fragments.FragmentUserIllust;
 import ceui.lisa.fragments.FragmentUserInfo;
 import ceui.lisa.fragments.FragmentUserManga;
@@ -223,8 +221,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentFeature();
                 case "我的作业环境":
                     return new FragmentWorkSpace();
-                case "存储访问":
-                    return new FragmentStorage();
                 case "任务中心":
                     return new FragmentDoing();
                 case "我的插画收藏":
@@ -239,8 +235,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentNovelMarkers();
                 case "主题颜色":
                     return new FragmentColors();
-                case "测试测试":
-                    return new FragmentSAF();
                 case "举报插画":
                     return FlagReasonFragment.Companion.newInstance(
                         intent.getIntExtra(FlagDescFragment.FlagObjectIdKey, 0),
