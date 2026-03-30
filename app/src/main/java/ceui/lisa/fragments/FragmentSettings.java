@@ -101,15 +101,6 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
                 }
             });
 
-            baseBind.workSpace.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "我的作业环境");
-                    startActivity(intent);
-                }
-            });
-
             baseBind.r18Space.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

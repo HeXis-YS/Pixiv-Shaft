@@ -63,7 +63,6 @@ import ceui.lisa.fragments.FragmentViewPager;
 import ceui.lisa.fragments.FragmentWalkThrough;
 import ceui.lisa.fragments.FragmentWebView;
 import ceui.lisa.fragments.FragmentWhoFollowThisUser;
-import ceui.lisa.fragments.FragmentWorkSpace;
 import ceui.lisa.helper.BackHandlerHelper;
 import ceui.lisa.models.IllustsBean;
 import ceui.lisa.models.NovelBean;
@@ -207,8 +206,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                     return new FragmentNovelSeries();
                 case "精华列":
                     return new FragmentFeature();
-                case "我的作业环境":
-                    return new FragmentWorkSpace();
                 case "我的插画收藏":
                     return FragmentCollection.newInstance(0);
                 case "我的小说收藏":
