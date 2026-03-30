@@ -29,7 +29,6 @@
 
     <string name="see_download_task">查看任务</string>
     <string name="the_others">其他</string>
-    <string name="search_image_origin">以图搜源</string>
 
     <string name="pixiv_use_detail">服务条款</string>
     <string name="privacy">隐私政策</string>
@@ -363,7 +362,6 @@
     <string name="string_299">白天模式（浅色）</string>
     <string name="string_300">黑暗模式（深色）</string>
     <string name="string_310">使用Shaft查看</string>
-    <string name="string_311">Shaft以图搜源</string>
     <string name="string_312">前往设定</string>
     <string name="string_313">下载文件不需要请求权限，但是需要设定保存文件的目录文件夹</string>
     <string name="string_314">导出TXT</string>
@@ -459,7 +457,6 @@
     <string name="string_407">按作者保存到单独文件夹</string>
     <string name="string_408">网址格式不正确</string>
     <string name="string_409">下载时自动收藏</string>
-    <string name="string_410">以图搜源图像大小超过限制</string>
     <string name="string_413">详情页面显示原图</string>
     <string name="string_414">默认过滤 R18 内容</string>
     <string name="string_415">长按侧边抽屉头像临时切换</string>

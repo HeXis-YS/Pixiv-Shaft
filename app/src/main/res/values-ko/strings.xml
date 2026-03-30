@@ -27,7 +27,6 @@
   <string name="now_sign">계 정 을 등록 하 다</string>  
   <string name="see_download_task">퀘 스 트 보기</string>  
   <string name="the_others">기타.</string>  
-  <string name="search_image_origin">그림 으로 근원 을 찾다.</string>  
   <string name="pixiv_use_detail">서비스 약관</string>  
   <string name="privacy">프라이버시 정책</string>  
   <string name="about_app">관 하 다.</string>  
@@ -337,7 +336,6 @@
   <string name="string_299">낮 모드 (연 색)</string>  
   <string name="string_300">암흑 모드 (짙 은 색)</string>  
   <string name="string_310">Shaft 로 보기</string>  
-  <string name="string_311">Shaft를 이용한 역 이미지 검색</string>
   <string name="string_312">설정 으로 가기</string>  
   <string name="string_313">파일 을 다운로드 하려 면 요청 권한 이 필요 하지 않 지만 파일 을 저장 할 디 렉 터 리 폴 더 를 설정 해 야 합 니 다.</string>  
   <string name="string_314">TXT 내 보 내기</string>  
@@ -437,7 +435,6 @@
   <string name="string_407">작성자별로 별도의 폴더에 저장</string>
   <string name="string_408">URL 형식이 올바르지 않습니다</string>
   <string name="string_409">다운로드시 자동 수집</string>
-  <string name="string_410">이미지로 검색된 소스 이미지의 크기가 제한을 초과했습니다</string>
   <string name="string_413">세부 정보 페이지에는 원본 이미지가 표시됩니다</string>
   <string name="string_414">기본적으로 R18 콘텐츠 필터링</string>
   <string name="string_415">일시적으로 전환하려면 서랍에서 아바타를 길게 누르세요.</string>

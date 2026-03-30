@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -32,8 +31,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
 
-import java.io.File;
-
 import ceui.lisa.R;
 import ceui.lisa.core.Manager;
 import ceui.lisa.databinding.ActivityCoverBinding;
@@ -46,8 +43,6 @@ import ceui.lisa.helper.NavigationLocationHelper;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.GlideUtil;
 import ceui.lisa.utils.Params;
-import ceui.lisa.utils.ReverseImage;
-import ceui.lisa.utils.ReverseWebviewCallback;
 import ceui.lisa.view.DrawerLayoutViewPager;
 
 import static ceui.lisa.R.id.nav_gallery;
@@ -255,12 +250,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_reverse) {
-            selectPhoto();
-            baseBind.drawerLayout.closeDrawer(GravityCompat.START);
-            return true;
-        }
-
         Intent intent = createDrawerIntent(id);
         if (intent != null) {
             startActivity(intent);
@@ -377,41 +366,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         outState.clear();
     }
 
-    public static final String[] ALL_SELECT_WAY = new String[]{"图库选图", "文件管理器选图"};
-
-    private void selectPhoto() {
-        new QMUIDialog.CheckableDialogBuilder(mActivity)
-                .addItems(ALL_SELECT_WAY, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        openPhotoSource(which);
-                        dialog.dismiss();
-                    }
-                })
-                .show();
-    }
-
-    private void openPhotoSource(int sourceIndex) {
-        if (sourceIndex == 0) {
-            startActivityForResult(createGalleryPickIntent(), Params.REQUEST_CODE_CHOOSE);
-        } else {
-            startActivityForResult(createDocumentPickIntent(), Params.REQUEST_CODE_CHOOSE);
-        }
-    }
-
-    private Intent createGalleryPickIntent() {
-        Intent intentToPickPic = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intentToPickPic.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        return intentToPickPic;
-    }
-
-    private Intent createDocumentPickIntent() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("image/*");
-        return intent;
-    }
-
     private void initDrawerHeader() {
         if (sUserModel != null && sUserModel.getUser() != null) {
             Glide.with(mContext)
@@ -421,44 +375,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             user_email.setText(TextUtils.isEmpty(sUserModel.getUser().getMail_address()) ?
                     mContext.getString(R.string.no_mail_address) : sUserModel.getUser().getMail_address());
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Params.REQUEST_CODE_CHOOSE && resultCode == RESULT_OK) {
-            handleChosenPhoto(data);
-        }
-    }
-
-    private void handleChosenPhoto(Intent data) {
-        try {
-            Uri imageUri = data.getData();
-            if (imageUri == null) {
-                return;
-            }
-            if (!isPhotoSearchable(imageUri)) {
-                Common.showToast(getString(R.string.string_410));
-                return;
-            }
-            Uri innerImageFileUri = copyPhotoToCache(imageUri);
-            startReverseSearch(innerImageFileUri);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean isPhotoSearchable(Uri imageUri) {
-        return ReverseImage.isFileSizeOkToSearch(imageUri, ReverseImage.DEFAULT_ENGINE);
-    }
-
-    private Uri copyPhotoToCache(Uri imageUri) throws Exception {
-        File innerImageFile = Common.copyUriToImageCacheFolder(imageUri);
-        return Uri.fromFile(innerImageFile);
-    }
-
-    private void startReverseSearch(Uri imageUri) {
-        ReverseImage.reverse(imageUri, ReverseImage.DEFAULT_ENGINE, new ReverseWebviewCallback(this, imageUri));
     }
 
     @Override

@@ -26,7 +26,6 @@
   <string name="now_sign">註冊帳號</string>  
   <string name="see_download_task">查看任務</string>  
   <string name="the_others">其他</string>  
-  <string name="search_image_origin">以圖搜源</string>  
   <string name="pixiv_use_detail">服務條款</string>  
   <string name="privacy">隱私政策</string>  
   <string name="about_app">關於</string>  
@@ -339,7 +338,6 @@
   <string name="string_299">白天模式（淺色）</string>  
   <string name="string_300">黑暗模式（深色）</string>  
   <string name="string_310">使用Shaft查看</string>  
-  <string name="string_311">Shaft以圖搜源</string>
   <string name="string_312">前往設定</string>  
   <string name="string_313">下載檔案不需要請求許可權，但是需要設定保存檔案的目錄資料夾</string>  
   <string name="string_314">匯出TXT</string>  
@@ -439,7 +437,6 @@
   <string name="string_407">按作者保存到單獨文件夾</string>
   <string name="string_408">網址格式不正確</string>
   <string name="string_409">下載時自動收藏</string>
-  <string name="string_410">以圖搜源圖像大小超過限制</string>
   <string name="string_413">詳情頁面顯示原圖</string>
   <string name="string_414">默認過濾 R18 內容</string>
   <string name="string_415">長按側邊抽屜頭像臨時切換</string>

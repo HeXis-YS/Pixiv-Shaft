@@ -2,7 +2,6 @@ package ceui.lisa.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -68,7 +67,6 @@ import ceui.lisa.models.UserDetailResponse;
 import ceui.lisa.models.UserPreviewsBean;
 import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Params;
-import ceui.lisa.utils.ReverseResult;
 import ceui.loxia.flag.FlagDescFragment;
 import ceui.loxia.flag.FlagReasonFragment;
 
@@ -83,7 +81,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     public static final String FRAGMENT_SETTINGS = "设置";
     private static final String FRAGMENT_RECMD_USER = "推荐用户";
     private static final String FRAGMENT_PV = "特辑";
-    private static final String FRAGMENT_REVERSE_SEARCH = "以图搜图";
     public static final String FRAGMENT_COMMENT = "相关评论";
     public static final String FRAGMENT_TAG_FILTER = "按标签筛选";
     public static final String FRAGMENT_TAG_STAR = "按标签收藏";
@@ -267,10 +264,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                 boolean preferPreserve = intent.getBooleanExtra(Params.PREFER_PRESERVE, false);
                 return FragmentWebView.newInstance(title, url, preferPreserve);
             }
-            case FRAGMENT_REVERSE_SEARCH:
-                ReverseResult result = intent.getParcelableExtra(Params.REVERSE_SEARCH_RESULT);
-                Uri imageUri = intent.getParcelableExtra(Params.REVERSE_SEARCH_IMAGE_URI);
-                return FragmentWebView.newInstance(result.getTitle(), result.getUrl(), result.getResponseBody(), result.getMime(), result.getEncoding(), result.getHistory_url(), imageUri);
             case FRAGMENT_IMAGE_DETAIL:
                 return FragmentImageDetail.newInstance(intent.getStringExtra(Params.URL));
             default:

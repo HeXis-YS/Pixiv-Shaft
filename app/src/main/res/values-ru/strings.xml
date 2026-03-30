@@ -24,7 +24,6 @@
   <string name="now_sign">Зарегистрировать аккаунт</string>  
   <string name="see_download_task">Посмотреть загрузки</string>  
   <string name="the_others">Другое</string>  
-  <string name="search_image_origin">Поиск по источнику</string>  
   <string name="pixiv_use_detail">Условия обслуживания</string>  
   <string name="privacy">Политика конфиденциальности</string>  
   <string name="about_app">О нас</string>  
@@ -334,7 +333,6 @@
   <string name="string_299">Дневной режим (свет)</string>  
   <string name="string_300">Режим Dark (темный)</string>  
   <string name="string_310">Используйте Shaf для просмотра</string>  
-  <string name="string_311">Обратный поиск изображений с помощью Shaft</string>
   <string name="string_312">поставить</string>  
   <string name="string_313">для загрузки файлов не требуется прав на запрос, но необходимо установить папку для сохранения файлов</string>  
   <string name="string_314">экспорт TXT</string>  
@@ -434,7 +432,6 @@
   <string name="string_407">Сохранить в отдельную папку по автору</string>
   <string name="string_408">Формат URL неверный</string>
   <string name="string_409">Автоматический сбор при скачивании</string>
-  <string name="string_410">Размер исходного изображения, найденного по изображению, превышает предел</string>
   <string name="string_413">На странице сведений показано исходное изображение</string>
   <string name="string_414">Фильтровать содержимое R18 по умолчанию</string>
   <string name="string_415">Нажмите и удерживайте аватар в ящике для временного переключения</string>

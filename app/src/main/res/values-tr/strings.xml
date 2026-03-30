@@ -27,7 +27,6 @@
   <string name="now_sign">Kayıt ol</string>  
   <string name="see_download_task">Görevleri görüntüle</string>  
   <string name="the_others">diğer</string>  
-  <string name="search_image_origin">Tersine Resim Arama</string>  
   <string name="pixiv_use_detail">Hizmet Kullanım Şartları</string>  
   <string name="privacy">Gizlilik Politikası</string>  
   <string name="about_app">Bu uygulama hakkında</string>  
@@ -334,7 +333,6 @@
   <string name="string_299">Gündüz modu (açık)</string>  
   <string name="string_300">Gece modu (koyu)</string>  
   <string name="string_310">shaft ile görüntüle</string>  
-  <string name="string_311">Shaft ile tersine resim ara</string>
   <string name="string_312">Ayarlara git</string>  
   <string name="string_313">Bir dosyayı indirmek için izin istemeye ihtiyacınız yok ama,  dosyayı kaydetmek için bir dizin ayarlamalısınız</string>  
   <string name="string_314">TXT olarak dışa aktar</string>  
@@ -434,7 +432,6 @@
   <string name="string_407">Sahibe göre ayrı klasör oluşturarak kaydet</string>
   <string name="string_408">URL biçimi yanlış</string>
   <string name="string_409">İndirildiğinde otomatik olarak yer işaretlerine ekle</string>
-  <string name="string_410">Kaynak resminin boyutu sınırı aşıyor</string>
   <string name="string_413">The details page displays the original picture</string>
   <string name="string_414">R18 içerikleri varsayılan olarak filtrele</string>
   <string name="string_415">Long press the avatar in drawer to switch temporarily</string>

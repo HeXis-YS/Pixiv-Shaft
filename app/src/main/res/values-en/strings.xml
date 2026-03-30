@@ -27,7 +27,6 @@
   <string name="now_sign">Register an account</string>  
   <string name="see_download_task">View tasks</string>  
   <string name="the_others">other</string>  
-  <string name="search_image_origin">Reverse Image Search</string>  
   <string name="pixiv_use_detail">Terms of Service</string>  
   <string name="privacy">Privacy Policy</string>  
   <string name="about_app">About this app</string>  
@@ -337,7 +336,6 @@
   <string name="string_299">Day mode (light)</string>  
   <string name="string_300">Dark mode (dark)</string>  
   <string name="string_310">View with shaft</string>  
-  <string name="string_311">Reverse image search with Shaft</string>
   <string name="string_312">Go to settings</string>  
   <string name="string_313">You do not need to request permission to download a file, but you need to set the directory folder to save the file</string>  
   <string name="string_314">Export as TXT</string>  
@@ -437,7 +435,6 @@
   <string name="string_407">Save to a separate folder by author</string>
   <string name="string_408">URL format is incorrect</string>
   <string name="string_409">Auto bookmark when download</string>
-  <string name="string_410">The size of the source image exceeds the limit</string>
   <string name="string_413">The details page displays the original picture</string>
   <string name="string_414">Filter R18 content by default</string>
   <string name="string_415">Long press the avatar in drawer to switch temporarily</string>

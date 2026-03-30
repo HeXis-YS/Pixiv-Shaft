@@ -27,7 +27,6 @@
   <string name="now_sign">アカウントを作成</string>
   <string name="see_download_task">タスクの表示</string>  
   <string name="the_others">その他</string>  
-  <string name="search_image_origin">画像検索</string>  
   <string name="pixiv_use_detail">利用規約</string>  
   <string name="privacy">プライバシーポリシー</string>  
   <string name="about_app">このアプリについて</string>  
@@ -337,7 +336,6 @@
   <string name="string_299">ライトモード</string>  
   <string name="string_300">ダークモード</string>  
   <string name="string_310">Shaftを使って見る</string>  
-  <string name="string_311">Shaftを用いて逆画像検索</string>
   <string name="string_312">設定を開く</string>  
   <string name="string_313">ファイルのダウンロードに権限は必要ありませんが、ファイルを保存するフォルダを設定する必要があります。</string>  
   <string name="string_314">ダウンロード</string>  
@@ -437,7 +435,6 @@
   <string name="string_407">作者ごとに別のフォルダーに保存</string>
   <string name="string_408">URLを認識できませんでした。正確なURLを入力して再試行してください。</string>
   <string name="string_409">すき!したときにイラストをダウンロード</string>
-  <string name="string_410">image で検索したソース画像のサイズが制限を超えています</string>
   <string name="string_413">詳細ページでオリジナルの画質で表示する</string>
   <string name="string_414">デフォルトでR-18コンテンツを表示しない</string>
   <string name="string_415">サイドメニューのアイコンを長押しして一時的に無効化できます。</string>
