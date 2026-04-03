@@ -173,6 +173,14 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newFeatureIntent(context));
     }
 
+    public static Intent newMultiDownloadIntent(Context context) {
+        return createIntent(context, FRAGMENT_MULTI_DOWNLOAD);
+    }
+
+    public static void startMultiDownload(Context context) {
+        context.startActivity(newMultiDownloadIntent(context));
+    }
+
     public static Intent newSearchIntent(Context context) {
         return createIntent(context, FRAGMENT_SEARCH);
     }

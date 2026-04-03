@@ -95,6 +95,11 @@ public class MultiDownloadAdapter extends BaseAdapter<IllustsBean, RecyMultiDown
     }
 
     @Override
+    public void startDownload() {
+        MultiDownload.startMultiDownload(this);
+    }
+
+    @Override
     public List<IllustsBean> getIllustList() {
         return allItems;
     }

@@ -184,6 +184,11 @@ public class IAdapter extends BaseAdapter<IllustsBean, RecyIllustStaggerBinding>
     }
 
     @Override
+    public void startDownload() {
+        MultiDownload.startMultiDownload(this);
+    }
+
+    @Override
     public List<IllustsBean> getIllustList() {
         return allItems;
     }

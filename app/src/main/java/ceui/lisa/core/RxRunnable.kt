@@ -1,7 +1,6 @@
-package ceui.lisa.core;
+package ceui.lisa.core
 
-
-public abstract class RxRunnable<T> {
+abstract class RxRunnable<T> {
 
     /**
      * 新线程执行
@@ -9,12 +8,11 @@ public abstract class RxRunnable<T> {
      * @return 异步操作的结果
      * @throws Exception ex
      */
-    public abstract T execute() throws Exception;
+    @Throws(Exception::class)
+    abstract fun execute(): T
 
     /**
      * 主线程执行
      */
-    public void beforeExecute() {
-
-    }
+    open fun beforeExecute() {}
 }

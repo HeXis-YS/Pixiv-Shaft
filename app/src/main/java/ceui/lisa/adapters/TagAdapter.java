@@ -71,6 +71,11 @@ public class TagAdapter extends BaseAdapter<ListTrendingtag.TrendTagsBean, RecyT
     }
 
     @Override
+    public void startDownload() {
+        MultiDownload.startMultiDownload(this);
+    }
+
+    @Override
     public List<IllustsBean> getIllustList() {
         List<IllustsBean> tempList = new ArrayList<>();
         for (int i = 0; i < allItems.size(); i++) {
