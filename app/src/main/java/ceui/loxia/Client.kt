@@ -2,9 +2,6 @@ package ceui.loxia
 
 import ceui.lisa.activities.Shaft
 import ceui.lisa.http.AccountTokenApi
-import ceui.lisa.http.HttpDns
-import ceui.lisa.http.RubySSLSocketFactory
-import ceui.lisa.http.pixivOkHttpClient
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import retrofit2.Retrofit
@@ -69,11 +66,6 @@ class ClientManager {
             .writeTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .readTimeout(REQUIEST_TIME, TimeUnit.SECONDS)
             .protocols(listOf(Protocol.HTTP_1_1))
-
-        if (Shaft.sSettings.isAutoFuckChina) {
-            httpBuilder.sslSocketFactory(RubySSLSocketFactory(), pixivOkHttpClient())
-            httpBuilder.dns(HttpDns.getInstance())
-        }
 
         httpBuilder.addInterceptor(HeaderInterceptor(false))
         httpBuilder.addInterceptor(TokenFetcherInterceptor())

@@ -74,8 +74,6 @@
   <string name="account_manage">帳號管理</string>  
   <string name="login_out">退出登錄</string>  
   <string name="normal">常規</string>  
-  <string name="open_direct_connection">開啟直連（自行代理或在牆外，可以關閉）</string>  
-  <string name="see_pixiv_ez">詳見 Notsfsssf/Pix-EzViewer</string>  
   <string name="save_view_history">保存瀏覽歷史</string>  
   <string name="search_result_filter">搜尋結果收藏量篩選</string>  
   <string name="language">語言</string>  
@@ -361,8 +359,6 @@
   <string name="r_eighteen_female_rank">女性R</string>  
   <string name="r_eighteen_ai_rank">AI生成R</string>
   <string name="r_eighteen_guro_rank">本週G</string>
-  <string name="string_331">使用 PixivCat 代理</string>
-  <string name="string_333">加速載入圖片，如果覺得載入變慢了，可以關閉</string>  
   <string name="string_334">原圖畫質好，如果覺得原圖載入太慢了，可以關閉</string>  
   <string name="about_network">網路</string>  
   <string name="string_335">添加收藏默認私人收藏</string>  

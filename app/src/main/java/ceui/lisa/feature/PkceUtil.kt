@@ -10,6 +10,21 @@ import java.security.SecureRandom
 object PkceUtil {
 
     @JvmStatic
+    val pkceItem: PKCEItem by lazy {
+        try {
+            val verify = generateCodeVerifier()
+            val challenge = generateCodeChallenge(verify)
+            PKCEItem(verify, challenge)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            PKCEItem(
+                "-29P7XEuFCNdG-1aiYZ9tTeYrABWRHxS9ZVNr6yrdcI",
+                "usItTkssolVsmIbxrf0o-O_FsdvZFANVPCf9jP4jP_0"
+            )
+        }
+    }
+
+    @JvmStatic
     @Throws(UnsupportedEncodingException::class)
     fun generateCodeVerifier(): String {
         val secureRandom = SecureRandom()

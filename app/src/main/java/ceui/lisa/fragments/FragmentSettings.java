@@ -39,7 +39,6 @@ import ceui.lisa.file.LegacyFile;
 import ceui.lisa.helper.NavigationLocationHelper;
 import ceui.lisa.helper.PageTransformerHelper;
 import ceui.lisa.helper.ThemeHelper;
-import ceui.lisa.http.Retro;
 import ceui.lisa.interfaces.Callback;
 import ceui.lisa.utils.BackupUtils;
 import ceui.lisa.utils.Common;
@@ -49,7 +48,6 @@ import ceui.lisa.utils.Params;
 import ceui.lisa.utils.PixivSearchParamUtil;
 import ceui.lisa.utils.Settings;
 import ceui.lisa.utils.UserFolderNameUtil;
-import ceui.loxia.Client;
 
 import static android.app.Activity.RESULT_OK;
 import static android.provider.DocumentsContract.EXTRA_INITIAL_URI;
@@ -142,53 +140,6 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
 
         // 网络
         {
-            baseBind.autoDns.setChecked(Shaft.sSettings.isAutoFuckChina());
-            baseBind.autoDns.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    boolean changed = isChecked != Shaft.sSettings.isAutoFuckChina();
-                    Shaft.sSettings.setAutoFuckChina(isChecked);
-                    Common.showToast(getString(R.string.string_428), 2);
-                    Local.setSettings(Shaft.sSettings);
-                    if (changed) {
-                        Retro.refreshAppApi();
-                        Client.INSTANCE.reset();
-                    }
-                }
-            });
-            baseBind.fuckChina.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                    intent.putExtra(Params.URL, "https://github.com/Notsfsssf/Pix-EzViewer");
-                    intent.putExtra(Params.TITLE, "PxEz项目主页");
-                    startActivity(intent);
-                }
-            });
-            baseBind.fuckChinaRela.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    baseBind.autoDns.performClick();
-                }
-            });
-
-            baseBind.firstDetailOrigin.setChecked(Shaft.sSettings.isUsePixivCat());
-            baseBind.firstDetailOrigin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    Shaft.sSettings.setUsePixivCat(isChecked);
-                    Common.showToast(getString(R.string.string_428));
-                    Local.setSettings(Shaft.sSettings);
-                }
-            });
-            baseBind.firstDetailOriginRela.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    baseBind.firstDetailOrigin.performClick();
-                }
-            });
-
             //缩略图是否显示大图
             baseBind.showLargeThumbnailImage.setChecked(Shaft.sSettings.isShowLargeThumbnailImage());
             baseBind.showLargeThumbnailImage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

@@ -27,7 +27,7 @@ import ceui.lisa.database.AppDatabase
 import ceui.lisa.activities.MainActivity
 import ceui.lisa.databinding.ActivityLoginBinding
 import ceui.lisa.interfaces.FeedBack
-import ceui.lisa.feature.HostManager
+import ceui.lisa.feature.PkceUtil
 import ceui.lisa.utils.*
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog.MessageDialogBuilder
@@ -86,7 +86,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         baseBind.login.setOnClickListener {
             checkAndNext {
                 openProxyHint {
-                    val url = LOGIN_HEAD + HostManager.get().pkce.challenge + LOGIN_END
+                    val url = LOGIN_HEAD + PkceUtil.pkceItem.challenge + LOGIN_END
                     val intent = Intent(mContext, TemplateActivity::class.java)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                     intent.putExtra(Params.URL, url)
@@ -99,7 +99,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         baseBind.sign.setOnClickListener {
             checkAndNext {
                 openProxyHint {
-                    val url = SIGN_HEAD + HostManager.get().pkce.challenge + SIGN_END
+                    val url = SIGN_HEAD + PkceUtil.pkceItem.challenge + SIGN_END
                     val intent = Intent(mContext, TemplateActivity::class.java)
                     intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
                     intent.putExtra(Params.URL, url)

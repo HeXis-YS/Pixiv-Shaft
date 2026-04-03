@@ -84,8 +84,6 @@
     <string name="account_manage">账号管理</string>
     <string name="login_out">退出登录</string>
     <string name="normal">常规</string>
-    <string name="open_direct_connection">开启直连(自行代理或在墙外，可以关闭)</string>
-    <string name="see_pixiv_ez">详见 Notsfsssf/Pix-EzViewer</string>
     <string name="delete_star_illust">搜索结果过滤已收藏</string>
     <string name="save_view_history">保存浏览历史</string>
     <string name="search_result_filter">搜索结果收藏量筛选</string>
@@ -380,8 +378,6 @@
     <string name="string_328">清空任务</string>
     <string name="string_329">传统模式暂时不支持自定义文件夹</string>
     <string name="string_330">暂未设置</string>
-    <string name="string_331">使用 PixivCat 代理</string>
-    <string name="string_333">加速加载图片，如果觉得加载变慢了，可以关闭</string>
     <string name="string_334">原图画质好，如果觉得原图加载太慢了，可以关闭</string>
     <string name="about_network">网络</string>
     <string name="string_335">添加收藏默认私人收藏</string>

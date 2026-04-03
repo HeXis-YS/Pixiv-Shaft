@@ -78,8 +78,6 @@
   <string name="account_manage">Account Management</string>  
   <string name="login_out">Sign out</string>  
   <string name="normal">Common</string>  
-  <string name="open_direct_connection">Bypass GFW</string>  
-  <string name="see_pixiv_ez">See Notsfsssf / Pix-EzViewer</string>  
   <string name="delete_star_illust">Filter out bookmarked in search result</string>  
   <string name="save_view_history">Save browsing history</string>  
   <string name="search_result_filter">Filter by number of Bookmarkes when searching</string>  
@@ -359,8 +357,6 @@
   <string name="r_eighteen_female_rank">Female r</string>  
   <string name="r_eighteen_ai_rank">AI Generated R</string>
   <string name="r_eighteen_guro_rank">This week G</string>
-  <string name="string_331">Using pixivcat agent</string>  
-  <string name="string_333">Speed up the loading of pictures. If you think the loading is slow, you can close it</string>  
   <string name="string_334">The image quality of the original image is good. If you think that the loading of the original image is too slow, you can close it</string>  
   <string name="about_network">Network</string>  
   <string name="string_335">Add to private bookmarks by default</string>  

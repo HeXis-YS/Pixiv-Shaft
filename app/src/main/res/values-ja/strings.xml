@@ -78,8 +78,6 @@
   <string name="account_manage">アカウント管理</string>  
   <string name="login_out">ログアウト</string>  
   <string name="normal">一般</string>  
-  <string name="open_direct_connection">GFWをバイパス(中国大陸地区以外で使用しているか、既にGFWをバイパスしている場合はオフにしてください)</string>
-  <string name="see_pixiv_ez">詳細はNotsfsssf/pix-ezviewerを参照してください。</string>
   <string name="delete_star_illust">すき!済みのイラストを検索結果に表示しない</string>
   <string name="save_view_history">閲覧履歴を記録する</string>  
   <string name="search_result_filter">すき!の数で検索結果をフィルター</string>  
@@ -359,8 +357,6 @@
   <string name="r_eighteen_female_rank">女性向けR-18</string>
   <string name="r_eighteen_ai_rank">AI生成のR-18</string>
   <string name="r_eighteen_guro_rank">今週のR-18G</string>
-  <string name="string_331">PixivCatエージェントを使う</string>  
-  <string name="string_333">画像の読み込み速度が向上する場合があります。</string>
   <string name="string_334">画像の読み込み速度が低下することがあります。</string>
   <string name="about_network">ネットワーク</string>  
   <string name="string_335">デフォルトですき!を非公開にする</string>

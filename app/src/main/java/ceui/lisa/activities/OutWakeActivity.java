@@ -14,7 +14,7 @@ import ceui.lisa.R;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.UserEntity;
 import ceui.lisa.databinding.ActivityOutWakeBinding;
-import ceui.lisa.feature.HostManager;
+import ceui.lisa.feature.PkceUtil;
 import ceui.lisa.fragments.FragmentLogin;
 import ceui.lisa.http.NullCtrl;
 import ceui.lisa.http.Retro;
@@ -33,6 +33,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
 
     public static final String HOST_ME = "pixiv.me";
     public static final String HOST_PIXIVISION = "pixivision.net";
+    private static final String PIXIV_IMAGE_HOST = "i.pximg.net";
     public static boolean isNetWorking = false;
 
     @Override
@@ -120,7 +121,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                     if (scheme.contains("http")) {
                         try {
                             String uriString = uri.toString();
-                            if (uriString.toLowerCase().contains(HostManager.HOST_OLD)) {
+                            if (uriString.toLowerCase().contains(PIXIV_IMAGE_HOST)) {
                                 int index = uriString.lastIndexOf("/");
                                 String end = uriString.substring(index + 1);
                                 String idString = end.split("_")[0];
@@ -195,7 +196,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                         FragmentLogin.CLIENT_SECRET,
                                         FragmentLogin.AUTH_CODE,
                                         code,
-                                        HostManager.get().getPkce().getVerify(),
+                                        PkceUtil.getPkceItem().getVerify(),
                                         FragmentLogin.CALL_BACK,
                                         true
                                 ).subscribeOn(Schedulers.newThread())

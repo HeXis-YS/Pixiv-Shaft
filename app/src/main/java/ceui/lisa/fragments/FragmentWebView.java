@@ -1,9 +1,7 @@
 package ceui.lisa.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
-import android.net.SSLCertificateSocketFactory;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
@@ -27,25 +25,10 @@ import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
 import android.util.Base64;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.MalformedURLException;
-import java.net.Socket;
-import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.Map;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLPeerUnverifiedException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,7 +36,6 @@ import androidx.appcompat.widget.Toolbar;
 import ceui.lisa.R;
 import ceui.lisa.activities.OutWakeActivity;
 import ceui.lisa.databinding.FragmentWebviewBinding;
-import ceui.lisa.http.HttpDns;
 import ceui.lisa.utils.ClipBoardUtils;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Params;
@@ -82,7 +64,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
     private WebView mWebView;
     private String mIntentUrl;
     private final WebViewClickHandler handler = new WebViewClickHandler();
-    private final HttpDns httpDns = HttpDns.getInstance();
     private String mLongClickLinkText;
     private ValueCallback<Uri> uploadMessage;
     private ValueCallback<Uri[]> uploadMessageAboveL;
@@ -427,185 +408,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
      * header中是否含有cookie
      * @param headers
      */
-    private boolean containCookie(Map<String, String> headers) {
-        for (Map.Entry<String, String> headerField : headers.entrySet()) {
-            if (headerField.getKey().contains("Cookie")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public URLConnection recursiveRequest(String path, Map<String, String> headers, String reffer) {
-        HttpURLConnection conn;
-        URL url = null;
-        try {
-            url = new URL(path);
-            conn = (HttpURLConnection) url.openConnection();
-            // 异步接口获取IP
-            String ip = "210.140.131.188";
-            if (ip != null) {
-                // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
-                Log.d(TAG, "Get IP: " + ip + " for host: " + url.getHost() + " from HTTPDNS successfully!");
-                String newUrl = path.replaceFirst(url.getHost(), ip);
-                conn = (HttpURLConnection) new URL(newUrl).openConnection();
-
-                if (headers != null) {
-                    for (Map.Entry<String, String> field : headers.entrySet()) {
-                        conn.setRequestProperty(field.getKey(), field.getValue());
-                    }
-                }
-                // 设置HTTP请求头Host域
-                conn.setRequestProperty("Host", url.getHost());
-            } else {
-                return null;
-            }
-            conn.setConnectTimeout(30000);
-            conn.setReadTimeout(30000);
-            conn.setInstanceFollowRedirects(false);
-            if (conn instanceof HttpsURLConnection) {
-                final HttpsURLConnection httpsURLConnection = (HttpsURLConnection)conn;
-                // sni场景，创建SSLScocket
-                WebviewTlsSniSocketFactory sslSocketFactory = new WebviewTlsSniSocketFactory((HttpsURLConnection) conn);
-                httpsURLConnection.setSSLSocketFactory(sslSocketFactory);
-                // https场景，证书校验
-                httpsURLConnection.setHostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        String host = httpsURLConnection.getRequestProperty("Host");
-                        if (null == host) {
-                            host = httpsURLConnection.getURL().getHost();
-                        }
-                        return HttpsURLConnection.getDefaultHostnameVerifier().verify(host, session);
-                    }
-                });
-            }
-            int code = conn.getResponseCode();// Network block
-            if (needRedirect(code)) {
-                // 原有报头中含有cookie，放弃拦截
-                if (containCookie(headers)) {
-                    return null;
-                }
-
-                String location = conn.getHeaderField("Location");
-                if (location == null) {
-                    location = conn.getHeaderField("location");
-                }
-
-                if (location != null) {
-                    if (!(location.startsWith("http://") || location
-                            .startsWith("https://"))) {
-                        //某些时候会省略host，只返回后面的path，所以需要补全url
-                        URL originalUrl = new URL(path);
-                        location = originalUrl.getProtocol() + "://"
-                                + originalUrl.getHost() + location;
-                    }
-                    Log.e(TAG, "code:" + code + "; location:" + location + "; path" + path);
-                    return recursiveRequest(location, headers, path);
-                } else {
-                    // 无法获取location信息，让浏览器获取
-                    return null;
-                }
-            } else {
-                // redirect finish.
-                Log.e(TAG, "redirect finish");
-                return conn;
-            }
-        } catch (MalformedURLException e) {
-            Log.w(TAG, "recursiveRequest MalformedURLException");
-        } catch (IOException e) {
-            Log.w(TAG, "recursiveRequest IOException");
-        } catch (Exception e) {
-            Log.w(TAG, "unknow exception");
-        }
-        return null;
-    }
-
-    private boolean needRedirect(int code) {
-        return code >= 300 && code < 400;
-    }
-
-    static class WebviewTlsSniSocketFactory extends SSLSocketFactory {
-        private final String TAG = WebviewTlsSniSocketFactory.class.getSimpleName();
-        HostnameVerifier hostnameVerifier = HttpsURLConnection.getDefaultHostnameVerifier();
-        private final HttpsURLConnection conn;
-
-        public WebviewTlsSniSocketFactory(HttpsURLConnection conn) {
-            this.conn = conn;
-        }
-
-        @Override
-        public Socket createSocket() throws IOException {
-            return null;
-        }
-
-        @Override
-        public Socket createSocket(String host, int port) throws IOException {
-            return null;
-        }
-
-        @Override
-        public Socket createSocket(String host, int port, InetAddress localHost, int localPort) throws IOException {
-            return null;
-        }
-
-        @Override
-        public Socket createSocket(InetAddress host, int port) throws IOException {
-            return null;
-        }
-
-        @Override
-        public Socket createSocket(InetAddress address, int port, InetAddress localAddress, int localPort) throws IOException {
-            return null;
-        }
-
-        // TLS layer
-
-        @Override
-        public String[] getDefaultCipherSuites() {
-            return new String[0];
-        }
-
-        @Override
-        public String[] getSupportedCipherSuites() {
-            return new String[0];
-        }
-
-        @Override
-        public Socket createSocket(Socket plainSocket, String host, int port, boolean autoClose) throws IOException {
-            String peerHost = this.conn.getRequestProperty("Host");
-            if (peerHost == null)
-                peerHost = host;
-            Log.i(TAG, "customized createSocket. host: " + peerHost);
-            InetAddress address = plainSocket.getInetAddress();
-            if (autoClose) {
-                // we don't need the plainSocket
-                plainSocket.close();
-            }
-            // create and connect SSL socket, but don't do hostname/certificate verification yet
-            SSLCertificateSocketFactory sslSocketFactory = (SSLCertificateSocketFactory) SSLCertificateSocketFactory.getDefault(0);
-            @SuppressLint("SSLCertificateSocketFactoryCreateSocket") SSLSocket ssl = (SSLSocket) sslSocketFactory.createSocket(address, port);
-
-            // enable TLSv1.1/1.2 if available
-            ssl.setEnabledProtocols(ssl.getSupportedProtocols());
-
-            // set up SNI before the handshake
-            Log.i(TAG, "Setting SNI hostname");
-            sslSocketFactory.setHostname(ssl, peerHost);
-
-            // verify hostname and certificate
-            SSLSession session = ssl.getSession();
-
-            if (!hostnameVerifier.verify(peerHost, session))
-                throw new SSLPeerUnverifiedException("Cannot verify hostname: " + peerHost);
-
-            Log.i(TAG, "Established " + session.getProtocol() + " connection with " + session.getPeerHost() +
-                    " using " + session.getCipherSuite());
-
-            return ssl;
-        }
-    }
-
     private void injectCSS() {
         try {
             InputStream inputStream = mContext.getAssets().open("pixivision-dark.css");

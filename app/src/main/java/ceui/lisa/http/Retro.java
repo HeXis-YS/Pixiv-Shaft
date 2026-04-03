@@ -55,7 +55,7 @@ public class Retro {
     }
 
     public static AccountApi getAccountApi() {
-        return buildRetrofit(ACCOUNT_BASE_URL, false).create(AccountApi.class);
+        return buildRetrofit(ACCOUNT_BASE_URL).create(AccountApi.class);
     }
 
     public static AccountTokenApi getAccountTokenApi(){
@@ -77,14 +77,6 @@ public class Retro {
         return before;
     }
 
-    private static OkHttpClient.Builder fuckChinaWithConfig(OkHttpClient.Builder before, boolean enable) {
-        if(enable && Shaft.sSettings.isAutoFuckChina()){
-            before.sslSocketFactory(new RubySSLSocketFactory(), new pixivOkHttpClient());
-            before.dns(HttpDns.getInstance());
-        }
-        return before;
-    }
-
     /**
      * @param baseUrl The base url
      *                <p>
@@ -95,15 +87,6 @@ public class Retro {
      *                </p>
      * */
     private static Retrofit buildRetrofit(String baseUrl) {
-        return buildRetrofit(baseUrl, true);
-    }
-    /**
-     * Retrofit: A Type-Safe HTTP Client for Android and JVM
-     * Retrofit is a popular and powerful type-safe HTTP client library for Android and Java Virtual Machine (JVM) applications. It simplifies the process of making network requests by converting your REST API endpoints into Java interfaces.
-     * @param baseUrl   The base URL
-     * @param autoFuckChina auto
-     * */
-    private static Retrofit buildRetrofit(String baseUrl, boolean autoFuckChina) {
         OkHttpClient.Builder builder = getLogClient();
         try {
             builder.addInterceptor(chain ->
@@ -112,7 +95,6 @@ public class Retro {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        fuckChinaWithConfig(builder, autoFuckChina);
         OkHttpClient client = builder.build();
         Gson gson = new GsonBuilder().setLenient().create();
         return new Retrofit.Builder()

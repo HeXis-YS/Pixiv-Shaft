@@ -22,7 +22,6 @@ import com.tencent.mmkv.MMKV;
 
 import androidx.annotation.NonNull;
 import ceui.lisa.R;
-import ceui.lisa.feature.HostManager;
 import ceui.lisa.feature.ToastStyle;
 import ceui.lisa.helper.ShortcutHelper;
 import ceui.lisa.helper.ThemeHelper;
@@ -114,8 +113,6 @@ public class Shaft extends Application implements ServicesProvider {
         if (netWorkStateReceiver == null) {
             netWorkStateReceiver = new NetWorkStateReceiver();
         }
-
-        HostManager.get().init();
 
         //Init Toast utils
         ToastUtils.init(this);

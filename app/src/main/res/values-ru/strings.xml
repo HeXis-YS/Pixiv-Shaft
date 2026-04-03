@@ -78,8 +78,6 @@
   <string name="account_manage">управление счетами</string>  
   <string name="login_out">выход из системы</string>  
   <string name="normal">обычный</string>  
-  <string name="open_direct_connection">открыть прямое соединение (само собой или снаружи стены, может быть закрыто)</string>  
-  <string name="see_pixiv_ez">Подробнее см.</string>  
   <string name="delete_star_illust">фильтр результатов поиска</string>  
   <string name="save_view_history">Сохранить журнал просмотра</string>  
   <string name="search_result_filter">поиск результатов</string>  
@@ -356,8 +354,6 @@
   <string name="r_eighteen_female_rank">женский R</string>  
   <string name="r_eighteen_ai_rank">AI Сгенерировано R</string>
   <string name="r_eighteen_guro_rank">неделя G</string>
-  <string name="string_331">Использовать прокси PixivCat</string>  
-  <string name="string_333">ускорить загрузку изображений, если вы чувствуете, что загрузка замедлилась, можно закрыть</string>  
   <string name="string_334">оригинальный Рисунок хорошо, если вы думаете, что загрузка оригинальной карты слишком медленно, можно закрыть</string>  
   <string name="about_network">сеть</string>  
   <string name="string_335">Добавить коллекцию по умолчанию</string>  

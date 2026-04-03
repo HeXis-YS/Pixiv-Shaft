@@ -78,8 +78,6 @@
   <string name="account_manage">Hesap Yönetimi</string>  
   <string name="login_out">Çıkış yap</string>  
   <string name="normal">Genel</string>  
-  <string name="open_direct_connection">Bypass GFW</string>  
-  <string name="see_pixiv_ez">Notsfsssf / Pix-EzViewer\'a bakın</string>  
   <string name="delete_star_illust">Arama sonuçlarında yer işaretlerine eklenenleri gösterme</string>  
   <string name="save_view_history">Göz atma geçmişini kaydet</string>  
   <string name="search_result_filter">Arama yaparken yer işareti sayısına göre filtrele</string>  
@@ -356,8 +354,6 @@
   <string name="r_eighteen_female_rank">Kadın r</string>  
   <string name="r_eighteen_ai_rank">AI Oluşturuldu R</string>
   <string name="r_eighteen_guro_rank">Bu hafta G</string>
-  <string name="string_331">pixivcat aracını kullanma</string>  
-  <string name="string_333">Resim yükleme hızını arttır. Yükleme hızı size yavaş geliyorsa, kapatabilirsiniz.</string>  
   <string name="string_334">Orijinal resimlerin kalitesi iyidir. Orijinal resimlerin yüklenmesi size yavaş geliyorsa, kapatabilirsiniz.</string>  
   <string name="about_network">Ağ</string>  
   <string name="string_335">Varsayılan olarak gizli yer işaretlerine ekle</string>  

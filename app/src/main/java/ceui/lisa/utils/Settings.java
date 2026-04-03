@@ -81,13 +81,7 @@ public class Settings {
     //屏蔽，不显示已收藏的作品，默认不屏蔽
     private boolean deleteStarIllust = false;
 
-    //是否自动添加DNS，true开启直连  false自行代理
-    private boolean autoFuckChina = false;
-
     private boolean relatedIllustNoLimit = true;
-
-    //使用pixiv cat 代理 展示图片
-    private boolean usePixivCat = false;
 
     //缩略图图片显示大图
     private boolean showLargeThumbnailImage = false;
@@ -293,14 +287,6 @@ public class Settings {
         return TextUtils.isEmpty(searchFilter) ? "" : searchFilter;
     }
 
-    public boolean isUsePixivCat() {
-        return usePixivCat;
-    }
-
-    public void setUsePixivCat(boolean usePixivCat) {
-        this.usePixivCat = usePixivCat;
-    }
-
     public void setSearchFilter(String searchFilter) {
         this.searchFilter = searchFilter;
     }
@@ -311,14 +297,6 @@ public class Settings {
 
     public void setRelatedIllustNoLimit(boolean relatedIllustNoLimit) {
         this.relatedIllustNoLimit = relatedIllustNoLimit;
-    }
-
-    public boolean isAutoFuckChina() {
-        return autoFuckChina;
-    }
-
-    public void setAutoFuckChina(boolean autoFuckChina) {
-        this.autoFuckChina = autoFuckChina;
     }
 
     public boolean isMainViewR18() {
