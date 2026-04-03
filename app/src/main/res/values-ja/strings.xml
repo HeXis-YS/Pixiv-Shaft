@@ -488,16 +488,6 @@
   <string name="retry">再試行</string>
   <string name="connection_error">ネットワークエラー</string>
   <string name="unknown_error_message">不明なエラー</string>
-  <string name="flag_post">報告</string>
-  <string name="flag_send_successfully">報告を送信しました</string>
-  <string name="contains_excessive_sexual">過度な性的表現が含まれている</string>
-  <string name="contains_excessive_grotesque">過度にグロテスクな表現が含まれている</string>
-  <string name="infringes_on_copyrights">著作権に違反している</string>
-  <string name="violated_other_rules">その他、利用規約・ガイドラインに違反している</string>
-  <string name="violated_rule">報告の理由</string>
-  <string name="flag_desc">報告の詳細</string>
-  <string name="flag_hint">報告理由の詳細...</string>
-  <string name="submit_flag">送信</string>
   <string name="block_this_users_work">このユーザーをブロック</string>
   <string name="cancel_block_this_users_work">ブロックを解除する</string>
   <string name="follow">フォロー</string>

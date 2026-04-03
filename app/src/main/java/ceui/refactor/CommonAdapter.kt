@@ -13,7 +13,7 @@ import androidx.viewbinding.ViewBinding
 import ceui.lisa.databinding.CellNoneBinding
 import ceui.lisa.databinding.FragmentItemAaaaBinding
 import ceui.lisa.databinding.FragmentItemBbbbBinding
-import ceui.loxia.flag.viewholdermap.ViewHolderFactory
+import ceui.loxia.novel.viewholdermap.ViewHolderFactory
 import java.lang.RuntimeException
 
 val listItemHolderDiffUtil = object :

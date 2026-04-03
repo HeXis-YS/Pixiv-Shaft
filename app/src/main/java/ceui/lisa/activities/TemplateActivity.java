@@ -67,8 +67,6 @@ import ceui.lisa.models.UserDetailResponse;
 import ceui.lisa.models.UserPreviewsBean;
 import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Params;
-import ceui.loxia.flag.FlagDescFragment;
-import ceui.loxia.flag.FlagReasonFragment;
 
 public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> implements ColorPickerDialogListener {
 
@@ -93,8 +91,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     private static final String FRAGMENT_MUTED_TAGS = "标签屏蔽记录";
     private static final String FRAGMENT_FILENAME = "修改命名方式";
     private static final String FRAGMENT_THEME = "主题颜色";
-    private static final String FRAGMENT_FLAG_ILLUST = "举报插画";
-    private static final String FRAGMENT_FLAG_DETAIL = "填写举报详细信息";
     public static final String FRAGMENT_LOCAL_USERS = "账号管理";
     private static final String FRAGMENT_FOLLOWING = "正在关注";
     private static final String FRAGMENT_NICE_FRIEND = "好P友";
@@ -246,10 +242,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
             Fragment settingsFragment = createSettingsFragment(intent);
             if (settingsFragment != null) {
                 return settingsFragment;
-            }
-            Fragment reportFragment = createReportFragment(intent);
-            if (reportFragment != null) {
-                return reportFragment;
             }
             return new Fragment();
         }
@@ -404,24 +396,6 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
                 return FragmentFileName.newInstance();
             case FRAGMENT_THEME:
                 return new FragmentColors();
-            default:
-                return null;
-        }
-    }
-
-    private Fragment createReportFragment(Intent intent) {
-        switch (dataType) {
-            case FRAGMENT_FLAG_ILLUST:
-                return FlagReasonFragment.Companion.newInstance(
-                        intent.getIntExtra(FlagDescFragment.FlagObjectIdKey, 0),
-                        intent.getIntExtra(FlagDescFragment.FlagObjectTypeKey, 0)
-                );
-            case FRAGMENT_FLAG_DETAIL:
-                return FlagDescFragment.Companion.newInstance(
-                        intent.getIntExtra(FlagDescFragment.FlagReasonIdKey, 0),
-                        intent.getIntExtra(FlagDescFragment.FlagObjectIdKey, 0),
-                        intent.getIntExtra(FlagDescFragment.FlagObjectTypeKey, 0)
-                );
             default:
                 return null;
         }

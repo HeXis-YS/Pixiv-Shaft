@@ -32,7 +32,6 @@ import ceui.lisa.models.*
 import ceui.lisa.notification.CallBackReceiver
 import ceui.lisa.utils.*
 import ceui.loxia.*
-import ceui.loxia.flag.FlagDescFragment
 import ceui.refactor.setOnClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -281,13 +280,6 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                 return@OnMenuItemClickListener true
             } else if (menuItem.itemId == R.id.action_mute_illust) {
                 PixivOperate.muteIllust(illust)
-                return@OnMenuItemClickListener true
-            } else if (menuItem.itemId == R.id.action_flag_illust) {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "举报插画")
-                intent.putExtra(FlagDescFragment.FlagObjectIdKey, illust.id)
-                intent.putExtra(FlagDescFragment.FlagObjectTypeKey, ObjectSpec.POST)
-                startActivity(intent)
                 return@OnMenuItemClickListener true
             }
             false
