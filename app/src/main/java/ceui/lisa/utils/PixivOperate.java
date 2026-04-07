@@ -609,6 +609,20 @@ public class PixivOperate {
         }, new TryCatchObserverImpl<>());
     }
 
+    public static void deleteUser(final UserEntity userEntity) {
+        if (userEntity == null) {
+            return;
+        }
+
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.downloadDao(Shaft.getContext()).deleteUser(userEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
+    }
+
     /**
      * @param key
      * @param searchType The type of search.
