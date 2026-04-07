@@ -15,7 +15,7 @@ class SAFactory(@NotNull context: Context, item: DownloadItem) : UriFactory(cont
     private var mUri: Uri
 
     init {
-        val file: DocumentFile = SAFile.getDocument(context, mItem.illust, mItem.index, mItem.shouldStartNewDownload())
+        val file: DocumentFile = SAFile.getDocument(context, mItem.illust, mItem.index, mItem.shouldStartNewDownload())!!
         mUri = file.uri
     }
 
