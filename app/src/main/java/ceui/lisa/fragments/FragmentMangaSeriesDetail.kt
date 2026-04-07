@@ -7,7 +7,6 @@ import ceui.lisa.R
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.IAdapter
 import ceui.lisa.core.BaseRepo
-import ceui.lisa.database.AppDatabase
 import ceui.lisa.databinding.FragmentBaseListBinding
 import ceui.lisa.feature.FeatureEntity
 import ceui.lisa.model.ListMangaOfSeries
@@ -15,6 +14,7 @@ import ceui.lisa.models.IllustsBean
 import ceui.lisa.repo.MangaSeriesDetailRepo
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.Params
+import ceui.lisa.utils.PixivOperate
 
 class FragmentMangaSeriesDetail :
     NetListFragment<FragmentBaseListBinding, ListMangaOfSeries, IllustsBean>() {
@@ -65,7 +65,7 @@ class FragmentMangaSeriesDetail :
                     // entity.userID = userID
                     entity.seriesId = seriesId
                     entity.dateTime = System.currentTimeMillis()
-                    AppDatabase.downloadDao(mContext).insertFeature(entity)
+                    PixivOperate.insertFeature(entity)
                     Common.showToast("已收藏到精华")
                     return@OnMenuItemClickListener true
                 }

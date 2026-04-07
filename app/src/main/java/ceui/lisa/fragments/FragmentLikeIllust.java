@@ -15,7 +15,6 @@ import ceui.lisa.activities.Shaft;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.IAdapterWithStar;
 import ceui.lisa.core.RemoteRepo;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.databinding.FragmentBaseListBinding;
 import ceui.lisa.databinding.RecyIllustStaggerBinding;
 import ceui.lisa.feature.FeatureEntity;
@@ -26,6 +25,7 @@ import ceui.lisa.notification.FilterReceiver;
 import ceui.lisa.repo.LikeIllustRepo;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Params;
+import ceui.lisa.utils.PixivOperate;
 
 /**
  * 某人收藏的插畫
@@ -69,7 +69,7 @@ public class FragmentLikeIllust extends NetListFragment<FragmentBaseListBinding,
                     entity.setUserID(userID);
                     entity.setStarType(starType);
                     entity.setDateTime(System.currentTimeMillis());
-                    AppDatabase.downloadDao(mContext).insertFeature(entity);
+                    PixivOperate.insertFeature(entity);
                     Common.showToast("已收藏到精华");
                     return true;
                 }

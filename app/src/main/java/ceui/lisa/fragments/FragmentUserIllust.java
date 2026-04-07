@@ -9,7 +9,6 @@ import ceui.lisa.R;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.IAdapter;
 import ceui.lisa.core.RemoteRepo;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.databinding.FragmentBaseListBinding;
 import ceui.lisa.databinding.RecyIllustStaggerBinding;
 import ceui.lisa.feature.FeatureEntity;
@@ -18,6 +17,7 @@ import ceui.lisa.models.IllustsBean;
 import ceui.lisa.repo.UserIllustRepo;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Params;
+import ceui.lisa.utils.PixivOperate;
 
 /**
  * 某人創作的插畫
@@ -67,7 +67,7 @@ public class FragmentUserIllust extends NetListFragment<FragmentBaseListBinding,
                     entity.setIllustJson(Common.cutToJson(allItems));
                     entity.setUserID(userID);
                     entity.setDateTime(System.currentTimeMillis());
-                    AppDatabase.downloadDao(mContext).insertFeature(entity);
+                    PixivOperate.insertFeature(entity);
                     Common.showToast("已收藏到精华");
                     return true;
                 }

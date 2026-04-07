@@ -44,6 +44,7 @@ import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.IllustHistoryEntity;
 import ceui.lisa.database.MuteEntity;
 import ceui.lisa.database.SearchEntity;
+import ceui.lisa.feature.FeatureEntity;
 import ceui.lisa.file.LegacyFile;
 import ceui.lisa.file.OutPut;
 import ceui.lisa.fragments.FragmentLogin;
@@ -559,6 +560,20 @@ public class PixivOperate {
             public Void execute() {
                 Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
                 AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
+    }
+
+    public static void insertFeature(final FeatureEntity entity) {
+        if (entity == null) {
+            return;
+        }
+
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.downloadDao(Shaft.getContext()).insertFeature(entity);
                 return null;
             }
         }, new TryCatchObserverImpl<>());

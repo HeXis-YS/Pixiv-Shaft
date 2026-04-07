@@ -10,7 +10,6 @@ import ceui.lisa.R;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.IAdapter;
 import ceui.lisa.core.RemoteRepo;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.databinding.FragmentBaseListBinding;
 import ceui.lisa.feature.FeatureEntity;
 import ceui.lisa.model.ListIllust;
@@ -18,6 +17,7 @@ import ceui.lisa.models.IllustsBean;
 import ceui.lisa.repo.RelatedIllustRepo;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Params;
+import ceui.lisa.utils.PixivOperate;
 
 /**
  * 相关插画
@@ -58,7 +58,7 @@ public class FragmentRelatedIllust extends NetListFragment<FragmentBaseListBindi
                     entity.setIllustTitle(mTitle);
                     entity.setIllustJson(Common.cutToJson(allItems));
                     entity.setDateTime(System.currentTimeMillis());
-                    AppDatabase.downloadDao(mContext).insertFeature(entity);
+                    PixivOperate.insertFeature(entity);
                     Common.showToast("已收藏到精华");
                     return true;
                 }
