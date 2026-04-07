@@ -15,6 +15,9 @@ import java.util.Set;
 
 import ceui.lisa.R;
 import ceui.lisa.activities.TemplateActivity;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.databinding.DialogMuteTagBinding;
 import ceui.lisa.helper.IllustNovelFilter;
 import ceui.lisa.models.IllustsBean;
@@ -44,58 +47,20 @@ public class MuteDialog extends BaseDialog<DialogMuteTagBinding> {
 
     @Override
     void initView(View v) {
-        // 计算 tag 状态
-        List<TagsBean> muted = IllustNovelFilter.getMutedTags();
-        List<TagsBean> illustTags = mIllust.getTags();
-        Set<Integer> selectedIndex = new HashSet<>();
-        for (int i = 0; i < illustTags.size(); i++) {
-            TagsBean tagsBean = illustTags.get(i);
-            muteNotEffect.add(i,false);
-            for (TagsBean mutedBean : muted) {
-                if (tagsBean.getName().equals(mutedBean.getName())) {
-                    if(mutedBean.isEffective()){
-                        selectedIndex.add(i);
-                    }else{
-                        muteNotEffect.set(i,true);
-                    }
-                    break;
-                }
-            }
-        }
-
-        TagAdapter<TagsBean> adapter = new TagAdapter<TagsBean>(mIllust.getTags()) {
+        RxRun.runOn(new RxRunnable<List<TagsBean>>() {
             @Override
-            public View getView(FlowLayout parent, int position, TagsBean o) {
-                View view = View.inflate(mContext, R.layout.recy_single_tag_text, null);
-                TextView tag = view.findViewById(R.id.tag_title);
-                tag.setText(o.getName());
-                if (muteNotEffect.get(position)) {
-                    tag.setBackgroundResource(R.drawable.tag_stroke_checked_not_enable_bg);
-                }
-                return view;
+            public List<TagsBean> execute() {
+                return IllustNovelFilter.getMutedTags();
             }
-
+        }, new TryCatchObserverImpl<List<TagsBean>>() {
             @Override
-            public void onSelected(int position, View view) {
-                super.onSelected(position, view);
-                ((TextView) view).setTextColor(Common.resolveThemeAttribute(mContext, androidx.appcompat.R.attr.colorPrimary));
-                view.setBackgroundResource(R.drawable.tag_stroke_checked_bg);
-                selected.add(mIllust.getTags().get(position));
-            }
-
-            @Override
-            public void unSelected(int position, View view) {
-                super.unSelected(position, view);
-                if (muteNotEffect.get(position)) {
-                    view.setBackgroundResource(R.drawable.tag_stroke_checked_not_enable_bg);
-                }else{
-                    view.setBackgroundResource(R.drawable.tag_stroke_bg);
+            public void next(List<TagsBean> muted) {
+                if (!isAdded()) {
+                    return;
                 }
-                ((TextView) view).setTextColor(getResources().getColor(R.color.tag_text_unselect));
-                selected.remove(mIllust.getTags().get(position));
+                bindTagState(muted);
             }
-        };
-        baseBind.tagLayout.setAdapter(adapter);
+        });
         baseBind.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,9 +86,62 @@ public class MuteDialog extends BaseDialog<DialogMuteTagBinding> {
                 dismiss();
             }
         });
+    }
 
-        //默认选中已屏蔽的标签
-        if (selectedIndex.size() != 0) {
+    private void bindTagState(List<TagsBean> muted) {
+        List<TagsBean> illustTags = mIllust.getTags();
+        Set<Integer> selectedIndex = new HashSet<>();
+        muteNotEffect.clear();
+        selected.clear();
+        for (int i = 0; i < illustTags.size(); i++) {
+            TagsBean tagsBean = illustTags.get(i);
+            muteNotEffect.add(false);
+            for (TagsBean mutedBean : muted) {
+                if (tagsBean.getName().equals(mutedBean.getName())) {
+                    if (mutedBean.isEffective()) {
+                        selectedIndex.add(i);
+                    } else {
+                        muteNotEffect.set(i, true);
+                    }
+                    break;
+                }
+            }
+        }
+
+        TagAdapter<TagsBean> adapter = new TagAdapter<TagsBean>(illustTags) {
+            @Override
+            public View getView(FlowLayout parent, int position, TagsBean o) {
+                View view = View.inflate(mContext, R.layout.recy_single_tag_text, null);
+                TextView tag = view.findViewById(R.id.tag_title);
+                tag.setText(o.getName());
+                if (muteNotEffect.get(position)) {
+                    tag.setBackgroundResource(R.drawable.tag_stroke_checked_not_enable_bg);
+                }
+                return view;
+            }
+
+            @Override
+            public void onSelected(int position, View view) {
+                super.onSelected(position, view);
+                ((TextView) view).setTextColor(Common.resolveThemeAttribute(mContext, androidx.appcompat.R.attr.colorPrimary));
+                view.setBackgroundResource(R.drawable.tag_stroke_checked_bg);
+                selected.add(mIllust.getTags().get(position));
+            }
+
+            @Override
+            public void unSelected(int position, View view) {
+                super.unSelected(position, view);
+                if (muteNotEffect.get(position)) {
+                    view.setBackgroundResource(R.drawable.tag_stroke_checked_not_enable_bg);
+                } else {
+                    view.setBackgroundResource(R.drawable.tag_stroke_bg);
+                }
+                ((TextView) view).setTextColor(getResources().getColor(R.color.tag_text_unselect));
+                selected.remove(mIllust.getTags().get(position));
+            }
+        };
+        baseBind.tagLayout.setAdapter(adapter);
+        if (!selectedIndex.isEmpty()) {
             adapter.setSelectedList(selectedIndex);
         }
     }
