@@ -72,6 +72,7 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static final String EXTRA_FRAGMENT = "dataType";
     public static final String EXTRA_KEYWORD = "keyword";
+    private static final String EXTRA_HIDE_STATUS_BAR = "hideStatusBar";
     public static final String FRAGMENT_LOGIN = "登录注册";
     public static final String FRAGMENT_RELATED_ILLUST = "相关作品";
     private static final String FRAGMENT_HISTORY = "浏览记录";
@@ -197,6 +198,54 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newLocalUsersIntent(context));
     }
 
+    public static Intent newLatestIntent(Context context) {
+        return createIntent(context, FRAGMENT_LATEST, false);
+    }
+
+    public static void startLatest(Context context) {
+        context.startActivity(newLatestIntent(context));
+    }
+
+    public static Intent newMyIllustBookmarksIntent(Context context) {
+        return createIntent(context, FRAGMENT_MY_ILLUST_STAR, false);
+    }
+
+    public static void startMyIllustBookmarks(Context context) {
+        context.startActivity(newMyIllustBookmarksIntent(context));
+    }
+
+    public static Intent newMyNovelBookmarksIntent(Context context) {
+        return createIntent(context, FRAGMENT_MY_NOVEL_STAR, false);
+    }
+
+    public static void startMyNovelBookmarks(Context context) {
+        context.startActivity(newMyNovelBookmarksIntent(context));
+    }
+
+    public static Intent newWatchlistIntent(Context context) {
+        return createIntent(context, FRAGMENT_WATCHLIST, false);
+    }
+
+    public static void startWatchlist(Context context) {
+        context.startActivity(newWatchlistIntent(context));
+    }
+
+    public static Intent newNovelMarkersIntent(Context context) {
+        return createIntent(context, FRAGMENT_NOVEL_MARKERS, false);
+    }
+
+    public static void startNovelMarkers(Context context) {
+        context.startActivity(newNovelMarkersIntent(context));
+    }
+
+    public static Intent newMyFollowingIntent(Context context) {
+        return createIntent(context, FRAGMENT_MY_FOLLOWING, false);
+    }
+
+    public static void startMyFollowing(Context context) {
+        context.startActivity(newMyFollowingIntent(context));
+    }
+
     public static Intent newRelatedUserIntent(Context context, int userId) {
         Intent intent = createIntent(context, FRAGMENT_RELATED_USER);
         intent.putExtra(Params.USER_ID, userId);
@@ -228,8 +277,13 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
     }
 
     private static Intent createIntent(Context context, String fragment) {
+        return createIntent(context, fragment, true);
+    }
+
+    private static Intent createIntent(Context context, String fragment, boolean hideStatusBar) {
         Intent intent = new Intent(context, TemplateActivity.class);
         intent.putExtra(EXTRA_FRAGMENT, fragment);
+        intent.putExtra(EXTRA_HIDE_STATUS_BAR, hideStatusBar);
         return intent;
     }
 
@@ -495,7 +549,7 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         if (FRAGMENT_COMMENT.equals(dataType)) {
             return false;
         } else {
-            return getIntent().getBooleanExtra("hideStatusBar", true);
+            return getIntent().getBooleanExtra(EXTRA_HIDE_STATUS_BAR, true);
         }
     }
 

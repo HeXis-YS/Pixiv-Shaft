@@ -254,7 +254,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         if (intent != null) {
             startActivity(intent);
         } else if (id == R.id.nav_new_work) {
-            startActivity(createTemplateIntent("最新作品", false));
+            startActivity(TemplateActivity.newLatestIntent(this));
         }
 
         baseBind.drawerLayout.closeDrawer(GravityCompat.START);
@@ -311,9 +311,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private Intent createDrawerIntent(int itemId) {
         if (itemId == nav_gallery) {
-            Intent intent = TemplateActivity.newDownloadManagerIntent(this);
-            intent.putExtra(EXTRA_HIDE_STATUS_BAR, false);
-            return intent;
+            return TemplateActivity.newDownloadManagerIntent(this);
         } else if (itemId == nav_slideshow) {
             return TemplateActivity.newHistoryIntent(this);
         } else if (itemId == R.id.nav_manage) {
@@ -329,29 +327,17 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         } else if (itemId == R.id.nav_fans) {
             return TemplateActivity.newFansIntent(this, sUserModel.getUser().getId());
         } else if (itemId == R.id.illust_star) {
-            return createTemplateIntent("我的插画收藏", false);
+            return TemplateActivity.newMyIllustBookmarksIntent(this);
         } else if (itemId == R.id.novel_star) {
-            return createTemplateIntent("我的小说收藏", false);
+            return TemplateActivity.newMyNovelBookmarksIntent(this);
         } else if (itemId == R.id.watchlist) {
-            return createTemplateIntent("追更列表", false);
+            return TemplateActivity.newWatchlistIntent(this);
         } else if (itemId == R.id.novel_markers) {
-            return createTemplateIntent("小说书签", false);
+            return TemplateActivity.newNovelMarkersIntent(this);
         } else if (itemId == R.id.follow_user) {
-            return createTemplateIntent("我的关注", false);
+            return TemplateActivity.newMyFollowingIntent(this);
         }
         return null;
-    }
-
-    private Intent createTemplateIntent(String fragmentName) {
-        Intent intent = new Intent(mContext, TemplateActivity.class);
-        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, fragmentName);
-        return intent;
-    }
-
-    private Intent createTemplateIntent(String fragmentName, boolean hideStatusBar) {
-        Intent intent = createTemplateIntent(fragmentName);
-        intent.putExtra(EXTRA_HIDE_STATUS_BAR, hideStatusBar);
-        return intent;
     }
 
     private Intent createUserPageIntent() {
