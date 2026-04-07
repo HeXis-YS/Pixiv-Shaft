@@ -39,8 +39,10 @@ import com.qmuiteam.qmui.skin.QMUISkinManager
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog.MenuDialogBuilder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class UActivity : BaseActivity<ActivityNewUserBinding>(), Display<UserDetailResponse> {
     companion object {
@@ -108,13 +110,24 @@ class UActivity : BaseActivity<ActivityNewUserBinding>(), Display<UserDetailResp
     override fun initModel() {
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         mUserViewModel.user.observe(this) { userDetailResponse -> invoke(userDetailResponse) }
-        val entity = AppDatabase.searchDao(this).getUserMuteEntityByID(userId)
-        mUserViewModel.isUserMuted.value = entity != null
-        val block = AppDatabase.searchDao(this).getBlockMuteEntityByID(userId)
-        mUserViewModel.isUserBlocked.value = block != null
+        loadMuteState()
         ObjectPool.get<UserBean>(userId.toLong()).observe(this) { user ->
             updateUser(user)
             Common.showLog("updateUser invoke ${user.isIs_followed}")
+        }
+    }
+
+    private fun loadMuteState() {
+        lifecycleScope.launch {
+            val dao = AppDatabase.searchDao(this@UActivity)
+            val isUserMuted = withContext(Dispatchers.IO) {
+                dao.getUserMuteEntityByID(userId) != null
+            }
+            val isUserBlocked = withContext(Dispatchers.IO) {
+                dao.getBlockMuteEntityByID(userId) != null
+            }
+            mUserViewModel.isUserMuted.value = isUserMuted
+            mUserViewModel.isUserBlocked.value = isUserBlocked
         }
     }
 
