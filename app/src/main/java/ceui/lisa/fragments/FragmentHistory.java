@@ -83,7 +83,7 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
                                     new QMUIDialogAction.ActionListener() {
                                         @Override
                                         public void onClick(QMUIDialog dialog, int index) {
-                                            AppDatabase.getAppDatabase(mContext).downloadDao().delete(allItems.get(position));
+                                            AppDatabase.downloadDao(mContext).delete(allItems.get(position));
                                             allItems.remove(position);
                                             mAdapter.notifyItemRemoved(position);
                                             mAdapter.notifyItemRangeChanged(position, allItems.size() - position);
@@ -106,14 +106,12 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
         return new LocalRepo<List<IllustHistoryEntity>>() {
             @Override
             public List<IllustHistoryEntity> first() {
-                return AppDatabase.getAppDatabase(mContext)
-                        .downloadDao().getAllViewHistory(PAGE_SIZE, 0);
+                return AppDatabase.downloadDao(mContext).getAllViewHistory(PAGE_SIZE, 0);
             }
 
             @Override
             public List<IllustHistoryEntity> next() {
-                return AppDatabase.getAppDatabase(mContext)
-                        .downloadDao().getAllViewHistory(PAGE_SIZE, allItems.size());
+                return AppDatabase.downloadDao(mContext).getAllViewHistory(PAGE_SIZE, allItems.size());
             }
 
             @Override
@@ -173,7 +171,7 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
                                         new QMUIDialogAction.ActionListener() {
                                     @Override
                                     public void onClick(QMUIDialog dialog, int index) {
-                                        AppDatabase.getAppDatabase(mContext).downloadDao().deleteAllHistory();
+                                        AppDatabase.downloadDao(mContext).deleteAllHistory();
                                         Common.showToast(getString(R.string.string_220));
                                         dialog.dismiss();
                                         mAdapter.clear();

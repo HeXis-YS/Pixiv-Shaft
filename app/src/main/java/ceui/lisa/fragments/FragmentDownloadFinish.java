@@ -52,7 +52,7 @@ public class FragmentDownloadFinish extends LocalListFragment<FragmentBaseListBi
                     intent.putExtra(Params.USER_ID, all.get(position).getUser().getId());
                     startActivity(intent);
                 } else if (viewType == 2) {
-                    AppDatabase.getAppDatabase(mContext).downloadDao().delete(allItems.get(position));
+                    AppDatabase.downloadDao(mContext).delete(allItems.get(position));
                     allItems.remove(position);
                     mAdapter.notifyItemRemoved(position);
                     mAdapter.notifyItemRangeChanged(position, allItems.size() - position);
@@ -66,13 +66,12 @@ public class FragmentDownloadFinish extends LocalListFragment<FragmentBaseListBi
         return new LocalRepo<List<DownloadEntity>>() {
             @Override
             public List<DownloadEntity> first() {
-                return AppDatabase.getAppDatabase(mContext).downloadDao().getAll(PAGE_SIZE, 0);
+                return AppDatabase.downloadDao(mContext).getAll(PAGE_SIZE, 0);
             }
 
             @Override
             public List<DownloadEntity> next() {
-                return AppDatabase.getAppDatabase(mContext)
-                        .downloadDao().getAll(PAGE_SIZE, allItems.size());
+                return AppDatabase.downloadDao(mContext).getAll(PAGE_SIZE, allItems.size());
             }
 
             @Override

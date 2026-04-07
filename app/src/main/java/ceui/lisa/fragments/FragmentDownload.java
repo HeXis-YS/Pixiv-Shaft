@@ -62,7 +62,7 @@ public class FragmentDownload extends BaseFragment<ViewpagerWithTablayoutBinding
                                 .addAction(0, "删除", QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                                     @Override
                                     public void onClick(QMUIDialog dialog, int index) {
-                                        AppDatabase.getAppDatabase(mContext).downloadDao().deleteAllDownload();
+                                        AppDatabase.downloadDao(mContext).deleteAllDownload();
                                         ((FragmentDownloadFinish) allPages[1]).clearAndRefresh();
                                         Common.showToast("下载记录清除成功");
                                         dialog.dismiss();
