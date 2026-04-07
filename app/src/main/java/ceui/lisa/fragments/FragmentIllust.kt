@@ -73,7 +73,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         val illust = illustLiveData.value ?: return
         baseBind.user = userLiveData
         viewLifecycleOwner.lifecycleScope.launch {
-            val dao = AppDatabase.getAppDatabase(requireContext()).searchDao()
+            val dao = AppDatabase.searchDao(requireContext())
             val muteIllust = withContext(Dispatchers.IO) {
                 dao.getIllustMuteEntityByID(illust.id)
             }

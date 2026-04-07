@@ -32,8 +32,7 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
             @Override
             public List<UserBean> first() {
                 List<MuteEntity> entityList =
-                        AppDatabase.getAppDatabase(Shaft.getContext())
-                                .searchDao()
+                        AppDatabase.searchDao(Shaft.getContext())
                                 .getMutedUser(PAGE_SIZE, 0);
                 List<UserBean> userBeanList = new ArrayList<>();
                 for (MuteEntity muteEntity : entityList) {
@@ -46,8 +45,7 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
             @Override
             public List<UserBean> next() {
                 List<MuteEntity> entityList =
-                        AppDatabase.getAppDatabase(Shaft.getContext())
-                                .searchDao()
+                        AppDatabase.searchDao(Shaft.getContext())
                                 .getMutedUser(PAGE_SIZE, allItems.size());
                 List<UserBean> userBeanList = new ArrayList<>();
                 for (MuteEntity muteEntity : entityList) {
@@ -93,7 +91,7 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
                         .addAction(0, getString(R.string.string_219), QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
-                                AppDatabase.getAppDatabase(mContext).searchDao().deleteAllMutedUsers();
+                                AppDatabase.searchDao(mContext).deleteAllMutedUsers();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
                                 emptyRela.setVisibility(View.VISIBLE);

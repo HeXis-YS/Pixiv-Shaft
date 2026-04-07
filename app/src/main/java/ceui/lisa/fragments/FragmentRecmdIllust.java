@@ -185,7 +185,7 @@ public class FragmentRecmdIllust extends NetListFragment<FragmentBaseListBinding
         illustRecmdEntity.setIllustID(illustsBean.getId());
         illustRecmdEntity.setIllustJson(Shaft.sGson.toJson(illustsBean));
         illustRecmdEntity.setTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).recmdDao().insert(illustRecmdEntity);
+        AppDatabase.recmdDao(Shaft.getContext()).insert(illustRecmdEntity);
     }
 
     @Override

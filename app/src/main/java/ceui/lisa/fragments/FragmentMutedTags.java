@@ -117,7 +117,7 @@ public class FragmentMutedTags extends LocalListFragment<FragmentBaseListBinding
                         .addAction(0, getString(R.string.string_219), QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
-                                AppDatabase.getAppDatabase(mContext).searchDao().deleteAllMutedTags();
+                                AppDatabase.searchDao(mContext).deleteAllMutedTags();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
                                 emptyRela.setVisibility(View.VISIBLE);

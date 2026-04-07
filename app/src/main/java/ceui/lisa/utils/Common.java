@@ -112,8 +112,7 @@ public class Common {
             if(deleteUser){
                 UserEntity userEntity = new UserEntity();
                 userEntity.setUserID(Shaft.sUserModel.getUserId());
-                AppDatabase.getAppDatabase(context)
-                        .downloadDao().deleteUser(userEntity);
+                AppDatabase.downloadDao(context).deleteUser(userEntity);
             }
             Intent intent = TemplateActivity.newLoginIntent(context);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
