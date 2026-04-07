@@ -44,10 +44,7 @@ class WatchlistNovelAdapter(
             bindView.baseBind.lastDate.text = target.last_published_content_datetime!!
             bindView.baseBind.contentCount.text = mContext.getString(R.string.episode_number, target.published_content_count)
             bindView.itemView.setOnClickListener {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(Params.ID, target.id)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL)
-                mContext.startActivity(intent)
+                TemplateActivity.startNovelSeriesDetail(mContext, target.id)
             }
             bindView.baseBind.readLatest.setOnClickListener {
                 PixivOperate.getNovelByID(Shaft.sUserModel, target.latest_content_id!!.toLong(), mContext, null)

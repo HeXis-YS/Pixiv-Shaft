@@ -60,10 +60,8 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
                 bindView.baseBind.series.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(mContext, TemplateActivity.class);
-                        intent.putExtra(Params.ID, allItems.get(position).getSeries().getId());
-                        intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
-                        mContext.startActivity(intent);
+                        TemplateActivity.startNovelSeriesDetail(mContext,
+                                allItems.get(position).getSeries().getId());
                     }
                 });
             }

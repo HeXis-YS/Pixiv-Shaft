@@ -465,6 +465,37 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newNovelCommentsIntent(context, novelId, title));
     }
 
+    public static Intent newRelatedIllustIntent(Context context, int illustId, String title) {
+        Intent intent = createIntent(context, FRAGMENT_RELATED_ILLUST);
+        intent.putExtra(Params.ILLUST_ID, illustId);
+        intent.putExtra(Params.ILLUST_TITLE, title);
+        return intent;
+    }
+
+    public static void startRelatedIllust(Context context, int illustId, String title) {
+        context.startActivity(newRelatedIllustIntent(context, illustId, title));
+    }
+
+    public static Intent newNovelSeriesDetailIntent(Context context, int seriesId) {
+        Intent intent = createIntent(context, FRAGMENT_NOVEL_SERIES_DETAIL);
+        intent.putExtra(Params.ID, seriesId);
+        return intent;
+    }
+
+    public static void startNovelSeriesDetail(Context context, int seriesId) {
+        context.startActivity(newNovelSeriesDetailIntent(context, seriesId));
+    }
+
+    public static Intent newMangaSeriesDetailIntent(Context context, int seriesId) {
+        Intent intent = createIntent(context, FRAGMENT_MANGA_SERIES_DETAIL);
+        intent.putExtra(Params.MANGA_SERIES_ID, seriesId);
+        return intent;
+    }
+
+    public static void startMangaSeriesDetail(Context context, int seriesId) {
+        context.startActivity(newMangaSeriesDetailIntent(context, seriesId));
+    }
+
     public static Intent newTagFilterIntent(Context context, int dataType, String keyword) {
         Intent intent = createIntent(context, FRAGMENT_TAG_FILTER);
         intent.putExtra(Params.DATA_TYPE, dataType);

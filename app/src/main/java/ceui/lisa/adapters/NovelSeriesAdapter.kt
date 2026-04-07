@@ -36,10 +36,7 @@ class NovelSeriesAdapter(
         )
 
         bindView.itemView.setOnClickListener {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(Params.ID, allItems[position].id)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL)
-            mContext.startActivity(intent)
+            TemplateActivity.startNovelSeriesDetail(mContext, allItems[position].id)
         }
     }
 }

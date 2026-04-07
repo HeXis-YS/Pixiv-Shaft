@@ -172,10 +172,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         if (illust.series != null && !TextUtils.isEmpty(illust.series.title)) {
             val clickableSpan: ClickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_MANGA_SERIES_DETAIL)
-                    intent.putExtra(Params.MANGA_SERIES_ID, illust.series.id)
-                    startActivity(intent)
+                    TemplateActivity.startMangaSeriesDetail(mContext, illust.series.id)
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
@@ -399,11 +396,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
             }
         })
         baseBind.related.setOnClick {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_RELATED_ILLUST)
-            intent.putExtra(Params.ILLUST_ID, illust.id)
-            intent.putExtra(Params.ILLUST_TITLE, illust.title)
-            startActivity(intent)
+            TemplateActivity.startRelatedIllust(mContext, illust.id, illust.title)
         }
         baseBind.comment.setOnClick {
             TemplateActivity.startIllustComments(mContext, illust.id, illust.title)

@@ -43,10 +43,8 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
             bindView.baseBind.series.setText(String.format(mContext.getString(R.string.string_184),
                     target.getNovel().getSeries().getTitle()));
             bindView.baseBind.series.setOnClickListener(v -> {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.ID, target.getNovel().getSeries().getId());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
-                    mContext.startActivity(intent);
+                    TemplateActivity.startNovelSeriesDetail(mContext,
+                            target.getNovel().getSeries().getId());
             });
         } else {
             bindView.baseBind.series.setVisibility(View.GONE);

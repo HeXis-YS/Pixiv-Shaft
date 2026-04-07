@@ -46,10 +46,7 @@ class FragmentMangaSeries :
             allItems,
             mContext
         ).setOnItemClickListener { _, position, _ ->
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_MANGA_SERIES_DETAIL)
-            intent.putExtra(Params.MANGA_SERIES_ID, allItems[position].id)
-            startActivity(intent)
+            TemplateActivity.startMangaSeriesDetail(mContext, allItems[position].id)
         }
     }
 

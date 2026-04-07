@@ -373,11 +373,7 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
         baseBind.related.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_RELATED_ILLUST);
-                intent.putExtra(Params.ILLUST_ID, illust.getId());
-                intent.putExtra(Params.ILLUST_TITLE, illust.getTitle());
-                startActivity(intent);
+                TemplateActivity.startRelatedIllust(mContext, illust.getId(), illust.getTitle());
             }
         });
         baseBind.comment.setOnClickListener(new View.OnClickListener() {

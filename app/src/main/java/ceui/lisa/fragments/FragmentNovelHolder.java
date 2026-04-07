@@ -178,10 +178,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
             baseBind.novelSeries.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.ID, mNovelBean.getSeries().getId());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_SERIES_DETAIL);
-                    startActivity(intent);
+                    TemplateActivity.startNovelSeriesDetail(mContext, mNovelBean.getSeries().getId());
                 }
             });
         } else {
