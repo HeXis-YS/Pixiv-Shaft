@@ -309,29 +309,51 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void forceRefreshCurrentPage(int itemId) {
-        for (Fragment baseFragment : baseFragments) {
-            if (itemId == R.id.action_1 && baseFragment instanceof FragmentLeft) {
-                ((FragmentLeft) baseFragment).forceRefresh();
-            } else if (itemId == R.id.action_2 && baseFragment instanceof FragmentCenter) {
-                ((FragmentCenter) baseFragment).forceRefresh();
-            } else if (itemId == R.id.action_3 && baseFragment instanceof FragmentRight) {
-                ((FragmentRight) baseFragment).forceRefresh();
-            } else if (itemId == R.id.action_4 && baseFragment instanceof FragmentViewPager) {
-                ((FragmentViewPager) baseFragment).forceRefresh();
-            }
+        int pageIndex = getPageIndex(itemId);
+        if (pageIndex == -1) {
+            return;
+        }
+        forceRefreshPage(pageIndex);
+    }
+
+    private void forceRefreshPage(int pageIndex) {
+        Fragment fragment = getBaseFragment(pageIndex);
+        if (fragment instanceof FragmentLeft) {
+            ((FragmentLeft) fragment).forceRefresh();
+        } else if (fragment instanceof FragmentCenter) {
+            ((FragmentCenter) fragment).forceRefresh();
+        } else if (fragment instanceof FragmentRight) {
+            ((FragmentRight) fragment).forceRefresh();
+        } else if (fragment instanceof FragmentViewPager) {
+            ((FragmentViewPager) fragment).forceRefresh();
         }
     }
 
-    private void syncBottomNavigation(int position) {
-        if (position == PAGE_LEFT) {
-            baseBind.navigationView.setSelectedItemId(R.id.action_1);
-        } else if (position == PAGE_CENTER) {
-            baseBind.navigationView.setSelectedItemId(R.id.action_2);
-        } else if (position == PAGE_RIGHT) {
-            baseBind.navigationView.setSelectedItemId(R.id.action_3);
-        } else if (position == PAGE_R18) {
-            baseBind.navigationView.setSelectedItemId(R.id.action_4);
+    private Fragment getBaseFragment(int pageIndex) {
+        if (pageIndex < 0 || pageIndex >= baseFragments.length) {
+            return null;
         }
+        return baseFragments[pageIndex];
+    }
+
+    private void syncBottomNavigation(int position) {
+        int itemId = getBottomNavigationItemId(position);
+        if (itemId != View.NO_ID) {
+            baseBind.navigationView.setSelectedItemId(itemId);
+        }
+    }
+
+    private int getBottomNavigationItemId(int pageIndex) {
+        if (pageIndex == PAGE_LEFT) {
+            return R.id.action_1;
+        } else if (pageIndex == PAGE_CENTER) {
+            return R.id.action_2;
+        } else if (pageIndex == PAGE_RIGHT) {
+            return R.id.action_3;
+        } else if (pageIndex == PAGE_R18) {
+            return R.id.action_4;
+        }
+        return View.NO_ID;
     }
 
     private Intent resolveDrawerDestination(int itemId) {
