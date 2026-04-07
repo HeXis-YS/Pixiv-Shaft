@@ -108,9 +108,9 @@ class UActivity : BaseActivity<ActivityNewUserBinding>(), Display<UserDetailResp
     override fun initModel() {
         mUserViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         mUserViewModel.user.observe(this) { userDetailResponse -> invoke(userDetailResponse) }
-        val entity = AppDatabase.getAppDatabase(this).searchDao().getUserMuteEntityByID(userId)
+        val entity = AppDatabase.searchDao(this).getUserMuteEntityByID(userId)
         mUserViewModel.isUserMuted.value = entity != null
-        val block = AppDatabase.getAppDatabase(this).searchDao().getBlockMuteEntityByID(userId)
+        val block = AppDatabase.searchDao(this).getBlockMuteEntityByID(userId)
         mUserViewModel.isUserBlocked.value = block != null
         ObjectPool.get<UserBean>(userId.toLong()).observe(this) { user ->
             updateUser(user)

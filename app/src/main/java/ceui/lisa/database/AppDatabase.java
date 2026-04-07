@@ -65,6 +65,18 @@ public abstract class AppDatabase extends RoomDatabase {
         INSTANCE = null;
     }
 
+    public static IllustRecmdDao recmdDao(Context context) {
+        return getAppDatabase(context).recmdDao();
+    }
+
+    public static DownloadDao downloadDao(Context context) {
+        return getAppDatabase(context).downloadDao();
+    }
+
+    public static SearchDao searchDao(Context context) {
+        return getAppDatabase(context).searchDao();
+    }
+
     public abstract IllustRecmdDao recmdDao();
 
     public abstract DownloadDao downloadDao();
@@ -72,4 +84,3 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract SearchDao searchDao();
 
 }
-

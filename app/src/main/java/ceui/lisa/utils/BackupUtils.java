@@ -77,13 +77,14 @@ public class BackupUtils {
     public static String getBackupString(Context context, boolean backupViewHistory) {
         BackupEntity backupEntity = new BackupEntity();
         backupEntity.setSettings(Shaft.sSettings);
-        AppDatabase appDatabase = AppDatabase.getAppDatabase(context);
-        backupEntity.setMuteEntityList(appDatabase.searchDao().getAllMuteEntities());
-        backupEntity.setFeatureEntityList(appDatabase.downloadDao().getAllFeatureEntities());
-        backupEntity.setSearchEntityList(appDatabase.searchDao().getAllSearchEntities());
-        backupEntity.setUserEntityList(appDatabase.downloadDao().getAllUser());
+        SearchDao searchDao = AppDatabase.searchDao(context);
+        DownloadDao downloadDao = AppDatabase.downloadDao(context);
+        backupEntity.setMuteEntityList(searchDao.getAllMuteEntities());
+        backupEntity.setFeatureEntityList(downloadDao.getAllFeatureEntities());
+        backupEntity.setSearchEntityList(searchDao.getAllSearchEntities());
+        backupEntity.setUserEntityList(downloadDao.getAllUser());
         if (backupViewHistory){
-            backupEntity.setIllustHistoryEntityList(appDatabase.downloadDao().getAllViewHistoryEntities());
+            backupEntity.setIllustHistoryEntityList(downloadDao.getAllViewHistoryEntities());
         }
         return Shaft.sGson.toJson(backupEntity);
     }
@@ -95,38 +96,34 @@ public class BackupUtils {
             if (settings != null) {
                 Local.setSettings(settings);
             }
-            AppDatabase appDatabase = AppDatabase.getAppDatabase(context);
+            SearchDao searchDao = AppDatabase.searchDao(context);
+            DownloadDao downloadDao = AppDatabase.downloadDao(context);
             List<MuteEntity> muteEntityList = backupEntity.getMuteEntityList();
             if (muteEntityList != null && !muteEntityList.isEmpty()) {
-                SearchDao searchDao = appDatabase.searchDao();
                 for (MuteEntity muteEntity : muteEntityList) {
                     searchDao.insertMuteTag(muteEntity);
                 }
             }
             List<FeatureEntity> featureEntityList = backupEntity.getFeatureEntityList();
             if (featureEntityList != null && !featureEntityList.isEmpty()) {
-                DownloadDao downloadDao = appDatabase.downloadDao();
                 for (FeatureEntity featureEntity : featureEntityList) {
                     downloadDao.insertFeature(featureEntity);
                 }
             }
             List<SearchEntity> searchEntityList = backupEntity.getSearchEntityList();
             if (searchEntityList != null && !searchEntityList.isEmpty()) {
-                SearchDao searchDao = appDatabase.searchDao();
                 for (SearchEntity searchEntity : searchEntityList) {
                     searchDao.insert(searchEntity);
                 }
             }
             List<UserEntity> userEntityList = backupEntity.getUserEntityList();
             if (userEntityList != null && !userEntityList.isEmpty()) {
-                DownloadDao downloadDao = appDatabase.downloadDao();
                 for (UserEntity userEntity : userEntityList) {
                     downloadDao.insertUser(userEntity);
                 }
             }
             List<IllustHistoryEntity> illustHistoryEntityList = backupEntity.getIllustHistoryEntityList();
             if (illustHistoryEntityList != null && !illustHistoryEntityList.isEmpty()) {
-                DownloadDao downloadDao = appDatabase.downloadDao();
                 for (IllustHistoryEntity illustHistoryEntity : illustHistoryEntityList) {
                     downloadDao.insert(illustHistoryEntity);
                 }

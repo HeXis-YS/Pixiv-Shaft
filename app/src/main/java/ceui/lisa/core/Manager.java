@@ -51,7 +51,7 @@ public class Manager {
     }
 
     public void restore() {
-        List<DownloadingEntity> downloadingEntities = AppDatabase.getAppDatabase(mContext).downloadDao().getAllDownloading();
+        List<DownloadingEntity> downloadingEntities = AppDatabase.downloadDao(mContext).getAllDownloading();
         if (!Common.isEmpty(downloadingEntities)) {
             Common.showLog("downloadingEntities " + downloadingEntities.size());
             if (content != null) {
@@ -104,7 +104,7 @@ public class Manager {
         entity.setFileName(item.getName());
         entity.setUuid(item.getUuid());
         entity.setTaskGson(Shaft.sGson.toJson(item));
-        AppDatabase.getAppDatabase(Shaft.getContext()).downloadDao().insertDownloading(entity);
+        AppDatabase.downloadDao(Shaft.getContext()).insertDownloading(entity);
     }
 
     private void complete(DownloadItem item, boolean isDownloadSuccess) {
@@ -117,7 +117,7 @@ public class Manager {
             entity.setFileName(item.getName());
             entity.setUuid(item.getUuid());
             entity.setTaskGson(Shaft.sGson.toJson(item));
-            AppDatabase.getAppDatabase(mContext).downloadDao().deleteDownloading(entity);
+            AppDatabase.downloadDao(mContext).deleteDownloading(entity);
             if (Shaft.sSettings.isToastDownloadResult()) {
                 Common.showToast(item.getName() + mContext.getString(R.string.has_been_downloaded));
             }
@@ -201,7 +201,7 @@ public class Manager {
 
     public void clearAll() {
         stopAll();
-        AppDatabase.getAppDatabase(mContext).downloadDao().deleteAllDownloading();
+        AppDatabase.downloadDao(mContext).deleteAllDownloading();
         content.clear();
     }
 
@@ -214,7 +214,7 @@ public class Manager {
             entity.setFileName(downloadItem.getName());
             entity.setUuid(downloadItem.getUuid());
             entity.setTaskGson(Shaft.sGson.toJson(downloadItem));
-            AppDatabase.getAppDatabase(mContext).downloadDao().deleteDownloading(entity);
+            AppDatabase.downloadDao(mContext).deleteDownloading(entity);
             content.remove(downloadItem);
         }
     }
@@ -328,7 +328,7 @@ public class Manager {
                         } else {
                             downloadEntity.setFilePath(((Android10DownloadFactory22) factory).getFileUri().toString());
                         }
-                        AppDatabase.getAppDatabase(Shaft.getContext()).downloadDao().insert(downloadEntity);
+                        AppDatabase.downloadDao(Shaft.getContext()).insert(downloadEntity);
                         //通知FragmentDownloadFinish 添加这一项
                         Intent intent = new Intent(Params.DOWNLOAD_FINISH);
                         intent.putExtra(Params.CONTENT, downloadEntity);
