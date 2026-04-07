@@ -173,7 +173,6 @@
         <activity
             android:name=".activities.UActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation" />
-        <activity android:name=".activities.VPActivity" />
         <activity android:name=".activities.NovelActivity" />
 
         <receiver
