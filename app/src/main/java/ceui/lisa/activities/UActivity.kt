@@ -43,6 +43,30 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class UActivity : BaseActivity<ActivityNewUserBinding>(), Display<UserDetailResponse> {
+    companion object {
+        @JvmStatic
+        fun newIntent(context: android.content.Context, userId: Int): Intent {
+            return Intent(context, UActivity::class.java).apply {
+                putExtra(Params.USER_ID, userId)
+            }
+        }
+
+        @JvmStatic
+        fun start(context: android.content.Context, userId: Int) {
+            context.startActivity(newIntent(context, userId))
+        }
+
+        @JvmStatic
+        fun newCurrentUserIntent(context: android.content.Context): Intent {
+            return newIntent(context, Shaft.sUserModel.userId)
+        }
+
+        @JvmStatic
+        fun startCurrentUser(context: android.content.Context) {
+            context.startActivity(newCurrentUserIntent(context))
+        }
+    }
+
     private var userId = 0
     private lateinit var mUserViewModel: UserViewModel
     override fun initLayout(): Int {

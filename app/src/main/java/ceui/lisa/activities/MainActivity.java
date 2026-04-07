@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int REQUEST_WRITE_STORAGE = 1001;
-    private static final String EXTRA_HIDE_STATUS_BAR = "hideStatusBar";
     private static final String EXTRA_REFRESH_DRAWER_HEADER = "refreshDrawerHeader";
     private static final int PAGE_LEFT = 0;
     private static final int PAGE_CENTER = 1;
@@ -245,18 +244,20 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        Intent intent = createDrawerIntent(id);
-        if (intent != null) {
-            startActivity(intent);
-        } else if (id == R.id.nav_new_work) {
-            startActivity(TemplateActivity.newLatestIntent(this));
-        }
-
+        handleDrawerNavigation(item.getItemId());
         baseBind.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void handleDrawerNavigation(int itemId) {
+        if (itemId == R.id.nav_new_work) {
+            TemplateActivity.startLatest(this);
+            return;
+        }
+        Intent intent = resolveDrawerDestination(itemId);
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
 
     private boolean navigateToPage(int itemId) {
@@ -307,7 +308,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         }
     }
 
-    private Intent createDrawerIntent(int itemId) {
+    private Intent resolveDrawerDestination(int itemId) {
         if (itemId == nav_gallery) {
             return TemplateActivity.newDownloadManagerIntent(this);
         } else if (itemId == nav_slideshow) {
@@ -317,7 +318,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         } else if (itemId == R.id.nav_share) {
             return TemplateActivity.newAboutIntent(this);
         } else if (itemId == R.id.main_page) {
-            return createUserPageIntent();
+            return UActivity.newCurrentUserIntent(this);
         } else if (itemId == R.id.muted_list) {
             return TemplateActivity.newMutedTagsIntent(this);
         } else if (itemId == R.id.nav_feature) {
@@ -336,12 +337,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             return TemplateActivity.newMyFollowingIntent(this);
         }
         return null;
-    }
-
-    private Intent createUserPageIntent() {
-        Intent intent = new Intent(mContext, UActivity.class);
-        intent.putExtra(Params.USER_ID, sUserModel.getUser().getId());
-        return intent;
     }
 
     @Override
@@ -426,9 +421,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void openDownloadManager() {
-        Intent intent = TemplateActivity.newDownloadManagerIntent(this);
-        intent.putExtra(EXTRA_HIDE_STATUS_BAR, true);
-        startActivity(intent);
+        TemplateActivity.startDownloadManager(this);
     }
 
     private void promptDoubleTapExit() {
