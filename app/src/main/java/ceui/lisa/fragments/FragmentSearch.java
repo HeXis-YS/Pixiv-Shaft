@@ -417,7 +417,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                 binding.deleteItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppDatabase.searchDao(mContext).deleteSearchEntity(searchEntity);
+                        deleteSearchEntity(searchEntity);
                         Common.showToast("删除成功");
                         loadHistory();
                     }
@@ -535,6 +535,16 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
             @Override
             public Void execute() {
                 AppDatabase.searchDao(mContext).insert(searchEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
+    }
+
+    private void deleteSearchEntity(final SearchEntity searchEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.searchDao(mContext).deleteSearchEntity(searchEntity);
                 return null;
             }
         }, new TryCatchObserverImpl<>());
