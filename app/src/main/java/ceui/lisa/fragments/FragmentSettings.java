@@ -90,20 +90,14 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             baseBind.r18Space.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                    intent.putExtra(Params.URL, Params.URL_R18_SETTING);
-                    startActivity(intent);
+                    TemplateActivity.startWeb(mContext, null, Params.URL_R18_SETTING);
                 }
             });
 
             baseBind.premiumSpace.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                    intent.putExtra(Params.URL, Params.URL_PREMIUM_SETTING);
-                    startActivity(intent);
+                    TemplateActivity.startWeb(mContext, null, Params.URL_PREMIUM_SETTING);
                 }
             });
 

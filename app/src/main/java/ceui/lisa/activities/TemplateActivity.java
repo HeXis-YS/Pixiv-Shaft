@@ -134,6 +134,14 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newSettingsIntent(context));
     }
 
+    public static Intent newLoginIntent(Context context) {
+        return createIntent(context, FRAGMENT_LOGIN);
+    }
+
+    public static void startLogin(Context context) {
+        context.startActivity(newLoginIntent(context));
+    }
+
     public static Intent newDownloadManagerIntent(Context context) {
         return createIntent(context, FRAGMENT_DOWNLOAD);
     }
@@ -196,6 +204,26 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static void startLocalUsers(Context context) {
         context.startActivity(newLocalUsersIntent(context));
+    }
+
+    public static Intent newWebIntent(Context context, String title, String url) {
+        return newWebIntent(context, title, url, false);
+    }
+
+    public static Intent newWebIntent(Context context, String title, String url, boolean preferPreserve) {
+        Intent intent = createIntent(context, FRAGMENT_WEB);
+        intent.putExtra(Params.TITLE, title);
+        intent.putExtra(Params.URL, url);
+        intent.putExtra(Params.PREFER_PRESERVE, preferPreserve);
+        return intent;
+    }
+
+    public static void startWeb(Context context, String title, String url) {
+        context.startActivity(newWebIntent(context, title, url));
+    }
+
+    public static void startWeb(Context context, String title, String url, boolean preferPreserve) {
+        context.startActivity(newWebIntent(context, title, url, preferPreserve));
     }
 
     public static Intent newBindEmailIntent(Context context) {
@@ -390,6 +418,29 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static void startPv(Context context) {
         context.startActivity(newPvIntent(context));
+    }
+
+    public static Intent newRecmdUserIntent(Context context) {
+        return createIntent(context, FRAGMENT_RECMD_USER);
+    }
+
+    public static Intent newRecmdUserIntent(Context context, List<UserPreviewsBean> items, String nextUrl) {
+        Intent intent = createIntent(context, FRAGMENT_RECMD_USER);
+        if (items != null && !items.isEmpty()) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Params.USER_MODEL, new ArrayList<>(items));
+            intent.putExtra(Params.USER_MODEL, bundle);
+        }
+        intent.putExtra(Params.URL, nextUrl);
+        return intent;
+    }
+
+    public static void startRecmdUser(Context context) {
+        context.startActivity(newRecmdUserIntent(context));
+    }
+
+    public static void startRecmdUser(Context context, List<UserPreviewsBean> items, String nextUrl) {
+        context.startActivity(newRecmdUserIntent(context, items, nextUrl));
     }
 
     public static Intent newRelatedUserIntent(Context context, int userId) {

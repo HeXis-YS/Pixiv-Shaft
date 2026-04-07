@@ -59,12 +59,12 @@ public class FragmentPivision extends NetListFragment<FragmentBaseListBinding,
         return new ArticleAdapter(allItems, mContext).setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position, int viewType) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                intent.putExtra(Params.URL, allItems.get(position).getArticle_url());
-                intent.putExtra(Params.TITLE, getString(R.string.pixiv_special));
-                intent.putExtra(Params.PREFER_PRESERVE, true);
-                startActivity(intent);
+                TemplateActivity.startWeb(
+                        mContext,
+                        getString(R.string.pixiv_special),
+                        allItems.get(position).getArticle_url(),
+                        true
+                );
             }
         });
     }

@@ -87,12 +87,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
             checkAndNext {
                 openProxyHint {
                     val url = LOGIN_HEAD + PkceUtil.pkceItem.challenge + LOGIN_END
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
-                    intent.putExtra(Params.URL, url)
-                    intent.putExtra(Params.TITLE, getString(R.string.now_login))
-                    intent.putExtra(Params.PREFER_PRESERVE, true)
-                    startActivity(intent)
+                    TemplateActivity.startWeb(mContext, getString(R.string.now_login), url, true)
                 }
             }
         }
@@ -100,12 +95,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
             checkAndNext {
                 openProxyHint {
                     val url = SIGN_HEAD + PkceUtil.pkceItem.challenge + SIGN_END
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
-                    intent.putExtra(Params.URL, url)
-                    intent.putExtra(Params.TITLE, getString(R.string.now_sign))
-                    intent.putExtra(Params.PREFER_PRESERVE, true)
-                    startActivity(intent)
+                    TemplateActivity.startWeb(mContext, getString(R.string.now_sign), url, true)
                 }
             }
         }
@@ -117,18 +107,18 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
         val terms = String.format(getString(R.string.landing_terms_base), matchTOS, matchPP)
         baseBind.firstText.text = SpannableString(terms).apply {
             this.setLinkSpan(matchTOS, hideUnderLine = false) {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
-                intent.putExtra(Params.URL, "https://www.pixiv.net/terms/?page=term&appname=pixiv_ios")
-                intent.putExtra(Params.TITLE, getString(R.string.pixiv_use_detail))
-                startActivity(intent)
+                TemplateActivity.startWeb(
+                    mContext,
+                    getString(R.string.pixiv_use_detail),
+                    "https://www.pixiv.net/terms/?page=term&appname=pixiv_ios"
+                )
             }
             this.setLinkSpan(matchPP, hideUnderLine = false) {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB)
-                intent.putExtra(Params.URL,"https://www.pixiv.net/terms/?page=privacy&appname=pixiv_ios")
-                intent.putExtra(Params.TITLE, getString(R.string.privacy))
-                startActivity(intent)
+                TemplateActivity.startWeb(
+                    mContext,
+                    getString(R.string.privacy),
+                    "https://www.pixiv.net/terms/?page=privacy&appname=pixiv_ios"
+                )
             }
         }
         viewModel.isChecked.observe(this) {

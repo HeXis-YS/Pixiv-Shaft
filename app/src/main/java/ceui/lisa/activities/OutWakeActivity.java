@@ -135,20 +135,16 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 },null);
                                 return;
                             } else if (uriString.toLowerCase().contains(HOST_ME)) {
-                                Intent i = new Intent(mContext, TemplateActivity.class);
-                                i.putExtra(Params.URL, uriString);
-                                i.putExtra(Params.TITLE, HOST_ME);
-                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                                startActivity(i);
+                                startActivity(TemplateActivity.newWebIntent(mContext, HOST_ME, uriString));
                                 finish();
                                 return;
                             } else if (uriString.toLowerCase().contains(HOST_PIXIVISION)) {
-                                Intent i = new Intent(mContext, TemplateActivity.class);
-                                i.putExtra(Params.URL, uriString);
-                                i.putExtra(Params.TITLE, getString(R.string.pixiv_special));
-                                i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                                i.putExtra(Params.PREFER_PRESERVE, true);
-                                startActivity(i);
+                                startActivity(TemplateActivity.newWebIntent(
+                                        mContext,
+                                        getString(R.string.pixiv_special),
+                                        uriString,
+                                        true
+                                ));
                                 finish();
                                 return;
                             }
@@ -238,10 +234,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                                     .addAction(R.string.string_402, new QMUIDialogAction.ActionListener() {
                                                         @Override
                                                         public void onClick(QMUIDialog dialog, int index) {
-                                                            Intent intent = new Intent(mContext, TemplateActivity.class);
-                                                            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_WEB);
-                                                            intent.putExtra(Params.URL, Params.URL_R18_SETTING);
-                                                            startActivity(intent);
+                                                            TemplateActivity.startWeb(mContext, null, Params.URL_R18_SETTING);
                                                         }
                                                     })
                                                     .create()
@@ -285,9 +278,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
             mActivity.startActivity(i);
             mActivity.finish();
         } else {
-            Intent i = new Intent(mContext, TemplateActivity.class);
-            i.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
-            startActivity(i);
+            TemplateActivity.startLogin(mContext);
             finish();
         }
     }

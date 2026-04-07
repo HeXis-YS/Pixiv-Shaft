@@ -115,8 +115,7 @@ public class Common {
                 AppDatabase.getAppDatabase(context)
                         .downloadDao().deleteUser(userEntity);
             }
-            Intent intent = new Intent(context, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
+            Intent intent = TemplateActivity.newLoginIntent(context);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(intent);
         }

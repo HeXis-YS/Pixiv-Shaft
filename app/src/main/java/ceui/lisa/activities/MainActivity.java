@@ -190,9 +190,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 ensureStoragePermission();
             }
         } else {
-            Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
-            startActivity(intent);
+            TemplateActivity.startLogin(mContext);
             finish();
         }
     }

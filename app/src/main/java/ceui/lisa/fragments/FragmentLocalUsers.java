@@ -52,9 +52,7 @@ public class FragmentLocalUsers extends BaseFragment<FragmentLocalUserBinding> {
         baseBind.addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_LOGIN);
-                startActivity(intent);
+                TemplateActivity.startLogin(mContext);
             }
         });
         baseBind.refreshLayout.setRefreshFooter(new FalsifyFooter(mContext));

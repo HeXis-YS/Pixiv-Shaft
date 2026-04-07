@@ -87,15 +87,15 @@ public class FragmentRight extends NetListFragment<FragmentNewRightBinding, List
             }
         });
         baseBind.seeMore.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "推荐用户");
             if (headerFragment != null && headerFragment.allItems != null && headerFragment.allItems.size() > 0) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(Params.USER_MODEL, (Serializable) headerFragment.allItems);
-                intent.putExtra(Params.USER_MODEL, bundle);
-                intent.putExtra(Params.URL, headerFragment.mRemoteRepo.getNextUrl());
+                TemplateActivity.startRecmdUser(
+                        mContext,
+                        headerFragment.allItems,
+                        headerFragment.mRemoteRepo.getNextUrl()
+                );
+            } else {
+                TemplateActivity.startRecmdUser(mContext);
             }
-            startActivity(intent);
         });
         baseBind.glareLayout.setListener(new OnCheckChangeListener() {
             final String[] types = {Params.TYPE_ALL, Params.TYPE_PUBLIC, Params.TYPE_PRIVATE};
