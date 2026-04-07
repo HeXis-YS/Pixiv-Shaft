@@ -213,7 +213,6 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private void completeStartup() {
         initFragment();
-//        startActivity(new Intent(this, ListActivity.class));
     }
 
     private void ensureStoragePermission() {
