@@ -218,18 +218,12 @@ class UActivity : BaseActivity<ActivityNewUserBinding>(), Display<UserDetailResp
         baseBind.followCount.text = data.profile.total_follow_users.toString()
         baseBind.pFriend.text = data.profile.total_mypixiv_users.toString()
         val pFriend = View.OnClickListener {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(Params.USER_ID, data.user.id)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "好P友")
-            startActivity(intent)
+            TemplateActivity.startNiceFriend(mContext, data.user.id)
         }
         baseBind.pFriend.setOnClickListener(pFriend)
         baseBind.pFriendS.setOnClickListener(pFriend)
         val follow = View.OnClickListener {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(Params.USER_ID, data.user.id)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "正在关注")
-            startActivity(intent)
+            TemplateActivity.startFollowing(mContext, data.user.id)
         }
         baseBind.followCount.setOnClickListener(follow)
         baseBind.followS.setOnClickListener(follow)

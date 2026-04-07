@@ -270,6 +270,96 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newMyFollowingIntent(context));
     }
 
+    public static Intent newFollowingIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_FOLLOWING);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startFollowing(Context context, int userId) {
+        context.startActivity(newFollowingIntent(context, userId));
+    }
+
+    public static Intent newNiceFriendIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_NICE_FRIEND);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startNiceFriend(Context context, int userId) {
+        context.startActivity(newNiceFriendIntent(context, userId));
+    }
+
+    public static Intent newUserIllustIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_ILLUST_WORKS);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startUserIllust(Context context, int userId) {
+        context.startActivity(newUserIllustIntent(context, userId));
+    }
+
+    public static Intent newUserMangaIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_MANGA_WORKS);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startUserManga(Context context, int userId) {
+        context.startActivity(newUserMangaIntent(context, userId));
+    }
+
+    public static Intent newMangaSeriesIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_MANGA_SERIES);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startMangaSeries(Context context, int userId) {
+        context.startActivity(newMangaSeriesIntent(context, userId));
+    }
+
+    public static Intent newUserNovelIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_NOVEL_WORKS);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startUserNovel(Context context, int userId) {
+        context.startActivity(newUserNovelIntent(context, userId));
+    }
+
+    public static Intent newNovelSeriesIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_NOVEL_SERIES);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startNovelSeries(Context context, int userId) {
+        context.startActivity(newNovelSeriesIntent(context, userId));
+    }
+
+    public static Intent newPublicIllustBookmarksIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_PUBLIC_ILLUST_STAR);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startPublicIllustBookmarks(Context context, int userId) {
+        context.startActivity(newPublicIllustBookmarksIntent(context, userId));
+    }
+
+    public static Intent newPublicNovelBookmarksIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_PUBLIC_NOVEL_STAR);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startPublicNovelBookmarks(Context context, int userId) {
+        context.startActivity(newPublicNovelBookmarksIntent(context, userId));
+    }
+
     public static Intent newRecmdMangaIntent(Context context) {
         return createIntent(context, FRAGMENT_RECMD_MANGA);
     }

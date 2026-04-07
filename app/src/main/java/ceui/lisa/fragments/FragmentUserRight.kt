@@ -83,46 +83,25 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
         baseBind.tagLayout.setOnTagClickListener { _, position, _ ->
             when {
                 content[position].contains(getString(R.string.string_246)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "插画作品")
-                    startActivity(intent)
+                    TemplateActivity.startUserIllust(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_233)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "漫画作品")
-                    startActivity(intent)
+                    TemplateActivity.startUserManga(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_230)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "漫画系列作品")
-                    startActivity(intent)
+                    TemplateActivity.startMangaSeries(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_237)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说作品")
-                    startActivity(intent)
+                    TemplateActivity.startUserNovel(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_257)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说系列作品")
-                    startActivity(intent)
+                    TemplateActivity.startNovelSeries(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_164)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "插画/漫画收藏")
-                    startActivity(intent)
+                    TemplateActivity.startPublicIllustBookmarks(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_192)) -> {
-                    val intent = Intent(mContext, TemplateActivity::class.java)
-                    intent.putExtra(Params.USER_ID, data.user.userId)
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "小说收藏")
-                    startActivity(intent)
+                    TemplateActivity.startPublicNovelBookmarks(mContext, data.user.userId)
                 }
                 content[position].contains(getString(R.string.string_436)) -> {
                     TemplateActivity.startRelatedUser(mContext, data.user.userId)
