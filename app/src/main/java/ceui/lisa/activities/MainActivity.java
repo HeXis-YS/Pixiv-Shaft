@@ -181,22 +181,44 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     protected void initData() {
-        if (sUserModel != null && sUserModel.getUser() != null && sUserModel.getUser().isIs_login()) {
-            if (Common.isAndroidQ()) {
-                initFragment();
-//                startActivity(new Intent(this, ListActivity.class));
-            } else {
-                ensureStoragePermission();
-            }
-        } else {
-            TemplateActivity.startLogin(mContext);
-            finish();
+        if (!hasLoggedInUser()) {
+            redirectToLogin();
+            return;
         }
+        continueStartup();
+    }
+
+    private boolean hasLoggedInUser() {
+        return sUserModel != null
+                && sUserModel.getUser() != null
+                && sUserModel.getUser().isIs_login();
+    }
+
+    private void redirectToLogin() {
+        TemplateActivity.startLogin(mContext);
+        finish();
+    }
+
+    private void continueStartup() {
+        if (shouldSkipStoragePermission()) {
+            completeStartup();
+            return;
+        }
+        ensureStoragePermission();
+    }
+
+    private boolean shouldSkipStoragePermission() {
+        return Common.isAndroidQ();
+    }
+
+    private void completeStartup() {
+        initFragment();
+//        startActivity(new Intent(this, ListActivity.class));
     }
 
     private void ensureStoragePermission() {
         if (hasStoragePermission()) {
-            initFragment();
+            completeStartup();
             return;
         }
         requestStoragePermission();
@@ -225,16 +247,20 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private void handleStoragePermissionResult(@NonNull int[] grantResults) {
         if (isPermissionGranted(grantResults)) {
-            initFragment();
+            completeStartup();
             return;
         }
-        Common.showToast(getString(R.string.access_denied));
-        finish();
+        handleStoragePermissionDenied();
     }
 
     private boolean isPermissionGranted(@NonNull int[] grantResults) {
         return grantResults.length > 0
                 && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void handleStoragePermissionDenied() {
+        Common.showToast(getString(R.string.access_denied));
+        finish();
     }
 
     public DrawerLayout getDrawer() {
@@ -381,18 +407,18 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     public void exit() {
-        if (shouldExitImmediately()) {
+        if (shouldFinishOnBackPress()) {
             finish();
             return;
         }
         if (hasPendingDownloadTasks()) {
-            showPendingDownloadExitDialog();
+            showDownloadTaskExitDialog();
             return;
         }
-        promptDoubleTapExit();
+        recordPendingExit();
     }
 
-    private boolean shouldExitImmediately() {
+    private boolean shouldFinishOnBackPress() {
         return (System.currentTimeMillis() - mExitTime) <= 2000;
     }
 
@@ -400,14 +426,14 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         return Manager.get().getContent().size() != 0;
     }
 
-    private void showPendingDownloadExitDialog() {
+    private void showDownloadTaskExitDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(getString(R.string.shaft_hint));
         builder.setMessage(mContext.getString(R.string.you_have_download_plan));
         builder.setPositiveButton(mContext.getString(R.string.sure), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                stopAllTasksAndExit();
+                stopDownloadsAndExit();
             }
         });
         builder.setNegativeButton(mContext.getString(R.string.cancel), null);
@@ -415,7 +441,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         builder.create().show();
     }
 
-    private void stopAllTasksAndExit() {
+    private void stopDownloadsAndExit() {
         Manager.get().stopAll();
         finish();
     }
@@ -424,7 +450,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         TemplateActivity.startDownloadManager(this);
     }
 
-    private void promptDoubleTapExit() {
+    private void recordPendingExit() {
         Common.showToast(getString(R.string.double_click_finish));
         mExitTime = System.currentTimeMillis();
     }
