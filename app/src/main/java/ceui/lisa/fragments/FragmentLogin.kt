@@ -23,7 +23,6 @@ import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity
 import ceui.lisa.models.UserModel
 import ceui.lisa.database.UserEntity
-import ceui.lisa.database.AppDatabase
 import ceui.lisa.activities.MainActivity
 import ceui.lisa.databinding.ActivityLoginBinding
 import ceui.lisa.interfaces.FeedBack
@@ -72,7 +71,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
                     userEntity.loginTime = System.currentTimeMillis()
                     userEntity.userID = exportUser.user.id
                     userEntity.userGson = Shaft.sGson.toJson(Local.getUser())
-                    AppDatabase.downloadDao(mContext).insertUser(userEntity)
+                    PixivOperate.insertUser(userEntity)
                     startActivity(MainActivity.newIntent(mContext, true))
                     mActivity.finish()
                 } else {

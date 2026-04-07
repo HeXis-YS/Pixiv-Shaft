@@ -5,7 +5,6 @@ import android.view.View;
 
 import ceui.lisa.R;
 import ceui.lisa.activities.Shaft;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.UserEntity;
 import ceui.lisa.databinding.FragmentEditAccountBinding;
 import ceui.lisa.http.NullCtrl;
@@ -14,6 +13,7 @@ import ceui.lisa.models.AccountEditResponse;
 import ceui.lisa.models.UserState;
 import ceui.lisa.utils.Common;
 import ceui.lisa.utils.Local;
+import ceui.lisa.utils.PixivOperate;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -311,6 +311,6 @@ public class FragmentEditAccount extends BaseFragment<FragmentEditAccountBinding
         userEntity.setLoginTime(System.currentTimeMillis());
         userEntity.setUserID(sUserModel.getUser().getId());
         userEntity.setUserGson(Shaft.sGson.toJson(sUserModel));
-        AppDatabase.downloadDao(mContext).insertUser(userEntity);
+        PixivOperate.insertUser(userEntity);
     }
 }

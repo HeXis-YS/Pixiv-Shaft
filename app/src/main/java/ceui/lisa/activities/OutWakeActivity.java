@@ -11,7 +11,6 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 import java.util.List;
 
 import ceui.lisa.R;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.UserEntity;
 import ceui.lisa.databinding.ActivityOutWakeBinding;
 import ceui.lisa.feature.PkceUtil;
@@ -212,7 +211,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                         userEntity.setUserID(userModel.getUser().getId());
                                         userEntity.setUserGson(Shaft.sGson.toJson(Local.getUser()));
 
-                                        AppDatabase.downloadDao(mContext).insertUser(userEntity);
+                                        PixivOperate.insertUser(userEntity);
 
                                         // 检测是否打开R18并提示开启，新注册未验证邮箱用户不提示，严格来说只有设置过密码(has_password)才能进设置页，考虑到网页注册只能使用邮箱，故如此限制
                                         if (userModel.getUser().isR18Enabled() || !userModel.getUser().isIs_mail_authorized()) {
