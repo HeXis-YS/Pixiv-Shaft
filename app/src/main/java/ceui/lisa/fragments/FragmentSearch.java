@@ -40,6 +40,9 @@ import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.SearchEntity;
 import ceui.lisa.databinding.FragmentSearchBinding;
 import ceui.lisa.databinding.RecySingleLineTextWithDeleteBinding;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.http.ErrorCtrl;
 import ceui.lisa.http.NullCtrl;
 import ceui.lisa.http.Retro;
@@ -383,11 +386,20 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
      * Load the search history
      * */
     private void loadHistory() {
-        /**
-         * history:Represents the search history
-         * history: size = {x} (x Represents the number of search history)
-         * */
-        List<SearchEntity> history = AppDatabase.searchDao(Shaft.getContext()).getAll(50);
+        RxRun.runOn(new RxRunnable<List<SearchEntity>>() {
+            @Override
+            public List<SearchEntity> execute() {
+                return AppDatabase.searchDao(Shaft.getContext()).getAll(50);
+            }
+        }, new TryCatchObserverImpl<List<SearchEntity>>() {
+            @Override
+            public void next(List<SearchEntity> history) {
+                bindHistory(history);
+            }
+        });
+    }
+
+    private void bindHistory(List<SearchEntity> history) {
         baseBind.searchHistory.setAdapter(new TagAdapter<SearchEntity>(history) {
             @Override
             public View getView(FlowLayout parent, int position, SearchEntity searchEntity) {
