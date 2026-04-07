@@ -556,24 +556,36 @@ public class PixivOperate {
         if (TextUtils.isEmpty(key)) {
             return;
         }
-        SearchEntity searchEntity = new SearchEntity();
-        searchEntity.setKeyword(key);
-        searchEntity.setSearchType(searchType);
-        searchEntity.setSearchTime(System.currentTimeMillis());
-        searchEntity.setId(searchEntity.getKeyword().hashCode() + searchEntity.getSearchType());
-        Common.showLog("insertSearchHistory " + searchType + " " + searchEntity.getId());
-        //If the search history already exists,set it as pinned
-        SearchEntity existEntity = AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(searchEntity.getId());
-        if (existEntity != null) {
-            searchEntity.setPinned(existEntity.isPinned());
-        }
-        AppDatabase.searchDao(Shaft.getContext()).insert(searchEntity);
+        final SearchEntity searchEntity = createSearchEntity(key, searchType, false);
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                writeSearchHistory(searchEntity, true);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     public static void insertPinnedSearchHistory(String key, int searchType, boolean pinned) {
         if (TextUtils.isEmpty(key)) {
             return;
         }
+        final SearchEntity searchEntity = createSearchEntity(key, searchType, pinned);
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                writeSearchHistory(searchEntity, false);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
+    }
+
+    public static SearchEntity getSearchHistory(String key, int searchType) {
+        int id = key.hashCode() + searchType;
+        return AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(id);
+    }
+
+    private static SearchEntity createSearchEntity(String key, int searchType, boolean pinned) {
         SearchEntity searchEntity = new SearchEntity();
         searchEntity.setKeyword(key);
         searchEntity.setSearchType(searchType);
@@ -581,13 +593,17 @@ public class PixivOperate {
         searchEntity.setId(searchEntity.getKeyword().hashCode() + searchEntity.getSearchType());
         searchEntity.setPinned(pinned);
         Common.showLog("insertSearchHistory " + searchType + " " + searchEntity.getId());
-        SearchEntity existEntity = AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(searchEntity.getId());
-        AppDatabase.searchDao(Shaft.getContext()).insert(searchEntity);
+        return searchEntity;
     }
 
-    public static SearchEntity getSearchHistory(String key, int searchType) {
-        int id = key.hashCode() + searchType;
-        return AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(id);
+    private static void writeSearchHistory(SearchEntity searchEntity, boolean preservePinnedState) {
+        if (preservePinnedState) {
+            SearchEntity existEntity = AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(searchEntity.getId());
+            if (existEntity != null) {
+                searchEntity.setPinned(existEntity.isPinned());
+            }
+        }
+        AppDatabase.searchDao(Shaft.getContext()).insert(searchEntity);
     }
 
     //筛选作品，只留下未收藏的作品
