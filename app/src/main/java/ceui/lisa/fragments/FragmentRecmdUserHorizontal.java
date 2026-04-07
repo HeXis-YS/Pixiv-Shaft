@@ -88,7 +88,7 @@ public class FragmentRecmdUserHorizontal extends NetListFragment<FragmentUserHor
         RxRun.runOn(new RxRunnable<List<IllustsBean>>() {
             @Override
             public List<IllustsBean> execute() throws Exception {
-                List<IllustRecmdEntity> entities = AppDatabase.getAppDatabase(mContext).recmdDao().getAll();
+                List<IllustRecmdEntity> entities = AppDatabase.recmdDao(mContext).getAll();
                 Thread.sleep(100);
                 List<IllustsBean> temp = new ArrayList<>();
                 for (int i = 0; i < entities.size(); i++) {

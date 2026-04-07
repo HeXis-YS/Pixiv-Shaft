@@ -159,7 +159,7 @@ public class FragmentRight extends NetListFragment<FragmentNewRightBinding, List
             @Override
             public List<IllustsBean> execute() throws Exception {
                 Thread.sleep(100);
-                List<IllustRecmdEntity> entities = AppDatabase.getAppDatabase(mContext).recmdDao().getAll();
+                List<IllustRecmdEntity> entities = AppDatabase.recmdDao(mContext).getAll();
                 List<IllustsBean> temp = new ArrayList<>();
                 for (int i = 0; i < entities.size(); i++) {
                     IllustsBean illustsBean = Shaft.sGson.fromJson(

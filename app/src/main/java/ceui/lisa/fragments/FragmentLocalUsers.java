@@ -64,8 +64,7 @@ public class FragmentLocalUsers extends BaseFragment<FragmentLocalUserBinding> {
         RxRun.runOn(new RxRunnable<List<UserModel>>() {
             @Override
             public List<UserModel> execute() {
-                List<UserEntity> temp = AppDatabase.getAppDatabase(mContext)
-                        .downloadDao().getAllUser();
+                List<UserEntity> temp = AppDatabase.downloadDao(mContext).getAllUser();
                 allItems = new ArrayList<>();
                 for (int i = 0; i < temp.size(); i++) {
                     allItems.add(Shaft.sGson.fromJson(temp.get(i).getUserGson(), UserModel.class));

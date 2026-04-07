@@ -48,8 +48,7 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
                         getString(R.string.string_141),
                         QMUIDialogAction.ACTION_PROP_NEGATIVE
                     ) { dialog, _ ->
-                        AppDatabase.getAppDatabase(mContext).downloadDao()
-                            .deleteFeature(allItems[position])
+                        AppDatabase.downloadDao(mContext).deleteFeature(allItems[position])
                         Common.showToast(getString(R.string.string_220))
                         dialog.dismiss()
                         allItems.removeAt(position)
@@ -81,7 +80,7 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
                             getString(R.string.string_141),
                             QMUIDialogAction.ACTION_PROP_NEGATIVE
                         ) { dialog, _ ->
-                            AppDatabase.getAppDatabase(mContext).downloadDao().deleteAllFeature()
+                            AppDatabase.downloadDao(mContext).deleteAllFeature()
                             Common.showToast(getString(R.string.string_220))
                             dialog.dismiss()
                             mAdapter.clear()
@@ -98,15 +97,11 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
     override fun repository(): BaseRepo {
         return object : LocalRepo<List<FeatureEntity>>() {
             override fun first(): List<FeatureEntity> {
-                return AppDatabase.getAppDatabase(mContext)
-                    .downloadDao()
-                    .getFeatureList(PAGE_SIZE, 0)
+                return AppDatabase.downloadDao(mContext).getFeatureList(PAGE_SIZE, 0)
             }
 
             override fun next(): List<FeatureEntity>? {
-                return AppDatabase.getAppDatabase(mContext)
-                    .downloadDao()
-                    .getFeatureList(PAGE_SIZE, allItems.size)
+                return AppDatabase.downloadDao(mContext).getFeatureList(PAGE_SIZE, allItems.size)
             }
         }
     }
