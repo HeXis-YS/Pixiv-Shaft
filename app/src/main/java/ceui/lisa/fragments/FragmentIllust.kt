@@ -331,27 +331,30 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         }
         baseBind.illustTag.setOnTagLongClickListener { view, position, parent -> // 弹出菜单：固定+复制
             val tagName = illust.tags[position].name
-            val searchEntity =
-                PixivOperate.getSearchHistory(tagName, SearchTypeUtil.SEARCH_TYPE_DB_KEYWORD)
-            val isPinned = searchEntity != null && searchEntity.isPinned
-            MessageDialogBuilder(mContext)
-                .setTitle(tagName)
-                .setSkinManager(QMUISkinManager.defaultInstance(mContext))
-                .addAction(if (isPinned) getString(R.string.string_443) else getString(R.string.string_442)) { dialog, index ->
-                    PixivOperate.insertPinnedSearchHistory(
-                        tagName,
-                        SearchTypeUtil.SEARCH_TYPE_DB_KEYWORD,
-                        !isPinned
-                    )
-                    Common.showToast(R.string.operate_success)
-                    dialog.dismiss()
+            viewLifecycleOwner.lifecycleScope.launch {
+                val isPinned = withContext(Dispatchers.IO) {
+                    PixivOperate.getSearchHistory(tagName, SearchTypeUtil.SEARCH_TYPE_DB_KEYWORD)
+                        ?.isPinned == true
                 }
-                .addAction(getString(R.string.string_120)) { dialog, index ->
-                    Common.copy(mContext, tagName)
-                    dialog.dismiss()
-                }
-                .create()
-                .show()
+                MessageDialogBuilder(mContext)
+                    .setTitle(tagName)
+                    .setSkinManager(QMUISkinManager.defaultInstance(mContext))
+                    .addAction(if (isPinned) getString(R.string.string_443) else getString(R.string.string_442)) { dialog, index ->
+                        PixivOperate.insertPinnedSearchHistory(
+                            tagName,
+                            SearchTypeUtil.SEARCH_TYPE_DB_KEYWORD,
+                            !isPinned
+                        )
+                        Common.showToast(R.string.operate_success)
+                        dialog.dismiss()
+                    }
+                    .addAction(getString(R.string.string_120)) { dialog, index ->
+                        Common.copy(mContext, tagName)
+                        dialog.dismiss()
+                    }
+                    .create()
+                    .show()
+            }
             true
         }
         baseBind.illustSize.text = getString(R.string.string_193, illust.width, illust.height)

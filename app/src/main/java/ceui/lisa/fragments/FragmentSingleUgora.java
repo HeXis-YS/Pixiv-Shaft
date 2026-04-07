@@ -45,6 +45,9 @@ import ceui.lisa.activities.UActivity;
 import ceui.lisa.cache.Cache;
 import ceui.lisa.core.DownloadItem;
 import ceui.lisa.core.Manager;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.SearchEntity;
 import ceui.lisa.databinding.FragmentUgoraBinding;
 import ceui.lisa.dialogs.MuteDialog;
@@ -495,28 +498,37 @@ public class FragmentSingleUgora extends BaseFragment<FragmentUgoraBinding> {
             public boolean onTagLongClick(View view, int position, FlowLayout parent) {
                 // 弹出菜单：固定+复制
                 String tagName = illust.getTags().get(position).getName();
-                SearchEntity searchEntity = PixivOperate.getSearchHistory(tagName, SEARCH_TYPE_DB_KEYWORD);
-                boolean isPinned = searchEntity != null && searchEntity.isPinned();
-                new QMUIDialog.MessageDialogBuilder(mContext)
-                        .setTitle(tagName)
-                        .setSkinManager(QMUISkinManager.defaultInstance(mContext))
-                        .addAction(isPinned ? getString(R.string.string_443) : getString(R.string.string_442), new QMUIDialogAction.ActionListener() {
-                            @Override
-                            public void onClick(QMUIDialog dialog, int index) {
-                                PixivOperate.insertPinnedSearchHistory(tagName, SEARCH_TYPE_DB_KEYWORD, !isPinned);
-                                Common.showToast(R.string.operate_success);
-                                dialog.dismiss();
-                            }
-                        })
-                        .addAction(getString(R.string.string_120), new QMUIDialogAction.ActionListener() {
-                            @Override
-                            public void onClick(QMUIDialog dialog, int index) {
-                                Common.copy(mContext, tagName);
-                                dialog.dismiss();
-                            }
-                        })
-                        .create()
-                        .show();
+                RxRun.runOn(new RxRunnable<SearchEntity>() {
+                    @Override
+                    public SearchEntity execute() {
+                        return PixivOperate.getSearchHistory(tagName, SEARCH_TYPE_DB_KEYWORD);
+                    }
+                }, new TryCatchObserverImpl<SearchEntity>() {
+                    @Override
+                    public void next(SearchEntity searchEntity) {
+                        boolean isPinned = searchEntity != null && searchEntity.isPinned();
+                        new QMUIDialog.MessageDialogBuilder(mContext)
+                                .setTitle(tagName)
+                                .setSkinManager(QMUISkinManager.defaultInstance(mContext))
+                                .addAction(isPinned ? getString(R.string.string_443) : getString(R.string.string_442), new QMUIDialogAction.ActionListener() {
+                                    @Override
+                                    public void onClick(QMUIDialog dialog, int index) {
+                                        PixivOperate.insertPinnedSearchHistory(tagName, SEARCH_TYPE_DB_KEYWORD, !isPinned);
+                                        Common.showToast(R.string.operate_success);
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .addAction(getString(R.string.string_120), new QMUIDialogAction.ActionListener() {
+                                    @Override
+                                    public void onClick(QMUIDialog dialog, int index) {
+                                        Common.copy(mContext, tagName);
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .create()
+                                .show();
+                    }
+                });
                 return true;
             }
         });
