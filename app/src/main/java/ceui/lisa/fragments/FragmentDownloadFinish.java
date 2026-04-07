@@ -36,6 +36,11 @@ public class FragmentDownloadFinish extends LocalListFragment<FragmentBaseListBi
     private DownloadReceiver<?> mReceiver;
 
     @Override
+    public boolean shouldLoadLocalDataAsync() {
+        return true;
+    }
+
+    @Override
     public BaseAdapter<DownloadEntity, RecyDownloadedBinding> adapter() {
         return new DownloadedAdapter(allItems, mContext).setOnItemClickListener(new OnItemClickListener() {
             @Override

@@ -27,6 +27,11 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
         implements Toolbar.OnMenuItemClickListener {
 
     @Override
+    public boolean shouldLoadLocalDataAsync() {
+        return true;
+    }
+
+    @Override
     public LocalRepo<List<UserBean>> repository() {
         return new LocalRepo<List<UserBean>>() {
             @Override

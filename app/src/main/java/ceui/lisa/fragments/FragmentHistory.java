@@ -39,6 +39,11 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
         IllustHistoryEntity> {
 
     @Override
+    public boolean shouldLoadLocalDataAsync() {
+        return true;
+    }
+
+    @Override
     public BaseAdapter<IllustHistoryEntity, RecyViewHistoryBinding> adapter() {
         return new HistoryAdapter(allItems, mContext).setOnItemClickListener(new OnItemClickListener() {
             @Override

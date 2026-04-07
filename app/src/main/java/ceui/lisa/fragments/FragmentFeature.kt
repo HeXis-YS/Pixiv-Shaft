@@ -27,6 +27,8 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
 
 class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity>() {
 
+    override fun shouldLoadLocalDataAsync(): Boolean = true
+
     override fun adapter(): BaseAdapter<*, out ViewDataBinding> {
         return FeatureAdapter(allItems, mContext).setOnItemClickListener { _, position, viewType ->
             if (viewType == 0) {

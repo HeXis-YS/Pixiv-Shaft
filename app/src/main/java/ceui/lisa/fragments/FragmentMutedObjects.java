@@ -27,6 +27,11 @@ public class FragmentMutedObjects extends LocalListFragment<FragmentBaseListBind
         implements Toolbar.OnMenuItemClickListener {
 
     @Override
+    public boolean shouldLoadLocalDataAsync() {
+        return true;
+    }
+
+    @Override
     public LocalRepo<List<MuteEntity>> repository() {
         return new LocalRepo<List<MuteEntity>>() {
             @Override

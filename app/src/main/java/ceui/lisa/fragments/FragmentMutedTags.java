@@ -31,6 +31,11 @@ public class FragmentMutedTags extends LocalListFragment<FragmentBaseListBinding
         TagsBean> implements Toolbar.OnMenuItemClickListener {
 
     @Override
+    public boolean shouldLoadLocalDataAsync() {
+        return true;
+    }
+
+    @Override
     public LocalRepo<List<TagsBean>> repository() {
         return new LocalRepo<List<TagsBean>>() {
             @Override
