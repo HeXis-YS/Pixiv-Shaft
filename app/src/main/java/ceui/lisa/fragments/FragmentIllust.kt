@@ -98,7 +98,9 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                             viewLifecycleOwner.lifecycleScope.launch {
                                 it.showProgress()
                                 delay(600L)
-                                dao.deleteMuteEntity(illustEntity)
+                                withContext(Dispatchers.IO) {
+                                    dao.deleteMuteEntity(illustEntity)
+                                }
                                 IllustNovelFilter.invalidateMutedWorks()
                                 it.hideProgress()
                             }
@@ -109,7 +111,9 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                             viewLifecycleOwner.lifecycleScope.launch {
                                 it.showProgress()
                                 delay(600L)
-                                dao.deleteMuteEntity(userEntity)
+                                withContext(Dispatchers.IO) {
+                                    dao.deleteMuteEntity(userEntity)
+                                }
                                 IllustNovelFilter.invalidateMutedUsers()
                                 it.hideProgress()
                             }
