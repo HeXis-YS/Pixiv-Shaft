@@ -534,8 +534,7 @@ public class PixivOperate {
             illustHistoryEntity.setIllustID(illust.getId());
             illustHistoryEntity.setIllustJson(Shaft.sGson.toJson(illust));
             illustHistoryEntity.setTime(System.currentTimeMillis());
-            Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
-            AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
+            insertViewHistory(illustHistoryEntity);
         }
     }
 
@@ -550,9 +549,19 @@ public class PixivOperate {
             illustHistoryEntity.setType(1);
             illustHistoryEntity.setIllustJson(Shaft.sGson.toJson(novelBean));
             illustHistoryEntity.setTime(System.currentTimeMillis());
-            Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
-            AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
+            insertViewHistory(illustHistoryEntity);
         }
+    }
+
+    private static void insertViewHistory(final IllustHistoryEntity illustHistoryEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
+                AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     /**
