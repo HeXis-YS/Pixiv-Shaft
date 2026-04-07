@@ -12,12 +12,8 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ceui.lisa.R
 import kotlin.math.roundToInt
 
-interface Progressable {
-    var isProgressing: Boolean
-}
-
 class ProgressImageButton(context: Context, attrs: AttributeSet?, defStyle: Int) :
-    androidx.appcompat.widget.AppCompatImageButton(context, attrs, defStyle), Progressable {
+    androidx.appcompat.widget.AppCompatImageButton(context, attrs, defStyle) {
 
     data class OriginalState(
         val drawable: Drawable?,
@@ -28,7 +24,7 @@ class ProgressImageButton(context: Context, attrs: AttributeSet?, defStyle: Int)
 
     var preferSize: Int? = null
 
-    override var isProgressing: Boolean = false
+    var isProgressing: Boolean = false
         set(value) {
             if (value == field) {
                 return
@@ -93,8 +89,7 @@ class ProgressImageButton(context: Context, attrs: AttributeSet?, defStyle: Int)
 }
 
 class ProgressTextButton(context: Context, attrs: AttributeSet?, defStyle: Int) :
-    androidx.appcompat.widget.AppCompatButton(context, attrs, defStyle), Drawable.Callback,
-    Progressable {
+    androidx.appcompat.widget.AppCompatButton(context, attrs, defStyle), Drawable.Callback {
 
     data class OriginalState(
         val padding: Rect,
@@ -105,7 +100,7 @@ class ProgressTextButton(context: Context, attrs: AttributeSet?, defStyle: Int) 
 
     private var originalState: OriginalState? = null
 
-    override var isProgressing: Boolean = false
+    var isProgressing: Boolean = false
         set(value) {
             if (value == field) {
                 return
