@@ -19,6 +19,9 @@ import ceui.lisa.R;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.MutedTagAdapter;
 import ceui.lisa.core.LocalRepo;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.databinding.FragmentBaseListBinding;
 import ceui.lisa.helper.IllustNovelFilter;
@@ -122,7 +125,7 @@ public class FragmentMutedTags extends LocalListFragment<FragmentBaseListBinding
                         .addAction(0, getString(R.string.string_219), QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
-                                AppDatabase.searchDao(mContext).deleteAllMutedTags();
+                                deleteAllMutedTags();
                                 IllustNovelFilter.invalidateMutedTags();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
@@ -173,5 +176,15 @@ public class FragmentMutedTags extends LocalListFragment<FragmentBaseListBinding
                     .show();
         }
         return true;
+    }
+
+    private void deleteAllMutedTags() {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.searchDao(mContext).deleteAllMutedTags();
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 }

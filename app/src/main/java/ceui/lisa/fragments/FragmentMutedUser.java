@@ -16,6 +16,9 @@ import ceui.lisa.activities.Shaft;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.SimpleUserAdapter;
 import ceui.lisa.core.LocalRepo;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.MuteEntity;
 import ceui.lisa.databinding.FragmentBaseListBinding;
@@ -97,7 +100,7 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
                         .addAction(0, getString(R.string.string_219), QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
-                                AppDatabase.searchDao(mContext).deleteAllMutedUsers();
+                                deleteAllMutedUsers();
                                 IllustNovelFilter.invalidateMutedUsers();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
@@ -110,5 +113,15 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
             }
         }
         return true;
+    }
+
+    private void deleteAllMutedUsers() {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.searchDao(mContext).deleteAllMutedUsers();
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 }
