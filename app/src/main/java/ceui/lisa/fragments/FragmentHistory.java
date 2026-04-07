@@ -22,6 +22,9 @@ import ceui.lisa.core.BaseRepo;
 import ceui.lisa.core.Container;
 import ceui.lisa.core.LocalRepo;
 import ceui.lisa.core.PageData;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.IllustHistoryEntity;
 import ceui.lisa.databinding.FragmentBaseListBinding;
@@ -88,7 +91,7 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
                                     new QMUIDialogAction.ActionListener() {
                                         @Override
                                         public void onClick(QMUIDialog dialog, int index) {
-                                            AppDatabase.downloadDao(mContext).delete(allItems.get(position));
+                                            deleteHistoryEntity(allItems.get(position));
                                             allItems.remove(position);
                                             mAdapter.notifyItemRemoved(position);
                                             mAdapter.notifyItemRangeChanged(position, allItems.size() - position);
@@ -104,6 +107,16 @@ public class FragmentHistory extends LocalListFragment<FragmentBaseListBinding,
                 }
             }
         });
+    }
+
+    private void deleteHistoryEntity(final IllustHistoryEntity historyEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.downloadDao(mContext).delete(historyEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     @Override
