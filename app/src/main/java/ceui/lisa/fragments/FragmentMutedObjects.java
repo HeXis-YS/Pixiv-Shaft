@@ -15,6 +15,9 @@ import ceui.lisa.R;
 import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.MuteWorksAdapter;
 import ceui.lisa.core.LocalRepo;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.MuteEntity;
 import ceui.lisa.databinding.FragmentBaseListBinding;
@@ -66,7 +69,7 @@ public class FragmentMutedObjects extends LocalListFragment<FragmentBaseListBind
                                     new QMUIDialogAction.ActionListener() {
                                         @Override
                                         public void onClick(QMUIDialog dialog, int index) {
-                                            AppDatabase.searchDao(mContext).deleteMuteEntity(allItems.get(position));
+                                            deleteMuteEntity(allItems.get(position));
                                             IllustNovelFilter.invalidateMutedWorks();
                                             allItems.remove(position);
                                             mAdapter.notifyItemRemoved(position);
@@ -83,6 +86,16 @@ public class FragmentMutedObjects extends LocalListFragment<FragmentBaseListBind
                 }
             }
         });
+    }
+
+    private void deleteMuteEntity(final MuteEntity muteEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.searchDao(mContext).deleteMuteEntity(muteEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     @Override
