@@ -25,7 +25,7 @@ public class IllustNovelFilter {
     }
 
     public static boolean judgeID(IllustsBean illust) {
-        List<MuteEntity> temp = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getMutedIllusts();
+        List<MuteEntity> temp = AppDatabase.searchDao(Shaft.getContext()).getMutedIllusts();
         boolean isBanned = false;
         if (!Common.isEmpty(temp)) {
             for (MuteEntity muteEntity : temp) {
@@ -39,7 +39,7 @@ public class IllustNovelFilter {
     }
 
     public static boolean judgeID(NovelBean illust) {
-        List<MuteEntity> temp = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getMutedIllusts();
+        List<MuteEntity> temp = AppDatabase.searchDao(Shaft.getContext()).getMutedIllusts();
         boolean isBanned = false;
         if (!Common.isEmpty(temp)) {
             for (MuteEntity muteEntity : temp) {
@@ -53,15 +53,13 @@ public class IllustNovelFilter {
     }
 
     public static boolean judgeUserID(IllustsBean illust) {
-        MuteEntity temp = AppDatabase.getAppDatabase(Shaft.getContext())
-                .searchDao()
+        MuteEntity temp = AppDatabase.searchDao(Shaft.getContext())
                 .getUserMuteEntityByID(illust.getUser().getUserId());
         return temp != null;
     }
 
     public static boolean judgeUserID(NovelBean illust) {
-        MuteEntity temp = AppDatabase.getAppDatabase(Shaft.getContext())
-                .searchDao()
+        MuteEntity temp = AppDatabase.searchDao(Shaft.getContext())
                 .getUserMuteEntityByID(illust.getUser().getUserId());
         return temp != null;
     }
@@ -132,7 +130,7 @@ public class IllustNovelFilter {
 
     public static List<TagsBean> getMutedTags() {
         List<TagsBean> result = new ArrayList<>();
-        List<MuteEntity> muteEntities = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getAllMutedTags();
+        List<MuteEntity> muteEntities = AppDatabase.searchDao(Shaft.getContext()).getAllMutedTags();
         if (muteEntities == null || muteEntities.size() == 0) {
             return result;
         }
@@ -144,6 +142,6 @@ public class IllustNovelFilter {
     }
 
     public static List<MuteEntity> getMutedWorks() {
-        return AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getMutedWorks();
+        return AppDatabase.searchDao(Shaft.getContext()).getMutedWorks();
     }
 }

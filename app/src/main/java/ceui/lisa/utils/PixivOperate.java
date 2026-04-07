@@ -416,7 +416,7 @@ public class PixivOperate {
         muteEntity.setId(tagName.hashCode());
         muteEntity.setTagJson(Shaft.sGson.toJson(tagsBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
     }
 
     public static void updateTag(TagsBean tagsBean) {
@@ -431,7 +431,7 @@ public class PixivOperate {
         } else {
             Shaft.getContext().getResources().getString(R.string.string_357);
         }
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().updateMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).updateMuteTag(muteEntity);
     }
 
     public static void muteUser(UserBean userBean) {
@@ -440,7 +440,7 @@ public class PixivOperate {
         muteEntity.setId(userBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_382));
     }
 
@@ -450,7 +450,7 @@ public class PixivOperate {
         muteEntity.setId(userBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().unMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).unMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_383));
     }
 
@@ -460,7 +460,7 @@ public class PixivOperate {
         muteEntity.setId(userBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_382));
     }
 
@@ -470,7 +470,7 @@ public class PixivOperate {
         muteEntity.setId(userBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().unMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).unMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_383));
     }
 
@@ -480,7 +480,7 @@ public class PixivOperate {
         muteEntity.setId(illust.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(illust));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_384));
     }
 
@@ -490,7 +490,7 @@ public class PixivOperate {
         muteEntity.setId(novelBean.getId());
         muteEntity.setTagJson(Shaft.sGson.toJson(novelBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insertMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_384));
     }
 
@@ -511,7 +511,7 @@ public class PixivOperate {
         muteEntity.setId(tagName.hashCode());
         muteEntity.setTagJson(Shaft.sGson.toJson(tagsBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().unMuteTag(muteEntity);
+        AppDatabase.searchDao(Shaft.getContext()).unMuteTag(muteEntity);
         Common.showToast(Shaft.getContext().getString(R.string.string_135));
     }
 
@@ -527,7 +527,7 @@ public class PixivOperate {
             illustHistoryEntity.setIllustJson(Shaft.sGson.toJson(illust));
             illustHistoryEntity.setTime(System.currentTimeMillis());
             Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
-            AppDatabase.getAppDatabase(Shaft.getContext()).downloadDao().insert(illustHistoryEntity);
+            AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
         }
     }
 
@@ -543,7 +543,7 @@ public class PixivOperate {
             illustHistoryEntity.setIllustJson(Shaft.sGson.toJson(novelBean));
             illustHistoryEntity.setTime(System.currentTimeMillis());
             Common.showLog("插入了 " + illustHistoryEntity.getIllustID() + " time " + illustHistoryEntity.getTime());
-            AppDatabase.getAppDatabase(Shaft.getContext()).downloadDao().insert(illustHistoryEntity);
+            AppDatabase.downloadDao(Shaft.getContext()).insert(illustHistoryEntity);
         }
     }
 
@@ -563,11 +563,11 @@ public class PixivOperate {
         searchEntity.setId(searchEntity.getKeyword().hashCode() + searchEntity.getSearchType());
         Common.showLog("insertSearchHistory " + searchType + " " + searchEntity.getId());
         //If the search history already exists,set it as pinned
-        SearchEntity existEntity = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getSearchEntity(searchEntity.getId());
+        SearchEntity existEntity = AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(searchEntity.getId());
         if (existEntity != null) {
             searchEntity.setPinned(existEntity.isPinned());
         }
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insert(searchEntity);
+        AppDatabase.searchDao(Shaft.getContext()).insert(searchEntity);
     }
 
     public static void insertPinnedSearchHistory(String key, int searchType, boolean pinned) {
@@ -581,13 +581,13 @@ public class PixivOperate {
         searchEntity.setId(searchEntity.getKeyword().hashCode() + searchEntity.getSearchType());
         searchEntity.setPinned(pinned);
         Common.showLog("insertSearchHistory " + searchType + " " + searchEntity.getId());
-        SearchEntity existEntity = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getSearchEntity(searchEntity.getId());
-        AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().insert(searchEntity);
+        SearchEntity existEntity = AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(searchEntity.getId());
+        AppDatabase.searchDao(Shaft.getContext()).insert(searchEntity);
     }
 
     public static SearchEntity getSearchHistory(String key, int searchType) {
         int id = key.hashCode() + searchType;
-        return AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getSearchEntity(id);
+        return AppDatabase.searchDao(Shaft.getContext()).getSearchEntity(id);
     }
 
     //筛选作品，只留下未收藏的作品

@@ -387,7 +387,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
          * history:Represents the search history
          * history: size = {x} (x Represents the number of search history)
          * */
-        List<SearchEntity> history = AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().getAll(50);
+        List<SearchEntity> history = AppDatabase.searchDao(Shaft.getContext()).getAll(50);
         baseBind.searchHistory.setAdapter(new TagAdapter<SearchEntity>(history) {
             @Override
             public View getView(FlowLayout parent, int position, SearchEntity searchEntity) {
@@ -405,7 +405,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                 binding.deleteItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppDatabase.getAppDatabase(mContext).searchDao().deleteSearchEntity(searchEntity);
+                        AppDatabase.searchDao(mContext).deleteSearchEntity(searchEntity);
                         Common.showToast("删除成功");
                         loadHistory();
                     }
@@ -431,7 +431,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                             .addAction(0, getString(R.string.string_141), QMUIDialogAction.ACTION_PROP_NEGATIVE, new QMUIDialogAction.ActionListener() {
                                 @Override
                                 public void onClick(QMUIDialog dialog, int index) {
-                                    AppDatabase.getAppDatabase(Shaft.getContext()).searchDao().deleteAllUnpinned();
+                                    AppDatabase.searchDao(Shaft.getContext()).deleteAllUnpinned();
                                     Common.showToast(getString(R.string.string_140));
                                     dialog.dismiss();
                                     onResume();
@@ -454,7 +454,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_ILLUSTSID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).searchDao().insert(history.get(position));
+                    AppDatabase.searchDao(mContext).insert(history.get(position));
                     PixivOperate.getIllustByID(sUserModel, tryParseId(history.get(position).getKeyword()), mContext);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_USERKEYWORD) {
                     baseBind.hintList.setVisibility(View.INVISIBLE);
@@ -464,17 +464,17 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_USERID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).searchDao().insert(history.get(position));
+                    AppDatabase.searchDao(mContext).insert(history.get(position));
                     Intent intent = new Intent(mContext, UActivity.class);
                     intent.putExtra(Params.USER_ID, Integer.valueOf(history.get(position).getKeyword()));
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_NOVELID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).searchDao().insert(history.get(position));
+                    AppDatabase.searchDao(mContext).insert(history.get(position));
                     PixivOperate.getNovelByID(sUserModel, tryParseId(history.get(position).getKeyword()), mContext, null);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_URL) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).searchDao().insert(history.get(position));
+                    AppDatabase.searchDao(mContext).insert(history.get(position));
                     Intent intent = new Intent(mContext, OutWakeActivity.class);
                     intent.setData(Uri.parse(history.get(position).getKeyword()));
                     startActivity(intent);
@@ -500,7 +500,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 searchEntity.setPinned(!searchEntity.isPinned());
-                                AppDatabase.getAppDatabase(mContext).searchDao().insert(searchEntity);
+                                AppDatabase.searchDao(mContext).insert(searchEntity);
                                 baseBind.searchHistory.getAdapter().notifyDataChanged();
                                 dialog.dismiss();
                             }
