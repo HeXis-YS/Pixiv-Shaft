@@ -72,10 +72,7 @@ public class FragmentPivisionHorizontal extends NetListFragment<FragmentPivision
     public void initView() {
         super.initView();
         baseBind.seeMore.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra("hideStatusBar", false);
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "特辑");
-            startActivity(intent);
+            TemplateActivity.startPv(mContext);
         });
     }
 

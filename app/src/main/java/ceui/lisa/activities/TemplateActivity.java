@@ -198,6 +198,30 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newLocalUsersIntent(context));
     }
 
+    public static Intent newBindEmailIntent(Context context) {
+        return createIntent(context, FRAGMENT_BIND_EMAIL);
+    }
+
+    public static void startBindEmail(Context context) {
+        context.startActivity(newBindEmailIntent(context));
+    }
+
+    public static Intent newThemeColorsIntent(Context context) {
+        return createIntent(context, FRAGMENT_THEME);
+    }
+
+    public static void startThemeColors(Context context) {
+        context.startActivity(newThemeColorsIntent(context));
+    }
+
+    public static Intent newFileNameSettingsIntent(Context context) {
+        return createIntent(context, FRAGMENT_FILENAME);
+    }
+
+    public static void startFileNameSettings(Context context) {
+        context.startActivity(newFileNameSettingsIntent(context));
+    }
+
     public static Intent newLatestIntent(Context context) {
         return createIntent(context, FRAGMENT_LATEST, false);
     }
@@ -244,6 +268,38 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
 
     public static void startMyFollowing(Context context) {
         context.startActivity(newMyFollowingIntent(context));
+    }
+
+    public static Intent newRecmdMangaIntent(Context context) {
+        return createIntent(context, FRAGMENT_RECMD_MANGA);
+    }
+
+    public static void startRecmdManga(Context context) {
+        context.startActivity(newRecmdMangaIntent(context));
+    }
+
+    public static Intent newRecmdNovelIntent(Context context) {
+        return createIntent(context, FRAGMENT_RECMD_NOVEL, false);
+    }
+
+    public static void startRecmdNovel(Context context) {
+        context.startActivity(newRecmdNovelIntent(context));
+    }
+
+    public static Intent newNewNovelsIntent(Context context) {
+        return createIntent(context, FRAGMENT_NEW_NOVELS);
+    }
+
+    public static void startNewNovels(Context context) {
+        context.startActivity(newNewNovelsIntent(context));
+    }
+
+    public static Intent newPvIntent(Context context) {
+        return createIntent(context, FRAGMENT_PV, false);
+    }
+
+    public static void startPv(Context context) {
+        context.startActivity(newPvIntent(context));
     }
 
     public static Intent newRelatedUserIntent(Context context, int userId) {

@@ -83,9 +83,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             baseBind.editAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "绑定邮箱");
-                    startActivity(intent);
+                    TemplateActivity.startBindEmail(mContext);
                 }
             });
 
@@ -395,9 +393,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             baseBind.colorSelectRela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "主题颜色");
-                    startActivity(intent);
+                    TemplateActivity.startThemeColors(mContext);
                 }
             });
 
@@ -551,9 +547,7 @@ public class FragmentSettings extends SwipeFragment<FragmentSettingsBinding> {
             baseBind.fileNameRela.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "修改命名方式");
-                    startActivity(intent);
+                    TemplateActivity.startFileNameSettings(mContext);
                 }
             });
 

@@ -228,9 +228,7 @@ public class FragmentComment extends NetListFragment<FragmentCommentBinding,
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setMessage(R.string.string_158);
                 builder.setPositiveButton(R.string.string_159, (dialog, which) -> {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "绑定邮箱");
-                    startActivity(intent);
+                    TemplateActivity.startBindEmail(mContext);
                 });
                 builder.setNegativeButton(R.string.string_160, null);
                 AlertDialog alertDialog = builder.create();

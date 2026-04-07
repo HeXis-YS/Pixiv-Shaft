@@ -60,27 +60,20 @@ public class FragmentCenter extends SwipeFragment<FragmentNewCenterBinding> {
         baseBind.manga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "推荐漫画");
-                startActivity(intent);
+                TemplateActivity.startRecmdManga(mContext);
             }
         });
         baseBind.novel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "推荐小说");
-                intent.putExtra("hideStatusBar", false);
-                startActivity(intent);
+                TemplateActivity.startRecmdNovel(mContext);
             }
         });
 
         baseBind.followNovels.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, "关注者的小说");
-                startActivity(intent);
+                TemplateActivity.startNewNovels(mContext);
             }
         });
     }
