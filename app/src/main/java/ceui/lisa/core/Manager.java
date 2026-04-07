@@ -51,22 +51,47 @@ public class Manager {
     }
 
     public void restore() {
+        applyRestoredItems(loadRestoredItems());
+    }
+
+    public void restoreAsync() {
+        RxRun.runOn(new RxRunnable<List<DownloadItem>>() {
+            @Override
+            public List<DownloadItem> execute() {
+                return loadRestoredItems();
+            }
+        }, new TryCatchObserverImpl<List<DownloadItem>>() {
+            @Override
+            public void next(List<DownloadItem> items) {
+                applyRestoredItems(items);
+            }
+        });
+    }
+
+    private List<DownloadItem> loadRestoredItems() {
         List<DownloadingEntity> downloadingEntities = AppDatabase.downloadDao(mContext).getAllDownloading();
-        if (!Common.isEmpty(downloadingEntities)) {
-            Common.showLog("downloadingEntities " + downloadingEntities.size());
-            if (content != null) {
-                content = new ArrayList<>();
-            }
-            for (DownloadingEntity entity : downloadingEntities) {
-                try {
-                    DownloadItem downloadItem = Shaft.sGson.fromJson(entity.getTaskGson(), DownloadItem.class);
-                    content.add(downloadItem);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-            Common.showToast("下载记录恢复成功");
+        List<DownloadItem> restoredItems = new ArrayList<>();
+        if (Common.isEmpty(downloadingEntities)) {
+            return restoredItems;
         }
+        for (DownloadingEntity entity : downloadingEntities) {
+            try {
+                DownloadItem downloadItem = Shaft.sGson.fromJson(entity.getTaskGson(), DownloadItem.class);
+                restoredItems.add(downloadItem);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return restoredItems;
+    }
+
+    private void applyRestoredItems(List<DownloadItem> restoredItems) {
+        if (Common.isEmpty(restoredItems)) {
+            return;
+        }
+        Common.showLog("downloadingEntities " + restoredItems.size());
+        content = new ArrayList<>(restoredItems);
+        Common.showToast("下载记录恢复成功");
     }
 
     public static Manager get() {

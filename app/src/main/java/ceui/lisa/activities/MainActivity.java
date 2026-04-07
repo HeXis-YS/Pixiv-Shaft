@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         });
         baseBind.viewPager.setOffscreenPageLimit(baseFragments.length - 1);
         baseBind.viewPager.setCurrentItem(getNavigationInitPosition());
-        Manager.get().restore();
+        Manager.get().restoreAsync();
     }
 
     @Override
