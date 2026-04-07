@@ -133,12 +133,8 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
             bindView.baseBind.like.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.ILLUST_ID, target.getId());
-                    intent.putExtra(Params.DATA_TYPE, Params.TYPE_NOVEL);
-                    intent.putExtra(Params.TAG_NAMES, target.getTagNames());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
-                    mContext.startActivity(intent);
+                    TemplateActivity.startTagStar(mContext, target.getId(),
+                            Params.TYPE_NOVEL, target.getTagNames());
                     return true;
                 }
             });

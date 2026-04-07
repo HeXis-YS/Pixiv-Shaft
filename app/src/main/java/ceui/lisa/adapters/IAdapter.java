@@ -104,12 +104,8 @@ public class IAdapter extends BaseAdapter<IllustsBean, RecyIllustStaggerBinding>
         bindView.baseBind.likeButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(Params.ILLUST_ID, target.getId());
-                intent.putExtra(Params.DATA_TYPE, Params.TYPE_ILLUST);
-                intent.putExtra(Params.TAG_NAMES, target.getTagNames());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
-                mContext.startActivity(intent);
+                TemplateActivity.startTagStar(mContext, target.getId(),
+                        Params.TYPE_ILLUST, target.getTagNames());
                 return true;
             }
         });

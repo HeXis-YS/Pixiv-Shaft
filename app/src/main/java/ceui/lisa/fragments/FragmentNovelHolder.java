@@ -154,12 +154,8 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
         baseBind.like.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(Params.ILLUST_ID, mNovelBean.getId());
-                intent.putExtra(Params.DATA_TYPE, Params.TYPE_NOVEL);
-                intent.putExtra(Params.TAG_NAMES, mNovelBean.getTagNames());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR);
-                mContext.startActivity(intent);
+                TemplateActivity.startTagStar(mContext, mNovelBean.getId(),
+                        Params.TYPE_NOVEL, mNovelBean.getTagNames());
                 return true;
             }
         });

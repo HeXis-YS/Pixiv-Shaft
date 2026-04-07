@@ -443,6 +443,42 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newRecmdUserIntent(context, items, nextUrl));
     }
 
+    public static Intent newTagFilterIntent(Context context, int dataType, String keyword) {
+        Intent intent = createIntent(context, FRAGMENT_TAG_FILTER);
+        intent.putExtra(Params.DATA_TYPE, dataType);
+        intent.putExtra(EXTRA_KEYWORD, keyword);
+        return intent;
+    }
+
+    public static void startTagFilter(Context context, int dataType, String keyword) {
+        context.startActivity(newTagFilterIntent(context, dataType, keyword));
+    }
+
+    public static Intent newTagStarIntent(Context context, int illustId, String type, String[] tagNames) {
+        return newTagStarIntent(context, illustId, type, tagNames, null);
+    }
+
+    public static Intent newTagStarIntent(Context context, int illustId, String type, String[] tagNames,
+                                          @Nullable String lastClass) {
+        Intent intent = createIntent(context, FRAGMENT_TAG_STAR);
+        intent.putExtra(Params.ILLUST_ID, illustId);
+        intent.putExtra(Params.DATA_TYPE, type);
+        intent.putExtra(Params.TAG_NAMES, tagNames);
+        if (!TextUtils.isEmpty(lastClass)) {
+            intent.putExtra(Params.LAST_CLASS, lastClass);
+        }
+        return intent;
+    }
+
+    public static void startTagStar(Context context, int illustId, String type, String[] tagNames) {
+        context.startActivity(newTagStarIntent(context, illustId, type, tagNames));
+    }
+
+    public static void startTagStar(Context context, int illustId, String type, String[] tagNames,
+                                    @Nullable String lastClass) {
+        context.startActivity(newTagStarIntent(context, illustId, type, tagNames, lastClass));
+    }
+
     public static Intent newRelatedUserIntent(Context context, int userId) {
         Intent intent = createIntent(context, FRAGMENT_RELATED_USER);
         intent.putExtra(Params.USER_ID, userId);

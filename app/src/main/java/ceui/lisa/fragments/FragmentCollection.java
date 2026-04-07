@@ -1,6 +1,5 @@
 package ceui.lisa.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -111,20 +110,10 @@ public class FragmentCollection extends BaseFragment<ViewpagerWithTablayoutBindi
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (baseBind.viewPager.getCurrentItem() == 0) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_KEYWORD,
-                            Params.TYPE_PUBLIC);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_FILTER);
-                    intent.putExtra(Params.DATA_TYPE, type);
-                    startActivity(intent);
+                    TemplateActivity.startTagFilter(mContext, type, Params.TYPE_PUBLIC);
                     return true;
                 } else if (baseBind.viewPager.getCurrentItem() == 1) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(TemplateActivity.EXTRA_KEYWORD,
-                            Params.TYPE_PRIVATE);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_FILTER);
-                    intent.putExtra(Params.DATA_TYPE, type);
-                    startActivity(intent);
+                    TemplateActivity.startTagFilter(mContext, type, Params.TYPE_PRIVATE);
                     return true;
                 }
                 return false;

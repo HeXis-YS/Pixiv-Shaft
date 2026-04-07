@@ -299,13 +299,13 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
         }
         baseBind.postLike.setOnLongClickListener(object : OnLongClickListener {
             override fun onLongClick(v: View): Boolean {
-                val intent = Intent(mContext, TemplateActivity::class.java)
-                intent.putExtra(Params.ILLUST_ID, illust.id)
-                intent.putExtra(Params.DATA_TYPE, Params.TYPE_ILLUST)
-                intent.putExtra(Params.TAG_NAMES, illust.tagNames)
-                intent.putExtra(Params.LAST_CLASS, javaClass.simpleName)
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_TAG_STAR)
-                startActivity(intent)
+                TemplateActivity.startTagStar(
+                    mContext,
+                    illust.id,
+                    Params.TYPE_ILLUST,
+                    illust.tagNames,
+                    javaClass.simpleName
+                )
                 return true
             }
         })
