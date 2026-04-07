@@ -21,17 +21,8 @@ data class ObjectKey(
  * */
 object ObjectPool {
 
-    val store = mutableMapOf<ObjectKey, MutableLiveData<Any>>()
-
-    fun putUserPreview(preview: UserPreview) {
-        preview.user?.let { user ->
-            update(user)
-        }
-
-        preview.illusts?.forEach { illust ->
-            update(illust)
-        }
-    }
+    @PublishedApi
+    internal val store = mutableMapOf<ObjectKey, MutableLiveData<Any>>()
 
     fun updateIllust(illust: IllustsBean) {
         update(illust)
@@ -40,10 +31,6 @@ object ObjectPool {
         }
     }
 
-    /**
-     * @param illustId The id of specified illustration
-     * @return
-     * */
     fun getIllust(illustId: Long): LiveData<IllustsBean> {
         return get(illustId)
     }
@@ -77,7 +64,8 @@ object ObjectPool {
      * @param id The id of the illustration
      * @return
      * */
-    fun <ObjectT : ModelObject> getFromMap(objClass: KClass<ObjectT>, id: Long): LiveData<ObjectT> {
+    @PublishedApi
+    internal fun <ObjectT : ModelObject> getFromMap(objClass: KClass<ObjectT>, id: Long): LiveData<ObjectT> {
         val key = ObjectKey(id, findObjectSpec(objClass))
         val storedLiveData = store[key]
         return (if (storedLiveData == null) {
@@ -93,7 +81,8 @@ object ObjectPool {
         return updateObjectPool(obj, isFullVersion)
     }
 
-    inline fun <reified ObjectT : ModelObject> updateObjectPool(obj: ObjectT, isFullVersion: Boolean) {
+    @PublishedApi
+    internal inline fun <reified ObjectT : ModelObject> updateObjectPool(obj: ObjectT, isFullVersion: Boolean) {
         val key = ObjectKey(obj.objectUniqueId, obj.objectType)
         val storedObject = store[key]
         if (storedObject == null) {
