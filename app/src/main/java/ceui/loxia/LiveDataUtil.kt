@@ -438,13 +438,4 @@ fun<T> LiveData<T>.ensureNotNull(listener: (T)->Unit) {
     }
 }
 
-fun<T> LiveData<T>.requireValue(): T {
-    return value!!
-}
-
-
 infix fun <A, B, C> Pair<A, B>.to(that: C) = Triple(this.first, this.second, that)
-
-fun <T> LiveData<T>.safeObserver(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
-    observe(lifecycleOwner, observer)
-}
