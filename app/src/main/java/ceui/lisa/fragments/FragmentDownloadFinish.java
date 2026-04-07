@@ -17,6 +17,9 @@ import ceui.lisa.adapters.BaseAdapter;
 import ceui.lisa.adapters.DownloadedAdapter;
 import ceui.lisa.core.BaseRepo;
 import ceui.lisa.core.LocalRepo;
+import ceui.lisa.core.RxRun;
+import ceui.lisa.core.RxRunnable;
+import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.DownloadEntity;
 import ceui.lisa.databinding.FragmentBaseListBinding;
@@ -57,7 +60,7 @@ public class FragmentDownloadFinish extends LocalListFragment<FragmentBaseListBi
                     intent.putExtra(Params.USER_ID, all.get(position).getUser().getId());
                     startActivity(intent);
                 } else if (viewType == 2) {
-                    AppDatabase.downloadDao(mContext).delete(allItems.get(position));
+                    deleteDownloadEntity(allItems.get(position));
                     allItems.remove(position);
                     mAdapter.notifyItemRemoved(position);
                     mAdapter.notifyItemRangeChanged(position, allItems.size() - position);
@@ -84,6 +87,16 @@ public class FragmentDownloadFinish extends LocalListFragment<FragmentBaseListBi
                 return true;
             }
         };
+    }
+
+    private void deleteDownloadEntity(final DownloadEntity downloadEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.downloadDao(mContext).delete(downloadEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     @Override
