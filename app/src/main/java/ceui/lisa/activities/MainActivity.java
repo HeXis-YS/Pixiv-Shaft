@@ -327,7 +327,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         } else if (itemId == R.id.nav_feature) {
             return TemplateActivity.newFeatureIntent(this);
         } else if (itemId == R.id.nav_fans) {
-            return createTemplateIntent("粉丝");
+            return TemplateActivity.newFansIntent(this, sUserModel.getUser().getId());
         } else if (itemId == R.id.illust_star) {
             return createTemplateIntent("我的插画收藏", false);
         } else if (itemId == R.id.novel_star) {

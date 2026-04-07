@@ -207,6 +207,16 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newRelatedUserIntent(context, userId));
     }
 
+    public static Intent newFansIntent(Context context, int userId) {
+        Intent intent = createIntent(context, FRAGMENT_FANS);
+        intent.putExtra(Params.USER_ID, userId);
+        return intent;
+    }
+
+    public static void startFans(Context context, int userId) {
+        context.startActivity(newFansIntent(context, userId));
+    }
+
     public static Intent newUserInfoIntent(Context context, UserDetailResponse userDetailResponse) {
         Intent intent = createIntent(context, FRAGMENT_USER_INFO);
         intent.putExtra(Params.CONTENT, userDetailResponse);
