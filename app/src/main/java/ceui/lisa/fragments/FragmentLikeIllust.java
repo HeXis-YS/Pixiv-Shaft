@@ -69,7 +69,7 @@ public class FragmentLikeIllust extends NetListFragment<FragmentBaseListBinding,
                     entity.setUserID(userID);
                     entity.setStarType(starType);
                     entity.setDateTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).downloadDao().insertFeature(entity);
+                    AppDatabase.downloadDao(mContext).insertFeature(entity);
                     Common.showToast("已收藏到精华");
                     return true;
                 }

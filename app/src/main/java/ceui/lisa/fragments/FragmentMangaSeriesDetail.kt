@@ -65,7 +65,7 @@ class FragmentMangaSeriesDetail :
                     // entity.userID = userID
                     entity.seriesId = seriesId
                     entity.dateTime = System.currentTimeMillis()
-                    AppDatabase.getAppDatabase(mContext).downloadDao().insertFeature(entity)
+                    AppDatabase.downloadDao(mContext).insertFeature(entity)
                     Common.showToast("已收藏到精华")
                     return@OnMenuItemClickListener true
                 }

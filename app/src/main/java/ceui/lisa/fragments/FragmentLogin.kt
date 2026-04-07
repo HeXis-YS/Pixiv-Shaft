@@ -72,7 +72,7 @@ class FragmentLogin : BaseFragment<ActivityLoginBinding>() {
                     userEntity.loginTime = System.currentTimeMillis()
                     userEntity.userID = exportUser.user.id
                     userEntity.userGson = Shaft.sGson.toJson(Local.getUser())
-                    AppDatabase.getAppDatabase(mContext).downloadDao().insertUser(userEntity)
+                    AppDatabase.downloadDao(mContext).insertUser(userEntity)
                     startActivity(MainActivity.newIntent(mContext, true))
                     mActivity.finish()
                 } else {

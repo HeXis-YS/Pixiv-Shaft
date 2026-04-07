@@ -67,7 +67,7 @@ public class FragmentUserIllust extends NetListFragment<FragmentBaseListBinding,
                     entity.setIllustJson(Common.cutToJson(allItems));
                     entity.setUserID(userID);
                     entity.setDateTime(System.currentTimeMillis());
-                    AppDatabase.getAppDatabase(mContext).downloadDao().insertFeature(entity);
+                    AppDatabase.downloadDao(mContext).insertFeature(entity);
                     Common.showToast("已收藏到精华");
                     return true;
                 }

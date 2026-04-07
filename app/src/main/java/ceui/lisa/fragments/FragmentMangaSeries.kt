@@ -75,7 +75,7 @@ class FragmentMangaSeries :
                     entity.illustJson = Common.cutToJson(allItems)
                     entity.userID = userID
                     entity.dateTime = System.currentTimeMillis()
-                    AppDatabase.getAppDatabase(mContext).downloadDao().insertFeature(entity)
+                    AppDatabase.downloadDao(mContext).insertFeature(entity)
                     Common.showToast("已收藏到精华")
                     return@OnMenuItemClickListener true
                 }
