@@ -496,6 +496,26 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newMangaSeriesDetailIntent(context, seriesId));
     }
 
+    public static Intent newNovelDetailIntent(Context context, NovelBean novel) {
+        Intent intent = createIntent(context, FRAGMENT_NOVEL_DETAIL);
+        intent.putExtra(Params.CONTENT, novel);
+        return intent;
+    }
+
+    public static void startNovelDetail(Context context, NovelBean novel) {
+        context.startActivity(newNovelDetailIntent(context, novel));
+    }
+
+    public static Intent newImageDetailIntent(Context context, String url) {
+        Intent intent = createIntent(context, FRAGMENT_IMAGE_DETAIL);
+        intent.putExtra(Params.URL, url);
+        return intent;
+    }
+
+    public static void startImageDetail(Context context, String url) {
+        context.startActivity(newImageDetailIntent(context, url));
+    }
+
     public static Intent newTagFilterIntent(Context context, int dataType, String keyword) {
         Intent intent = createIntent(context, FRAGMENT_TAG_FILTER);
         intent.putExtra(Params.DATA_TYPE, dataType);

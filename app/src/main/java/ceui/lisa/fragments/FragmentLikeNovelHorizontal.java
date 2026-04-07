@@ -101,11 +101,7 @@ public class FragmentLikeNovelHorizontal extends BaseFragment<FragmentLikeIllust
         mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position, int viewType) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(Params.CONTENT, allItems.get(position));
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
-                intent.putExtra("hideStatusBar", true);
-                startActivity(intent);
+                TemplateActivity.startNovelDetail(mContext, allItems.get(position));
             }
         });
         PagerSnapHelper snapHelper = new PagerSnapHelper();

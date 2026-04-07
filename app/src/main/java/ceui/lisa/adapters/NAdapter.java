@@ -145,19 +145,13 @@ public class NAdapter extends BaseAdapter<NovelBean, RecyNovelBinding> {
             @Override
             public void onItemClick(View v, int position, int viewType) {
                 if (viewType == 0) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.CONTENT, allItems.get(position));
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
-                    intent.putExtra("hideStatusBar", true);
-                    mContext.startActivity(intent);
+                    TemplateActivity.startNovelDetail(mContext, allItems.get(position));
                 } else if (viewType == 1) {
                     PixivOperate.postLikeNovel(allItems.get(position), Shaft.sUserModel,
                             Params.TYPE_PUBLIC, v);
                 } else if (viewType == 2) {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.URL, GlideUtil.getUrl(allItems.get(position).getImage_urls().getMaxImage()).toStringUrl());
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_IMAGE_DETAIL);
-                    mContext.startActivity(intent);
+                    TemplateActivity.startImageDetail(mContext,
+                            GlideUtil.getUrl(allItems.get(position).getImage_urls().getMaxImage()).toStringUrl());
                 } else if (viewType == 3) {
                     Intent intent = new Intent(mContext, UActivity.class);
                     intent.putExtra(Params.USER_ID, allItems.get(position).getUser().getId());

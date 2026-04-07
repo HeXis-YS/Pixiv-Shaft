@@ -71,11 +71,7 @@ public class DownloadedAdapter extends BaseAdapter<DownloadEntity, RecyDownloade
 
             if (mOnItemClickListener != null) {
                 bindView.itemView.setOnClickListener(v -> {
-                    Intent intent = new Intent(mContext, TemplateActivity.class);
-                    intent.putExtra(Params.CONTENT, current);
-                    intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
-                    intent.putExtra("hideStatusBar", true);
-                    mContext.startActivity(intent);
+                    TemplateActivity.startNovelDetail(mContext, current);
                 });
                 bindView.baseBind.deleteItem.setOnClickListener(v -> mOnItemClickListener.onItemClick(v, position, 2));
             }

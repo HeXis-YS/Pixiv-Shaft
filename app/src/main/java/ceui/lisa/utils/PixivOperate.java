@@ -384,11 +384,7 @@ public class PixivOperate {
                     @Override
                     public void success(NovelSearchResponse novelSearchResponse) {
                         if (novelSearchResponse.getNovel() != null) {
-                            Intent intent = new Intent(context, TemplateActivity.class);
-                            intent.putExtra(Params.CONTENT, novelSearchResponse.getNovel());
-                            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
-                            intent.putExtra("hideStatusBar", true);
-                            context.startActivity(intent);
+                            TemplateActivity.startNovelDetail(context, novelSearchResponse.getNovel());
 
                             if (callback != null) {
                                 callback.doSomething(null);

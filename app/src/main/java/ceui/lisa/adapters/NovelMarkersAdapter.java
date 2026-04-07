@@ -77,10 +77,8 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
         Glide.with(mContext).load(GlideUtil.getHead(target.getNovel().getUser())).into(bindView.baseBind.userHead);
 
         bindView.baseBind.cover.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(Params.URL, GlideUtil.getUrl(target.getNovel().getImage_urls().getMaxImage()).toStringUrl());
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_IMAGE_DETAIL);
-            mContext.startActivity(intent);
+            TemplateActivity.startImageDetail(mContext,
+                    GlideUtil.getUrl(target.getNovel().getImage_urls().getMaxImage()).toStringUrl());
         });
 
         bindView.baseBind.userHead.setOnClickListener(v -> {
@@ -96,11 +94,7 @@ public class NovelMarkersAdapter extends BaseAdapter<MarkedNovelItem, RecyNovelM
         });
 
         bindView.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(mContext, TemplateActivity.class);
-            intent.putExtra(Params.CONTENT, target.getNovel());
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_NOVEL_DETAIL);
-            intent.putExtra("hideStatusBar", true);
-            mContext.startActivity(intent);
+            TemplateActivity.startNovelDetail(mContext, target.getNovel());
         });
 
         bindView.baseBind.mark.setOnClickListener(v ->
