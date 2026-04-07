@@ -406,11 +406,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
             startActivity(intent)
         }
         baseBind.comment.setOnClick {
-            val intent = Intent(mContext, TemplateActivity::class.java)
-            intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT)
-            intent.putExtra(Params.ILLUST_ID, illust.id)
-            intent.putExtra(Params.ILLUST_TITLE, illust.title)
-            startActivity(intent)
+            TemplateActivity.startIllustComments(mContext, illust.id, illust.title)
         }
         baseBind.illustLike.setOnClick {
             val intent = Intent(mContext, TemplateActivity::class.java)

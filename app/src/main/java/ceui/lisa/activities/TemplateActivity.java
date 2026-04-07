@@ -443,6 +443,28 @@ public class TemplateActivity extends BaseActivity<ActivityFragmentBinding> impl
         context.startActivity(newRecmdUserIntent(context, items, nextUrl));
     }
 
+    public static Intent newIllustCommentsIntent(Context context, int illustId, String title) {
+        Intent intent = createIntent(context, FRAGMENT_COMMENT);
+        intent.putExtra(Params.ILLUST_ID, illustId);
+        intent.putExtra(Params.ILLUST_TITLE, title);
+        return intent;
+    }
+
+    public static void startIllustComments(Context context, int illustId, String title) {
+        context.startActivity(newIllustCommentsIntent(context, illustId, title));
+    }
+
+    public static Intent newNovelCommentsIntent(Context context, int novelId, String title) {
+        Intent intent = createIntent(context, FRAGMENT_COMMENT);
+        intent.putExtra(Params.NOVEL_ID, novelId);
+        intent.putExtra(Params.ILLUST_TITLE, title);
+        return intent;
+    }
+
+    public static void startNovelComments(Context context, int novelId, String title) {
+        context.startActivity(newNovelCommentsIntent(context, novelId, title));
+    }
+
     public static Intent newTagFilterIntent(Context context, int dataType, String keyword) {
         Intent intent = createIntent(context, FRAGMENT_TAG_FILTER);
         intent.putExtra(Params.DATA_TYPE, dataType);

@@ -222,11 +222,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
         baseBind.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, TemplateActivity.class);
-                intent.putExtra(Params.NOVEL_ID, mNovelBean.getId());
-                intent.putExtra(Params.ILLUST_TITLE, mNovelBean.getTitle());
-                intent.putExtra(TemplateActivity.EXTRA_FRAGMENT, TemplateActivity.FRAGMENT_COMMENT);
-                startActivity(intent);
+                TemplateActivity.startNovelComments(mContext, mNovelBean.getId(), mNovelBean.getTitle());
             }
         });
         Glide.with(mContext).load(GlideUtil.getHead(mNovelBean.getUser())).into(baseBind.userHead);
