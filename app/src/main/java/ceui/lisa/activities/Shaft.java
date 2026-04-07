@@ -33,7 +33,6 @@ import ceui.lisa.utils.Local;
 import ceui.lisa.utils.Settings;
 import ceui.lisa.view.MyDeliveryHeader;
 import ceui.lisa.viewmodel.AppLevelViewModel;
-import ceui.loxia.ServicesProvider;
 import me.jessyan.progressmanager.ProgressManager;
 import okhttp3.OkHttpClient;
 
@@ -41,7 +40,7 @@ import static ceui.lisa.utils.Local.LOCAL_DATA;
 /**
  * Where the app code starts.
  * */
-public class Shaft extends Application implements ServicesProvider {
+public class Shaft extends Application {
 
     public static UserModel sUserModel;
     public static Settings sSettings;

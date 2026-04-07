@@ -4,21 +4,21 @@ import ceui.lisa.download.FileCreator
 import ceui.lisa.models.IllustsBean
 import ceui.lisa.utils.Common
 
-class FileName : FileNameProxy {
+class FileName {
 
     companion object {
         private const val DASH = "_"
     }
 
-    override fun zipName(illust: IllustsBean): String {
+    fun zipName(illust: IllustsBean): String {
         return Common.removeFSReservedChars(illust.title) + DASH + illust.id + ".zip"
     }
 
-    override fun unzipName(illust: IllustsBean): String {
+    fun unzipName(illust: IllustsBean): String {
         return Common.removeFSReservedChars(illust.title) + DASH + illust.id + DASH + "unzip"
     }
 
-    override fun gifName(illust: IllustsBean): String {
+    fun gifName(illust: IllustsBean): String {
         return FileCreator.customGifFileName(illust)
     }
 }
