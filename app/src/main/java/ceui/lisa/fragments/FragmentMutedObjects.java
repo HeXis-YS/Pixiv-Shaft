@@ -67,6 +67,7 @@ public class FragmentMutedObjects extends LocalListFragment<FragmentBaseListBind
                                         @Override
                                         public void onClick(QMUIDialog dialog, int index) {
                                             AppDatabase.searchDao(mContext).deleteMuteEntity(allItems.get(position));
+                                            IllustNovelFilter.invalidateMutedWorks();
                                             allItems.remove(position);
                                             mAdapter.notifyItemRemoved(position);
                                             mAdapter.notifyItemRangeChanged(position, allItems.size() - position);

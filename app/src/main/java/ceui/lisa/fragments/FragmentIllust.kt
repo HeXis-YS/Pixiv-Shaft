@@ -28,6 +28,7 @@ import ceui.lisa.database.AppDatabase
 import ceui.lisa.databinding.FragmentIllustBinding
 import ceui.lisa.dialogs.MuteDialog
 import ceui.lisa.download.IllustDownload
+import ceui.lisa.helper.IllustNovelFilter
 import ceui.lisa.models.*
 import ceui.lisa.notification.CallBackReceiver
 import ceui.lisa.utils.*
@@ -98,6 +99,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                                 it.showProgress()
                                 delay(600L)
                                 dao.deleteMuteEntity(illustEntity)
+                                IllustNovelFilter.invalidateMutedWorks()
                                 it.hideProgress()
                             }
                         }
@@ -108,6 +110,7 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
                                 it.showProgress()
                                 delay(600L)
                                 dao.deleteMuteEntity(userEntity)
+                                IllustNovelFilter.invalidateMutedUsers()
                                 it.hideProgress()
                             }
                         }

@@ -20,6 +20,7 @@ import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.MuteEntity;
 import ceui.lisa.databinding.FragmentBaseListBinding;
 import ceui.lisa.databinding.RecySimpleUserBinding;
+import ceui.lisa.helper.IllustNovelFilter;
 import ceui.lisa.models.UserBean;
 import ceui.lisa.utils.Common;
 
@@ -97,6 +98,7 @@ public class FragmentMutedUser extends LocalListFragment<FragmentBaseListBinding
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 AppDatabase.searchDao(mContext).deleteAllMutedUsers();
+                                IllustNovelFilter.invalidateMutedUsers();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
                                 emptyRela.setVisibility(View.VISIBLE);

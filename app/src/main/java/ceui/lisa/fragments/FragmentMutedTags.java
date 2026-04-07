@@ -123,6 +123,7 @@ public class FragmentMutedTags extends LocalListFragment<FragmentBaseListBinding
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 AppDatabase.searchDao(mContext).deleteAllMutedTags();
+                                IllustNovelFilter.invalidateMutedTags();
                                 Common.showToast(getString(R.string.string_220));
                                 mAdapter.clear();
                                 emptyRela.setVisibility(View.VISIBLE);

@@ -47,6 +47,7 @@ import ceui.lisa.database.SearchEntity;
 import ceui.lisa.file.LegacyFile;
 import ceui.lisa.file.OutPut;
 import ceui.lisa.fragments.FragmentLogin;
+import ceui.lisa.helper.IllustNovelFilter;
 import ceui.lisa.http.ErrorCtrl;
 import ceui.lisa.http.NullCtrl;
 import ceui.lisa.http.Retro;
@@ -417,6 +418,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(tagsBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedTags();
     }
 
     public static void updateTag(TagsBean tagsBean) {
@@ -432,6 +434,7 @@ public class PixivOperate {
             Shaft.getContext().getResources().getString(R.string.string_357);
         }
         AppDatabase.searchDao(Shaft.getContext()).updateMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedTags();
     }
 
     public static void muteUser(UserBean userBean) {
@@ -441,6 +444,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedUsers();
         Common.showToast(Shaft.getContext().getString(R.string.string_382));
     }
 
@@ -451,6 +455,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(userBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).unMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedUsers();
         Common.showToast(Shaft.getContext().getString(R.string.string_383));
     }
 
@@ -481,6 +486,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(illust));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedWorks();
         Common.showToast(Shaft.getContext().getString(R.string.string_384));
     }
 
@@ -491,6 +497,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(novelBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).insertMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedWorks();
         Common.showToast(Shaft.getContext().getString(R.string.string_384));
     }
 
@@ -512,6 +519,7 @@ public class PixivOperate {
         muteEntity.setTagJson(Shaft.sGson.toJson(tagsBean));
         muteEntity.setSearchTime(System.currentTimeMillis());
         AppDatabase.searchDao(Shaft.getContext()).unMuteTag(muteEntity);
+        IllustNovelFilter.invalidateMutedTags();
         Common.showToast(Shaft.getContext().getString(R.string.string_135));
     }
 

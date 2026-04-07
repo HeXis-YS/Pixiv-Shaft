@@ -14,6 +14,7 @@ import ceui.lisa.database.SearchDao;
 import ceui.lisa.database.SearchEntity;
 import ceui.lisa.database.UserEntity;
 import ceui.lisa.feature.FeatureEntity;
+import ceui.lisa.helper.IllustNovelFilter;
 
 public class BackupUtils {
 
@@ -103,6 +104,7 @@ public class BackupUtils {
                 for (MuteEntity muteEntity : muteEntityList) {
                     searchDao.insertMuteTag(muteEntity);
                 }
+                IllustNovelFilter.invalidateAll();
             }
             List<FeatureEntity> featureEntityList = backupEntity.getFeatureEntityList();
             if (featureEntityList != null && !featureEntityList.isEmpty()) {
