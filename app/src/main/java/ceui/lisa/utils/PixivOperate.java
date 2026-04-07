@@ -41,6 +41,7 @@ import ceui.lisa.core.RxRun;
 import ceui.lisa.core.RxRunnable;
 import ceui.lisa.core.TryCatchObserverImpl;
 import ceui.lisa.database.AppDatabase;
+import ceui.lisa.database.DownloadEntity;
 import ceui.lisa.database.IllustHistoryEntity;
 import ceui.lisa.database.MuteEntity;
 import ceui.lisa.database.SearchEntity;
@@ -589,6 +590,20 @@ public class PixivOperate {
             @Override
             public Void execute() {
                 AppDatabase.downloadDao(Shaft.getContext()).insertUser(userEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
+    }
+
+    public static void insertDownload(final DownloadEntity downloadEntity) {
+        if (downloadEntity == null) {
+            return;
+        }
+
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.downloadDao(Shaft.getContext()).insert(downloadEntity);
                 return null;
             }
         }, new TryCatchObserverImpl<>());

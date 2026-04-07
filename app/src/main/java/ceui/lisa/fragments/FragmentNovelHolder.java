@@ -40,7 +40,6 @@ import ceui.lisa.activities.TemplateActivity;
 import ceui.lisa.adapters.VAdapter;
 import ceui.lisa.adapters.VNewAdapter;
 import ceui.lisa.cache.Cache;
-import ceui.lisa.database.AppDatabase;
 import ceui.lisa.database.DownloadEntity;
 import ceui.lisa.databinding.FragmentNovelHolderBinding;
 import ceui.lisa.download.IllustDownload;
@@ -371,7 +370,7 @@ public class FragmentNovelHolder extends BaseFragment<FragmentNovelHolderBinding
                     downloadEntity.setDownloadTime(System.currentTimeMillis());
                     downloadEntity.setFilePath(PathUtils.getInternalAppCachePath());
                     downloadEntity.setIllustGson(Shaft.sGson.toJson(mNovelBean));
-                    AppDatabase.downloadDao(Shaft.getContext()).insert(downloadEntity);
+                    PixivOperate.insertDownload(downloadEntity);
                     Common.showToast(getString(R.string.string_181), 2);
                     baseBind.transformationLayout.finishTransform();
                     return true;
