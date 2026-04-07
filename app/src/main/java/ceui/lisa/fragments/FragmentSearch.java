@@ -466,7 +466,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_ILLUSTSID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.searchDao(mContext).insert(history.get(position));
+                    persistSearchEntity(history.get(position));
                     PixivOperate.getIllustByID(sUserModel, tryParseId(history.get(position).getKeyword()), mContext);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_USERKEYWORD) {
                     baseBind.hintList.setVisibility(View.INVISIBLE);
@@ -476,17 +476,17 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_USERID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.searchDao(mContext).insert(history.get(position));
+                    persistSearchEntity(history.get(position));
                     Intent intent = new Intent(mContext, UActivity.class);
                     intent.putExtra(Params.USER_ID, Integer.valueOf(history.get(position).getKeyword()));
                     startActivity(intent);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_NOVELID) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.searchDao(mContext).insert(history.get(position));
+                    persistSearchEntity(history.get(position));
                     PixivOperate.getNovelByID(sUserModel, tryParseId(history.get(position).getKeyword()), mContext, null);
                 } else if (history.get(position).getSearchType() == SearchTypeUtil.SEARCH_TYPE_DB_URL) {
                     history.get(position).setSearchTime(System.currentTimeMillis());
-                    AppDatabase.searchDao(mContext).insert(history.get(position));
+                    persistSearchEntity(history.get(position));
                     Intent intent = new Intent(mContext, OutWakeActivity.class);
                     intent.setData(Uri.parse(history.get(position).getKeyword()));
                     startActivity(intent);
@@ -512,7 +512,7 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                             @Override
                             public void onClick(QMUIDialog dialog, int index) {
                                 searchEntity.setPinned(!searchEntity.isPinned());
-                                AppDatabase.searchDao(mContext).insert(searchEntity);
+                                persistSearchEntity(searchEntity);
                                 baseBind.searchHistory.getAdapter().notifyDataChanged();
                                 dialog.dismiss();
                             }
@@ -528,6 +528,16 @@ public class FragmentSearch extends BaseFragment<FragmentSearchBinding> {
                 return true;
             }
         });
+    }
+
+    private void persistSearchEntity(final SearchEntity searchEntity) {
+        RxRun.runOn(new RxRunnable<Void>() {
+            @Override
+            public Void execute() {
+                AppDatabase.searchDao(mContext).insert(searchEntity);
+                return null;
+            }
+        }, new TryCatchObserverImpl<>());
     }
 
     private void predictSearchType(){
