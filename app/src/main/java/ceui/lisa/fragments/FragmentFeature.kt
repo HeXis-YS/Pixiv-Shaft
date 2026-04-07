@@ -13,6 +13,9 @@ import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.FeatureAdapter
 import ceui.lisa.core.BaseRepo
 import ceui.lisa.core.LocalRepo
+import ceui.lisa.core.RxRun
+import ceui.lisa.core.RxRunnable
+import ceui.lisa.core.TryCatchObserverImpl
 import ceui.lisa.database.AppDatabase
 import ceui.lisa.databinding.FragmentBaseListBinding
 import ceui.lisa.feature.FeatureEntity
@@ -50,7 +53,7 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
                         getString(R.string.string_141),
                         QMUIDialogAction.ACTION_PROP_NEGATIVE
                     ) { dialog, _ ->
-                        AppDatabase.downloadDao(mContext).deleteFeature(allItems[position])
+                        deleteFeatureEntity(allItems[position])
                         Common.showToast(getString(R.string.string_220))
                         dialog.dismiss()
                         allItems.removeAt(position)
@@ -94,6 +97,14 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
                 return false
             }
         })
+    }
+
+    private fun deleteFeatureEntity(featureEntity: FeatureEntity) {
+        RxRun.runOn(object : RxRunnable<Unit>() {
+            override fun execute() {
+                AppDatabase.downloadDao(mContext).deleteFeature(featureEntity)
+            }
+        }, TryCatchObserverImpl<Unit>())
     }
 
     override fun repository(): BaseRepo {
