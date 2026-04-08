@@ -41,12 +41,12 @@ public class MuteDialog extends BaseDialog<DialogMuteTagBinding> {
     }
 
     @Override
-    void initLayout() {
+    protected void initLayout() {
         mLayoutID = R.layout.dialog_mute_tag;
     }
 
     @Override
-    void initView(View v) {
+    protected void initView(View v) {
         RxRun.runOn(new RxRunnable<List<TagsBean>>() {
             @Override
             public List<TagsBean> execute() {
@@ -147,7 +147,7 @@ public class MuteDialog extends BaseDialog<DialogMuteTagBinding> {
     }
 
     @Override
-    void initData() {
+    protected void initData() {
 
     }
 
