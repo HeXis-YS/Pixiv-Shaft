@@ -22,10 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static ceui.lisa.http.AccountApi.ACCOUNT_BASE_URL;
 import static ceui.lisa.http.AppApi.API_BASE_URL;
 import static ceui.lisa.http.ResourceApi.JSDELIVR_BASE_URL;
-import static ceui.lisa.http.SignApi.SIGN_API;
 
 public class Retro {
 
@@ -47,15 +45,15 @@ public class Retro {
     }
 
     public static SignApi getSignApi() {
-        return buildRetrofit(SIGN_API).create(SignApi.class);
+        return buildRetrofit(SignApi.Companion.SIGN_API).create(SignApi.class);
     }
 
     public static AccountApi getAccountApi() {
-        return buildRetrofit(ACCOUNT_BASE_URL).create(AccountApi.class);
+        return buildRetrofit(AccountApi.Companion.ACCOUNT_BASE_URL).create(AccountApi.class);
     }
 
     public static AccountTokenApi getAccountTokenApi(){
-        return buildRetrofit(ACCOUNT_BASE_URL).create(AccountTokenApi.class);
+        return buildRetrofit(AccountApi.Companion.ACCOUNT_BASE_URL).create(AccountTokenApi.class);
     }
 
     public static ResourceApi getResourceApi(){
