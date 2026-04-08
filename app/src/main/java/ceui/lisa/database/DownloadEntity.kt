@@ -9,7 +9,7 @@ class DownloadEntity : Serializable {
 
     @PrimaryKey
     var fileName: String = ""
-    var filePath: String = ""
+    var filePath: String? = null
     var taskGson: String? = null
     var illustGson: String? = null
     var downloadTime: Long = 0

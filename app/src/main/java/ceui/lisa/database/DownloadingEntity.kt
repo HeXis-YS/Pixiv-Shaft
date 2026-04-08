@@ -9,7 +9,7 @@ class DownloadingEntity : Serializable {
 
     @PrimaryKey
     var fileName: String = ""
-    var uuid: String = ""
+    var uuid: String? = null
     var taskGson: String? = null
 
     override fun toString(): String {
