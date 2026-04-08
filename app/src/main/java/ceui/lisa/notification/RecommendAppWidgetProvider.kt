@@ -106,9 +106,8 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
                 Retro.getAppApi().getRecmdIllust(Shaft.sUserModel.access_token, true)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(object : NullCtrl<ListIllust?>() {
-                        override fun success(listIllust: ListIllust?) {
-                            listIllust ?: return
+                    .subscribe(object : NullCtrl<ListIllust>() {
+                        override fun success(listIllust: ListIllust) {
                             val randomIllust = listIllust.illusts.random()
                                 val target = AppWidgetTarget(
                                     context,
@@ -196,9 +195,8 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
             Retro.getAppApi().getRecmdIllust(Shaft.sUserModel.access_token, true)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : NullCtrl<ListIllust?>() {
-                    override fun success(listIllust: ListIllust?) {
-                        listIllust ?: return
+                .subscribe(object : NullCtrl<ListIllust>() {
+                    override fun success(listIllust: ListIllust) {
                         items.clear()
                         items.addAll(
                             listIllust.list.stream().filter { it: IllustsBean -> !it.isR18File }
