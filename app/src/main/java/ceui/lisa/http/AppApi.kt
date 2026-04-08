@@ -45,15 +45,15 @@ interface AppApi {
     @GET("v1/illust/ranking?filter=for_android")
     fun getRank(
         @Header("Authorization") token: String,
-        @Query("mode") mode: String,
-        @Query("date") date: String,
+        @Query("mode") mode: String?,
+        @Query("date") date: String?,
     ): Observable<ListIllust>
 
     @GET("v1/novel/ranking?filter=for_android")
     fun getRankNovel(
         @Header("Authorization") token: String,
-        @Query("mode") mode: String,
-        @Query("date") date: String,
+        @Query("mode") mode: String?,
+        @Query("date") date: String?,
     ): Observable<ListNovel>
 
     @GET("v1/illust/recommended?include_privacy_policy=true&filter=for_android")
@@ -71,33 +71,33 @@ interface AppApi {
     @GET("v1/novel/follow")
     fun getBookedUserSubmitNovel(
         @Header("Authorization") token: String,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListNovel>
 
     @GET("v1/trending-tags/{type}?filter=for_android&include_translated_tag_results=true")
     fun getHotTags(
         @Header("Authorization") token: String,
-        @Path("type") type: String,
+        @Path("type") type: String?,
     ): Observable<ListTrendingtag>
 
     @GET("v1/search/illust?filter=for_android&include_translated_tag_results=true&merge_plain_keyword_results=true")
     fun searchIllust(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
-        @Query("sort") sort: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-        @Query("search_target") searchTarget: String,
+        @Query("word") word: String?,
+        @Query("sort") sort: String?,
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?,
+        @Query("search_target") searchTarget: String?,
     ): Observable<ListIllust>
 
     @GET("v1/search/novel?filter=for_android&include_translated_tag_results=true&merge_plain_keyword_results=true")
     fun searchNovel(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
-        @Query("sort") sort: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-        @Query("search_target") searchTarget: String,
+        @Query("word") word: String?,
+        @Query("sort") sort: String?,
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?,
+        @Query("search_target") searchTarget: String?,
     ): Observable<ListNovel>
 
     @GET("v2/illust/related?filter=for_android")
@@ -113,37 +113,37 @@ interface AppApi {
     fun getUserLikeIllust(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
-        @Query("tag") tag: String,
+        @Query("restrict") restrict: String?,
+        @Query("tag") tag: String?,
     ): Observable<ListIllust>
 
     @GET("v1/user/bookmarks/illust")
     fun getUserLikeIllust(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListIllust>
 
     @GET("v1/user/bookmarks/novel")
     fun getUserLikeNovel(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
-        @Query("tag") tag: String,
+        @Query("restrict") restrict: String?,
+        @Query("tag") tag: String?,
     ): Observable<ListNovel>
 
     @GET("v1/user/bookmarks/novel")
     fun getUserLikeNovel(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListNovel>
 
     @GET("v1/user/illusts?filter=for_android")
     fun getUserSubmitIllust(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("type") type: String,
+        @Query("type") type: String?,
     ): Observable<ListIllust>
 
     @GET("v1/user/novels")
@@ -155,13 +155,13 @@ interface AppApi {
     @GET("v2/illust/follow")
     fun getFollowUserIllust(
         @Header("Authorization") token: String,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListIllust>
 
     @GET("v1/spotlight/articles?filter=for_android")
     fun getArticles(
         @Header("Authorization") token: String,
-        @Query("category") category: String,
+        @Query("category") category: String?,
     ): Observable<ListArticle>
 
     @GET("v1/user/detail?filter=for_android")
@@ -181,7 +181,7 @@ interface AppApi {
     fun postFollow(
         @Header("Authorization") token: String,
         @Field("user_id") userId: Int,
-        @Field("restrict") followType: String,
+        @Field("restrict") followType: String?,
     ): Observable<NullResponse>
 
     @FormUrlEncoded
@@ -201,7 +201,7 @@ interface AppApi {
     fun getFollowUser(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListUser>
 
     @GET("v1/user/follower?filter=for_android")
@@ -233,7 +233,7 @@ interface AppApi {
     fun postIllustComment(
         @Header("Authorization") token: String,
         @Field("illust_id") illustId: Int,
-        @Field("comment") comment: String,
+        @Field("comment") comment: String?,
     ): Observable<CommentHolder>
 
     @FormUrlEncoded
@@ -241,7 +241,7 @@ interface AppApi {
     fun postIllustComment(
         @Header("Authorization") token: String,
         @Field("illust_id") illustId: Int,
-        @Field("comment") comment: String,
+        @Field("comment") comment: String?,
         @Field("parent_comment_id") parentCommentId: Int,
     ): Observable<CommentHolder>
 
@@ -250,7 +250,7 @@ interface AppApi {
     fun postNovelComment(
         @Header("Authorization") token: String,
         @Field("novel_id") novelId: Int,
-        @Field("comment") comment: String,
+        @Field("comment") comment: String?,
     ): Observable<CommentHolder>
 
     @FormUrlEncoded
@@ -258,7 +258,7 @@ interface AppApi {
     fun postNovelComment(
         @Header("Authorization") token: String,
         @Field("novel_id") novelId: Int,
-        @Field("comment") comment: String,
+        @Field("comment") comment: String?,
         @Field("parent_comment_id") parentCommentId: Int,
     ): Observable<CommentHolder>
 
@@ -267,7 +267,7 @@ interface AppApi {
     fun postLikeIllust(
         @Header("Authorization") token: String,
         @Field("illust_id") illustId: Int,
-        @Field("restrict") restrict: String,
+        @Field("restrict") restrict: String?,
     ): Observable<NullResponse>
 
     @FormUrlEncoded
@@ -275,7 +275,7 @@ interface AppApi {
     fun postLikeNovel(
         @Header("Authorization") token: String,
         @Field("novel_id") novelId: Int,
-        @Field("restrict") restrict: String,
+        @Field("restrict") restrict: String?,
     ): Observable<NullResponse>
 
     @FormUrlEncoded
@@ -283,8 +283,8 @@ interface AppApi {
     fun postLikeIllustWithTags(
         @Header("Authorization") token: String,
         @Field("illust_id") illustId: Int,
-        @Field("restrict") restrict: String,
-        @Field("tags[]") vararg tags: String,
+        @Field("restrict") restrict: String?,
+        @Field("tags[]") vararg tags: String?,
     ): Observable<NullResponse>
 
     @FormUrlEncoded
@@ -292,8 +292,8 @@ interface AppApi {
     fun postLikeNovelWithTags(
         @Header("Authorization") token: String,
         @Field("novel_id") novelId: Int,
-        @Field("restrict") restrict: String,
-        @Field("tags[]") vararg tags: String,
+        @Field("restrict") restrict: String?,
+        @Field("tags[]") vararg tags: String?,
     ): Observable<NullResponse>
 
     @FormUrlEncoded
@@ -319,45 +319,45 @@ interface AppApi {
     @GET("v1/search/user?filter=for_android")
     fun searchUser(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
+        @Query("word") word: String?,
     ): Observable<ListUser>
 
     @GET("v1/search/popular-preview/illust?filter=for_android&include_translated_tag_results=true&merge_plain_keyword_results=true")
     fun popularPreview(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-        @Query("search_target") searchTarget: String,
+        @Query("word") word: String?,
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?,
+        @Query("search_target") searchTarget: String?,
     ): Observable<ListIllust>
 
     @GET("v1/search/popular-preview/novel?filter=for_android&include_translated_tag_results=true&merge_plain_keyword_results=true")
     fun popularNovelPreview(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
-        @Query("start_date") startDate: String,
-        @Query("end_date") endDate: String,
-        @Query("search_target") searchTarget: String,
+        @Query("word") word: String?,
+        @Query("start_date") startDate: String?,
+        @Query("end_date") endDate: String?,
+        @Query("search_target") searchTarget: String?,
     ): Observable<ListNovel>
 
     @GET("v2/search/autocomplete?merge_plain_keyword_results=true")
     fun searchCompleteWord(
         @Header("Authorization") token: String,
-        @Query("word") word: String,
+        @Query("word") word: String?,
     ): Observable<ListTrendingtag>
 
     @GET("v1/user/bookmark-tags/illust")
     fun getAllIllustBookmarkTags(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListTag>
 
     @GET("v1/user/bookmark-tags/novel")
     fun getAllNovelBookmarkTags(
         @Header("Authorization") token: String,
         @Query("user_id") userId: Int,
-        @Query("restrict") restrict: String,
+        @Query("restrict") restrict: String?,
     ): Observable<ListTag>
 
     @GET
@@ -390,7 +390,7 @@ interface AppApi {
     @GET("v1/illust/new?filter=for_android")
     fun getNewWorks(
         @Header("Authorization") token: String,
-        @Query("content_type") contentType: String,
+        @Query("content_type") contentType: String?,
     ): Observable<ListIllust>
 
     @GET("v1/novel/new")
@@ -408,7 +408,7 @@ interface AppApi {
     @GET("v1/live/list")
     fun getLiveList(
         @Header("Authorization") token: String,
-        @Query("list_type") listType: String,
+        @Query("list_type") listType: String?,
     ): Observable<ListLive>
 
     @GET("v1/illust/bookmark/users?filter=for_android")
@@ -496,7 +496,7 @@ interface AppApi {
     ): Observable<ListArticle>
 
     @GET("web/v1/login?code_challenge_method=S256&client=pixiv-android")
-    fun tryLogin(@Query("code_challenge") codeChallenge: String): Observable<String>
+    fun tryLogin(@Query("code_challenge") codeChallenge: String?): Observable<String>
 
     @FormUrlEncoded
     @POST("v1/novel/marker/add")
