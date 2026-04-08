@@ -18,7 +18,6 @@
   <string name="webview_handler_download_link">下載連結</string>  
   <string name="webview_handler_share">分享連結</string>  
   <string name="webview_handler_open_image">打開圖片</string>  
-  <string name="webview_handler_search_with_ggl">Google搜尋這圖片</string>  
   <string name="copy_to_clipboard">拷入</string>  
   <string name="now_login">登錄</string>  
   <string name="has_no_account">沒有帳號?</string>  

@@ -16,7 +16,6 @@
   <string name="webview_handler_download_link">Ссылка для скачивания</string>  
   <string name="webview_handler_share">Поделиться ссылкой</string>  
   <string name="webview_handler_open_image">Открыть изображение</string>  
-  <string name="webview_handler_search_with_ggl">Искать в Google это изображение</string>  
   <string name="copy_to_clipboard">Скопировано</string>  
   <string name="now_login">Войти</string>  
   <string name="has_no_account">Нет аккаунта?</string>  

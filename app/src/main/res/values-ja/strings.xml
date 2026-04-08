@@ -19,7 +19,6 @@
   <string name="webview_handler_download_link">リンクをダウンロード</string>  
   <string name="webview_handler_share">リンクを共有</string>  
   <string name="webview_handler_open_image">画像を開く</string>  
-  <string name="webview_handler_search_with_ggl">この画像をGoogleで検索</string>  
   <string name="copy_to_clipboard">コピーしました</string>  
   <string name="now_login">ログイン</string>
   <string name="has_no_account">アカウントを作成</string>

@@ -19,7 +19,6 @@
   <string name="webview_handler_download_link">Bağlantıyı indir</string>  
   <string name="webview_handler_share">Bağlantıyı paylaş</string>  
   <string name="webview_handler_open_image">Görseli aç</string>  
-  <string name="webview_handler_search_with_ggl">Bu görseli Google\'i kullanarak ara</string>  
   <string name="copy_to_clipboard">kopyalandı</string>  
   <string name="now_login">Giriş yap</string>  
   <string name="has_no_account">Hesabın yok mu?</string>  

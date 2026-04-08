@@ -19,7 +19,6 @@
   <string name="webview_handler_download_link">Download link</string>  
   <string name="webview_handler_share">Share link</string>  
   <string name="webview_handler_open_image">Open image</string>  
-  <string name="webview_handler_search_with_ggl">Search this image using Google</string>  
   <string name="copy_to_clipboard">copied</string>  
   <string name="now_login">Log in</string>  
   <string name="has_no_account">No account?</string>  

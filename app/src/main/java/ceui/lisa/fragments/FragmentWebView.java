@@ -26,9 +26,7 @@ import com.just.agentweb.WebViewClient;
 import android.util.Base64;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
-import java.net.URLEncoder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -288,7 +286,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
             menu.add(Menu.NONE, WebViewClickHandler.OPEN_IN_BROWSER, 0, R.string.webview_handler_open_in_browser).setOnMenuItemClickListener(handler);
             menu.add(Menu.NONE, WebViewClickHandler.OPEN_IMAGE, 1, R.string.webview_handler_open_image).setOnMenuItemClickListener(handler);
             //menu.add(Menu.NONE, WebViewClickHandler.DOWNLOAD_LINK, 2, R.string.webview_handler_download_link).setOnMenuItemClickListener(handler);
-            menu.add(Menu.NONE, WebViewClickHandler.SEARCH_GOOGLE, 2, R.string.webview_handler_search_with_ggl).setOnMenuItemClickListener(handler);
             menu.add(Menu.NONE, WebViewClickHandler.SHARE_LINK, 2, R.string.webview_handler_share).setOnMenuItemClickListener(handler);
         }
     }
@@ -307,7 +304,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
         static final int COPY_LINK_ADDRESS = 0x2;
         static final int COPY_LINK_TEXT = 0x3;
         static final int DOWNLOAD_LINK = 0x4;
-        static final int SEARCH_GOOGLE = 0x5;
         static final int SHARE_LINK = 0x6;
 
         public boolean onMenuItemClick(MenuItem item) {
@@ -332,16 +328,6 @@ public class FragmentWebView extends BaseFragment<FragmentWebviewBinding> {
                 case COPY_LINK_TEXT: {
                     ClipBoardUtils.putTextIntoClipboard(mContext, mLongClickLinkText);
                     //Snackbar.make(rootView, R.string.copy_to_clipboard, Snackbar.LENGTH_SHORT).show();
-                    break;
-                }
-                case SEARCH_GOOGLE: {
-                    String encodeUrl = mIntentUrl;
-                    try {
-                        encodeUrl = URLEncoder.encode(mIntentUrl, "utf-8");
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
-                    mWebView.loadUrl("https://www.google.com/searchbyimage?image_url=" + encodeUrl);
                     break;
                 }
                 case SHARE_LINK: {
