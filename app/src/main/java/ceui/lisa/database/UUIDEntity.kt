@@ -10,15 +10,22 @@ import ceui.lisa.models.IllustsBean
 @Entity(tableName = "uuid_list_table")
 class UUIDEntity : IDWithList<IllustsBean> {
 
+    @get:JvmName("getUuidValue")
+    @set:JvmName("setUuidValue")
     @PrimaryKey
     var uuid: String = ""
-        set(value) {
-            if (value.isNotEmpty()) {
-                field = value
-            }
-        }
 
     var listJson: String? = null
+
+    fun getUuid(): String {
+        return uuid
+    }
+
+    fun setUuid(value: String?) {
+        if (value != null) {
+            uuid = value
+        }
+    }
 
     override fun toString(): String {
         return "UUIDEntity{" +
