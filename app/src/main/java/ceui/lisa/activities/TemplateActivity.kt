@@ -213,7 +213,7 @@ class TemplateActivity : BaseActivity<ActivityFragmentBinding>(), ColorPickerDia
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (childFragment is FragmentWebView) {
-            return (childFragment as FragmentWebView).agentWeb.handleKeyEvent(keyCode, event) ||
+            return (childFragment as FragmentWebView).getAgentWeb().handleKeyEvent(keyCode, event) ||
                 super.onKeyDown(keyCode, event)
         }
         return super.onKeyDown(keyCode, event)
