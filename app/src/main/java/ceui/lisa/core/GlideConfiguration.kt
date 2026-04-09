@@ -23,7 +23,7 @@ class GlideConfiguration : AppGlideModule() {
         registry.replace(
             GlideUrl::class.java,
             InputStream::class.java,
-            OkHttpUrlLoader.Factory(application.okHttpClient),
+            OkHttpUrlLoader.Factory(application.getOkHttpClient()),
         )
     }
 

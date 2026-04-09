@@ -3,7 +3,6 @@ package ceui.lisa.feature.worker
 import android.content.Intent
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import ceui.lisa.activities.Shaft
-import ceui.lisa.activities.Shaft.sUserModel
 import ceui.lisa.http.ErrorCtrl
 import ceui.lisa.http.Retro
 import ceui.lisa.models.NullResponse
@@ -29,7 +28,7 @@ class BatchFollowTask(
         if (starType == 0) {
             Retro
                 .getAppApi()
-                .postFollow(sUserModel.access_token, userID, Params.TYPE_PUBLIC)
+                .postFollow(Shaft.sUserModel.access_token, userID, Params.TYPE_PUBLIC)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -49,7 +48,7 @@ class BatchFollowTask(
         } else {
             Retro
                 .getAppApi()
-                .postUnFollow(sUserModel.access_token, userID)
+                .postUnFollow(Shaft.sUserModel.access_token, userID)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

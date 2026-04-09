@@ -3,7 +3,6 @@ package ceui.lisa.feature.worker
 import android.content.Intent
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import ceui.lisa.activities.Shaft
-import ceui.lisa.activities.Shaft.sUserModel
 import ceui.lisa.http.ErrorCtrl
 import ceui.lisa.http.Retro
 import ceui.lisa.models.NullResponse
@@ -49,7 +48,7 @@ class BatchStarTask(
         } else {
             Retro
                 .getAppApi()
-                .postDislikeIllust(sUserModel.access_token, illustID)
+                .postDislikeIllust(Shaft.sUserModel.access_token, illustID)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
