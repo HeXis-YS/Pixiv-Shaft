@@ -27,7 +27,7 @@ class FragmentLeft : BaseLazyFragment<FragmentLeftBinding>() {
 
         baseBind.toolbar.setNavigationOnClickListener {
             if (mActivity is MainActivity) {
-                (mActivity as MainActivity).drawer.openDrawer(GravityCompat.START, true)
+                (mActivity as MainActivity).getDrawer().openDrawer(GravityCompat.START, true)
             }
         }
         baseBind.toolbarTitle.setText(R.string.string_207)

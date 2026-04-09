@@ -53,7 +53,7 @@ class FragmentRight : NetListFragment<FragmentNewRightBinding, ListIllust, Illus
         baseBind.toolbar.inflateMenu(R.menu.fragment_left)
         baseBind.toolbar.setNavigationOnClickListener {
             if (mActivity is MainActivity) {
-                (mActivity as MainActivity).drawer.openDrawer(GravityCompat.START, true)
+                (mActivity as MainActivity).getDrawer().openDrawer(GravityCompat.START, true)
             }
         }
         baseBind.toolbar.setOnMenuItemClickListener(object : Toolbar.OnMenuItemClickListener {

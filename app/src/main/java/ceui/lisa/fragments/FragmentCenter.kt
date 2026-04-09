@@ -27,7 +27,7 @@ class FragmentCenter : SwipeFragment<FragmentNewCenterBinding>() {
         baseBind.toolbar.inflateMenu(R.menu.fragment_left)
         baseBind.toolbar.setNavigationOnClickListener { _: View? ->
             if (mActivity is MainActivity) {
-                (mActivity as MainActivity).drawer.openDrawer(GravityCompat.START, true)
+                (mActivity as MainActivity).getDrawer().openDrawer(GravityCompat.START, true)
             }
         }
         baseBind.toolbar.setOnMenuItemClickListener { item: MenuItem ->
