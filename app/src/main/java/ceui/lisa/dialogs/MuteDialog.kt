@@ -66,7 +66,7 @@ class MuteDialog : BaseDialog<DialogMuteTagBinding>() {
             }
         }
         binding.other.setOnClickListener {
-            TemplateActivity.startMutedTags(mContext)
+            TemplateActivity.startMutedTags(mContext!!)
             dismiss()
         }
     }
