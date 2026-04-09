@@ -68,7 +68,7 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
 //        searchModel.getNowGo().observe(this, new Observer<String>() {
 //            @Override
 //            public void onChanged(String s) {
-//                baseBind.drawerlayout.closeMenu(true);
+//                getBaseBind().drawerlayout.closeMenu(true);
 //            }
 //        });
     }
@@ -85,8 +85,8 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
                 getString(R.string.string_138),
                 getString(R.string.string_432)
         };
-        baseBind.searchBox.setText(keyWord);
-        baseBind.viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager(), 0) {
+        getBaseBind().searchBox.setText(keyWord);
+        getBaseBind().viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager(), 0) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
@@ -114,7 +114,7 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
                 return TITLES[position];
             }
         });
-        baseBind.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+        getBaseBind().viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
@@ -124,13 +124,13 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
                 if (fragmentFilter != null) {
                     mPosition = position;
                     if (mPosition == 2) {
-                        baseBind.drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_NONE);
-                        if (baseBind.drawerlayout.isMenuVisible()) {
-                            baseBind.drawerlayout.closeMenu(true);
+                        getBaseBind().drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_NONE);
+                        if (getBaseBind().drawerlayout.isMenuVisible()) {
+                            getBaseBind().drawerlayout.closeMenu(true);
                         }
                     }
                     if (mPosition != 2) {
-                        baseBind.drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+                        getBaseBind().drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
                     }
 
                     MutableLiveData<Boolean> isNovel = searchModel.getIsNovel();
@@ -148,38 +148,38 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        baseBind.viewPager.setOffscreenPageLimit(2);
-        baseBind.tabLayout.setupWithViewPager(baseBind.viewPager);
-        baseBind.drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+        getBaseBind().viewPager.setOffscreenPageLimit(2);
+        getBaseBind().tabLayout.setupWithViewPager(getBaseBind().viewPager);
+        getBaseBind().drawerlayout.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         if (index != 0) {
-            baseBind.viewPager.setCurrentItem(index);
+            getBaseBind().viewPager.setCurrentItem(index);
         }
 
         if (Shaft.getMMKV().decodeBool(Params.MMKV_KEY_ISSHOWTIPS_SEARCHSORT, true)) {
-            tipDialog(mContext);
-            baseBind.drawerlayout.openMenu(true);
+            tipDialog(getMContext());
+            getBaseBind().drawerlayout.openMenu(true);
         }
     }
 
     @Override
     protected void initData() {
-        baseBind.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        getBaseBind().toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mActivity.finish();
+                getMActivity().finish();
             }
         });
-        baseBind.toolbar.inflateMenu(R.menu.illust_filter);
-        baseBind.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+        getBaseBind().toolbar.inflateMenu(R.menu.illust_filter);
+        getBaseBind().toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_filter) {
-                    Common.hideKeyboard(mActivity);
+                    Common.hideKeyboard(getMActivity());
                     if (mPosition == 0 || mPosition == 1) {
-                        if (baseBind.drawerlayout.isMenuVisible()) {
-                            baseBind.drawerlayout.closeMenu(true);
+                        if (getBaseBind().drawerlayout.isMenuVisible()) {
+                            getBaseBind().drawerlayout.closeMenu(true);
                         } else {
-                            baseBind.drawerlayout.openMenu(true);
+                            getBaseBind().drawerlayout.openMenu(true);
                         }
                     } else {
                         Common.showToast(getString(R.string.string_435));
@@ -189,7 +189,7 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
                 return false;
             }
         });
-        baseBind.searchBox.addTextChangedListener(new TextWatcher() {
+        getBaseBind().searchBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -202,13 +202,13 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                searchModel.getKeyword().setValue(baseBind.searchBox.getText().toString());
+                searchModel.getKeyword().setValue(getBaseBind().searchBox.getText().toString());
             }
         });
-        baseBind.searchBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        getBaseBind().searchBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                String trimmedKeyword = baseBind.searchBox.getText().toString().trim();
+                String trimmedKeyword = getBaseBind().searchBox.getText().toString().trim();
                 if (TextUtils.isEmpty(trimmedKeyword) && TextUtils.isEmpty(searchModel.getStarSize().getValue())) {
                     Common.showToast(getString(R.string.string_139));
                     return false;
@@ -217,44 +217,44 @@ public class SearchActivity extends BaseActivity<FragmentNewSearchBinding> {
                 if (URLUtil.isValidUrl(trimmedKeyword)) {
                     try {
                         PixivOperate.insertSearchHistory(trimmedKeyword, SearchTypeUtil.SEARCH_TYPE_DB_URL);
-                        Intent intent = new Intent(mContext, OutWakeActivity.class);
+                        Intent intent = new Intent(getMContext(), OutWakeActivity.class);
                         intent.setData(Uri.parse(trimmedKeyword));
                         startActivity(intent);
-                        mActivity.finish();
+                        getMActivity().finish();
                     } catch (Exception e) {
                         Common.showToast(e.toString());
                         e.printStackTrace();
                     }
                 }
                 else if(Common.isNumeric(trimmedKeyword)){
-                    QMUITipDialog tipDialog = new QMUITipDialog.Builder(mContext)
+                    QMUITipDialog tipDialog = new QMUITipDialog.Builder(getMContext())
                             .setIconType(QMUITipDialog.Builder.ICON_TYPE_LOADING)
                             .setTipWord(getString(R.string.string_429))
                             .create();
                     tipDialog.show();
                     //先假定为作品id
-                    PixivOperate.getIllustByID(sUserModel, tryParseId(trimmedKeyword), mContext, new Callback<Void>() {
+                    PixivOperate.getIllustByID(sUserModel, tryParseId(trimmedKeyword), getMContext(), new Callback<Void>() {
                         @Override
                         public void doSomething(Void t) {
                             PixivOperate.insertSearchHistory(trimmedKeyword, SearchTypeUtil.SEARCH_TYPE_DB_ILLUSTSID);
                             tipDialog.dismiss();
-                            mActivity.finish();
+                            getMActivity().finish();
                         }
                     }, new Callback<Void>() {
                         @Override
                         public void doSomething(Void t) {
                             tipDialog.dismiss();
                             PixivOperate.insertSearchHistory(trimmedKeyword, SearchTypeUtil.SEARCH_TYPE_DB_USERID);
-                            Intent intent = new Intent(mContext, UActivity.class);
+                            Intent intent = new Intent(getMContext(), UActivity.class);
                             intent.putExtra(Params.USER_ID, Integer.valueOf(trimmedKeyword));
                             startActivity(intent);
-                            mActivity.finish();
+                            getMActivity().finish();
                         }
                     });
                 }
                 else{
                     searchModel.getNowGo().setValue("search_now");
-                    Common.hideKeyboard(mActivity);
+                    Common.hideKeyboard(getMActivity());
                 }
 
                 return true;

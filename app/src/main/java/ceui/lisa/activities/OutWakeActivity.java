@@ -69,7 +69,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                             List<String> pathArray = uri.getPathSegments();
                             String illustID = pathArray.get(pathArray.size() - 1);
                             if (!TextUtils.isEmpty(illustID)) {
-                                PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(illustID), mContext, new Callback<Void>() {
+                                PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(illustID), getMContext(), new Callback<Void>() {
                                     @Override
                                     public void doSomething(Void t) {
                                         finish();
@@ -93,7 +93,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 List<String> pathArray = uri.getPathSegments();
                                 novelId = pathArray.get(pathArray.size() - 1);
                             }
-                            PixivOperate.getNovelByID(sUserModel, tryParseId(novelId), mContext, new Callback<Void>() {
+                            PixivOperate.getNovelByID(sUserModel, tryParseId(novelId), getMContext(), new Callback<Void>() {
                                 @Override
                                 public void doSomething(Void t) {
                                     finish();
@@ -106,7 +106,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                             List<String> pathArray = uri.getPathSegments();
                             String userID = pathArray.get(pathArray.size() - 1);
                             if (!TextUtils.isEmpty(userID)) {
-                                Intent userIntent = new Intent(mContext, UActivity.class);
+                                Intent userIntent = new Intent(getMContext(), UActivity.class);
                                 userIntent.putExtra(Params.USER_ID, Integer.valueOf(userID));
                                 startActivity(userIntent);
                                 finish();
@@ -126,7 +126,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 String idString = end.split("_")[0];
 
                                 Common.showLog("end " + end + " idString " + idString);
-                                PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(idString), mContext, new Callback<Void>() {
+                                PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(idString), getMContext(), new Callback<Void>() {
                                     @Override
                                     public void doSomething(Void t) {
                                         finish();
@@ -134,12 +134,12 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                                 },null);
                                 return;
                             } else if (uriString.toLowerCase().contains(HOST_ME)) {
-                                startActivity(TemplateActivity.newWebIntent(mContext, HOST_ME, uriString));
+                                startActivity(TemplateActivity.newWebIntent(getMContext(), HOST_ME, uriString));
                                 finish();
                                 return;
                             } else if (uriString.toLowerCase().contains(HOST_PIXIVISION)) {
                                 startActivity(TemplateActivity.newWebIntent(
-                                        mContext,
+                                        getMContext(),
                                         getString(R.string.pixiv_special),
                                         uriString,
                                         true
@@ -154,7 +154,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
 
                         String illustID = uri.getQueryParameter("illust_id");
                         if (!TextUtils.isEmpty(illustID)) {
-                            PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(illustID), mContext, new Callback<Void>() {
+                            PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(illustID), getMContext(), new Callback<Void>() {
                                 @Override
                                 public void doSomething(Void t) {
                                     finish();
@@ -165,7 +165,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
 
                         String userID = uri.getQueryParameter("id");
                         if (!TextUtils.isEmpty(userID)) {
-                            Intent userIntent = new Intent(mContext, UActivity.class);
+                            Intent userIntent = new Intent(getMContext(), UActivity.class);
                             userIntent.putExtra(Params.USER_ID, Integer.valueOf(userID));
                             startActivity(userIntent);
                             finish();
@@ -215,25 +215,25 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
 
                                         // 检测是否打开R18并提示开启，新注册未验证邮箱用户不提示，严格来说只有设置过密码(has_password)才能进设置页，考虑到网页注册只能使用邮箱，故如此限制
                                         if (userModel.getUser().isR18Enabled() || !userModel.getUser().isIs_mail_authorized()) {
-                                            mActivity.finish();
+                                            getMActivity().finish();
                                             Common.restart();
                                         } else {
-                                            new QMUIDialog.MessageDialogBuilder(mActivity)
+                                            new QMUIDialog.MessageDialogBuilder(getMActivity())
                                                     .setTitle(R.string.string_216)
                                                     .setMessage(R.string.string_400)
-                                                    .setSkinManager(QMUISkinManager.defaultInstance(mContext))
+                                                    .setSkinManager(QMUISkinManager.defaultInstance(getMContext()))
                                                     .addAction(R.string.string_401, new QMUIDialogAction.ActionListener() {
                                                         @Override
                                                         public void onClick(QMUIDialog dialog, int index) {
                                                             dialog.dismiss();
-                                                            mActivity.finish();
+                                                            getMActivity().finish();
                                                             Common.restart();
                                                         }
                                                     })
                                                     .addAction(R.string.string_402, new QMUIDialogAction.ActionListener() {
                                                         @Override
                                                         public void onClick(QMUIDialog dialog, int index) {
-                                                            TemplateActivity.startWeb(mContext, null, Params.URL_R18_SETTING);
+                                                            TemplateActivity.startWeb(getMContext(), null, Params.URL_R18_SETTING);
                                                         }
                                                     })
                                                     .create()
@@ -246,7 +246,7 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
 
                             if (host.contains("users")) {
                                 String path = uri.getPath();
-                                Intent userIntent = new Intent(mContext, UActivity.class);
+                                Intent userIntent = new Intent(getMContext(), UActivity.class);
                                 userIntent.putExtra(Params.USER_ID, Integer.valueOf(path.substring(1)));
                                 startActivity(userIntent);
                                 finish();
@@ -256,14 +256,14 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
                             if (host.contains("illusts")) {
                                 String path = uri.getPath();
                                 PixivOperate.getIllustByID(Shaft.sUserModel, tryParseId(path.substring(1)),
-                                        mContext, t -> finish(),null);
+                                        getMContext(), t -> finish(),null);
                                 return;
                             }
 
                             if (host.contains("novels")) {
                                 String path = uri.getPath();
                                 PixivOperate.getNovelByID(Shaft.sUserModel, tryParseId(path.substring(1)),
-                                        mContext, t -> finish());
+                                        getMContext(), t -> finish());
                                 return;
                             }
                         }
@@ -273,11 +273,11 @@ public class OutWakeActivity extends BaseActivity<ActivityOutWakeBinding> {
         }
 
         if (sUserModel != null && sUserModel.getUser().isIs_login()) {
-            Intent i = new Intent(mContext, MainActivity.class);
-            mActivity.startActivity(i);
-            mActivity.finish();
+            Intent i = new Intent(getMContext(), MainActivity.class);
+            getMActivity().startActivity(i);
+            getMActivity().finish();
         } else {
-            TemplateActivity.startLogin(mContext);
+            TemplateActivity.startLogin(getMContext());
             finish();
         }
     }

@@ -80,17 +80,17 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     protected void initView() {
-        baseBind.drawerLayout.setScrimColor(Color.TRANSPARENT);
-        baseBind.navView.setNavigationItemSelectedListener(this);
-        userHead = baseBind.navView.getHeaderView(0).findViewById(R.id.user_head);
-        username = baseBind.navView.getHeaderView(0).findViewById(R.id.user_name);
-        user_email = baseBind.navView.getHeaderView(0).findViewById(R.id.user_email);
+        getBaseBind().drawerLayout.setScrimColor(Color.TRANSPARENT);
+        getBaseBind().navView.setNavigationItemSelectedListener(this);
+        userHead = getBaseBind().navView.getHeaderView(0).findViewById(R.id.user_head);
+        username = getBaseBind().navView.getHeaderView(0).findViewById(R.id.user_name);
+        user_email = getBaseBind().navView.getHeaderView(0).findViewById(R.id.user_email);
         initDrawerHeader();
         userHead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Common.showUser(mContext, sUserModel);
-                baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+                Common.showUser(getMContext(), sUserModel);
+                getBaseBind().drawerLayout.closeDrawer(GravityCompat.START);
             }
         });
         userHead.setOnLongClickListener(new View.OnLongClickListener() {
@@ -102,19 +102,19 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 return true;
             }
         });
-        baseBind.navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        getBaseBind().navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 return navigateToPage(item.getItemId());
             }
         });
-        baseBind.navigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        getBaseBind().navigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
                 forceRefreshCurrentPage(item.getItemId());
             }
         });
-        baseBind.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        getBaseBind().viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -131,7 +131,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
             }
         });
 
-        baseBind.viewPager.setTouchEventForwarder(new DrawerLayoutViewPager.IForwardTouchEvent() {
+        getBaseBind().viewPager.setTouchEventForwarder(new DrawerLayoutViewPager.IForwardTouchEvent() {
             @Override
             public void forwardTouchEvent(MotionEvent ev) {
                 getDrawer().onTouchEvent(ev);
@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private void initFragment() {
         if (Shaft.sSettings.isMainViewR18()) {
-            baseBind.navigationView.inflateMenu(R.menu.main_activity0_with_r18);
+            getBaseBind().navigationView.inflateMenu(R.menu.main_activity0_with_r18);
             baseFragments = new Fragment[]{
                     new FragmentLeft(),
                     new FragmentCenter(),
@@ -156,14 +156,14 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                     FragmentViewPager.newInstance(Params.VIEW_PAGER_R18),
             };
         } else {
-            baseBind.navigationView.inflateMenu(R.menu.main_activity0);
+            getBaseBind().navigationView.inflateMenu(R.menu.main_activity0);
             baseFragments = new Fragment[]{
                     new FragmentLeft(),
                     new FragmentCenter(),
                     new FragmentRight()
             };
         }
-        baseBind.viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+        getBaseBind().viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int i) {
                 return baseFragments[i];
@@ -174,8 +174,8 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
                 return baseFragments.length;
             }
         });
-        baseBind.viewPager.setOffscreenPageLimit(baseFragments.length - 1);
-        baseBind.viewPager.setCurrentItem(getNavigationInitPosition());
+        getBaseBind().viewPager.setOffscreenPageLimit(baseFragments.length - 1);
+        getBaseBind().viewPager.setCurrentItem(getNavigationInitPosition());
         Manager.get().restoreAsync();
     }
 
@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void redirectToLogin() {
-        TemplateActivity.startLogin(mContext);
+        TemplateActivity.startLogin(getMContext());
         finish();
     }
 
@@ -263,14 +263,14 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     public DrawerLayout getDrawer() {
-        return baseBind.drawerLayout;
+        return getBaseBind().drawerLayout;
     }
 
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         handleDrawerNavigation(item.getItemId());
-        baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+        getBaseBind().drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -290,7 +290,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
         if (pageIndex == -1) {
             return false;
         }
-        baseBind.viewPager.setCurrentItem(pageIndex);
+        getBaseBind().viewPager.setCurrentItem(pageIndex);
         return true;
     }
 
@@ -338,7 +338,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     private void syncBottomNavigation(int position) {
         int itemId = getBottomNavigationItemId(position);
         if (itemId != View.NO_ID) {
-            baseBind.navigationView.setSelectedItemId(itemId);
+            getBaseBind().navigationView.setSelectedItemId(itemId);
         }
     }
 
@@ -394,12 +394,12 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     private void initDrawerHeader() {
         if (sUserModel != null && sUserModel.getUser() != null) {
-            Glide.with(mContext)
+            Glide.with(getMContext())
                     .load(GlideUtil.getHead(sUserModel.getUser()))
                     .into(userHead);
             username.setText(sUserModel.getUser().getName());
             user_email.setText(TextUtils.isEmpty(sUserModel.getUser().getMail_address()) ?
-                    mContext.getString(R.string.no_mail_address) : sUserModel.getUser().getMail_address());
+                    getMContext().getString(R.string.no_mail_address) : sUserModel.getUser().getMail_address());
         }
     }
 
@@ -416,10 +416,10 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private boolean handleOpenDrawerOnBack() {
-        if (!baseBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+        if (!getBaseBind().drawerLayout.isDrawerOpen(GravityCompat.START)) {
             return false;
         }
-        baseBind.drawerLayout.closeDrawer(GravityCompat.START);
+        getBaseBind().drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -448,16 +448,16 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
     }
 
     private void showDownloadTaskExitDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getMContext());
         builder.setTitle(getString(R.string.shaft_hint));
-        builder.setMessage(mContext.getString(R.string.you_have_download_plan));
-        builder.setPositiveButton(mContext.getString(R.string.sure), new DialogInterface.OnClickListener() {
+        builder.setMessage(getMContext().getString(R.string.you_have_download_plan));
+        builder.setPositiveButton(getMContext().getString(R.string.sure), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 stopDownloadsAndExit();
             }
         });
-        builder.setNegativeButton(mContext.getString(R.string.cancel), null);
+        builder.setNegativeButton(getMContext().getString(R.string.cancel), null);
         builder.setNeutralButton(getString(R.string.see_download_task), (dialog, which) -> openDownloadManager());
         builder.create().show();
     }
@@ -491,7 +491,7 @@ public class MainActivity extends BaseActivity<ActivityCoverBinding>
 
     @Override
     public void finish() {
-        int currentPosition = baseBind.viewPager.getCurrentItem();
+        int currentPosition = getBaseBind().viewPager.getCurrentItem();
         Shaft.getMMKV().putInt(Params.MAIN_ACTIVITY_NAVIGATION_POSITION, currentPosition);
         super.finish();
     }

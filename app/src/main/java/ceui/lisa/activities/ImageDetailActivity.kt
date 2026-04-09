@@ -25,7 +25,7 @@ import java.util.Locale
 /**
  * 图片二级详情
  */
-class ImageDetailActivity : BaseActivity<ActivityImageDetailBinding?>() {
+class ImageDetailActivity : BaseActivity<ActivityImageDetailBinding>() {
     private var mIllustsBean: IllustsBean? = null
     private var localIllust: List<String>? = ArrayList()
     private var currentPage: TextView? = null
