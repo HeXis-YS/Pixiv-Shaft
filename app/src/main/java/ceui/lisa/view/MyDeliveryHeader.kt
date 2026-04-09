@@ -8,12 +8,12 @@ class MyDeliveryHeader(context: Context) : DeliveryHeader(context) {
 
     companion object {
         init {
-            cloudColors[0] = Shaft.getContext().resources.getColor(R.color.delivery_header_cloud)
+            DeliveryHeader.setCloudColor(Shaft.getContext().resources.getColor(R.color.delivery_header_cloud))
         }
 
         @JvmStatic
         fun changeCloudColor(context: Context) {
-            cloudColors[0] = context.resources.getColor(R.color.delivery_header_cloud)
+            DeliveryHeader.setCloudColor(context.resources.getColor(R.color.delivery_header_cloud))
         }
     }
 }
