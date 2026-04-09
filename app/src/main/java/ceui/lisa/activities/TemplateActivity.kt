@@ -156,9 +156,9 @@ class TemplateActivity : BaseActivity<ActivityFragmentBinding>(), ColorPickerDia
                 var workId = readIllustId(intent)
                 if (workId == 0) {
                     workId = readNovelId(intent)
-                    FragmentComment.newNovelInstance(workId, title)
+                    FragmentComment.newNovelInstance(workId, title!!)
                 } else {
-                    FragmentComment.newIllustInstance(workId, title)
+                    FragmentComment.newIllustInstance(workId, title!!)
                 }
             }
 
