@@ -17,18 +17,18 @@ class Settings {
     private var trendsForPrivate = false
     private var viewHistoryAnimate = true
     private var settingsAnimate = true
-    private var deleteStarIllust = false
-    private var relatedIllustNoLimit = true
+    var isDeleteStarIllust = false
+    var isRelatedIllustNoLimit = true
     private var showLargeThumbnailImage = false
     private var showOriginalPreviewImage = false
     private var showPixivDialog = true
-    private var privateStar = false
+    var isPrivateStar = false
     private var showLikeButton = true
     private var directDownloadAllImage = true
     private var saveViewHistory = true
-    private var r18DivideSave = false
-    private var AIDivideSave = false
-    private var hideStarButtonAtMyCollection = false
+    var isR18DivideSave = false
+    var isAIDivideSave = false
+    var isHideStarButtonAtMyCollection = false
     private var starWithTagSelectAll = false
     var isHasP0 = false
     private var illustPath = ""
@@ -46,13 +46,15 @@ class Settings {
     var fileNameJson = ""
     var rootPathUri = ""
     private var downloadWay = 0
-    private var filterComment = false
-    private var transformerType = 5
+    var isFilterComment = false
+    @get:JvmName("getTransformerTypeValue")
+    @set:JvmName("setTransformerTypeValue")
+    var transformerType = 5
     private var showRelatedWhenStar = true
     private var globalSwipeBack = true
     private var illustLongPressDownload = false
     private var saveForSeparateAuthorStatus = 0
-    private var autoPostLikeWhenDownload = false
+    var isAutoPostLikeWhenDownload = false
     private var r18FilterDefaultEnable = false
     private var toastDownloadResult = true
     @Transient
@@ -62,10 +64,12 @@ class Settings {
     var searchDefaultSortType = ""
         get() = if (TextUtils.isEmpty(field)) PixivSearchParamUtil.POPULAR_SORT_VALUE else field
     private var navigationInitPosition = NavigationLocationHelper.TUIJIAN
-    private var downloadLimitType = 0
-    private var illustDetailKeepScreenOn = false
+    var downloadLimitType = 0
+    var isIllustDetailKeepScreenOn = false
     private var themeType = ""
-    private var searchFilter = ""
+    @get:JvmName("getSearchFilterValue")
+    @set:JvmName("setSearchFilterValue")
+    var searchFilter = ""
 
     fun getCurrentProgress(): Long = currentProgress
 
@@ -85,25 +89,7 @@ class Settings {
         this.downloadWay = downloadWay
     }
 
-    fun isR18DivideSave(): Boolean = r18DivideSave
-
-    fun setR18DivideSave(r18DivideSave: Boolean) {
-        this.r18DivideSave = r18DivideSave
-    }
-
-    fun isAIDivideSave(): Boolean = AIDivideSave
-
-    fun setAIDivideSave(AIDivideSave: Boolean) {
-        this.AIDivideSave = AIDivideSave
-    }
-
     fun getNovelPath(): String = if (TextUtils.isEmpty(novelPath)) FILE_LOG_PATH else novelPath
-
-    fun isPrivateStar(): Boolean = privateStar
-
-    fun setPrivateStar(privateStar: Boolean) {
-        this.privateStar = privateStar
-    }
 
     fun setNovelPath(novelPath: String) {
         this.novelPath = novelPath
@@ -122,12 +108,6 @@ class Settings {
         ThemeHelper.applyTheme(activity, themeType)
     }
 
-    fun isDeleteStarIllust(): Boolean = deleteStarIllust
-
-    fun setDeleteStarIllust(pDeleteStarIllust: Boolean) {
-        deleteStarIllust = pDeleteStarIllust
-    }
-
     fun isSaveViewHistory(): Boolean = saveViewHistory
 
     fun setSaveViewHistory(saveViewHistory: Boolean) {
@@ -138,12 +118,6 @@ class Settings {
 
     fun setSearchFilter(searchFilter: String) {
         this.searchFilter = searchFilter
-    }
-
-    fun isRelatedIllustNoLimit(): Boolean = relatedIllustNoLimit
-
-    fun setRelatedIllustNoLimit(relatedIllustNoLimit: Boolean) {
-        this.relatedIllustNoLimit = relatedIllustNoLimit
     }
 
     fun isMainViewR18(): Boolean = mainViewR18
@@ -242,22 +216,10 @@ class Settings {
         this.bottomBarOrder = bottomBarOrder
     }
 
-    fun isHideStarButtonAtMyCollection(): Boolean = hideStarButtonAtMyCollection
-
-    fun setHideStarButtonAtMyCollection(hideStarButtonAtMyCollection: Boolean) {
-        this.hideStarButtonAtMyCollection = hideStarButtonAtMyCollection
-    }
-
     fun isStarWithTagSelectAll(): Boolean = starWithTagSelectAll
 
     fun setStarWithTagSelectAll(starWithTagSelectAll: Boolean) {
         this.starWithTagSelectAll = starWithTagSelectAll
-    }
-
-    fun isFilterComment(): Boolean = filterComment
-
-    fun setFilterComment(filterComment: Boolean) {
-        this.filterComment = filterComment
     }
 
     fun getTransformerType(): Int = transformerType
@@ -282,12 +244,6 @@ class Settings {
 
     fun setIllustLongPressDownload(illustLongPressDownload: Boolean) {
         this.illustLongPressDownload = illustLongPressDownload
-    }
-
-    fun isAutoPostLikeWhenDownload(): Boolean = autoPostLikeWhenDownload
-
-    fun setAutoPostLikeWhenDownload(autoPostLikeWhenDownload: Boolean) {
-        this.autoPostLikeWhenDownload = autoPostLikeWhenDownload
     }
 
     fun isShowOriginalPreviewImage(): Boolean = showOriginalPreviewImage
@@ -326,22 +282,10 @@ class Settings {
         this.saveForSeparateAuthorStatus = saveForSeparateAuthorStatus
     }
 
-    fun getDownloadLimitType(): Int = downloadLimitType
-
-    fun setDownloadLimitType(downloadLimitType: Int) {
-        this.downloadLimitType = downloadLimitType
-    }
-
     fun isShowLargeThumbnailImage(): Boolean = showLargeThumbnailImage
 
     fun setShowLargeThumbnailImage(showLargeThumbnailImage: Boolean) {
         this.showLargeThumbnailImage = showLargeThumbnailImage
-    }
-
-    fun isIllustDetailKeepScreenOn(): Boolean = illustDetailKeepScreenOn
-
-    fun setIllustDetailKeepScreenOn(illustDetailKeepScreenOn: Boolean) {
-        this.illustDetailKeepScreenOn = illustDetailKeepScreenOn
     }
 
     companion object {

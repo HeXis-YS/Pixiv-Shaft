@@ -78,7 +78,7 @@ object PageTransformerHelper {
         if (currentIndex < 0 || currentIndex >= transformerMap.size) {
             currentIndex = 0
         }
-        Shaft.sSettings.setTransformerType(transformerMap.getIndexed(currentIndex)!!.typeId)
+        Shaft.sSettings.transformerType = transformerMap.getIndexed(currentIndex)!!.typeId
     }
 
     private class TransformerType(
