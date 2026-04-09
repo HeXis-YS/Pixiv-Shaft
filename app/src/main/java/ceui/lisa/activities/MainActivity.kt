@@ -369,7 +369,7 @@ class MainActivity : BaseActivity<ActivityCoverBinding>(), NavigationView.OnNavi
     }
 
     private fun hasPendingDownloadTasks(): Boolean {
-        return Manager.get().getContent().size != 0
+        return Manager.get().content.size != 0
     }
 
     private fun showDownloadTaskExitDialog() {
