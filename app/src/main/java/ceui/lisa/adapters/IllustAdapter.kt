@@ -67,20 +67,21 @@ class IllustAdapter(
         position: Int,
     ) {
         super.onBindViewHolder(holder, position)
+        val illust = allIllust!!
         if (longPressDownload && mActivity is BaseActivity<*>) {
             holder.itemView.setOnLongClickListener {
-                IllustDownload.downloadIllustCertainPage(allIllust, position, mActivity)
-                if (Shaft.sSettings.isAutoPostLikeWhenDownload && !allIllust!!.isIs_bookmarked) {
-                    PixivOperate.postLikeDefaultStarType(allIllust)
+                IllustDownload.downloadIllustCertainPage(illust, position, mActivity)
+                if (Shaft.sSettings.isAutoPostLikeWhenDownload && !illust.isIs_bookmarked) {
+                    PixivOperate.postLikeDefaultStarType(illust)
                 }
                 true
             }
         }
 
         if (position == 0) {
-            if (allIllust!!.page_count == 1) {
+            if (illust.page_count == 1) {
                 val screenRatio = imageSize.toFloat() / maxHeight
-                val illustRatio = allIllust!!.width.toFloat() / allIllust!!.height
+                val illustRatio = illust.width.toFloat() / illust.height
 
                 if (kotlin.math.abs(illustRatio - screenRatio) < 0.1f) {
                     holder.baseBind.illust.scaleType = ImageView.ScaleType.CENTER_CROP
@@ -123,12 +124,13 @@ class IllustAdapter(
             holder.baseBind.progressLayout.donutProgress.visibility = View.VISIBLE
             loadIllust(holder, position, changeSize)
         }
+        val illust = allIllust!!
         val isLoadOriginalImage = Shaft.sSettings.isShowOriginalPreviewImage() || isForceOriginal
         val imageUrl =
             if (isLoadOriginalImage) {
-                IllustDownload.getUrl(allIllust, position, Params.IMAGE_RESOLUTION_ORIGINAL)
+                IllustDownload.getUrl(illust, position, Params.IMAGE_RESOLUTION_ORIGINAL)
             } else {
-                IllustDownload.getUrl(allIllust, position, Params.IMAGE_RESOLUTION_LARGE)
+                IllustDownload.getUrl(illust, position, Params.IMAGE_RESOLUTION_LARGE)
             }
         ProgressManager.getInstance().addResponseListener(
             imageUrl,

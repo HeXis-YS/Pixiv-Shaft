@@ -54,27 +54,28 @@ class ImageDetailActivity : BaseActivity<ActivityImageDetailBinding>() {
             if (mIllustsBean == null) {
                 return
             }
+            val illust = mIllustsBean!!
             baseBind!!.viewPager.adapter = object : FragmentPagerAdapter(
                 supportFragmentManager
             ) {
                 override fun getItem(i: Int): Fragment {
-                    return newInstance(mIllustsBean, i)
+                    return newInstance(illust, i)
                 }
 
                 override fun getCount(): Int {
-                    return mIllustsBean!!.page_count
+                    return illust.page_count
                 }
             }
             baseBind!!.viewPager.currentItem = index
             checkDownload(index)
             downloadSingle?.setOnClickListener(View.OnClickListener {
                 IllustDownload.downloadIllustCertainPage(
-                    mIllustsBean,
+                    illust,
                     baseBind!!.viewPager.currentItem,
                     mContext as BaseActivity<*>
                 )
-                if (Shaft.sSettings.isAutoPostLikeWhenDownload && !mIllustsBean!!.isIs_bookmarked) {
-                    PixivOperate.postLikeDefaultStarType(mIllustsBean)
+                if (Shaft.sSettings.isAutoPostLikeWhenDownload && !illust.isIs_bookmarked) {
+                    PixivOperate.postLikeDefaultStarType(illust)
                 }
             })
             baseBind!!.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -88,7 +89,7 @@ class ImageDetailActivity : BaseActivity<ActivityImageDetailBinding>() {
                             Locale.getDefault(),
                             "第 %d/%d P",
                             i + 1,
-                            mIllustsBean!!.page_count
+                            illust.page_count
                         )
                     )
                 }
@@ -96,17 +97,17 @@ class ImageDetailActivity : BaseActivity<ActivityImageDetailBinding>() {
                 override fun onPageScrollStateChanged(i: Int) {
                 }
             })
-            if (mIllustsBean!!.page_count == 1) {
+            if (illust.page_count == 1) {
                 currentPage?.setVisibility(View.INVISIBLE)
             } else {
                 currentPage?.setText(
                     String.format(
-                        Locale.getDefault(),
-                        "第 %d/%d P",
-                        index + 1,
-                        mIllustsBean!!.page_count
+                            Locale.getDefault(),
+                            "第 %d/%d P",
+                            index + 1,
+                            illust.page_count
+                        )
                     )
-                )
             }
         } else if ("下载详情" == dataType) {
             currentPage = findViewById(R.id.current_page)

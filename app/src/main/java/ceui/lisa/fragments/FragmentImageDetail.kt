@@ -75,14 +75,15 @@ class FragmentImageDetail : BaseFragment<FragmentImageDetailBinding?>() {
         if (mIllustsBean == null && !TextUtils.isEmpty(url)) {
             imageUrl = url
         } else {
-            val originUrl = IllustDownload.getUrl(mIllustsBean, index)
+            val illust = mIllustsBean!!
+            val originUrl = IllustDownload.getUrl(illust, index)
             imageUrl = if (Shaft.getMMKV().decodeBool(originUrl)) {
                 originUrl
             } else {
                 if (!TextUtils.isEmpty(url)) {
                     url
                 } else {
-                    IllustDownload.getUrl(mIllustsBean, index, Params.IMAGE_RESOLUTION_ORIGINAL)
+                    IllustDownload.getUrl(illust, index, Params.IMAGE_RESOLUTION_ORIGINAL)
                 }
             }
         }
