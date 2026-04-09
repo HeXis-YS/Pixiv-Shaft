@@ -101,7 +101,7 @@ open class PathsDrawable : PaintDrawable() {
         val parsedPaths = ArrayList<Path>()
         for (path in paths) {
             originSvg.add(path)
-            parsedPaths.add(PathParser.createPathFromPathData(path))
+            parsedPaths.add(PathParser.createPathFromPathData(path)!!)
         }
         mltOriginSvg = originSvg
         mPaths = parsedPaths
