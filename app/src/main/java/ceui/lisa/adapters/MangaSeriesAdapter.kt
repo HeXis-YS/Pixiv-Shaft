@@ -30,7 +30,7 @@ class MangaSeriesAdapter(
                 .into(bindView.baseBind.imageView)
         }
         bindView.itemView.setOnClickListener {
-            mOnItemClickListener.onItemClick(it, position, 0)
+            mOnItemClickListener?.onItemClick(it, position, 0)
         }
     }
 }

@@ -159,12 +159,12 @@ open class IAdapter(
 
     private fun handleClick() {
         setOnItemClickListener { _, position, _ ->
-            val pageData = PageData(uuid, nextUrl, allItems)
+            val pageData = PageData(adapterUuid!!, adapterNextUrl, allItems)
             Container.get().addPageToMap(pageData)
 
             val intent = Intent(mContext, VActivity::class.java)
             intent.putExtra(Params.POSITION, position)
-            intent.putExtra(Params.PAGE_UUID, uuid)
+            intent.putExtra(Params.PAGE_UUID, adapterUuid)
             mContext.startActivity(intent)
         }
     }

@@ -39,16 +39,15 @@ abstract class LocalListFragment<Layout : ViewDataBinding, Item> : ListFragment<
     }
 
     private fun handleFirstList(firstList: List<Item>?) {
-        if (!Common.isEmpty(firstList)) {
-            if (mModel != null) {
-                mModel.load(firstList!!, true)
-                mModel.tidyAppViewModel()
-                allItems = mModel.getContent()
-            }
-            onFirstLoaded(firstList)
+        val items = firstList ?: emptyList()
+        if (!Common.isEmpty(items)) {
+            mModel.load(items, true)
+            mModel.tidyAppViewModel()
+            allItems = mModel.getContent()
+            onFirstLoaded(items)
             mRecyclerView.visibility = View.VISIBLE
             emptyRela.visibility = View.INVISIBLE
-            mAdapter.notifyItemRangeInserted(getStartSize(), firstList!!.size)
+            mAdapter.notifyItemRangeInserted(getStartSize(), items.size)
         } else {
             mRecyclerView.visibility = View.INVISIBLE
             emptyRela.visibility = View.VISIBLE
@@ -79,14 +78,13 @@ abstract class LocalListFragment<Layout : ViewDataBinding, Item> : ListFragment<
     }
 
     private fun handleNextList(nextList: List<Item>?) {
-        if (mLocalRepo.hasNext() && !Common.isEmpty(nextList)) {
-            if (mModel != null) {
-                mModel.load(nextList!!, false)
-                mModel.tidyAppViewModel(nextList)
-                allItems = mModel.getContent()
-            }
-            onNextLoaded(nextList)
-            mAdapter.notifyItemRangeInserted(getStartSize(), nextList!!.size)
+        val items = nextList ?: emptyList()
+        if (mLocalRepo.hasNext() && !Common.isEmpty(items)) {
+            mModel.load(items, false)
+            mModel.tidyAppViewModel(items)
+            allItems = mModel.getContent()
+            onNextLoaded(items)
+            mAdapter.notifyItemRangeInserted(getStartSize(), items.size)
         } else {
             if (mLocalRepo.showNoDataHint()) {
                 Common.showToast(getString(R.string.string_224))

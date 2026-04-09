@@ -66,10 +66,10 @@ class FeatureAdapter(
 
         bindView.baseBind.illustCount.text = target.dataType
         bindView.baseBind.deleteItem.setOnClickListener {
-            mOnItemClickListener.onItemClick(it, position, 1)
+            mOnItemClickListener?.onItemClick(it, position, 1)
         }
         bindView.itemView.setOnClickListener {
-            mOnItemClickListener.onItemClick(it, position, 0)
+            mOnItemClickListener?.onItemClick(it, position, 0)
         }
     }
 }

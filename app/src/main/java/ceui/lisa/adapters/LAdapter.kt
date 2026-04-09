@@ -31,8 +31,9 @@ class LAdapter(targetList: List<IllustsBean>, context: Context) :
             .placeholder(R.color.second_light_bg)
             .into(bindView.baseBind.imageView)
         bindView.itemView.setOnClickListener { view ->
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(view, position, 0)
+            val listener = mOnItemClickListener
+            if (listener != null) {
+                listener.onItemClick(view, position, 0)
             }
         }
     }

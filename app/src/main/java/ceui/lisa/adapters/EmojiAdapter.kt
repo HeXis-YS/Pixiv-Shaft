@@ -33,7 +33,7 @@ class EmojiAdapter(@Nullable targetList: List<EmojiItem>?, context: Context) :
             Log.e(HtmlTextView.TAG, "source could not be found: ${target.resource}")
         }
         bindView.itemView.setOnClickListener { v ->
-            mOnItemClickListener.onItemClick(v, position, 0)
+            mOnItemClickListener?.onItemClick(v, position, 0)
         }
     }
 }

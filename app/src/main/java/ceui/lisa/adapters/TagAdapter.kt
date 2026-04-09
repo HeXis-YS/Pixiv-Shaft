@@ -50,8 +50,9 @@ class TagAdapter(
             startDownload()
             true
         }
-        if (mOnItemClickListener != null) {
-            bindView.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 0) }
+        val listener = mOnItemClickListener
+        if (listener != null) {
+            bindView.itemView.setOnClickListener { v -> listener.onItemClick(v, position, 0) }
         }
     }
 

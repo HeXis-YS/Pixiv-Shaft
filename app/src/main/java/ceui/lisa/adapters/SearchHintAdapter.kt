@@ -38,14 +38,16 @@ class SearchHintAdapter(
         if (!TextUtils.isEmpty(target.translated_name) && target.translated_name != target.name) {
             bindView.baseBind.translatedText.text = String.format("译：%s", target.translated_name)
         }
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.itemView.setOnClickListener { view ->
-                mOnItemClickListener.onItemClick(view, position, 0)
+                listener.onItemClick(view, position, 0)
             }
         }
-        if (mOnItemLongClickListener != null) {
+        val longListener = mOnItemLongClickListener
+        if (longListener != null) {
             bindView.itemView.setOnLongClickListener { view ->
-                mOnItemLongClickListener.onItemLongClick(view, position, 0)
+                longListener.onItemLongClick(view, position, 0)
                 true
             }
         }

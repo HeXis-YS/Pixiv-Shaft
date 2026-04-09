@@ -32,16 +32,18 @@ class BookedTagAdapter(targetList: List<TagsBean>, context: Context, muted: Bool
         } else {
             if (isMuted) {
                 bindView.baseBind.illustCount.setText(R.string.string_157)
+                val listener = mOnItemClickListener
                 bindView.baseBind.illustCount.setOnClickListener { v ->
-                    mOnItemClickListener.onItemClick(v, position, 1)
+                    listener?.onItemClick(v, position, 1)
                 }
             } else {
                 bindView.baseBind.illustCount.text =
                     mContext.getString(R.string.string_156, allItems[position].count)
             }
         }
-        if (mOnItemClickListener != null) {
-            bindView.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 0) }
+        val listener = mOnItemClickListener
+        if (listener != null) {
+            bindView.itemView.setOnClickListener { v -> listener.onItemClick(v, position, 0) }
         }
     }
 }

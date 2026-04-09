@@ -26,9 +26,10 @@ class UserHAdapter(targetList: MutableList<UserPreviewsBean>, context: Context) 
             .placeholder(R.color.light_bg)
             .error(R.drawable.no_profile)
             .into(bindView.baseBind.userHead)
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.itemView.setOnClickListener { v: View? ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
         }
     }

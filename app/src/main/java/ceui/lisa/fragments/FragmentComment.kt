@@ -273,7 +273,7 @@ class FragmentComment : NetListFragment<FragmentCommentBinding, ListComment, Rep
             }
         }
 
-        val recyclerView: RecyclerView = rootView.findViewById(R.id.recy_list)
+        val recyclerView: RecyclerView = baseBind.root.findViewById(R.id.recy_list)
         val layoutManager = GridLayoutManager(context, 6)
         recyclerView.layoutManager = layoutManager
         val adapter = EmojiAdapter(Emoji.getEmojis(), context!!)

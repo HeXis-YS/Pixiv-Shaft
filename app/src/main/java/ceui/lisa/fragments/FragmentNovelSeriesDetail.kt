@@ -93,6 +93,7 @@ class FragmentNovelSeriesDetail :
                         }
                     }
                 } else if (item.itemId == R.id.batch_download_as_one) {
+                    val seriesResponse = mResponse ?: return true
                     val taskContainer = TreeMap<Long, String>()
                     val lineSeparator = System.lineSeparator()
                     for (novelBean in allItems) {
@@ -105,7 +106,7 @@ class FragmentNovelSeriesDetail :
                             taskContainer[novelBean.id.toLong()] = sb
                             if (taskContainer.size == allItems.size) {
                                 val content = taskContainer.values.joinToString(lineSeparator)
-                                saveNovelSeriesToDownload(mResponse.novel_series_detail!!, content)
+                                saveNovelSeriesToDownload(seriesResponse.novel_series_detail!!, content)
                             }
                         } else {
                             Retro.getAppApi()
@@ -125,7 +126,7 @@ class FragmentNovelSeriesDetail :
                                                 taskContainer[novelBean.id.toLong()] = sb
                                                 if (taskContainer.size == allItems.size) {
                                                     val content = taskContainer.values.joinToString(lineSeparator)
-                                                    saveNovelSeriesToDownload(mResponse.novel_series_detail!!, content)
+                                                    saveNovelSeriesToDownload(seriesResponse.novel_series_detail!!, content)
                                                 }
                                             }
                                         }

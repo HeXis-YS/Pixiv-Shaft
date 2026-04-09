@@ -21,8 +21,9 @@ class RAdapter(targetList: List<IllustsBean>, context: Context) :
             .placeholder(R.color.light_bg).into(bindView.baseBind.illustImage)
         Glide.with(mContext).load(GlideUtil.getUrl(allItems[position].user.profile_image_urls.medium))
             .placeholder(R.color.light_bg).error(R.drawable.no_profile).into(bindView.baseBind.userHead)
-        if (mOnItemClickListener != null) {
-            bindView.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 0) }
+        val listener = mOnItemClickListener
+        if (listener != null) {
+            bindView.itemView.setOnClickListener { v -> listener.onItemClick(v, position, 0) }
         }
     }
 }

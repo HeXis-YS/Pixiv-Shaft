@@ -77,13 +77,14 @@ class HistoryAdapter(
                 }
             }
 
-            if (mOnItemClickListener != null) {
+            val listener = mOnItemClickListener
+            if (listener != null) {
                 bindView.itemView.setOnClickListener { v ->
-                    mOnItemClickListener.onItemClick(v, position, 0)
+                    listener.onItemClick(v, position, 0)
                 }
                 bindView.baseBind.author.setOnClickListener { _ ->
                     bindView.baseBind.author.tag = current.user.id
-                    mOnItemClickListener.onItemClick(bindView.baseBind.author, position, 1)
+                    listener.onItemClick(bindView.baseBind.author, position, 1)
                 }
             }
         } else if (target.type == 1) {
@@ -102,20 +103,21 @@ class HistoryAdapter(
             bindView.baseBind.pSize.visibility = View.VISIBLE
             bindView.baseBind.pSize.text = "小说"
 
-            if (mOnItemClickListener != null) {
+            val listener = mOnItemClickListener
+            if (listener != null) {
                 bindView.itemView.setOnClickListener { _: View ->
                     TemplateActivity.startNovelDetail(mContext, current)
                 }
                 bindView.baseBind.author.setOnClickListener { _ ->
                     bindView.baseBind.author.tag = current.user.id
-                    mOnItemClickListener.onItemClick(bindView.baseBind.author, position, 1)
+                    listener.onItemClick(bindView.baseBind.author, position, 1)
                 }
             }
         }
 
         bindView.baseBind.time.text = mTime.format(allItems[position].time)
         bindView.baseBind.deleteItem.setOnClickListener { v ->
-            mOnItemClickListener.onItemClick(v, position, 2)
+            mOnItemClickListener?.onItemClick(v, position, 2)
         }
         (bindView as SpringHolder).spring.currentValue = -400.0
         bindView.spring.endValue = 0.0

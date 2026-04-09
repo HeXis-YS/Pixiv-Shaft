@@ -34,7 +34,7 @@ class ImageFileViewModel : ViewModel() {
 }
 
 
-class FragmentImageDetail : BaseFragment<FragmentImageDetailBinding?>() {
+class FragmentImageDetail : BaseFragment<FragmentImageDetailBinding>() {
     private var mIllustsBean: IllustsBean? = null
     private var index = 0
     private var url: String? = null

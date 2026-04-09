@@ -22,8 +22,9 @@ class FragmentRecmdNovel : NetListFragment<FragmentBaseListBinding, ListNovel, N
     override fun showToolbar(): Boolean = false
 
     override fun onFirstLoaded(novelBeans: List<NovelBean>) {
+        val response = mResponse ?: return
         ranking.clear()
-        ranking.addAll(mResponse.ranking_novels.orEmpty())
+        ranking.addAll(response.ranking_novels.orEmpty())
         (mAdapter as NAdapterWithHeadView).setHeadData(ranking)
     }
 

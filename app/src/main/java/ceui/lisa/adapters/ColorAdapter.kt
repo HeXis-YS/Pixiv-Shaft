@@ -36,7 +36,7 @@ class ColorAdapter(
         }
         bindView.baseBind.value.text = target.color
         bindView.itemView.setOnClickListener { v: View ->
-            mOnItemClickListener.onItemClick(v, position, 0)
+            mOnItemClickListener?.onItemClick(v, position, 0)
         }
     }
 

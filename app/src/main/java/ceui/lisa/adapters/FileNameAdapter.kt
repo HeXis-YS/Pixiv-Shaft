@@ -27,7 +27,7 @@ class FileNameAdapter(
             CompoundButton.OnCheckedChangeListener { _, isChecked ->
                 target.isChecked = isChecked
                 if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(bindView.itemView, position, 0)
+                    mOnItemClickListener?.onItemClick(bindView.itemView, position, 0)
                 }
             },
         )

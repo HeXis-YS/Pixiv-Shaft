@@ -56,7 +56,7 @@ class CommentAdapter(
 
             val clickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    mOnItemClickListener.onItemClick(widget, position, 3)
+                    mOnItemClickListener?.onItemClick(widget, position, 3)
                 }
 
                 override fun updateDrawState(ds: TextPaint) {
@@ -116,25 +116,26 @@ class CommentAdapter(
             bindView.baseBind.commentImage.visibility = View.GONE
         }
 
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.itemView.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
 
             bindView.baseBind.content.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
 
             bindView.baseBind.userHead.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 1)
+                listener.onItemClick(v, position, 1)
             }
 
             bindView.baseBind.userName.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 1)
+                listener.onItemClick(v, position, 1)
             }
 
             bindView.baseBind.replyContent.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 2)
+                listener.onItemClick(v, position, 2)
             }
         }
     }

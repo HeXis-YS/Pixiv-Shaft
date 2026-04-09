@@ -119,12 +119,12 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
         }
     }
 
-    override fun onFirstLoaded(items: MutableList<FeatureEntity>) {
+    override fun onFirstLoaded(items: List<FeatureEntity>) {
         super.onFirstLoaded(items)
         handleFeatures(items)
     }
 
-    override fun onNextLoaded(items: MutableList<FeatureEntity>) {
+    override fun onNextLoaded(items: List<FeatureEntity>) {
         super.onNextLoaded(items)
         handleFeatures(items)
     }
@@ -133,7 +133,7 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
         return getString(R.string.string_249)
     }
 
-    private fun handleFeatures(items: MutableList<FeatureEntity>) {
+    private fun handleFeatures(items: List<FeatureEntity>) {
         for (item in items) {
             if (!TextUtils.isEmpty(item.illustJson)) {
                 if (item.dataType == "漫画系列作品") {

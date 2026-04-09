@@ -56,11 +56,12 @@ class EventAdapter(
         Glide.with(mContext).load(GlideUtil.getLargeImage(allItems[position]))
             .placeholder(R.color.light_bg)
             .into(bindView.baseBind.illustImage)
-        if (mOnItemClickListener != null) {
-            bindView.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 0) }
-            bindView.baseBind.userHead.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 1) }
-            bindView.baseBind.more.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 4) }
-            bindView.baseBind.download.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 2) }
+        val listener = mOnItemClickListener
+        if (listener != null) {
+            bindView.itemView.setOnClickListener { v -> listener.onItemClick(v, position, 0) }
+            bindView.baseBind.userHead.setOnClickListener { v -> listener.onItemClick(v, position, 1) }
+            bindView.baseBind.more.setOnClickListener { v -> listener.onItemClick(v, position, 4) }
+            bindView.baseBind.download.setOnClickListener { v -> listener.onItemClick(v, position, 2) }
             bindView.baseBind.star.setOnClickListener { v ->
                 bindView.baseBind.star.text =
                     if (allItems[position].isIs_bookmarked) {
@@ -68,7 +69,7 @@ class EventAdapter(
                     } else {
                         mContext.getString(R.string.string_179)
                     }
-                mOnItemClickListener.onItemClick(v, position, 3)
+                listener.onItemClick(v, position, 3)
             }
         }
     }

@@ -101,25 +101,26 @@ open class NAdapter @JvmOverloads constructor(
                 R.string.string_170
             },
         )
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.baseBind.like.setOnClickListener {
-                mOnItemClickListener.onItemClick(bindView.baseBind.like, position, 1)
+                listener.onItemClick(bindView.baseBind.like, position, 1)
             }
             bindView.baseBind.cover.setOnClickListener {
-                mOnItemClickListener.onItemClick(bindView.baseBind.like, position, 2)
+                listener.onItemClick(bindView.baseBind.like, position, 2)
             }
             bindView.baseBind.userHead.setOnClickListener {
-                mOnItemClickListener.onItemClick(bindView.baseBind.like, position, 3)
+                listener.onItemClick(bindView.baseBind.like, position, 3)
             }
             bindView.baseBind.author.setOnClickListener {
-                mOnItemClickListener.onItemClick(bindView.baseBind.like, position, 3)
+                listener.onItemClick(bindView.baseBind.like, position, 3)
             }
             bindView.baseBind.like.setOnLongClickListener {
                 TemplateActivity.startTagStar(mContext, target.id, Params.TYPE_NOVEL, target.tagNames)
                 true
             }
             bindView.itemView.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
         }
     }

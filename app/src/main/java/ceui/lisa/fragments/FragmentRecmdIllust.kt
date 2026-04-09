@@ -140,10 +140,11 @@ class FragmentRecmdIllust : NetListFragment<FragmentBaseListBinding, RecmdIllust
                 return null as Void
             }
         }, TryCatchObserverImpl())
-        mResponse.ranking_illusts?.forEach { illustsBean ->
+        val response = mResponse ?: return
+        response.ranking_illusts?.forEach { illustsBean ->
             ObjectPool.updateIllust(illustsBean)
         }
-        rankList.addAll(mResponse.ranking_illusts.orEmpty())
+        rankList.addAll(response.ranking_illusts.orEmpty())
         (mAdapter as IAdapterWithHeadView).setHeadData(rankList)
         mModel.tidyAppViewModel(rankList)
     }

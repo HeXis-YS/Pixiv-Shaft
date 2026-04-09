@@ -42,11 +42,12 @@ class MutedTagAdapter(
             },
         )
 
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.baseBind.deleteItem.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 1)
+                listener.onItemClick(v, position, 1)
             }
-            bindView.itemView.setOnClickListener { v -> mOnItemClickListener.onItemClick(v, position, 0) }
+            bindView.itemView.setOnClickListener { v -> listener.onItemClick(v, position, 0) }
         }
     }
 }

@@ -32,9 +32,10 @@ class ArticleAdapter(targetList: List<SpotlightArticlesBean>, context: Context) 
 
         Glide.with(mContext).load(GlideUtil.getUrl(target.thumbnail))
             .into(bindView.baseBind.illustImage)
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.itemView.setOnClickListener { v ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
         }
     }

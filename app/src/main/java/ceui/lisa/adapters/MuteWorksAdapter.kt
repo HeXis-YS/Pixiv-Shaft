@@ -79,16 +79,17 @@ class MuteWorksAdapter(
                 }
             }
 
-            if (mOnItemClickListener != null) {
+            val listener = mOnItemClickListener
+            if (listener != null) {
                 bindView.itemView.setOnClickListener { v ->
-                    mOnItemClickListener.onItemClick(v, position, 0)
+                    listener.onItemClick(v, position, 0)
                 }
                 bindView.baseBind.author.setOnClickListener { _ ->
                     bindView.baseBind.author.tag = current.user.id
-                    mOnItemClickListener.onItemClick(bindView.baseBind.author, position, 1)
+                    listener.onItemClick(bindView.baseBind.author, position, 1)
                 }
                 bindView.baseBind.deleteItem.setOnClickListener { v ->
-                    mOnItemClickListener.onItemClick(v, position, 2)
+                    listener.onItemClick(v, position, 2)
                 }
             }
         } else if (target.type == 2) {
@@ -107,12 +108,13 @@ class MuteWorksAdapter(
             bindView.baseBind.pSize.visibility = View.VISIBLE
             bindView.baseBind.pSize.text = "小说"
 
-            if (mOnItemClickListener != null) {
+            val listener = mOnItemClickListener
+            if (listener != null) {
                 bindView.itemView.setOnClickListener { _: View ->
                     TemplateActivity.startNovelDetail(mContext, current)
                 }
                 bindView.baseBind.deleteItem.setOnClickListener { v ->
-                    mOnItemClickListener.onItemClick(v, position, 2)
+                    listener.onItemClick(v, position, 2)
                 }
             }
         }

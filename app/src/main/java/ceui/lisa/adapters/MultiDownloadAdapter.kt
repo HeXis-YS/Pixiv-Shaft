@@ -69,9 +69,10 @@ class MultiDownloadAdapter(
             intent.putExtra(Params.PAGE_UUID, pageData.getUUID())
             mContext.startActivity(intent)
         }
-        if (mOnItemLongClickListener != null) {
+        val listener = mOnItemLongClickListener
+        if (listener != null) {
             bindView.itemView.setOnLongClickListener { view ->
-                mOnItemLongClickListener.onItemLongClick(view, position, 0)
+                listener.onItemLongClick(view, position, 0)
                 true
             }
         }

@@ -24,9 +24,10 @@ class PivisionHAdapter(targetList: MutableList<SpotlightArticlesBean>, context: 
         Glide.with(mContext)
             .load(GlideUtil.getUrl(allItems[position].thumbnail))
             .into(bindView.baseBind.illustImage)
-        if (mOnItemClickListener != null) {
+        val listener = mOnItemClickListener
+        if (listener != null) {
             bindView.itemView.setOnClickListener { v: View1? ->
-                mOnItemClickListener.onItemClick(v, position, 0)
+                listener.onItemClick(v, position, 0)
             }
         }
     }
