@@ -25,7 +25,7 @@ class FragmentEditAccount : BaseFragment<FragmentEditAccountBinding>() {
     }
 
     override fun initData() {
-        if (Shaft.sUserModel == null) {
+        if (!Shaft.hasLoginUser()) {
             Common.showToast("你还没有登录")
             mActivity.finish()
             return

@@ -168,5 +168,11 @@ class Shaft : Application() {
             }
             return mmkv!!
         }
+
+        @JvmStatic
+        fun hasLoginUser(): Boolean {
+            val user = sUserModel.user
+            return user != null && user.isIs_login
+        }
     }
 }

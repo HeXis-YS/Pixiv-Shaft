@@ -104,7 +104,7 @@ object Common {
 
     @JvmStatic
     fun logOut(context: Context, deleteUser: Boolean) {
-        if (Shaft.sUserModel != null) {
+        if (Shaft.hasLoginUser()) {
             Shaft.sUserModel.user.setIs_login(false)
             Local.saveUser(Shaft.sUserModel)
             if (deleteUser) {

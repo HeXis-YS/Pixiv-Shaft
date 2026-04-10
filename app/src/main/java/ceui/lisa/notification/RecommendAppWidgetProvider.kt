@@ -189,7 +189,7 @@ class RecommendAppWidgetProvider : AppWidgetProvider() {
                     .build()
                 startForeground(1, notification)
             }
-            if (Shaft.sUserModel == null) {
+            if (!Shaft.hasLoginUser()) {
                 return START_STICKY
             }
             Retro.getAppApi().getRecmdIllust(Shaft.sUserModel.access_token, true)

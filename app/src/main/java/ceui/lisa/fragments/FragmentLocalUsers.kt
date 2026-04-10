@@ -81,8 +81,7 @@ class FragmentLocalUsers : BaseFragment<FragmentLocalUserBinding>() {
             userModel.user.mail_address
         }
         Glide.with(mContext).load(GlideUtil.getHead(userModel.user)).into(binding.userHead)
-        if (Shaft.sUserModel != null &&
-            Shaft.sUserModel.user != null &&
+        if (Shaft.hasLoginUser() &&
             userModel.user.id == Shaft.sUserModel.user.id
         ) {
             binding.currentUser.visibility = View.VISIBLE
