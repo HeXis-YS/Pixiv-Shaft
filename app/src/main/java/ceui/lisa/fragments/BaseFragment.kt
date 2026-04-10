@@ -23,6 +23,7 @@ abstract class BaseFragment<Layout : ViewDataBinding> : Fragment() {
     protected lateinit var mActivity: FragmentActivity
     protected lateinit var mContext: Context
     private var isVertical = false
+    @JvmField
     protected var isInit = false
     protected var uuid: String = UUID.randomUUID().toString()
 
