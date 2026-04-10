@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-    </data>
-
-    <com.makeramen.roundedimageview.RoundedImageView
+<com.makeramen.roundedimageview.RoundedImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/illust_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,5 +8,3 @@
         app:riv_border_color="?attr/colorPrimary"
         app:riv_corner_radius="@dimen/four_dp"
         android:scaleType="centerCrop" />
-</layout>
-
