@@ -4,14 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.interfaces.OnItemClickListener
 import ceui.lisa.interfaces.OnItemLongClickListener
 import ceui.lisa.models.Starable
+import ceui.refactor.ViewBindingCompat
 import ceui.lisa.utils.Common
 
-abstract class BaseAdapter<Item, BindView : ViewDataBinding>(
+abstract class BaseAdapter<Item, BindView : ViewBinding>(
     targetList: List<Item>?,
     protected var mContext: Context,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -104,13 +105,15 @@ abstract class BaseAdapter<Item, BindView : ViewDataBinding>(
 
     open fun headerSize(): Int = 0
 
-    open fun getHeader(parent: ViewGroup): ViewHolder<out ViewDataBinding>? = null
+    open fun getHeader(parent: ViewGroup): ViewHolder<out ViewBinding>? = null
 
     open fun getNormalItem(parent: ViewGroup): ViewHolder<BindView> {
         return ViewHolder(
-            DataBindingUtil.inflate(
+            ViewBindingCompat.inflate(
+                javaClass,
+                BaseAdapter::class.java,
+                1,
                 LayoutInflater.from(mContext),
-                mLayoutID,
                 parent,
                 false,
             ),

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import androidx.fragment.app.FragmentTransaction
 import com.scwang.smart.refresh.header.FalsifyFooter
 import ceui.lisa.R
@@ -41,7 +41,7 @@ class FragmentRight : NetListFragment<FragmentNewRightBinding, ListIllust, Illus
 
     override fun modelClass(): Class<out BaseModel<*>> = DynamicIllustModel::class.java
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = IAdapter(allItems, mContext)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = IAdapter(allItems, mContext)
 
     override fun initView() {
         super.initView()

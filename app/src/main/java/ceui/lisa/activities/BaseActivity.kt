@@ -9,16 +9,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.interfaces.FeedBack
+import ceui.refactor.ViewBindingCompat
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.Local
 import com.blankj.utilcode.util.BarUtils
 
-abstract class BaseActivity<Layout : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<Layout : ViewBinding> : AppCompatActivity() {
 
     protected lateinit var mContext: Context
 
@@ -60,7 +60,13 @@ abstract class BaseActivity<Layout : ViewDataBinding> : AppCompatActivity() {
                 )
             }
             try {
-                baseBind = DataBindingUtil.setContentView(mActivity, mLayoutID)
+                baseBind = ViewBindingCompat.inflate(
+                    javaClass,
+                    BaseActivity::class.java,
+                    0,
+                    layoutInflater,
+                )
+                setContentView(baseBind.root)
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }

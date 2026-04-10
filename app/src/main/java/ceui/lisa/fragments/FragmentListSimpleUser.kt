@@ -1,7 +1,7 @@
 package ceui.lisa.fragments
 
 import android.os.Bundle
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.SimpleUserAdapter
 import ceui.lisa.core.BaseRepo
@@ -30,7 +30,7 @@ class FragmentListSimpleUser : NetListFragment<FragmentBaseListBinding, ListSimp
         illustsBean = bundle.getSerializable(Params.CONTENT) as IllustsBean
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = SimpleUserAdapter(allItems, mContext)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = SimpleUserAdapter(allItems, mContext)
 
     override fun repository(): BaseRepo = SimpleUserRepo(illustsBean!!.id)
 

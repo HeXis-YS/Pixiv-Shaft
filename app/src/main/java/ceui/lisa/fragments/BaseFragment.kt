@@ -8,13 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.viewbinding.ViewBinding
+import ceui.refactor.ViewBindingCompat
 import java.util.UUID
 
-abstract class BaseFragment<Layout : ViewDataBinding> : Fragment() {
+abstract class BaseFragment<Layout : ViewBinding> : Fragment() {
 
     protected var rootView: View? = null
     protected lateinit var baseBind: Layout
@@ -74,7 +74,12 @@ abstract class BaseFragment<Layout : ViewDataBinding> : Fragment() {
             isInit = true
             rootView?.let { cachedRoot ->
                 if (!this::baseBind.isInitialized) {
-                    baseBind = DataBindingUtil.bind<ViewDataBinding>(cachedRoot) as Layout
+                    baseBind = ViewBindingCompat.bind(
+                        javaClass,
+                        BaseFragment::class.java,
+                        0,
+                        cachedRoot,
+                    )
                 }
                 return cachedRoot
             }
@@ -82,7 +87,14 @@ abstract class BaseFragment<Layout : ViewDataBinding> : Fragment() {
             initLayout()
 
             if (mLayoutID != -1) {
-                baseBind = DataBindingUtil.inflate(inflater, mLayoutID, container, false)
+                baseBind = ViewBindingCompat.inflate(
+                    javaClass,
+                    BaseFragment::class.java,
+                    0,
+                    inflater,
+                    container,
+                    false,
+                )
                 rootView = baseBind.root
                 initView()
                 initData()

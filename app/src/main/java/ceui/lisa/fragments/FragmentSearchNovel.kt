@@ -2,8 +2,8 @@ package ceui.lisa.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.NAdapter
 import ceui.lisa.core.BaseRepo
@@ -46,7 +46,7 @@ class FragmentSearchNovel : NetListFragment<FragmentBaseListBinding, ListNovel, 
         }
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = NAdapter(allItems, mContext)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = NAdapter(allItems, mContext)
 
     override fun repository(): BaseRepo = SearchNovelRepo(
         searchModel.keyword.value,

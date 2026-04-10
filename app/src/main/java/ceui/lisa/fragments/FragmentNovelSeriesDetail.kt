@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import ceui.lisa.R
 import ceui.lisa.activities.BaseActivity
@@ -147,7 +147,7 @@ class FragmentNovelSeriesDetail :
         seriesID = bundle.getInt(Params.ID)
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = NAdapter(allItems, mContext, true)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = NAdapter(allItems, mContext, true)
 
     override fun repository(): BaseRepo = NovelSeriesDetailRepo(seriesID)
 

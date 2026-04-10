@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.annotation.CallSuper
-import androidx.databinding.ViewDataBinding
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.EventAdapter
@@ -40,7 +40,7 @@ import com.scwang.smart.refresh.header.FalsifyFooter
  * @param Response Type: {@link ListIllust}这次请求的Response.
  * @param Item 这个列表的单个Item实体类.
  */
-abstract class NetListFragment<Layout : ViewDataBinding, Response : ListShow<Item>, Item> :
+abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, Item> :
     ListFragment<Layout, Item>() {
 
     lateinit var mRemoteRepo: RemoteRepo<Response>

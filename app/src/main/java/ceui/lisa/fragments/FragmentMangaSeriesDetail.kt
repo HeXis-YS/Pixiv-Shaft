@@ -2,7 +2,7 @@ package ceui.lisa.fragments
 
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.IAdapter
@@ -36,7 +36,7 @@ class FragmentMangaSeriesDetail :
         }
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> {
+    override fun adapter(): BaseAdapter<*, out ViewBinding> {
         return IAdapter(allItems, mContext)
     }
 

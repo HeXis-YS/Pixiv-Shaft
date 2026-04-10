@@ -1,8 +1,8 @@
 package ceui.lisa.fragments
 
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseLazyFragment<T : ViewDataBinding> : BaseFragment<T>() {
+abstract class BaseLazyFragment<T : ViewBinding> : BaseFragment<T>() {
     @JvmField
     protected var isLoaded = false
 

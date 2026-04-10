@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import androidx.viewbinding.ViewBinding
+import ceui.refactor.ViewBindingCompat
 
-abstract class BaseDialog<Layout : ViewDataBinding> : DialogFragment() {
+abstract class BaseDialog<Layout : ViewBinding> : DialogFragment() {
 
     @JvmField
     protected var mContext: Context? = null
@@ -54,7 +54,14 @@ abstract class BaseDialog<Layout : ViewDataBinding> : DialogFragment() {
         savedInstanceState: Bundle?,
     ): View? {
         initLayout()
-        baseBind = DataBindingUtil.inflate(inflater, mLayoutID, container, false)
+        baseBind = ViewBindingCompat.inflate(
+            javaClass,
+            BaseDialog::class.java,
+            0,
+            inflater,
+            container,
+            false,
+        )
         parentView = if (baseBind != null) {
             baseBind!!.root
         } else {

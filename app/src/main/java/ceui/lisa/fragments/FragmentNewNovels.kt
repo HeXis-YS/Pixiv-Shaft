@@ -1,6 +1,6 @@
 package ceui.lisa.fragments
 
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.NAdapter
@@ -12,7 +12,7 @@ import ceui.lisa.repo.NewNovelRepo
 
 class FragmentNewNovels : NetListFragment<FragmentBaseListBinding, ListNovel, NovelBean>() {
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> {
+    override fun adapter(): BaseAdapter<*, out ViewBinding> {
         return NAdapter(allItems, mContext)
     }
 

@@ -6,11 +6,11 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.adapters.BaseAdapter
@@ -32,13 +32,13 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 import jp.wasabeef.recyclerview.animators.BaseItemAnimator
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
-abstract class ListFragment<Layout : ViewDataBinding, Item> : BaseLazyFragment<Layout>() {
+abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layout>() {
 
     protected lateinit var mRecyclerView: RecyclerView
     protected lateinit var mRefreshLayout: RefreshLayout
     protected lateinit var noData: ImageView
     protected lateinit var emptyRela: RelativeLayout
-    lateinit var mAdapter: BaseAdapter<*, out ViewDataBinding>
+    lateinit var mAdapter: BaseAdapter<*, out ViewBinding>
         protected set
     lateinit var allItems: MutableList<Item>
         protected set
@@ -51,7 +51,7 @@ abstract class ListFragment<Layout : ViewDataBinding, Item> : BaseLazyFragment<L
         mLayoutID = R.layout.fragment_base_list
     }
 
-    abstract fun adapter(): BaseAdapter<*, out ViewDataBinding>
+    abstract fun adapter(): BaseAdapter<*, out ViewBinding>
 
     abstract fun repository(): BaseRepo
 

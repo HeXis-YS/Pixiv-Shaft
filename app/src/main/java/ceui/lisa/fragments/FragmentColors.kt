@@ -1,6 +1,6 @@
 package ceui.lisa.fragments
 
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.adapters.BaseAdapter
@@ -27,7 +27,7 @@ class FragmentColors : LocalListFragment<FragmentBaseListBinding, ColorItem>() {
         )
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = ColorAdapter(allItems, mContext)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = ColorAdapter(allItems, mContext)
 
     override fun repository(): BaseRepo {
         return object : LocalRepo<List<ColorItem>>() {

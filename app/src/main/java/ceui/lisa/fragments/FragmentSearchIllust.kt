@@ -3,8 +3,8 @@ package ceui.lisa.fragments
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.adapters.BaseAdapter
 import ceui.lisa.adapters.IAdapter
@@ -67,7 +67,7 @@ class FragmentSearchIllust : NetListFragment<FragmentBaseListBinding, ListIllust
     override fun initBundle(bundle: Bundle) {
     }
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> = IAdapter(allItems, mContext)
+    override fun adapter(): BaseAdapter<*, out ViewBinding> = IAdapter(allItems, mContext)
 
     override fun repository(): BaseRepo = SearchIllustRepo(
         searchModel.keyword.value,

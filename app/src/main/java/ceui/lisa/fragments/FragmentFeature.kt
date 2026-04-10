@@ -5,7 +5,7 @@ import android.text.TextUtils
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity
@@ -32,7 +32,7 @@ class FragmentFeature : LocalListFragment<FragmentBaseListBinding, FeatureEntity
 
     override fun shouldLoadLocalDataAsync(): Boolean = true
 
-    override fun adapter(): BaseAdapter<*, out ViewDataBinding> {
+    override fun adapter(): BaseAdapter<*, out ViewBinding> {
         return FeatureAdapter(allItems, mContext).setOnItemClickListener { _, position, viewType ->
             if (viewType == 0) {
                 val intent = Intent(mContext, TemplateActivity::class.java)

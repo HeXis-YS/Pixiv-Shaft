@@ -1,7 +1,7 @@
 package ceui.lisa.fragments
 
 import android.view.View
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import ceui.lisa.R
 import ceui.lisa.core.LocalRepo
 import ceui.lisa.core.RxRun
@@ -10,7 +10,7 @@ import ceui.lisa.core.TryCatchObserverImpl
 import ceui.lisa.utils.Common
 import java.util.ArrayList
 
-abstract class LocalListFragment<Layout : ViewDataBinding, Item> : ListFragment<Layout, Item>() {
+abstract class LocalListFragment<Layout : ViewBinding, Item> : ListFragment<Layout, Item>() {
     protected lateinit var mLocalRepo: LocalRepo<List<Item>>
 
     open fun shouldLoadLocalDataAsync(): Boolean = false

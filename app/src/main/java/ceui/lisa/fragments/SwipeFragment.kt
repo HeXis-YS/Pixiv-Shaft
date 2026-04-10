@@ -2,13 +2,13 @@ package ceui.lisa.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import com.scwang.smart.refresh.header.FalsifyFooter
 import com.scwang.smart.refresh.header.FalsifyHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshHeader
 
-abstract class SwipeFragment<T : ViewDataBinding> : BaseLazyFragment<T>(), Swipe {
+abstract class SwipeFragment<T : ViewBinding> : BaseLazyFragment<T>(), Swipe {
     override fun getHeader(): RefreshHeader = FalsifyHeader(mContext)
 
     override fun getFooter(): FalsifyFooter = FalsifyFooter(mContext)
