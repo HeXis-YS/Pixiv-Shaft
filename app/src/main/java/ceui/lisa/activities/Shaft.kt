@@ -135,8 +135,7 @@ class Shaft : Application() {
         @JvmField
         var sUserModel: UserModel = UserModel()
 
-        @JvmField
-        var sSettings: Settings = Settings()
+        lateinit var sSettings: Settings
 
         @JvmField
         var sGson: Gson = Gson()
