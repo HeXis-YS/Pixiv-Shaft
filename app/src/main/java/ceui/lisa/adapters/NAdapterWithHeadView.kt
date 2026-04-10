@@ -3,8 +3,7 @@ package ceui.lisa.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import ceui.lisa.R
+import ceui.lisa.databinding.RecyRecmdHeaderBinding
 import ceui.lisa.models.NovelBean
 
 class NAdapterWithHeadView(targetList: List<NovelBean>, context: Context) :
@@ -18,9 +17,8 @@ class NAdapterWithHeadView(targetList: List<NovelBean>, context: Context) :
 
     override fun getHeader(parent: ViewGroup): ViewHolder<*> {
         novelHeader = NovelHeader(
-            DataBindingUtil.inflate(
+            RecyRecmdHeaderBinding.inflate(
                 LayoutInflater.from(mContext),
-                R.layout.recy_recmd_header,
                 null,
                 false,
             ),

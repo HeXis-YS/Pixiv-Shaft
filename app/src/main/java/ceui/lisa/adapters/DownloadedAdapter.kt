@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
@@ -133,9 +132,8 @@ class DownloadedAdapter(
 
     override fun getNormalItem(parent: ViewGroup): ViewHolder<RecyDownloadedBinding> {
         return DownloadedHolder(
-            DataBindingUtil.inflate(
+            RecyDownloadedBinding.inflate(
                 LayoutInflater.from(mContext),
-                mLayoutID,
                 parent,
                 false,
             ),

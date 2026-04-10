@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import ceui.lisa.R
 import ceui.lisa.activities.OutWakeActivity
@@ -463,9 +462,8 @@ class FragmentSearch : BaseFragment<FragmentSearchBinding>() {
                     searchEntity: SearchEntity,
                 ): View {
                     val binding =
-                        DataBindingUtil.inflate<RecySingleLineTextWithDeleteBinding>(
+                        RecySingleLineTextWithDeleteBinding.inflate(
                             LayoutInflater.from(mContext),
-                            R.layout.recy_single_line_text_with_delete,
                             parent,
                             false,
                         )

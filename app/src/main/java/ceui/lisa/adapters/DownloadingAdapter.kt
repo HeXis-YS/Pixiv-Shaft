@@ -5,7 +5,6 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ceui.lisa.R
 import ceui.lisa.core.DownloadItem
@@ -24,9 +23,8 @@ class DownloadingAdapter(
 
     override fun getNormalItem(parent: ViewGroup): ViewHolder<RecyDownloadTaskBinding> {
         return DownloadHolder(
-            DataBindingUtil.inflate(
+            RecyDownloadTaskBinding.inflate(
                 LayoutInflater.from(mContext),
-                mLayoutID,
                 parent,
                 false,
             ),

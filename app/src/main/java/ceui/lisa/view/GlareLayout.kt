@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
-import androidx.databinding.DataBindingUtil
 import ceui.lisa.R
 import ceui.lisa.databinding.GlareLayoutBinding
 import ceui.lisa.utils.Common
@@ -43,7 +42,7 @@ class GlareLayout : RelativeLayout {
 
     private fun init(): GlareLayoutBinding {
         val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val binding = DataBindingUtil.inflate<GlareLayoutBinding>(inflater, R.layout.glare_layout, this, true)
+        val binding = GlareLayoutBinding.inflate(inflater, this, true)
         currentState = 0
         binding.left.setOnClickListener { v ->
             if (currentState != 0) {

@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
@@ -126,9 +125,8 @@ class MuteWorksAdapter(
 
     override fun getNormalItem(parent: ViewGroup): ViewHolder<RecyViewHistoryBinding> {
         return SpringHolder(
-            DataBindingUtil.inflate(
+            RecyViewHistoryBinding.inflate(
                 LayoutInflater.from(mContext),
-                mLayoutID,
                 parent,
                 false,
             ),

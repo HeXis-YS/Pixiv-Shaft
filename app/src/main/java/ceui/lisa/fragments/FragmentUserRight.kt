@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
@@ -59,14 +58,16 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
         content.add(getString(R.string.string_192)) //小说收藏
         content.add(getString(R.string.string_436)) //相关用户
         baseBind.tagLayout.adapter = object : TagAdapter<String>(content) {
-            override fun getView(parent: FlowLayout, position: Int, s: String?): View {
-                val binding: TagItemBinding = DataBindingUtil.inflate(
-                    LayoutInflater.from(mContext), R.layout.tag_item, null, false
+                override fun getView(parent: FlowLayout, position: Int, s: String?): View {
+                val binding: TagItemBinding = TagItemBinding.inflate(
+                    LayoutInflater.from(mContext),
+                    null,
+                    false,
                 )
-                binding.tagName.text = s
-                return binding.root
+                    binding.tagName.text = s
+                    return binding.root
+                }
             }
-        }
 //        baseBind.banUser.setOnCheckedChangeListener { buttonView, isChecked ->
 //            if (isChecked) {
 //                PixivOperate.muteUser(data.user)

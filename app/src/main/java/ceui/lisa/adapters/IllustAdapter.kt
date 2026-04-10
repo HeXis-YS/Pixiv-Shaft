@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.Nullable
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
@@ -53,9 +52,8 @@ class IllustAdapter(
         viewType: Int,
     ): ViewHolder<RecyIllustDetailBinding> {
         return ViewHolder(
-            DataBindingUtil.inflate(
+            RecyIllustDetailBinding.inflate(
                 LayoutInflater.from(mContext),
-                R.layout.recy_illust_detail,
                 parent,
                 false,
             ),

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.scwang.smart.refresh.header.FalsifyFooter
 import com.scwang.smart.refresh.header.FalsifyHeader
@@ -64,9 +63,8 @@ class FragmentLocalUsers : BaseFragment<FragmentLocalUserBinding>() {
     }
 
     private fun bindData(userModel: UserModel) {
-        val binding = DataBindingUtil.inflate<RecyLocalUserBinding>(
+        val binding = RecyLocalUserBinding.inflate(
             LayoutInflater.from(mContext),
-            R.layout.recy_local_user,
             null,
             false,
         )
