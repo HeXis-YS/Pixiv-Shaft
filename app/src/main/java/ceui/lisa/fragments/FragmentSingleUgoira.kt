@@ -40,7 +40,7 @@ import ceui.lisa.cache.Cache
 import ceui.lisa.core.DownloadItem
 import ceui.lisa.core.Manager
 import ceui.lisa.core.TryCatchObserverImpl
-import ceui.lisa.databinding.FragmentUgoraBinding
+import ceui.lisa.databinding.FragmentUgoiraBinding
 import ceui.lisa.dialogs.MuteDialog
 import ceui.lisa.download.IllustDownload
 import ceui.lisa.file.LegacyFile
@@ -68,7 +68,7 @@ import rxhttp.wrapper.entity.Progress
 /**
  * 插画详情
  */
-class FragmentSingleUgora : BaseFragment<FragmentUgoraBinding>() {
+class FragmentSingleUgoira : BaseFragment<FragmentUgoiraBinding>() {
 
     private var illust: IllustsBean? = null
     private var receiver: CallBackReceiver? = null
@@ -76,10 +76,10 @@ class FragmentSingleUgora : BaseFragment<FragmentUgoraBinding>() {
 
     companion object {
         @JvmStatic
-        fun newInstance(illust: IllustsBean): FragmentSingleUgora {
+        fun newInstance(illust: IllustsBean): FragmentSingleUgoira {
             val args = Bundle()
             args.putSerializable(Params.CONTENT, illust)
-            val fragment = FragmentSingleUgora()
+            val fragment = FragmentSingleUgoira()
             fragment.arguments = args
             return fragment
         }
@@ -90,7 +90,7 @@ class FragmentSingleUgora : BaseFragment<FragmentUgoraBinding>() {
     }
 
     override fun initLayout() {
-        mLayoutID = R.layout.fragment_ugora
+        mLayoutID = R.layout.fragment_ugoira
     }
 
     private fun loadImage() {

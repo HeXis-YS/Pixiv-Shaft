@@ -15,7 +15,7 @@ import ceui.lisa.core.PageData
 import ceui.lisa.databinding.ActivityViewPagerBinding
 import ceui.lisa.fragments.FragmentIllust
 import ceui.lisa.fragments.FragmentImageDetail
-import ceui.lisa.fragments.FragmentSingleUgora
+import ceui.lisa.fragments.FragmentSingleUgoira
 import ceui.lisa.helper.DeduplicateArrayList
 import ceui.lisa.http.NullCtrl
 import ceui.lisa.http.Retro
@@ -57,7 +57,7 @@ class VActivity : BaseActivity<ActivityViewPagerBinding>() {
                             FragmentImageDetail.newInstance(illustsBean.image_urls.maxImage)
                         }
 
-                        illustsBean.isGif -> FragmentSingleUgora.newInstance(illustsBean)
+                        illustsBean.isGif -> FragmentSingleUgoira.newInstance(illustsBean)
                         else -> {
                             val exist = ObjectPool.getIllust(illustsBean.id.toLong()).value
                             if (exist == null) {

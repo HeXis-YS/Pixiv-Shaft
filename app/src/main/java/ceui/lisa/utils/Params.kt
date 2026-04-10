@@ -52,7 +52,7 @@ object Params {
     const val FILTER_ILLUST = "ceui.lisa.fragments.NetListFragment FILTER_ILLUST"
     const val FILTER_NOVEL = "ceui.lisa.fragments.NetListFragment FILTER_NOVEL"
     const val LIKED_ILLUST = "ceui.lisa.fragments.NetListFragment LIKED_ILLUST"
-    const val PLAY_GIF = "ceui.lisa.fragments.FragmentSingleUgora PLAY_GIF"
+    const val PLAY_GIF = "ceui.lisa.fragments.FragmentSingleUgoira PLAY_GIF"
     const val LIKED_USER = "ceui.lisa.fragments.NetListFragment LIKED_USER"
     const val LIKED_NOVEL = "ceui.lisa.fragments.NetListFragment LIKED_NOVEL"
     const val DOWNLOAD_FINISH = "ceui.lisa.fragments.NetListFragment DOWNLOAD_FINISH"
