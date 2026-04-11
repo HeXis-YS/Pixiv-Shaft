@@ -3,16 +3,10 @@ package ceui.refactor
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import ceui.lisa.databinding.CellNoneBinding
-import ceui.lisa.databinding.FragmentItemAaaaBinding
-import ceui.lisa.databinding.FragmentItemBbbbBinding
 import ceui.loxia.novel.viewholdermap.ViewHolderFactory
 import java.lang.RuntimeException
 
@@ -34,7 +28,7 @@ val listItemHolderDiffUtil = object :
 }
 
 
-class CommonAdapter(private val lifecycleOwner: LifecycleOwner) :
+class CommonAdapter :
     ListAdapter<ListItemHolder, ListItemViewHolder<ViewBinding, ListItemHolder>>(
         listItemHolderDiffUtil
     ) {
@@ -55,9 +49,6 @@ class CommonAdapter(private val lifecycleOwner: LifecycleOwner) :
         position: Int
     ) {
         val item = getItem(position)
-        if (holder.binding is ViewDataBinding) {
-            holder.binding.lifecycleOwner = lifecycleOwner
-        }
         holder.binding.root.setOnClick {
             item.retrieveListener()(it)
         }

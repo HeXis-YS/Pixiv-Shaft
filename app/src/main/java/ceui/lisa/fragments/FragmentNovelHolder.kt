@@ -457,7 +457,7 @@ class FragmentNovelHolder : BaseFragment<FragmentNovelHolderBinding>() {
                 holderList.add(SpaceHolder())
                 holderList.add(TextDescHolder(getString(R.string.string_107)))
                 holderList.add(SpaceHolder())
-                val commonAdapter = CommonAdapter(viewLifecycleOwner)
+                val commonAdapter = CommonAdapter()
                 baseBind.viewPager.adapter = commonAdapter
                 commonAdapter.submitList(holderList)
             } else {
