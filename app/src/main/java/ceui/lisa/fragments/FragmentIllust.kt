@@ -72,7 +72,6 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
             Common.showLog("updateUser invoke ${user.isIs_followed}")
         }
         val illust = illustLiveData.value ?: return
-        baseBind.user = userLiveData
         viewLifecycleOwner.lifecycleScope.launch {
             val dao = AppDatabase.searchDao(requireContext())
             val muteIllust = withContext(Dispatchers.IO) {
