@@ -1,11 +1,9 @@
 package ceui.lisa.processor
 
 import ceui.lisa.annotations.ItemHolder
-import com.google.auto.service.AutoService
 import java.io.File
 import java.lang.Exception
 import javax.annotation.processing.AbstractProcessor
-import javax.annotation.processing.Processor
 import javax.annotation.processing.RoundEnvironment
 import javax.annotation.processing.SupportedOptions
 import javax.annotation.processing.SupportedSourceVersion
@@ -26,7 +24,6 @@ fun getClassName(clsProvider: ()-> KClass<*>): String {
     }
 }
 
-@AutoService(Processor::class) // For registering the service
 @SupportedSourceVersion(SourceVersion.RELEASE_17) // to support Java 8
 @SupportedOptions(FileGenerator.KAPT_KOTLIN_GENERATED_OPTION_NAME)
 class FileGenerator : AbstractProcessor() {
