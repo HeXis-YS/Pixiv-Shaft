@@ -1,6 +1,7 @@
 package ceui.lisa.database
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.reflect.TypeToken
 import ceui.lisa.activities.Shaft
@@ -17,10 +18,12 @@ class UUIDEntity : IDWithList<IllustsBean> {
 
     var listJson: String? = null
 
+    @Ignore
     fun getUuid(): String {
         return uuid
     }
 
+    @Ignore
     fun setUuid(value: String?) {
         if (value != null) {
             uuid = value
