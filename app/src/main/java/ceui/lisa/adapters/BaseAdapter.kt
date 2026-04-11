@@ -3,7 +3,6 @@ package ceui.lisa.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import ceui.lisa.interfaces.OnItemClickListener
