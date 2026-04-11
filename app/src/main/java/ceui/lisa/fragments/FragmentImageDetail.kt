@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
-import ceui.lisa.core.GlideApp
 import ceui.lisa.databinding.FragmentImageDetailBinding
 import ceui.lisa.download.IllustDownload
 import ceui.lisa.models.IllustsBean
@@ -16,6 +15,7 @@ import ceui.lisa.utils.Common
 import ceui.lisa.utils.GlideUrlChild
 import ceui.lisa.utils.Params
 import ceui.loxia.launchSuspend
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -100,7 +100,7 @@ class FragmentImageDetail : BaseFragment<FragmentImageDetailBinding>() {
         launchSuspend {
             withContext(Dispatchers.IO) {
                 try {
-                    val file = GlideApp.with(mContext)
+                    val file = Glide.with(mContext)
                         .asFile()
                         .load(GlideUrlChild(imageUrl))
                         .submit()
