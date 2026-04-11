@@ -10,5 +10,5 @@ java {
 
 dependencies {
     implementation(project(":annotations"))
-    compileOnly("com.google.auto.service:auto-service-annotations:1.1.1")
+    implementation("com.google.devtools.ksp:symbol-processing-api:2.3.4")
 }
