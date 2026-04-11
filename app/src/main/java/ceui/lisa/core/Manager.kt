@@ -38,7 +38,7 @@ class Manager private constructor() {
         private set
     var currentIllustID = 0
         private set
-    private val mCallback: MutableMap<String, Callback<Progress>?> = HashMap()
+    private val mCallback: MutableMap<String, Callback<Progress<Uri?>>?> = HashMap()
 
     fun restore() {
         applyRestoredItems(loadRestoredItems())
@@ -273,15 +273,16 @@ class Manager private constructor() {
                 0L
             }
 
+        val requestUrl = downloadItem.url ?: throw IllegalStateException("Download url is null")
         handle =
             RxHttp
-                .get(downloadItem.url)
+                .get(requestUrl)
                 .addHeader(Params.MAP_KEY, Params.IMAGE_REFERER)
                 .setRangeHeader(passSize, true)
-                .asDownload(
-                    factory,
+                .toDownloadObservable(factory, !downloadItem.shouldStartNewDownload())
+                .onProgress(
                     AndroidSchedulers.mainThread(),
-                    Consumer<Progress> { progress ->
+                    Consumer<Progress<Uri?>> { progress ->
                         val currentProgress = progress.progress
                         downloadItem.nonius = currentProgress
                         downloadItem.setState(DownloadItem.DownloadState.DOWNLOADING)
@@ -377,7 +378,7 @@ class Manager private constructor() {
                 )
     }
 
-    fun getCallback(uuid: String): Callback<Progress>? {
+    fun getCallback(uuid: String): Callback<Progress<Uri?>>? {
         return mCallback.getOrDefault(uuid, null)
     }
 
@@ -385,11 +386,11 @@ class Manager private constructor() {
         mCallback.clear()
     }
 
-    fun setCallback(callback: Callback<Progress>?) {
+    fun setCallback(callback: Callback<Progress<Uri?>>?) {
         mCallback[""] = callback
     }
 
-    fun setCallback(uuid: String, callback: Callback<Progress>?) {
+    fun setCallback(uuid: String, callback: Callback<Progress<Uri?>>?) {
         mCallback[uuid] = callback
     }
 

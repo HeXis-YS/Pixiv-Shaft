@@ -1,6 +1,7 @@
 package ceui.lisa.adapters
 
 import android.content.Context
+import android.net.Uri
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -49,8 +50,8 @@ class DownloadingAdapter(
         }
 
         val manager = Manager.get()
-        manager.setCallback(target.uuid, object : Callback<Progress> {
-            override fun doSomething(t: Progress) {
+        manager.setCallback(target.uuid, object : Callback<Progress<Uri?>> {
+            override fun doSomething(t: Progress<Uri?>) {
                 if (manager.uuid == target.uuid) {
                     bindView.baseBind.progress.progress = t.progress
                     bindView.baseBind.currentSize.text = String.format(

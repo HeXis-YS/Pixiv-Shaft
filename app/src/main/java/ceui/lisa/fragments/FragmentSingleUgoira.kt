@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -225,8 +226,8 @@ class FragmentSingleUgoira : BaseFragment<FragmentUgoiraBinding>() {
                         Common.showToast("下载GIF文件")
                         val downloadItem: DownloadItem =
                             IllustDownload.downloadGif(gifResponse, targetIllust)
-                        Manager.get().setCallback(downloadItem.uuid, object : Callback<Progress> {
-                            override fun doSomething(t: Progress) {
+                        Manager.get().setCallback(downloadItem.uuid, object : Callback<Progress<Uri?>> {
+                            override fun doSomething(t: Progress<Uri?>) {
                                 try {
                                     if (targetIllust.id == Manager.get().currentIllustID) {
                                         baseBind.playGif.visibility = View.INVISIBLE
@@ -258,8 +259,8 @@ class FragmentSingleUgoira : BaseFragment<FragmentUgoiraBinding>() {
         }
 
         if (targetIllust.id == Manager.get().currentIllustID) {
-            Manager.get().setCallback(object : Callback<Progress> {
-                override fun doSomething(t: Progress) {
+            Manager.get().setCallback(object : Callback<Progress<Uri?>> {
+                override fun doSomething(t: Progress<Uri?>) {
                     try {
                         if (targetIllust.id == Manager.get().currentIllustID) {
                             baseBind.playGif.visibility = View.INVISIBLE
