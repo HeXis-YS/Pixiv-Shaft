@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk = 34
 
 
     defaultConfig {
@@ -39,7 +39,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig = signingConfigs.release
         }
     }
 
@@ -57,7 +57,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
     packagingOptions {
         resources {
@@ -65,7 +65,7 @@ android {
         }
     }
 
-    namespace 'ceui.lisa'
+    namespace = 'ceui.lisa'
 }
 
 dependencies {

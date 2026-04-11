@@ -3,15 +3,15 @@
 buildscript {
     ext.kotlin_version = '2.3.20'
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url "https://jitpack.io" }
-        maven { url "https://artifactory.appodeal.com/appodeal-public/" }
-        maven { url "https://repository.jboss.org/maven2" }
-        maven { url 'https://jcenter.bintray.com/' }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://oss.jfrog.org/libs-snapshot" }
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url = uri('https://maven.aliyun.com/repository/google') }
+        maven { url = uri('https://maven.aliyun.com/repository/public') }
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://artifactory.appodeal.com/appodeal-public/") }
+        maven { url = uri("https://repository.jboss.org/maven2") }
+        maven { url = uri('https://jcenter.bintray.com/') }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url = uri("https://oss.jfrog.org/libs-snapshot") }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
         mavenCentral()
         google()
         flatDir {
@@ -43,15 +43,15 @@ plugins {
 
 allprojects {
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://jitpack.io' }
-        maven { url "https://artifactory.appodeal.com/appodeal-public/" }
-        maven { url 'https://jcenter.bintray.com/' }
-        maven { url "https://repository.jboss.org/maven2" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://oss.jfrog.org/libs-snapshot" }
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url = uri('https://maven.aliyun.com/repository/google') }
+        maven { url = uri('https://maven.aliyun.com/repository/public') }
+        maven { url = uri('https://jitpack.io') }
+        maven { url = uri("https://artifactory.appodeal.com/appodeal-public/") }
+        maven { url = uri('https://jcenter.bintray.com/') }
+        maven { url = uri("https://repository.jboss.org/maven2") }
+        maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+        maven { url = uri("https://oss.jfrog.org/libs-snapshot") }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
         mavenCentral()
         google()
         flatDir {
