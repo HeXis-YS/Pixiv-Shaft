@@ -110,7 +110,7 @@ dependencies {
 
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 
-    def refresh_version = "2.0.6"
+    def refresh_version = "3.0.0-alpha"
     implementation  "io.github.scwang90:refresh-layout-kernel:$refresh_version"     //核心必须依赖
     implementation  "io.github.scwang90:refresh-header-classics:$refresh_version"    //经典刷新头
     implementation  "io.github.scwang90:refresh-header-radar:$refresh_version"       //雷达刷新头
@@ -122,7 +122,6 @@ dependencies {
 
     // okhttp3系列组件版本最高到 4.4.1，参看 RubySSLSocketFactory
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
-    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
