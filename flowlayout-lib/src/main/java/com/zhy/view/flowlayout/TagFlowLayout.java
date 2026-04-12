@@ -20,6 +20,7 @@ import java.util.Set;
 /**
  * Created by zhy on 15/9/10.
  */
+@SuppressWarnings({"deprecation", "unchecked"})
 public class TagFlowLayout extends FlowLayout
         implements TagAdapter.OnDataChangedListener {
 
