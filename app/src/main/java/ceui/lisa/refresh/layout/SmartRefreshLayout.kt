@@ -113,12 +113,6 @@ class SmartRefreshLayout @JvmOverloads constructor(
         }
     }
 
-    override fun setDragRate(rate: Float) = Unit
-
-    override fun setHeaderTriggerRate(rate: Float) = Unit
-
-    override fun setHeaderMaxDragRate(rate: Float) = Unit
-
     override fun setOnRefreshListener(listener: ceui.lisa.refresh.layout.listener.OnRefreshListener?) {
         refreshListener = listener
     }
@@ -142,6 +136,4 @@ class SmartRefreshLayout @JvmOverloads constructor(
     override fun finishLoadMore(success: Boolean) {
         loadingMore = false
     }
-
-    override fun setPrimaryColors(vararg colors: Int) = Unit
 }

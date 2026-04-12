@@ -78,9 +78,6 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
         mRecyclerView.itemAnimator = animation()
 
         mRefreshLayout = view.findViewById(R.id.refreshLayout)
-        mRefreshLayout.setDragRate(0.8f)
-        mRefreshLayout.setHeaderTriggerRate(1.0f)
-        mRefreshLayout.setHeaderMaxDragRate(1.5f)
         noData = view.findViewById(R.id.no_data)
         emptyRela = view.findViewById(R.id.no_data_rela)
         emptyRela.setOnClickListener {
