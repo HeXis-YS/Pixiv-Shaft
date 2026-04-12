@@ -20,12 +20,11 @@ import ceui.lisa.notification.NetWorkStateReceiver
 import ceui.lisa.utils.DensityUtil
 import ceui.lisa.utils.Local
 import ceui.lisa.utils.Settings
-import ceui.lisa.view.MyDeliveryHeader
 import ceui.lisa.viewmodel.AppLevelViewModel
 import com.billy.android.swipe.SmartSwipeBack
 import com.google.gson.Gson
 import com.hjq.toast.ToastUtils
-import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
@@ -115,10 +114,6 @@ class Shaft : Application() {
 
     override fun onConfigurationChanged(@NonNull newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_NO,
-            Configuration.UI_MODE_NIGHT_YES -> MyDeliveryHeader.changeCloudColor(getContext())
-        }
     }
 
     companion object {

@@ -1,8 +1,8 @@
 package ceui.lisa.core
 
 import android.content.Context
+import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.api.RefreshHeader
-import ceui.lisa.view.MyDeliveryHeader
 
 abstract class LocalRepo<T> : BaseRepo() {
 
@@ -19,6 +19,6 @@ abstract class LocalRepo<T> : BaseRepo() {
     }
 
     override fun getHeader(context: Context): RefreshHeader {
-        return MyDeliveryHeader(context)
+        return MaterialHeader(context)
     }
 }

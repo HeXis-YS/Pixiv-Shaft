@@ -109,16 +109,6 @@ dependencies {
 
     implementation 'com.github.lzyzsd:circleprogress:1.2.1'
 
-    def refresh_version = "3.0.0-alpha"
-    implementation  "io.github.scwang90:refresh-layout-kernel:$refresh_version"     //核心必须依赖
-    implementation  "io.github.scwang90:refresh-header-classics:$refresh_version"    //经典刷新头
-    implementation  "io.github.scwang90:refresh-header-radar:$refresh_version"       //雷达刷新头
-    implementation  "io.github.scwang90:refresh-header-falsify:$refresh_version"     //虚拟刷新头
-    implementation  "io.github.scwang90:refresh-header-material:$refresh_version"    //谷歌刷新头
-    implementation  "io.github.scwang90:refresh-header-two-level:$refresh_version"   //二级刷新头
-    implementation  "io.github.scwang90:refresh-footer-ball:$refresh_version"        //球脉冲加载
-    implementation  "io.github.scwang90:refresh-footer-classics:$refresh_version"    //经典加载
-
     // okhttp3系列组件版本最高到 4.4.1，参看 RubySSLSocketFactory
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
@@ -176,6 +166,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "androidx.documentfile:documentfile:1.0.1"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'com.billy.android:smart-swipe:1.1.2'
     // Java language implementation
     implementation("androidx.activity:activity-ktx:1.8.1")
