@@ -30,8 +30,8 @@ import ceui.lisa.notification.CallBackReceiver
 import ceui.lisa.notification.CommonReceiver
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.Params
-import com.scwang.smart.refresh.header.ClassicsFooter
-import com.scwang.smart.refresh.header.FalsifyFooter
+import ceui.lisa.refresh.header.ClassicsFooter
+import ceui.lisa.refresh.header.FalsifyFooter
 
 /**
  * 联网获取xx列表，

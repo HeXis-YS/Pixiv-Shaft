@@ -1,8 +1,8 @@
 package ceui.lisa.core
 
 import android.content.Context
-import com.scwang.smart.refresh.header.MaterialHeader
-import com.scwang.smart.refresh.layout.api.RefreshHeader
+import ceui.lisa.refresh.header.MaterialHeader
+import ceui.lisa.refresh.layout.api.RefreshHeader
 
 abstract class LocalRepo<T> : BaseRepo() {
 

@@ -5,8 +5,8 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
-import com.scwang.smart.refresh.header.FalsifyFooter
-import com.scwang.smart.refresh.header.FalsifyHeader
+import ceui.lisa.refresh.header.FalsifyFooter
+import ceui.lisa.refresh.header.FalsifyHeader
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity

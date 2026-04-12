@@ -57,7 +57,7 @@
 
 
 
-                <com.scwang.smart.refresh.layout.SmartRefreshLayout
+                <ceui.lisa.refresh.layout.SmartRefreshLayout
                     android:layout_width="match_parent"
                     android:id="@+id/refreshLayout"
                     android:background="@color/white_to_deep_dark"
@@ -72,7 +72,7 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-                </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+                </ceui.lisa.refresh.layout.SmartRefreshLayout>
 
 
                 <androidx.cardview.widget.CardView

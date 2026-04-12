@@ -6,10 +6,10 @@ import ceui.lisa.core.FilterMapper
 import ceui.lisa.core.RemoteRepo
 import ceui.lisa.http.Retro
 import ceui.lisa.model.ListIllust
-import com.scwang.smart.refresh.header.MaterialHeader
-import com.scwang.smart.refresh.header.ClassicsFooter
-import com.scwang.smart.refresh.layout.api.RefreshFooter
-import com.scwang.smart.refresh.layout.api.RefreshHeader
+import ceui.lisa.refresh.header.MaterialHeader
+import ceui.lisa.refresh.header.ClassicsFooter
+import ceui.lisa.refresh.layout.api.RefreshFooter
+import ceui.lisa.refresh.layout.api.RefreshHeader
 import io.reactivex.Observable
 import io.reactivex.functions.Function
 

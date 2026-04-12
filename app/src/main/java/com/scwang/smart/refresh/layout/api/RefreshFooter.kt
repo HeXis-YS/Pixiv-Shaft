@@ -1,3 +1,3 @@
-package com.scwang.smart.refresh.layout.api
+package ceui.lisa.refresh.layout.api
 
 interface RefreshFooter

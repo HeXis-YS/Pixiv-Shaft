@@ -20,7 +20,7 @@ import ceui.lisa.utils.Local
 import ceui.lisa.utils.Params
 import ceui.lisa.view.LinearItemDecoration
 import com.google.gson.reflect.TypeToken
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import ceui.lisa.refresh.layout.SmartRefreshLayout
 import java.util.ArrayList
 import java.util.Collections
 

@@ -5,7 +5,7 @@ import android.net.Uri
 import ceui.lisa.R
 import ceui.lisa.databinding.FragmentAboutBinding
 import ceui.lisa.utils.Common
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import ceui.lisa.refresh.layout.SmartRefreshLayout
 
 class FragmentAboutApp : SwipeFragment<FragmentAboutBinding>() {
 

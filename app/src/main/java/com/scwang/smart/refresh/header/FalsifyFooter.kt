@@ -1,9 +1,9 @@
-package com.scwang.smart.refresh.header
+package ceui.lisa.refresh.header
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.scwang.smart.refresh.layout.api.RefreshFooter
+import ceui.lisa.refresh.layout.api.RefreshFooter
 
 open class FalsifyFooter @JvmOverloads constructor(
     context: Context,

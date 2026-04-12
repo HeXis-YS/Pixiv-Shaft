@@ -1,10 +1,10 @@
-package com.scwang.smart.refresh.header
+package ceui.lisa.refresh.header
 
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.scwang.smart.refresh.layout.api.RefreshFooter
+import ceui.lisa.refresh.layout.api.RefreshFooter
 
 open class ClassicsFooter @JvmOverloads constructor(
     context: Context,

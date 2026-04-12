@@ -1,8 +1,8 @@
 package ceui.lisa.fragments
 
-import com.scwang.smart.refresh.header.FalsifyFooter
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.scwang.smart.refresh.layout.api.RefreshHeader
+import ceui.lisa.refresh.header.FalsifyFooter
+import ceui.lisa.refresh.layout.SmartRefreshLayout
+import ceui.lisa.refresh.layout.api.RefreshHeader
 
 interface Swipe {
     fun getSmartRefreshLayout(): SmartRefreshLayout

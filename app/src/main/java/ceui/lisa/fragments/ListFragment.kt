@@ -24,11 +24,11 @@ import ceui.lisa.view.LinearItemDecoration
 import ceui.lisa.view.SpacesItemDecoration
 import ceui.lisa.viewmodel.BaseModel
 import ceui.loxia.ObjectPool
-import com.scwang.smart.refresh.header.FalsifyFooter
-import com.scwang.smart.refresh.header.FalsifyHeader
-import com.scwang.smart.refresh.layout.api.RefreshLayout
-import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
-import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import ceui.lisa.refresh.header.FalsifyFooter
+import ceui.lisa.refresh.header.FalsifyHeader
+import ceui.lisa.refresh.layout.api.RefreshLayout
+import ceui.lisa.refresh.layout.listener.OnLoadMoreListener
+import ceui.lisa.refresh.layout.listener.OnRefreshListener
 import jp.wasabeef.recyclerview.animators.BaseItemAnimator
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 

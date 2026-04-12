@@ -1,4 +1,4 @@
-package com.scwang.smart.refresh.layout
+package ceui.lisa.refresh.layout
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,9 +8,9 @@ import android.widget.FrameLayout
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.scwang.smart.refresh.layout.api.RefreshFooter
-import com.scwang.smart.refresh.layout.api.RefreshHeader
-import com.scwang.smart.refresh.layout.api.RefreshLayout
+import ceui.lisa.refresh.layout.api.RefreshFooter
+import ceui.lisa.refresh.layout.api.RefreshHeader
+import ceui.lisa.refresh.layout.api.RefreshLayout
 
 class SmartRefreshLayout @JvmOverloads constructor(
     context: Context,
@@ -19,8 +19,8 @@ class SmartRefreshLayout @JvmOverloads constructor(
 
     private var refreshHeader: RefreshHeader? = null
     private var refreshFooter: RefreshFooter? = null
-    private var refreshListener: com.scwang.smart.refresh.layout.listener.OnRefreshListener? = null
-    private var loadMoreListener: com.scwang.smart.refresh.layout.listener.OnLoadMoreListener? = null
+    private var refreshListener: ceui.lisa.refresh.layout.listener.OnRefreshListener? = null
+    private var loadMoreListener: ceui.lisa.refresh.layout.listener.OnLoadMoreListener? = null
     private var enableRefresh = true
     private var enableLoadMore = true
     private var loadingMore = false
@@ -132,11 +132,11 @@ class SmartRefreshLayout @JvmOverloads constructor(
 
     override fun setHeaderMaxDragRate(rate: Float) = Unit
 
-    override fun setOnRefreshListener(listener: com.scwang.smart.refresh.layout.listener.OnRefreshListener?) {
+    override fun setOnRefreshListener(listener: ceui.lisa.refresh.layout.listener.OnRefreshListener?) {
         refreshListener = listener
     }
 
-    override fun setOnLoadMoreListener(listener: com.scwang.smart.refresh.layout.listener.OnLoadMoreListener?) {
+    override fun setOnLoadMoreListener(listener: ceui.lisa.refresh.layout.listener.OnLoadMoreListener?) {
         loadMoreListener = listener
     }
 
@@ -189,8 +189,8 @@ class SmartRefreshLayout @JvmOverloads constructor(
         override fun setDragRate(rate: Float) = Unit
         override fun setHeaderTriggerRate(rate: Float) = Unit
         override fun setHeaderMaxDragRate(rate: Float) = Unit
-        override fun setOnRefreshListener(listener: com.scwang.smart.refresh.layout.listener.OnRefreshListener?) = Unit
-        override fun setOnLoadMoreListener(listener: com.scwang.smart.refresh.layout.listener.OnLoadMoreListener?) = Unit
+        override fun setOnRefreshListener(listener: ceui.lisa.refresh.layout.listener.OnRefreshListener?) = Unit
+        override fun setOnLoadMoreListener(listener: ceui.lisa.refresh.layout.listener.OnLoadMoreListener?) = Unit
         override fun autoRefresh() = Unit
         override fun finishRefresh(success: Boolean) = Unit
         override fun finishLoadMore(success: Boolean) = Unit

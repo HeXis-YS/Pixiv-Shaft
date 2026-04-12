@@ -36,7 +36,7 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        <ceui.lisa.refresh.layout.SmartRefreshLayout
             android:layout_width="match_parent"
             android:id="@+id/refreshLayout"
             android:layout_below="@+id/toolbar"
@@ -436,6 +436,6 @@
                 </View>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+        </ceui.lisa.refresh.layout.SmartRefreshLayout>
 
     </RelativeLayout>
