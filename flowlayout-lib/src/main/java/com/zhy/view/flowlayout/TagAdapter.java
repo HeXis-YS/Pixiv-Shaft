@@ -13,14 +13,12 @@ import java.util.Set;
 public abstract class TagAdapter<T> {
     private List<T> mTagDatas;
     private OnDataChangedListener mOnDataChangedListener;
-    @Deprecated
     private HashSet<Integer> mCheckedPosList = new HashSet<Integer>();
 
     public TagAdapter(List<T> datas) {
         mTagDatas = datas;
     }
 
-    @Deprecated
     public TagAdapter(T[] datas) {
         mTagDatas = new ArrayList<T>(Arrays.asList(datas));
     }
@@ -33,7 +31,6 @@ public abstract class TagAdapter<T> {
         mOnDataChangedListener = listener;
     }
 
-    @Deprecated
     public void setSelectedList(int... poses) {
         Set<Integer> set = new HashSet<>();
         for (int pos : poses) {
@@ -42,7 +39,6 @@ public abstract class TagAdapter<T> {
         setSelectedList(set);
     }
 
-    @Deprecated
     public void setSelectedList(Set<Integer> set) {
         mCheckedPosList.clear();
         if (set != null) {
@@ -51,7 +47,6 @@ public abstract class TagAdapter<T> {
         notifyDataChanged();
     }
 
-    @Deprecated
     HashSet<Integer> getPreCheckedList() {
         return mCheckedPosList;
     }
