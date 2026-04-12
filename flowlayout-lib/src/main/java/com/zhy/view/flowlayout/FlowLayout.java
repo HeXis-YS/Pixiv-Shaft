@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.LayoutDirection;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.core.text.TextUtilsCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +29,7 @@ public class FlowLayout extends ViewGroup {
         super(context, attrs, defStyle);
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TagFlowLayout);
         mGravity = ta.getInt(R.styleable.TagFlowLayout_tag_gravity, LEFT);
-        int layoutDirection = TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault());
+        int layoutDirection = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault());
         if (layoutDirection == LayoutDirection.RTL) {
             if (mGravity == LEFT) {
                 mGravity = RIGHT;

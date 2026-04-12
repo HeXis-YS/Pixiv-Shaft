@@ -18,7 +18,6 @@ android {
     }
     lint {
         abortOnError = false
-        warning 'InvalidPackage'
     }
     namespace = 'me.jessyan.progressmanager'
 }
