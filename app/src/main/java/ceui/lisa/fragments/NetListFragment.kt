@@ -30,8 +30,6 @@ import ceui.lisa.notification.CallBackReceiver
 import ceui.lisa.notification.CommonReceiver
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.Params
-import ceui.lisa.refresh.header.ClassicsFooter
-import ceui.lisa.refresh.header.FalsifyFooter
 
 /**
  * 联网获取xx列表，
@@ -96,13 +94,7 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                     Common.showLog("trace 444")
                     mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
                     mAdapter.setNextUrl(mResponse!!.nextUrl)
-                    if (!TextUtils.isEmpty(mResponse!!.nextUrl)) {
-                        Common.showLog("trace 555")
-                        mRefreshLayout.setRefreshFooter(ClassicsFooter(mContext))
-                    } else {
-                        Common.showLog("trace 666")
-                        mRefreshLayout.setRefreshFooter(FalsifyFooter(mContext))
-                    }
+                    mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                 }
 
                 override fun must(isSuccess: Boolean) {
@@ -154,11 +146,7 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                     }
                     mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
                     mAdapter.setNextUrl(mResponse!!.nextUrl)
-                    if (!TextUtils.isEmpty(mResponse!!.nextUrl)) {
-                        mRefreshLayout.setRefreshFooter(ClassicsFooter(mContext))
-                    } else {
-                        mRefreshLayout.setRefreshFooter(FalsifyFooter(mContext))
-                    }
+                    mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                 }
 
                 override fun must(isSuccess: Boolean) {
@@ -271,11 +259,7 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                         }
                         mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
                         mAdapter.setNextUrl(mResponse!!.nextUrl)
-                        if (!TextUtils.isEmpty(mResponse!!.nextUrl)) {
-                            mRefreshLayout.setRefreshFooter(ClassicsFooter(mContext))
-                        } else {
-                            mRefreshLayout.setRefreshFooter(FalsifyFooter(mContext))
-                        }
+                        mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                     }
                 }
             }

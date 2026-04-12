@@ -6,8 +6,6 @@ import ceui.lisa.interfaces.Display
 import ceui.lisa.models.UserDetailResponse
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.Params
-import ceui.lisa.refresh.header.FalsifyFooter
-import ceui.lisa.refresh.header.FalsifyHeader
 
 class FragmentUserInfo : BaseFragment<FragmentUserInfoBinding>(), Display<UserDetailResponse> {
 
@@ -42,8 +40,4 @@ class FragmentUserInfo : BaseFragment<FragmentUserInfoBinding>(), Display<UserDe
         baseBind.otherText.text = Common.checkEmpty(response.workspace.comment)
     }
 
-    override fun initView() {
-        baseBind.refreshLayout.setRefreshHeader(FalsifyHeader(mContext))
-        baseBind.refreshLayout.setRefreshFooter(FalsifyFooter(mContext))
-    }
 }

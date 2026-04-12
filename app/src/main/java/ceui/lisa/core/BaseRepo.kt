@@ -1,10 +1,5 @@
 package ceui.lisa.core
 
-import android.content.Context
-import ceui.lisa.refresh.header.MaterialHeader
-import ceui.lisa.refresh.header.ClassicsFooter
-import ceui.lisa.refresh.layout.api.RefreshFooter
-import ceui.lisa.refresh.layout.api.RefreshHeader
 import ceui.lisa.activities.Shaft
 import ceui.lisa.utils.Common
 
@@ -19,14 +14,6 @@ open class BaseRepo : DataView {
 
     override fun enableRefresh(): Boolean {
         return true
-    }
-
-    override fun getHeader(context: Context): RefreshHeader {
-        return MaterialHeader(context)
-    }
-
-    override fun getFooter(context: Context): RefreshFooter {
-        return ClassicsFooter(context)
     }
 
     override fun showNoDataHint(): Boolean {

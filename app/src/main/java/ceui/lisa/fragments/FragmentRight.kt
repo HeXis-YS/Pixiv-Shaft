@@ -8,7 +8,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.viewbinding.ViewBinding
 import androidx.fragment.app.FragmentTransaction
-import ceui.lisa.refresh.header.FalsifyFooter
 import ceui.lisa.R
 import ceui.lisa.activities.MainActivity
 import ceui.lisa.activities.Shaft
@@ -137,7 +136,7 @@ class FragmentRight : NetListFragment<FragmentNewRightBinding, ListIllust, Illus
 
             override fun must(isSuccess: Boolean) {
                 baseBind.refreshLayout.finishRefresh(isSuccess)
-                baseBind.refreshLayout.setRefreshFooter(FalsifyFooter(mContext))
+                baseBind.refreshLayout.setEnableLoadMore(false)
             }
         })
     }

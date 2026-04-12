@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import ceui.lisa.refresh.header.FalsifyFooter
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.adapters.BaseAdapter
@@ -188,7 +187,7 @@ class FragmentRecmdIllust : NetListFragment<FragmentBaseListBinding, RecmdIllust
 
             override fun must(isSuccess: Boolean) {
                 baseBind.refreshLayout.finishRefresh(isSuccess)
-                baseBind.refreshLayout.setRefreshFooter(FalsifyFooter(mContext))
+                baseBind.refreshLayout.setEnableLoadMore(false)
             }
         })
     }

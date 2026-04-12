@@ -4,12 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import ceui.lisa.refresh.layout.api.RefreshFooter
-import ceui.lisa.refresh.layout.api.RefreshHeader
 import ceui.lisa.refresh.layout.api.RefreshLayout
 
 class SmartRefreshLayout @JvmOverloads constructor(
@@ -17,8 +14,6 @@ class SmartRefreshLayout @JvmOverloads constructor(
     attrs: AttributeSet? = null,
 ) : SwipeRefreshLayout(context, attrs), RefreshLayout {
 
-    private var refreshHeader: RefreshHeader? = null
-    private var refreshFooter: RefreshFooter? = null
     private var refreshListener: ceui.lisa.refresh.layout.listener.OnRefreshListener? = null
     private var loadMoreListener: ceui.lisa.refresh.layout.listener.OnLoadMoreListener? = null
     private var enableRefresh = true
@@ -103,14 +98,6 @@ class SmartRefreshLayout @JvmOverloads constructor(
         lastCanScrollDown = canScrollDown
     }
 
-    override fun setRefreshHeader(header: RefreshHeader?) {
-        refreshHeader = header
-    }
-
-    override fun setRefreshFooter(footer: RefreshFooter?) {
-        refreshFooter = footer
-    }
-
     override fun setEnableRefresh(enable: Boolean) {
         enableRefresh = enable
         isEnabled = enable
@@ -157,43 +144,4 @@ class SmartRefreshLayout @JvmOverloads constructor(
     }
 
     override fun setPrimaryColors(vararg colors: Int) = Unit
-
-    companion object {
-        private var defaultHeaderCreator: RefreshLayout.DefaultRefreshHeaderCreator? = null
-        private var defaultFooterCreator: RefreshLayout.DefaultRefreshFooterCreator? = null
-
-        @JvmStatic
-        fun setDefaultRefreshHeaderCreator(creator: RefreshLayout.DefaultRefreshHeaderCreator?) {
-            defaultHeaderCreator = creator
-        }
-
-        @JvmStatic
-        fun setDefaultRefreshFooterCreator(creator: RefreshLayout.DefaultRefreshFooterCreator?) {
-            defaultFooterCreator = creator
-        }
-
-        internal fun createDefaultHeader(context: Context): RefreshHeader? {
-            return defaultHeaderCreator?.createRefreshHeader(context, NoopRefreshLayout(context))
-        }
-
-        internal fun createDefaultFooter(context: Context): RefreshFooter? {
-            return defaultFooterCreator?.createRefreshFooter(context, NoopRefreshLayout(context))
-        }
-    }
-
-    private class NoopRefreshLayout(context: Context) : FrameLayout(context), RefreshLayout {
-        override fun setRefreshHeader(header: RefreshHeader?) = Unit
-        override fun setRefreshFooter(footer: RefreshFooter?) = Unit
-        override fun setEnableRefresh(enable: Boolean) = Unit
-        override fun setEnableLoadMore(enable: Boolean) = Unit
-        override fun setDragRate(rate: Float) = Unit
-        override fun setHeaderTriggerRate(rate: Float) = Unit
-        override fun setHeaderMaxDragRate(rate: Float) = Unit
-        override fun setOnRefreshListener(listener: ceui.lisa.refresh.layout.listener.OnRefreshListener?) = Unit
-        override fun setOnLoadMoreListener(listener: ceui.lisa.refresh.layout.listener.OnLoadMoreListener?) = Unit
-        override fun autoRefresh() = Unit
-        override fun finishRefresh(success: Boolean) = Unit
-        override fun finishLoadMore(success: Boolean) = Unit
-        override fun setPrimaryColors(vararg colors: Int) = Unit
-    }
 }

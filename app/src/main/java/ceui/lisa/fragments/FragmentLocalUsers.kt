@@ -5,8 +5,6 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
-import ceui.lisa.refresh.header.FalsifyFooter
-import ceui.lisa.refresh.header.FalsifyHeader
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity
@@ -36,8 +34,6 @@ class FragmentLocalUsers : BaseFragment<FragmentLocalUserBinding>() {
         baseBind.addUser.setOnClickListener {
             TemplateActivity.startLogin(mContext)
         }
-        baseBind.refreshLayout.setRefreshFooter(FalsifyFooter(mContext))
-        baseBind.refreshLayout.setRefreshHeader(FalsifyHeader(mContext))
     }
 
     override fun initData() {

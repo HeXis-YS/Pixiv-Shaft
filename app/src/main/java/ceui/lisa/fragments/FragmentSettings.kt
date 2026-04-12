@@ -37,8 +37,6 @@ import com.blankj.utilcode.util.UriUtils
 import com.qmuiteam.qmui.skin.QMUISkinManager
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
-import ceui.lisa.refresh.header.FalsifyFooter
-import ceui.lisa.refresh.header.FalsifyHeader
 import ceui.lisa.refresh.layout.SmartRefreshLayout
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
@@ -761,9 +759,6 @@ class FragmentSettings : SwipeFragment<FragmentSettingsBinding>() {
                 startActivityForResult(intent, Params.REQUEST_CODE_CHOOSE)
             }
         }
-
-        baseBind.refreshLayout.setRefreshHeader(FalsifyHeader(mContext))
-        baseBind.refreshLayout.setRefreshFooter(FalsifyFooter(mContext))
 
         if (!Common.isAndroidQ()) {
             requestStoragePermission()

@@ -24,8 +24,6 @@ import ceui.lisa.view.LinearItemDecoration
 import ceui.lisa.view.SpacesItemDecoration
 import ceui.lisa.viewmodel.BaseModel
 import ceui.loxia.ObjectPool
-import ceui.lisa.refresh.header.FalsifyFooter
-import ceui.lisa.refresh.header.FalsifyHeader
 import ceui.lisa.refresh.layout.api.RefreshLayout
 import ceui.lisa.refresh.layout.listener.OnLoadMoreListener
 import ceui.lisa.refresh.layout.listener.OnRefreshListener
@@ -91,12 +89,8 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
         }
 
         val baseRepo = mModel.getBaseRepo()!!
-        mRefreshLayout.setRefreshHeader(
-            if (baseRepo.enableRefresh()) baseRepo.getHeader(mContext) else FalsifyHeader(mContext),
-        )
-        mRefreshLayout.setRefreshFooter(
-            if (baseRepo.hasNext()) baseRepo.getFooter(mContext) else FalsifyFooter(mContext),
-        )
+        mRefreshLayout.setEnableRefresh(baseRepo.enableRefresh())
+        mRefreshLayout.setEnableLoadMore(baseRepo.hasNext())
 
         mRefreshLayout.setOnRefreshListener(OnRefreshListener {
             try {
@@ -122,7 +116,7 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
                     loadMore()
                 } else {
                     mRefreshLayout.finishLoadMore()
-                    mRefreshLayout.setRefreshFooter(FalsifyFooter(mContext))
+                    mRefreshLayout.setEnableLoadMore(false)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

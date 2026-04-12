@@ -24,9 +24,6 @@ import ceui.lisa.viewmodel.AppLevelViewModel
 import com.billy.android.swipe.SmartSwipeBack
 import com.google.gson.Gson
 import com.hjq.toast.ToastUtils
-import ceui.lisa.refresh.header.ClassicsFooter
-import ceui.lisa.refresh.header.ClassicsHeader
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
@@ -117,16 +114,6 @@ class Shaft : Application() {
     }
 
     companion object {
-        init {
-            SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, _ ->
-                ClassicsHeader(context)
-            }
-
-            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
-                ClassicsFooter(context).setDrawableSize(20f)
-            }
-        }
-
         @JvmField
         var sUserModel: UserModel = UserModel()
 
