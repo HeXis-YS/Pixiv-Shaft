@@ -100,7 +100,7 @@
   <string name="email_address">e-posta adresi</string>  
   <string name="operate_success">Başarılı</string>  
   <string name="add">Ekle</string>  
-  <string name="how_many_novels" tools:ignore="PluralsCandidate">A work %d, %d characters, reading requires: %d hours %d minute</string>  
+  <string name="how_many_novels" tools:ignore="PluralsCandidate">A work %1$d, %2$d characters, reading requires: %3$d hours %4$d minute</string>  
   <string name="file_path">dizin:</string>  
   <string name="add_account">Hesap ekle</string>  
   <string name="string_1">Mask Ayarı</string>  

@@ -100,7 +100,7 @@
   <string name="email_address">메 일주 소</string>  
   <string name="operate_success">조작 이 성공 하 다</string>  
   <string name="add">첨가 하 다.</string>  
-  <string name="how_many_novels">% d 개 작품,% d 개 글자, 보고:% d 시간% d 분</string>  
+  <string name="how_many_novels">%1$d 개 작품,%2$d 개 글자, 보고:%3$d 시간%4$d 분</string>  
   <string name="file_path">경로:</string>  
   <string name="add_account">계 정 추가</string>
   <string name="read_latest_episode">최신화 읽기</string>

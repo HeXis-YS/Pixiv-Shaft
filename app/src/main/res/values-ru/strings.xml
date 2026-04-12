@@ -100,7 +100,7 @@
   <string name="email_address">почтовый адрес</string>  
   <string name="operate_success">Операция прошла успешно</string>  
   <string name="add">Добавить</string>  
-  <string name="how_many_novels">% d - произведение,% d - слово, которое требуется для чтения:% d час% d мин</string>  
+  <string name="how_many_novels">%1$d - произведение,%2$d - слово, которое требуется для чтения:%3$d час%4$d мин</string>  
   <string name="file_path">путь:</string>  
   <string name="add_account">Добавить номер счёта</string>  
   <string name="string_1">Настройки экрана</string>  

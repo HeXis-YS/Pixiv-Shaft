@@ -102,7 +102,7 @@
   <string name="email_address">信箱地址</string>  
   <string name="operate_success">操作成功</string>  
   <string name="add">添加</string>  
-  <string name="how_many_novels">%d個作品，%d個字，看完需要：%d小時%d分鐘</string>  
+  <string name="how_many_novels">%1$d個作品，%2$d個字，看完需要：%3$d小時%4$d分鐘</string>  
   <string name="file_path">路徑：</string>  
   <string name="add_account">添加帳號</string>
   <string name="read_latest_episode">閱讀最新話</string>

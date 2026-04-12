@@ -100,7 +100,7 @@
   <string name="email_address">email address</string>  
   <string name="operate_success">Success</string>  
   <string name="add">Add to</string>  
-  <string name="how_many_novels" tools:ignore="PluralsCandidate">A work %d, %d characters, reading requires: %d hours %d minute</string>  
+  <string name="how_many_novels" tools:ignore="PluralsCandidate">A work %1$d, %2$d characters, reading requires: %3$d hours %4$d minute</string>  
   <string name="file_path">path:</string>  
   <string name="add_account">Add accounts</string>
   <string name="read_latest_episode">Read latest episode</string>
