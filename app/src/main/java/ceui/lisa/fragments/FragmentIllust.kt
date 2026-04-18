@@ -44,7 +44,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.qmuiteam.qmui.skin.QMUISkinManager
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog.CheckableDialogBuilder
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog.MessageDialogBuilder
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import kotlinx.coroutines.Dispatchers
@@ -52,7 +51,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
+class FragmentIllust : BaseLazyFragment<FragmentIllustBinding>() {
 
     private val safeArgs by threadSafeArgs<FragmentIllustArgs>()
 
@@ -555,10 +554,6 @@ class FragmentIllust : SwipeFragment<FragmentIllustBinding>() {
     override fun vertical() {
         //竖屏
         baseBind.toolbar.setPadding(0, Shaft.statusHeight, 0, 0)
-    }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout {
-        return baseBind.refreshLayout
     }
 
     companion object {

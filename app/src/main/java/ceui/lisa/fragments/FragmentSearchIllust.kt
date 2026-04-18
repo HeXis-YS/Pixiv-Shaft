@@ -54,13 +54,13 @@ class FragmentSearchIllust : NetListFragment<FragmentBaseListBinding, ListIllust
             (mRemoteRepo as SearchIllustRepo).update(searchModel)
             if (isPopular) {
                 if (TextUtils.isEmpty(searchModel.keyword.value)) {
-                    mRefreshLayout.setEnableRefresh(false)
+                    setEnableRefresh(false)
                     return@observe
                 } else {
-                    mRefreshLayout.setEnableRefresh(true)
+                    setEnableRefresh(true)
                 }
             }
-            mRefreshLayout.autoRefresh()
+            autoRefresh()
         }
     }
 

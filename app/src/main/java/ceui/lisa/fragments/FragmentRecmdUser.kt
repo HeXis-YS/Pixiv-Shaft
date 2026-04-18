@@ -25,7 +25,7 @@ class FragmentRecmdUser() : NetListFragment<FragmentBaseListBinding, ListUser, U
 
     override fun getToolbarTitle(): String = getString(R.string.recomment_user)
 
-    override fun autoRefresh(): Boolean = !(allItems != null && allItems.size > 0)
+    override fun shouldAutoRefresh(): Boolean = !(allItems != null && allItems.size > 0)
 
     override fun lazyData() {
         if (allItems.size == 0 && !outerItems.isNullOrEmpty()) {

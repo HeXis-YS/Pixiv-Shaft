@@ -5,16 +5,11 @@ import android.net.Uri
 import ceui.lisa.R
 import ceui.lisa.databinding.FragmentAboutBinding
 import ceui.lisa.utils.Common
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 
-class FragmentAboutApp : SwipeFragment<FragmentAboutBinding>() {
+class FragmentAboutApp : BaseLazyFragment<FragmentAboutBinding>() {
 
     override fun initLayout() {
         mLayoutID = R.layout.fragment_about
-    }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout {
-        return baseBind.refreshLayout
     }
 
     override fun initData() {

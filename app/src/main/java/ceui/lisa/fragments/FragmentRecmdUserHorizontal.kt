@@ -56,8 +56,8 @@ class FragmentRecmdUserHorizontal :
     }
 
     override fun onFirstLoaded(userPreviewsBeans: List<UserPreviewsBean>) {
-        mRefreshLayout.setEnableRefresh(false)
-        mRefreshLayout.setEnableLoadMore(false)
+        setEnableRefresh(false)
+        setEnableLoadMore(false)
     }
 
     override fun initRecyclerView() {
@@ -90,9 +90,9 @@ class FragmentRecmdUserHorizontal :
             }
 
             override fun must(isSuccess: Boolean) {
-                baseBind.refreshLayout.finishRefresh(isSuccess)
-                baseBind.refreshLayout.setEnableRefresh(false)
-                baseBind.refreshLayout.setEnableLoadMore(false)
+                finishRefresh(isSuccess)
+                setEnableRefresh(false)
+                setEnableLoadMore(false)
             }
         })
     }

@@ -60,7 +60,7 @@ class FragmentLikeNovel : NetListFragment<FragmentBaseListBinding, ListNovel, No
                     if (starType == type) {
                         tag = bundle.getString(Params.CONTENT).orEmpty()
                         (mRemoteRepo as LikeNovelRepo).tag = tag
-                        baseBind.refreshLayout.autoRefresh()
+                        autoRefresh()
                     }
                 }
             }

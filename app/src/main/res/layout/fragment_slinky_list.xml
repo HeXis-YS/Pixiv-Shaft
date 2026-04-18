@@ -8,7 +8,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar_layout"/>
 
-        <ceui.lisa.refresh.layout.SmartRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_below="@+id/toolbar"
@@ -21,7 +21,7 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-        </ceui.lisa.refresh.layout.SmartRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <include
             android:id="@+id/item_loading"

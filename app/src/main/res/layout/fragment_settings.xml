@@ -28,7 +28,7 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <ceui.lisa.refresh.layout.SmartRefreshLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -1014,6 +1014,6 @@
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
-        </ceui.lisa.refresh.layout.SmartRefreshLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>

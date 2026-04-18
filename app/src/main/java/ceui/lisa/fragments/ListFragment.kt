@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.viewbinding.ViewBinding
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.adapters.BaseAdapter
@@ -24,16 +25,13 @@ import ceui.lisa.view.LinearItemDecoration
 import ceui.lisa.view.SpacesItemDecoration
 import ceui.lisa.viewmodel.BaseModel
 import ceui.loxia.ObjectPool
-import ceui.lisa.refresh.layout.api.RefreshLayout
-import ceui.lisa.refresh.layout.listener.OnLoadMoreListener
-import ceui.lisa.refresh.layout.listener.OnRefreshListener
 import jp.wasabeef.recyclerview.animators.BaseItemAnimator
 import jp.wasabeef.recyclerview.animators.LandingAnimator
 
 abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layout>() {
 
     protected lateinit var mRecyclerView: RecyclerView
-    protected lateinit var mRefreshLayout: RefreshLayout
+    protected lateinit var mRefreshLayout: SwipeRefreshLayout
     protected lateinit var noData: ImageView
     protected lateinit var emptyRela: RelativeLayout
     lateinit var mAdapter: BaseAdapter<*, out ViewBinding>
@@ -44,6 +42,10 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
         protected set
     var mToolbar: Toolbar? = null
         protected set
+    private var refreshEnabled = true
+    private var loadMoreEnabled = true
+    private var loadingMore = false
+    private var loadMoreScrollListener: RecyclerView.OnScrollListener? = null
 
     override fun initLayout() {
         mLayoutID = R.layout.fragment_base_list
@@ -82,43 +84,36 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
         emptyRela = view.findViewById(R.id.no_data_rela)
         emptyRela.setOnClickListener {
             emptyRela.visibility = View.INVISIBLE
-            mRefreshLayout.autoRefresh()
+            autoRefresh()
         }
 
         val baseRepo = mModel.getBaseRepo()!!
-        mRefreshLayout.setEnableRefresh(baseRepo.enableRefresh())
-        mRefreshLayout.setEnableLoadMore(baseRepo.hasNext())
+        setEnableRefresh(baseRepo.enableRefresh())
+        setEnableLoadMore(baseRepo.hasNext())
 
-        mRefreshLayout.setOnRefreshListener(OnRefreshListener {
-            try {
-                if (mRecyclerView.layoutManager is StaggeredGridLayoutManager &&
-                    mRecyclerView.itemAnimator == null
-                ) {
-                    mRecyclerView.itemAnimator = animation()
+        mRefreshLayout.setOnRefreshListener {
+            performRefresh()
+        }
+        if (loadMoreScrollListener == null) {
+            loadMoreScrollListener = object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (dy <= 0 || !loadMoreEnabled || loadingMore) {
+                        return
+                    }
+                    if (!recyclerView.canScrollVertically(1) && mModel.getBaseRepo()!!.hasNext()) {
+                        loadingMore = true
+                        try {
+                            performLoadMore()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                            finishLoadMore(false)
+                        }
+                    }
                 }
-                clear()
-                fresh()
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
-        })
-        mRefreshLayout.setOnLoadMoreListener(OnLoadMoreListener {
-            try {
-                if (mRecyclerView.layoutManager is StaggeredGridLayoutManager &&
-                    mRecyclerView.itemAnimator != null
-                ) {
-                    mRecyclerView.itemAnimator = null
-                }
-                if (mModel.getBaseRepo()!!.hasNext()) {
-                    loadMore()
-                } else {
-                    mRefreshLayout.finishLoadMore()
-                    mRefreshLayout.setEnableLoadMore(false)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        })
+            mRecyclerView.addOnScrollListener(loadMoreScrollListener!!)
+        }
 
         allItems = mModel.getContent()
         mAdapter = adapter()
@@ -126,25 +121,25 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
 
         onAdapterPrepared()
 
-        if (!isLazy() && autoRefresh() && !mModel.isLoaded()) {
-            mRefreshLayout.autoRefresh()
+        if (!isLazy() && shouldAutoRefresh() && !mModel.isLoaded()) {
+            autoRefresh()
         }
     }
 
     open fun refresh() {
-        mRefreshLayout.autoRefresh()
+        autoRefresh()
     }
 
     override fun lazyData() {
-        if (autoRefresh() && !mModel.isLoaded()) {
-            mRefreshLayout.autoRefresh()
+        if (shouldAutoRefresh() && !mModel.isLoaded()) {
+            autoRefresh()
         }
     }
 
     open fun forceRefresh() {
         scrollToTop(object : FeedBack {
             override fun doSomething() {
-                mRefreshLayout.autoRefresh()
+                autoRefresh()
             }
         })
     }
@@ -205,7 +200,7 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
      *
      * @return default true
      */
-    open fun autoRefresh(): Boolean = true
+    open fun shouldAutoRefresh(): Boolean = true
 
     open fun initToolbar(toolbar: Toolbar) {
         if (showToolbar()) {
@@ -260,7 +255,7 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
     open fun clearAndRefresh() {
         clear()
         if (this::mRefreshLayout.isInitialized) {
-            mRefreshLayout.autoRefresh()
+            autoRefresh()
         }
     }
 
@@ -277,10 +272,82 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
 
     open fun nowRefresh() {
         mRecyclerView.smoothScrollToPosition(0)
-        mRefreshLayout.autoRefresh()
+        autoRefresh()
     }
 
     open fun getCount(): Int = if (this::allItems.isInitialized) allItems.size else 0
+
+    open fun setEnableRefresh(enable: Boolean) {
+        refreshEnabled = enable
+        mRefreshLayout.isEnabled = enable
+        if (!enable) {
+            mRefreshLayout.isRefreshing = false
+        }
+    }
+
+    open fun setEnableLoadMore(enable: Boolean) {
+        loadMoreEnabled = enable
+        if (!enable) {
+            loadingMore = false
+        }
+    }
+
+    open fun finishRefresh(success: Boolean = true) {
+        mRefreshLayout.isRefreshing = false
+    }
+
+    open fun finishLoadMore(success: Boolean = true) {
+        loadingMore = false
+    }
+
+    open fun autoRefresh() {
+        if (!refreshEnabled) {
+            finishRefresh(false)
+            return
+        }
+        mRefreshLayout.post {
+            mRefreshLayout.isRefreshing = true
+            performRefresh()
+        }
+    }
+
+    private fun performRefresh() {
+        try {
+            if (mRecyclerView.layoutManager is StaggeredGridLayoutManager &&
+                mRecyclerView.itemAnimator == null
+            ) {
+                mRecyclerView.itemAnimator = animation()
+            }
+            if (!refreshEnabled) {
+                finishRefresh(false)
+                return
+            }
+            clear()
+            fresh()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            finishRefresh(false)
+        }
+    }
+
+    private fun performLoadMore() {
+        try {
+            if (mRecyclerView.layoutManager is StaggeredGridLayoutManager &&
+                mRecyclerView.itemAnimator != null
+            ) {
+                mRecyclerView.itemAnimator = null
+            }
+            if (mModel.getBaseRepo()!!.hasNext()) {
+                loadMore()
+            } else {
+                finishLoadMore(false)
+                setEnableLoadMore(false)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            finishLoadMore(false)
+        }
+    }
 
     @get:JvmName("getCountProperty")
     val count: Int

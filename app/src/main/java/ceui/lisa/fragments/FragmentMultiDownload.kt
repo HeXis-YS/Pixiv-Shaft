@@ -215,8 +215,8 @@ class FragmentMultiDownload : LocalListFragment<FragmentMultiDownloadBinding, Il
 
     override fun initData() {
         super.initData()
-        baseBind.refreshLayout.setEnableRefresh(false)
-        baseBind.refreshLayout.setEnableLoadMore(false)
+        setEnableRefresh(false)
+        setEnableLoadMore(false)
     }
 
     override fun onFirstLoaded(illustsBeans: List<IllustsBean>) {

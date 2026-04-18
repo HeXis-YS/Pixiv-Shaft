@@ -38,7 +38,7 @@ class FragmentSearchUser : NetListFragment<FragmentBaseListBinding, ListUser, Us
             val keyWord = searchModel.keyword.value
             if (!TextUtils.isEmpty(keyWord)) {
                 (mRemoteRepo as SearchUserRepo).update(keyWord!!)
-                mRefreshLayout.autoRefresh()
+                autoRefresh()
             }
         }
     }

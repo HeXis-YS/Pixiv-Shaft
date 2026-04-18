@@ -44,7 +44,7 @@
 
             </RelativeLayout>
 
-            <ceui.lisa.refresh.layout.SmartRefreshLayout
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:layout_width="match_parent"
                 android:id="@+id/refreshLayout"
                 android:layout_below="@+id/rela_1"
@@ -57,7 +57,7 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
-            </ceui.lisa.refresh.layout.SmartRefreshLayout>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
             <include

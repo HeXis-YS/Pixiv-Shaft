@@ -63,12 +63,12 @@ class FragmentPivisionHorizontal :
     override fun animation(): BaseItemAnimator? = null
 
     override fun onFirstLoaded(spotlightArticlesBeans: List<SpotlightArticlesBean>) {
-        mRefreshLayout.setEnableRefresh(true)
-        mRefreshLayout.setEnableLoadMore(false)
+        setEnableRefresh(true)
+        setEnableLoadMore(false)
     }
 
     override fun showDataBase() {
-        baseBind.refreshLayout.finishRefresh(true)
+        finishRefresh(true)
         emptyRela.visibility = View.VISIBLE
     }
 }

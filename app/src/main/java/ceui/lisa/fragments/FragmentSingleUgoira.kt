@@ -275,7 +275,6 @@ class FragmentSingleUgoira : BaseFragment<FragmentUgoiraBinding>() {
         baseBind.playGif.setOnClickListener { nowPlayGif() }
 
         baseBind.refreshLayout.visibility = View.VISIBLE
-        baseBind.refreshLayout.setEnableLoadMore(true)
         baseBind.title.text = targetIllust.title
         baseBind.title.setOnLongClickListener {
             Common.copy(mContext, targetIllust.title)

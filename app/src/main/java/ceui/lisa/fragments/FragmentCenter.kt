@@ -5,14 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentTransaction
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import ceui.lisa.R
 import ceui.lisa.activities.MainActivity
 import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity
 import ceui.lisa.databinding.FragmentNewCenterBinding
 
-class FragmentCenter : SwipeFragment<FragmentNewCenterBinding>() {
+class FragmentCenter : BaseLazyFragment<FragmentNewCenterBinding>() {
     private var pivisionFragment: FragmentPivisionHorizontal? = null
 
     override fun initLayout() {
@@ -60,8 +59,6 @@ class FragmentCenter : SwipeFragment<FragmentNewCenterBinding>() {
         transaction.add(R.id.fragment_pivision, pivisionFragment!!, "FragmentPivisionHorizontal")
         transaction.commitNowAllowingStateLoss()
     }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout = baseBind.refreshLayout
 
     fun forceRefresh() {
         pivisionFragment?.forceRefresh()

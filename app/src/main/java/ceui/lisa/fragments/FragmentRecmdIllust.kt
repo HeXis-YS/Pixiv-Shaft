@@ -186,8 +186,8 @@ class FragmentRecmdIllust : NetListFragment<FragmentBaseListBinding, RecmdIllust
             }
 
             override fun must(isSuccess: Boolean) {
-                baseBind.refreshLayout.finishRefresh(isSuccess)
-                baseBind.refreshLayout.setEnableLoadMore(false)
+                finishRefresh(isSuccess)
+                setEnableLoadMore(false)
             }
         })
     }

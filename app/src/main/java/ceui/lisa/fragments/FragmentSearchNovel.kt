@@ -42,7 +42,7 @@ class FragmentSearchNovel : NetListFragment<FragmentBaseListBinding, ListNovel, 
                 return@observe
             }
             (mRemoteRepo as SearchNovelRepo).update(searchModel)
-            mRefreshLayout.autoRefresh()
+            autoRefresh()
         }
     }
 

@@ -7,7 +7,6 @@ import android.graphics.Path
 import android.graphics.Rect
 import android.graphics.Region
 import android.graphics.drawable.Drawable
-import ceui.lisa.refresh.drawable.PaintDrawable
 import java.util.ArrayList
 
 @Suppress("unused", "MemberVisibilityCanBePrivate")

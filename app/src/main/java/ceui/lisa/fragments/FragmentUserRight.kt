@@ -14,11 +14,10 @@ import ceui.lisa.databinding.TagItemBinding
 import ceui.lisa.utils.Params
 import ceui.lisa.utils.PixivOperate
 import ceui.lisa.viewmodel.UserViewModel
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 
-class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
+class FragmentUserRight : BaseLazyFragment<FragmentUserRightBinding>() {
 
     private lateinit var mUserViewModel: UserViewModel
 
@@ -28,10 +27,6 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
 
     override fun initModel() {
         mUserViewModel = ViewModelProvider(mActivity).get(UserViewModel::class.java)
-    }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout {
-        return baseBind.refreshLayout
     }
 
     override fun initData() {
@@ -140,13 +135,5 @@ class FragmentUserRight : SwipeFragment<FragmentUserRightBinding>() {
         } else {
             baseBind.realJob.text = getString(R.string.no_info)
         }
-    }
-
-    override fun enableLoadMore(): Boolean {
-        return false
-    }
-
-    override fun enableRefresh(): Boolean {
-        return false
     }
 }

@@ -29,7 +29,7 @@ abstract class LocalListFragment<Layout : ViewBinding, Item> : ListFragment<Layo
                 }
 
                 override fun error(e: Throwable) {
-                    mRefreshLayout.finishRefresh(false)
+                    finishRefresh(false)
                 }
             })
             return
@@ -52,7 +52,7 @@ abstract class LocalListFragment<Layout : ViewBinding, Item> : ListFragment<Layo
             mRecyclerView.visibility = View.INVISIBLE
             emptyRela.visibility = View.VISIBLE
         }
-        mRefreshLayout.finishRefresh(true)
+        finishRefresh(true)
     }
 
     override fun loadMore() {
@@ -68,7 +68,7 @@ abstract class LocalListFragment<Layout : ViewBinding, Item> : ListFragment<Layo
                 }
 
                 override fun error(e: Throwable) {
-                    mRefreshLayout.finishLoadMore(false)
+                    finishLoadMore(false)
                 }
             })
             return
@@ -90,7 +90,7 @@ abstract class LocalListFragment<Layout : ViewBinding, Item> : ListFragment<Layo
                 Common.showToast(getString(R.string.string_224))
             }
         }
-        mRefreshLayout.finishLoadMore(true)
+        finishLoadMore(true)
     }
 
     override fun initData() {

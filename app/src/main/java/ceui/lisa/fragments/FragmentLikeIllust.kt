@@ -103,7 +103,7 @@ class FragmentLikeIllust : NetListFragment<FragmentBaseListBinding, ListIllust, 
                     if (starType == type) {
                         tag = bundle.getString(Params.CONTENT).orEmpty()
                         (mRemoteRepo as LikeIllustRepo).tag = tag
-                        baseBind.refreshLayout.autoRefresh()
+                        autoRefresh()
                     }
                 }
             }

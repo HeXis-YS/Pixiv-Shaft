@@ -20,11 +20,10 @@ import ceui.lisa.utils.Local
 import ceui.lisa.utils.Params
 import ceui.lisa.view.LinearItemDecoration
 import com.google.gson.reflect.TypeToken
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import java.util.ArrayList
 import java.util.Collections
 
-class FragmentFileName : SwipeFragment<FragmentFileNameBinding>() {
+class FragmentFileName : BaseLazyFragment<FragmentFileNameBinding>() {
     private lateinit var illust: IllustsBean
     private val allItems = ArrayList<CustomFileNameCell>()
     private var mAdapter: FileNameAdapter? = null
@@ -155,6 +154,4 @@ class FragmentFileName : SwipeFragment<FragmentFileNameBinding>() {
         Local.setSettings(Shaft.sSettings)
         Common.showToast("保存成功！")
     }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout = baseBind.refreshLayout
 }

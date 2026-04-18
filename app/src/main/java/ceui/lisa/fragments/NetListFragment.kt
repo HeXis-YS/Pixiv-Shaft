@@ -94,11 +94,11 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                     Common.showLog("trace 444")
                     mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
                     mAdapter.setNextUrl(mResponse!!.nextUrl)
-                    mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
+                    setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                 }
 
                 override fun must(isSuccess: Boolean) {
-                    mRefreshLayout.finishRefresh(isSuccess)
+                    finishRefresh(isSuccess)
                     isLoading = false
                 }
 
@@ -146,11 +146,11 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                     }
                     mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
                     mAdapter.setNextUrl(mResponse!!.nextUrl)
-                    mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
+                    setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                 }
 
                 override fun must(isSuccess: Boolean) {
-                    mRefreshLayout.finishLoadMore(isSuccess)
+                    finishLoadMore(isSuccess)
                     isLoading = false
                 }
             })
@@ -158,7 +158,7 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
             if (mRemoteRepo.showNoDataHint()) {
                 Common.showToast(getString(R.string.string_224))
             }
-            mRefreshLayout.finishLoadMore()
+            finishLoadMore()
         }
     }
 
@@ -257,9 +257,9 @@ abstract class NetListFragment<Layout : ViewBinding, Response : ListShow<Item>, 
                             onNextLoaded(responseList)
                             mAdapter.notifyItemRangeInserted(beforeLoadSize, afterLoadSize - beforeLoadSize)
                         }
-                        mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
-                        mAdapter.setNextUrl(mResponse!!.nextUrl)
-                        mRefreshLayout.setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
+	                        mRemoteRepo.setNextUrl(mResponse!!.nextUrl)
+	                        mAdapter.setNextUrl(mResponse!!.nextUrl)
+	                        setEnableLoadMore(!TextUtils.isEmpty(mResponse!!.nextUrl))
                     }
                 }
             }

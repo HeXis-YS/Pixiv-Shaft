@@ -111,10 +111,10 @@ class FragmentRight : NetListFragment<FragmentNewRightBinding, ListIllust, Illus
         headerFragment = recmdUser
         transaction.add(R.id.user_recmd_fragment, recmdUser, "FragmentRecmdUserHorizontal")
         transaction.commitNowAllowingStateLoss()
-        baseBind.refreshLayout.autoRefresh()
+        autoRefresh()
     }
 
-    override fun autoRefresh(): Boolean = false
+    override fun shouldAutoRefresh(): Boolean = false
 
     override fun showDataBase() {
         RxRun.runOn(object : RxRunnable<List<IllustsBean>>() {
@@ -135,8 +135,8 @@ class FragmentRight : NetListFragment<FragmentNewRightBinding, ListIllust, Illus
             }
 
             override fun must(isSuccess: Boolean) {
-                baseBind.refreshLayout.finishRefresh(isSuccess)
-                baseBind.refreshLayout.setEnableLoadMore(false)
+                finishRefresh(isSuccess)
+                setEnableLoadMore(false)
             }
         })
     }

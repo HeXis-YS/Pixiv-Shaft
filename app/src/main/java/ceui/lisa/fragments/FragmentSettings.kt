@@ -37,13 +37,12 @@ import com.blankj.utilcode.util.UriUtils
 import com.qmuiteam.qmui.skin.QMUISkinManager
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
-import ceui.lisa.refresh.layout.SmartRefreshLayout
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import java.util.Arrays
 import java.util.Locale
 
-class FragmentSettings : SwipeFragment<FragmentSettingsBinding>() {
+class FragmentSettings : BaseLazyFragment<FragmentSettingsBinding>() {
     companion object {
         private const val REQUEST_WRITE_STORAGE = 1002
     }
@@ -787,10 +786,6 @@ class FragmentSettings : SwipeFragment<FragmentSettingsBinding>() {
             Common.showToast(getString(R.string.access_denied))
             finish()
         }
-    }
-
-    override fun getSmartRefreshLayout(): SmartRefreshLayout {
-        return baseBind.refreshLayout
     }
 
     private fun setOrderName() {
