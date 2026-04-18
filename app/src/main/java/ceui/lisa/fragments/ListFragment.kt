@@ -46,6 +46,7 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
     private var loadMoreEnabled = true
     private var loadingMore = false
     private var loadMoreScrollListener: RecyclerView.OnScrollListener? = null
+    var onRefreshFinished: ((Boolean) -> Unit)? = null
 
     override fun initLayout() {
         mLayoutID = R.layout.fragment_base_list
@@ -294,6 +295,7 @@ abstract class ListFragment<Layout : ViewBinding, Item> : BaseLazyFragment<Layou
 
     open fun finishRefresh(success: Boolean = true) {
         mRefreshLayout.isRefreshing = false
+        onRefreshFinished?.invoke(success)
     }
 
     open fun finishLoadMore(success: Boolean = true) {

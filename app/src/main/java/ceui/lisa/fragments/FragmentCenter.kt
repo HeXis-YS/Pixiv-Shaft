@@ -19,6 +19,10 @@ class FragmentCenter : BaseLazyFragment<FragmentNewCenterBinding>() {
     }
 
     override fun initView() {
+        baseBind.refreshLayout.setOnRefreshListener {
+            forceRefresh()
+        }
+
         val headParams = baseBind.head.layoutParams
         headParams.height = Shaft.statusHeight
         baseBind.head.layoutParams = headParams
@@ -56,11 +60,23 @@ class FragmentCenter : BaseLazyFragment<FragmentNewCenterBinding>() {
     override fun lazyData() {
         val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
         pivisionFragment = FragmentPivisionHorizontal()
+        pivisionFragment?.onRefreshFinished = {
+            if (this::baseBind.isInitialized) {
+                baseBind.refreshLayout.isRefreshing = false
+            }
+        }
         transaction.add(R.id.fragment_pivision, pivisionFragment!!, "FragmentPivisionHorizontal")
         transaction.commitNowAllowingStateLoss()
     }
 
     fun forceRefresh() {
-        pivisionFragment?.forceRefresh()
+        val fragment = pivisionFragment
+        if (fragment == null) {
+            if (this::baseBind.isInitialized) {
+                baseBind.refreshLayout.isRefreshing = false
+            }
+            return
+        }
+        fragment.forceRefresh()
     }
 }
