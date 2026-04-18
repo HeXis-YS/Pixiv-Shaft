@@ -5,13 +5,13 @@ import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.ToxicBakery.viewpager.transforms.DrawerTransformer
 import ceui.lisa.R
 import ceui.lisa.activities.Shaft
 import ceui.lisa.activities.TemplateActivity
 import ceui.lisa.databinding.ViewpagerWithTablayoutBinding
 import ceui.lisa.utils.MyOnTabSelectedListener
 import ceui.lisa.utils.Params
+import ceui.lisa.viewpager.transforms.DrawerTransformer
 import java.util.Arrays
 import java.util.HashSet
 

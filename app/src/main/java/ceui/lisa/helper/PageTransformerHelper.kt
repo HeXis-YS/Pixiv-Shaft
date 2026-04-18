@@ -1,25 +1,25 @@
 package ceui.lisa.helper
 
-import com.ToxicBakery.viewpager.transforms.ABaseTransformer
-import com.ToxicBakery.viewpager.transforms.AccordionTransformer
-import com.ToxicBakery.viewpager.transforms.BackgroundToForegroundTransformer
-import com.ToxicBakery.viewpager.transforms.CubeInTransformer
-import com.ToxicBakery.viewpager.transforms.CubeOutTransformer
-import com.ToxicBakery.viewpager.transforms.DefaultTransformer
-import com.ToxicBakery.viewpager.transforms.DepthPageTransformer
-import com.ToxicBakery.viewpager.transforms.DrawerTransformer
-import com.ToxicBakery.viewpager.transforms.FlipHorizontalTransformer
-import com.ToxicBakery.viewpager.transforms.FlipVerticalTransformer
-import com.ToxicBakery.viewpager.transforms.ForegroundToBackgroundTransformer
-import com.ToxicBakery.viewpager.transforms.RotateDownTransformer
-import com.ToxicBakery.viewpager.transforms.RotateUpTransformer
-import com.ToxicBakery.viewpager.transforms.ScaleInOutTransformer
-import com.ToxicBakery.viewpager.transforms.StackTransformer
-import com.ToxicBakery.viewpager.transforms.TabletTransformer
-import com.ToxicBakery.viewpager.transforms.ZoomInTransformer
-import com.ToxicBakery.viewpager.transforms.ZoomOutSlideTransformer
-import com.ToxicBakery.viewpager.transforms.ZoomOutTransformer
 import ceui.lisa.activities.Shaft
+import ceui.lisa.viewpager.transforms.ABaseTransformer
+import ceui.lisa.viewpager.transforms.AccordionTransformer
+import ceui.lisa.viewpager.transforms.BackgroundToForegroundTransformer
+import ceui.lisa.viewpager.transforms.CubeInTransformer
+import ceui.lisa.viewpager.transforms.CubeOutTransformer
+import ceui.lisa.viewpager.transforms.DefaultTransformer
+import ceui.lisa.viewpager.transforms.DepthPageTransformer
+import ceui.lisa.viewpager.transforms.DrawerTransformer
+import ceui.lisa.viewpager.transforms.FlipHorizontalTransformer
+import ceui.lisa.viewpager.transforms.FlipVerticalTransformer
+import ceui.lisa.viewpager.transforms.ForegroundToBackgroundTransformer
+import ceui.lisa.viewpager.transforms.RotateDownTransformer
+import ceui.lisa.viewpager.transforms.RotateUpTransformer
+import ceui.lisa.viewpager.transforms.ScaleInOutTransformer
+import ceui.lisa.viewpager.transforms.StackTransformer
+import ceui.lisa.viewpager.transforms.TabletTransformer
+import ceui.lisa.viewpager.transforms.ZoomInTransformer
+import ceui.lisa.viewpager.transforms.ZoomOutSlideTransformer
+import ceui.lisa.viewpager.transforms.ZoomOutTransformer
 
 object PageTransformerHelper {
     private val transformerMap: IndexedLinkedHashMap<Int, TransformerType> =

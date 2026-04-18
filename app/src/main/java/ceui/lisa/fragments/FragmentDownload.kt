@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.ToxicBakery.viewpager.transforms.DrawerTransformer
 import com.qmuiteam.qmui.skin.QMUISkinManager
 import com.qmuiteam.qmui.widget.dialog.QMUIDialog
 import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction
@@ -17,6 +16,7 @@ import ceui.lisa.database.AppDatabase
 import ceui.lisa.databinding.ViewpagerWithTablayoutBinding
 import ceui.lisa.utils.Common
 import ceui.lisa.utils.MyOnTabSelectedListener
+import ceui.lisa.viewpager.transforms.DrawerTransformer
 
 class FragmentDownload : BaseFragment<ViewpagerWithTablayoutBinding>() {
     private val allPages: Array<Fragment> = arrayOf(FragmentDownloading(), FragmentDownloadFinish())

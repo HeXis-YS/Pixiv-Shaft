@@ -1,4 +1,4 @@
-package com.ToxicBakery.viewpager.transforms
+package ceui.lisa.viewpager.transforms
 
 import android.graphics.Camera
 import android.graphics.Matrix
